@@ -1,0 +1,1557 @@
+object fAcerto: TfAcerto
+  Left = 257
+  Height = 636
+  Top = 250
+  Width = 928
+  BorderIcons = []
+  Caption = 'Acerto'
+  ClientHeight = 636
+  ClientWidth = 928
+  Color = clGradientInactiveCaption
+  Position = poScreenCenter
+  LCLVersion = '4.6.0.0'
+  OnClose = FormClose
+  OnShow = FormShow
+  object pnTela: TPanel
+    AnchorSideLeft.Control = Owner
+    AnchorSideBottom.Control = Owner
+    AnchorSideBottom.Side = asrBottom
+    Left = 0
+    Height = 634
+    Top = 2
+    Width = 938
+    Anchors = [akLeft, akBottom]
+    Caption = 'pnTela'
+    ClientHeight = 634
+    ClientWidth = 938
+    Color = clGradientActiveCaption
+    ParentBackground = False
+    ParentColor = False
+    TabOrder = 0
+    object pnContaCorrente: TPanel
+      AnchorSideTop.Control = pnTela
+      AnchorSideRight.Control = pnTrans
+      AnchorSideBottom.Control = pnTela
+      AnchorSideBottom.Side = asrBottom
+      Left = 6
+      Height = 594
+      Top = 40
+      Width = 437
+      Anchors = [akRight]
+      ClientHeight = 594
+      ClientWidth = 437
+      Color = clGradientInactiveCaption
+      ParentBackground = False
+      ParentColor = False
+      TabOrder = 0
+      object pnContaCorrenteGrid: TPanel
+        AnchorSideLeft.Control = pnContaCorrente
+        AnchorSideRight.Control = pnContaCorrente
+        AnchorSideRight.Side = asrBottom
+        AnchorSideBottom.Control = pnContaCorrenteEditar
+        Left = 1
+        Height = 553
+        Top = -95
+        Width = 435
+        Anchors = [akBottom]
+        ClientHeight = 553
+        ClientWidth = 435
+        ParentBackground = False
+        TabOrder = 0
+        object dbgContaCorrente: TDBGrid
+          AnchorSideRight.Control = pnContaCorrenteGrid
+          AnchorSideRight.Side = asrBottom
+          Left = 2
+          Height = 395
+          Top = 126
+          Width = 432
+          Anchors = [akRight]
+          Color = clWindow
+          Columns = <          
+            item
+              Title.Caption = 'IDContaCorrente'
+              Visible = False
+              FieldName = 'IDContaCorrente'
+            end          
+            item
+              Title.Caption = 'IDAcerto'
+              Visible = False
+              FieldName = 'IDAcerto'
+            end          
+            item
+              Title.Caption = 'IDCliente'
+              Visible = False
+              FieldName = 'IDCliente'
+            end          
+            item
+              Title.Caption = 'Data'
+              FieldName = 'Data'
+            end          
+            item
+              Title.Caption = 'Historico'
+              FieldName = 'Historico'
+            end          
+            item
+              Title.Caption = 'Entrada'
+              Width = 50
+              FieldName = 'Entrada'
+            end          
+            item
+              Title.Caption = 'Saida'
+              Width = 50
+              FieldName = 'Saida'
+            end          
+            item
+              Title.Caption = 'Status'
+              Visible = False
+              FieldName = 'Status'
+            end>
+          DataSource = dsCC
+          ReadOnly = True
+          TabOrder = 0
+          TabStop = False
+        end
+        object pnContaCorrenteGridRodape: TPanel
+          Left = -5
+          Height = 31
+          Top = 519
+          Width = 445
+          Anchors = []
+          ClientHeight = 31
+          ClientWidth = 445
+          Color = clGradientActiveCaption
+          Font.CharSet = ANSI_CHARSET
+          Font.Height = -16
+          Font.Pitch = fpVariable
+          Font.Quality = fqDraft
+          Font.Style = [fsBold]
+          ParentBackground = False
+          ParentColor = False
+          ParentFont = False
+          TabOrder = 1
+          object dbeSaldoCC: TDBEdit
+            Left = 296
+            Height = 29
+            Top = 0
+            Width = 120
+            DataField = 'SaldoContaCorrente'
+            DataSource = dsClienteSaldo
+            ReadOnly = True
+            Alignment = taRightJustify
+            MaxLength = 10
+            TabOrder = 0
+          end
+          object Label8: TLabel
+            Left = 244
+            Height = 19
+            Top = 5
+            Width = 43
+            Caption = 'Saldo'
+          end
+          object dbnCC: TDBNavigator
+            AnchorSideTop.Control = pnContaCorrenteGridRodape
+            AnchorSideTop.Side = asrCenter
+            Left = 7
+            Height = 25
+            Top = 3
+            Width = 156
+            BevelOuter = bvNone
+            ChildSizing.EnlargeHorizontal = crsScaleChilds
+            ChildSizing.EnlargeVertical = crsScaleChilds
+            ChildSizing.ShrinkHorizontal = crsScaleChilds
+            ChildSizing.ShrinkVertical = crsScaleChilds
+            ChildSizing.Layout = cclLeftToRightThenTopToBottom
+            ChildSizing.ControlsPerLine = 100
+            ClientHeight = 25
+            ClientWidth = 156
+            DataSource = dsCC
+            Options = []
+            TabOrder = 1
+            VisibleButtons = [nbFirst, nbPrior, nbNext, nbLast]
+          end
+        end
+      end
+      object pnContaCorrenteEditar: TPanel
+        AnchorSideLeft.Control = pnContaCorrente
+        AnchorSideTop.Side = asrBottom
+        AnchorSideRight.Control = pnContaCorrente
+        AnchorSideRight.Side = asrBottom
+        AnchorSideBottom.Control = pnContaCorrente
+        AnchorSideBottom.Side = asrBottom
+        Left = 1
+        Height = 135
+        Top = 458
+        Width = 435
+        Anchors = [akTop, akLeft, akRight, akBottom]
+        ClientHeight = 135
+        ClientWidth = 435
+        Color = clGradientActiveCaption
+        ParentBackground = False
+        ParentColor = False
+        TabOrder = 1
+        object pnCCEditarComponentes: TPanel
+          Left = 8
+          Height = 88
+          Top = 8
+          Width = 416
+          ClientHeight = 88
+          ClientWidth = 416
+          Color = clGradientActiveCaption
+          ParentBackground = False
+          ParentColor = False
+          TabOrder = 0
+          object dbDataCC: TDBDateTimePicker
+            Left = 3
+            Height = 22
+            Top = 15
+            Width = 97
+            DataField = 'Data'
+            DataSource = dsCC
+            ReadOnly = False
+            CenturyFrom = 1941
+            MaxDate = 2958465
+            MinDate = -53780
+            TabOrder = 0
+            TrailingSeparator = False
+            TextForNullDate = 'NULL'
+            LeadingZeros = True
+            Kind = dtkDate
+            TimeFormat = tf24
+            TimeDisplay = tdHMS
+            DateMode = dmComboBox
+            UseDefaultSeparators = True
+            HideDateTimeParts = []
+            MonthNames = 'Long'
+          end
+          object Label2: TLabel
+            Left = 0
+            Height = 16
+            Top = 0
+            Width = 28
+            Caption = 'Data'
+          end
+          object dbeHistorico: TDBEdit
+            Left = 105
+            Height = 26
+            Top = 15
+            Width = 304
+            DataField = 'Historico'
+            DataSource = dsCC
+            MaxLength = 0
+            TabOrder = 1
+          end
+          object Label3: TLabel
+            Left = 105
+            Height = 16
+            Top = 0
+            Width = 53
+            Caption = 'Histórico'
+          end
+          object dbeEntrada: TDBEdit
+            Left = 3
+            Height = 26
+            Top = 53
+            Width = 80
+            DataField = 'Entrada'
+            DataSource = dsCC
+            Alignment = taRightJustify
+            MaxLength = 0
+            TabOrder = 2
+          end
+          object dbeSaida: TDBEdit
+            Left = 103
+            Height = 26
+            Top = 53
+            Width = 80
+            DataField = 'Saida'
+            DataSource = dsCC
+            Alignment = taRightJustify
+            MaxLength = 0
+            TabOrder = 3
+          end
+          object Label4: TLabel
+            Left = 2
+            Height = 16
+            Top = 40
+            Width = 47
+            Caption = 'Entrada'
+          end
+          object Label5: TLabel
+            Left = 103
+            Height = 16
+            Top = 40
+            Width = 32
+            Caption = 'Saida'
+          end
+          object rgStatusCC: TDBRadioGroup
+            Left = 216
+            Height = 32
+            Top = 48
+            Width = 185
+            AutoFill = True
+            Caption = 'Status'
+            ChildSizing.LeftRightSpacing = 6
+            ChildSizing.EnlargeHorizontal = crsHomogenousChildResize
+            ChildSizing.EnlargeVertical = crsHomogenousChildResize
+            ChildSizing.ShrinkHorizontal = crsScaleChilds
+            ChildSizing.ShrinkVertical = crsScaleChilds
+            ChildSizing.Layout = cclLeftToRightThenTopToBottom
+            ChildSizing.ControlsPerLine = 2
+            Columns = 2
+            DataField = 'Status'
+            DataSource = dsCC
+            Items.Strings = (
+              'Ativo'
+              'Cancelado'
+            )
+            TabOrder = 4
+          end
+        end
+        object pnCCBotaoEditar: TPanel
+          Left = 16
+          Height = 34
+          Top = 96
+          Width = 166
+          ClientHeight = 34
+          ClientWidth = 166
+          ParentBackground = False
+          TabOrder = 1
+          object btNovoCC: TBitBtn
+            Left = 8
+            Height = 30
+            Hint = 'Novo registro de conta corrente'
+            Top = 1
+            Width = 75
+            Caption = 'Novo'
+            Glyph.Data = {
+              76060000424D7606000000000000360400002800000018000000180000000100
+              0800000000004002000000000000000000000000000000000000000000000000
+              80000080000000808000800000008000800080800000C0C0C000C0DCC000F0CA
+              A6000020400000206000002080000020A0000020C0000020E000004000000040
+              20000040400000406000004080000040A0000040C0000040E000006000000060
+              20000060400000606000006080000060A0000060C0000060E000008000000080
+              20000080400000806000008080000080A0000080C0000080E00000A0000000A0
+              200000A0400000A0600000A0800000A0A00000A0C00000A0E00000C0000000C0
+              200000C0400000C0600000C0800000C0A00000C0C00000C0E00000E0000000E0
+              200000E0400000E0600000E0800000E0A00000E0C00000E0E000400000004000
+              20004000400040006000400080004000A0004000C0004000E000402000004020
+              20004020400040206000402080004020A0004020C0004020E000404000004040
+              20004040400040406000404080004040A0004040C0004040E000406000004060
+              20004060400040606000406080004060A0004060C0004060E000408000004080
+              20004080400040806000408080004080A0004080C0004080E00040A0000040A0
+              200040A0400040A0600040A0800040A0A00040A0C00040A0E00040C0000040C0
+              200040C0400040C0600040C0800040C0A00040C0C00040C0E00040E0000040E0
+              200040E0400040E0600040E0800040E0A00040E0C00040E0E000800000008000
+              20008000400080006000800080008000A0008000C0008000E000802000008020
+              20008020400080206000802080008020A0008020C0008020E000804000008040
+              20008040400080406000804080008040A0008040C0008040E000806000008060
+              20008060400080606000806080008060A0008060C0008060E000808000008080
+              20008080400080806000808080008080A0008080C0008080E00080A0000080A0
+              200080A0400080A0600080A0800080A0A00080A0C00080A0E00080C0000080C0
+              200080C0400080C0600080C0800080C0A00080C0C00080C0E00080E0000080E0
+              200080E0400080E0600080E0800080E0A00080E0C00080E0E000C0000000C000
+              2000C0004000C0006000C0008000C000A000C000C000C000E000C0200000C020
+              2000C0204000C0206000C0208000C020A000C020C000C020E000C0400000C040
+              2000C0404000C0406000C0408000C040A000C040C000C040E000C0600000C060
+              2000C0604000C0606000C0608000C060A000C060C000C060E000C0800000C080
+              2000C0804000C0806000C0808000C080A000C080C000C080E000C0A00000C0A0
+              2000C0A04000C0A06000C0A08000C0A0A000C0A0C000C0A0E000C0C00000C0C0
+              2000C0C04000C0C06000C0C08000C0C0A000F0FBFF00A4A0A000808080000000
+              FF0000FF000000FFFF00FF000000FF00FF00FFFF0000FFFFFF00FFFFFFEF9F97
+              979797979797979797979797979FEFFFFFFFFFFF8F4646464646464646464646
+              464646464646464FFFFFFF8F4747474747474747474747474747474747474747
+              47FFEF46474747474747474747474747474747474747474746EF9F4647474747
+              4747474747474747474747474747474746979746474747474747474747474747
+              4747474747474747468F9746474747474747478FEF08F6EF9747474747474747
+              468F9746474747474747EFFFF6F6F6F6FFEF474747474747468F974647474747
+              47EFF6F6F6F6F6F6F6F6EF4747474747468F97464747474797FFF6F6F6A7A7F6
+              F6F6FF9747474747468F974647474747EFF6F6F6FF9F5FFFF6F6F6EF47474747
+              468F974647474747F6F6F6A79F9F9F9FA7F6F6F647474747468F974647474747
+              F6F6F6A75F9F9F5F9FF6F6F647474747468F974647474747EFF6F6F6FF9F5FFF
+              F6F6F6EF47474747468F97464747474797FFF6F6F6A79FF6F6F6FF9F47474747
+              468F97464747474747EFF6F6F6F6F6F6F6F6F64747474747468F974647474747
+              474707FFF6F6F6F6FFF6474747474747468F9746474747474747479FEFF6F607
+              9F47474747474747468F97464747474747474747474747474747474747474747
+              468F9F4647474747474747474747474747474747474747474697EF4647474747
+              4747474747474747474747474747474746EFFF47474747474747474747474747
+              474747474747474747FFFFFF4746464646464646464646464646464646464647
+              F6FFFFFFFFEF974F4F4F4F4F4F4F4F4F4F4F4F4F4F97E7FFFFFF
+            }
+            ParentShowHint = False
+            ShowHint = True
+            TabOrder = 0
+            OnClick = btNovoCCClick
+          end
+          object btEditarCC: TBitBtn
+            Left = 86
+            Height = 30
+            Hint = 'Editar registro de conta corrente'
+            Top = 0
+            Width = 75
+            Caption = 'Editar'
+            Glyph.Data = {
+              0E070000424D0E0700000000000036040000280000001A0000001A0000000100
+              080000000000D8020000C40E0000C40E00000000000000000000000000000000
+              80000080000000808000800000008000800080800000C0C0C000C0DCC000F0CA
+              A6000020400000206000002080000020A0000020C0000020E000004000000040
+              20000040400000406000004080000040A0000040C0000040E000006000000060
+              20000060400000606000006080000060A0000060C0000060E000008000000080
+              20000080400000806000008080000080A0000080C0000080E00000A0000000A0
+              200000A0400000A0600000A0800000A0A00000A0C00000A0E00000C0000000C0
+              200000C0400000C0600000C0800000C0A00000C0C00000C0E00000E0000000E0
+              200000E0400000E0600000E0800000E0A00000E0C00000E0E000400000004000
+              20004000400040006000400080004000A0004000C0004000E000402000004020
+              20004020400040206000402080004020A0004020C0004020E000404000004040
+              20004040400040406000404080004040A0004040C0004040E000406000004060
+              20004060400040606000406080004060A0004060C0004060E000408000004080
+              20004080400040806000408080004080A0004080C0004080E00040A0000040A0
+              200040A0400040A0600040A0800040A0A00040A0C00040A0E00040C0000040C0
+              200040C0400040C0600040C0800040C0A00040C0C00040C0E00040E0000040E0
+              200040E0400040E0600040E0800040E0A00040E0C00040E0E000800000008000
+              20008000400080006000800080008000A0008000C0008000E000802000008020
+              20008020400080206000802080008020A0008020C0008020E000804000008040
+              20008040400080406000804080008040A0008040C0008040E000806000008060
+              20008060400080606000806080008060A0008060C0008060E000808000008080
+              20008080400080806000808080008080A0008080C0008080E00080A0000080A0
+              200080A0400080A0600080A0800080A0A00080A0C00080A0E00080C0000080C0
+              200080C0400080C0600080C0800080C0A00080C0C00080C0E00080E0000080E0
+              200080E0400080E0600080E0800080E0A00080E0C00080E0E000C0000000C000
+              2000C0004000C0006000C0008000C000A000C000C000C000E000C0200000C020
+              2000C0204000C0206000C0208000C020A000C020C000C020E000C0400000C040
+              2000C0404000C0406000C0408000C040A000C040C000C040E000C0600000C060
+              2000C0604000C0606000C0608000C060A000C060C000C060E000C0800000C080
+              2000C0804000C0806000C0808000C080A000C080C000C080E000C0A00000C0A0
+              2000C0A04000C0A06000C0A08000C0A0A000C0A0C000C0A0E000C0C00000C0C0
+              2000C0C04000C0C06000C0C08000C0C0A000F0FBFF00A4A0A000808080000000
+              FF0000FF000000FFFF00FF000000FF00FF00FFFF0000FFFFFF00FFFFFFFFFFFF
+              FFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFF6F6F6F60000F7FFFFFFFFFFFFFFFFFF
+              FFFFFFFFFFFFFFFFF6EDF7F7F5AE65070000F7FFFFFFFFFFFFFFFFFFFFFFFFFF
+              FFFFF6A4F7FFF6BF777777FF00000708FFFFFFFFFFF6070707080807F7A407FF
+              FF6777777F77BFFF0000FFA4FFFFF6F7A40708F608070708FFFFFFFF57575F7F
+              7777F6FF0000FFF6A4F7F7FFFFFFFFFFFFFFFFFFFFFFFF575757575F7FBFFFFF
+              0000FFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFF57579F9F9F575FF6FFFF0000FFFF
+              FFFFFFFFFFFFFFFFFFFFFFFFFF57579F9F9F9F57A7FFFFFF0000FFFFFFFFFFFF
+              FFFFFFFFFFFFFFFF57579F9F9F9F57A7FFFFFFFF0000FFFFFFFFFFFFFFFFFFFF
+              FFFFFF57579F9F9F9F57A7FFFFFFFFFF0000FFFFFFFFFFFFFFFFFFFFFFFF5757
+              9F9F9F9F57A7FFFFFFFFFFFF0000FFFFFFFFFFFFFFFFFFFFFF57579F9F9F9F57
+              A7FFFFFFFFFFFFFF0000FFFFFFFFFFFFFFFFFFFF57579F9F9F9F57A7FFFFFFFF
+              FFFFFFFF0000FFFFFFFFFFFFFFFFFF57579F9F9F9F9FA7FFFFFFFFFFFFFFFFFF
+              0000FFFFFFFFFFFFFFFF57579F9F9F9F9FA7FFFFFFFFFFFFFFFFFFFF0000FFFF
+              FFFFFFFFFF57579F9F9F9F9FA7FFFFFFFFFFFFFFFFFFFFFF0000FFFFFFFFFFFF
+              57579F9F9F9F9FA7FFFFFFFFFFFFFFFFFFFFFFFF0000FFFFFFFFFF07575F9F9F
+              9F9FA7FFFFFFFFFFFFFFFFFFFFFFFFFF0000FFFFFFFF08F6085F579F9FA7FFFF
+              FFFFFFFFFFFFFFFFFFFFFFFF0000FFFFFFF60808F608575FA7FFFFFFFFFFFFFF
+              FFFFFFFFFFFFFFFF0000FFFFA307F60808F607A7FFFFFFFFFFFFFFFFFFFFFFFF
+              FFFFFFFF0000FFA49B9B07F60808F6FFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFF
+              0000FFA49B9B9B07F6F6FFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFF0000FFFF
+              A39B9B9B08FFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFF0000FFFFFFA39AF7
+              FFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFF0000FFFFFFFFF6FFFFFFFFFF
+              FFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFF0000
+            }
+            ParentShowHint = False
+            ShowHint = True
+            TabOrder = 1
+            OnClick = btEditarCCClick
+          end
+        end
+        object pnCCBotaoSalvar: TPanel
+          Left = 200
+          Height = 34
+          Top = 96
+          Width = 184
+          ClientHeight = 34
+          ClientWidth = 184
+          ParentBackground = False
+          TabOrder = 2
+          object btCancelarCC: TBitBtn
+            Left = 8
+            Height = 30
+            Hint = 'Cancelar operação de contacorrente'
+            Top = -1
+            Width = 88
+            Caption = 'Cancelar'
+            Glyph.Data = {
+              0E070000424D0E0700000000000036040000280000001A0000001A0000000100
+              080000000000D8020000C40E0000C40E00000000000000000000000000000000
+              80000080000000808000800000008000800080800000C0C0C000C0DCC000F0CA
+              A6000020400000206000002080000020A0000020C0000020E000004000000040
+              20000040400000406000004080000040A0000040C0000040E000006000000060
+              20000060400000606000006080000060A0000060C0000060E000008000000080
+              20000080400000806000008080000080A0000080C0000080E00000A0000000A0
+              200000A0400000A0600000A0800000A0A00000A0C00000A0E00000C0000000C0
+              200000C0400000C0600000C0800000C0A00000C0C00000C0E00000E0000000E0
+              200000E0400000E0600000E0800000E0A00000E0C00000E0E000400000004000
+              20004000400040006000400080004000A0004000C0004000E000402000004020
+              20004020400040206000402080004020A0004020C0004020E000404000004040
+              20004040400040406000404080004040A0004040C0004040E000406000004060
+              20004060400040606000406080004060A0004060C0004060E000408000004080
+              20004080400040806000408080004080A0004080C0004080E00040A0000040A0
+              200040A0400040A0600040A0800040A0A00040A0C00040A0E00040C0000040C0
+              200040C0400040C0600040C0800040C0A00040C0C00040C0E00040E0000040E0
+              200040E0400040E0600040E0800040E0A00040E0C00040E0E000800000008000
+              20008000400080006000800080008000A0008000C0008000E000802000008020
+              20008020400080206000802080008020A0008020C0008020E000804000008040
+              20008040400080406000804080008040A0008040C0008040E000806000008060
+              20008060400080606000806080008060A0008060C0008060E000808000008080
+              20008080400080806000808080008080A0008080C0008080E00080A0000080A0
+              200080A0400080A0600080A0800080A0A00080A0C00080A0E00080C0000080C0
+              200080C0400080C0600080C0800080C0A00080C0C00080C0E00080E0000080E0
+              200080E0400080E0600080E0800080E0A00080E0C00080E0E000C0000000C000
+              2000C0004000C0006000C0008000C000A000C000C000C000E000C0200000C020
+              2000C0204000C0206000C0208000C020A000C020C000C020E000C0400000C040
+              2000C0404000C0406000C0408000C040A000C040C000C040E000C0600000C060
+              2000C0604000C0606000C0608000C060A000C060C000C060E000C0800000C080
+              2000C0804000C0806000C0808000C080A000C080C000C080E000C0A00000C0A0
+              2000C0A04000C0A06000C0A08000C0A0A000C0A0C000C0A0E000C0C00000C0C0
+              2000C0C04000C0C06000C0C08000C0C0A000F0FBFF00A4A0A000808080000000
+              FF0000FF000000FFFF00FF000000FF00FF00FFFF0000FFFFFF00FFFFFFF6F6F6
+              F6F6F6F6F6F6F6F6F6F6F6F6F6F6F6F6F6FFFFFF0000FF080048484848484040
+              404040404040404040404040400008FF0000FF00EA915151EA91EAEAEAEAEAEA
+              EAEAEAEAEAEAEAEAEAE100FF0000F6489191E2E1EAE2EAEAEAEAEAEAEAEAEAEA
+              EAEAEAEAEAEA40F60000F64851E2EAEAEAEAEAEAEAEAEAEAEAEAEAEAEAEAEAEA
+              EAEA40F60000F64851E1EAEAEAEAEAEA994800004898E9EAEAEAEAEAEAEA40F6
+              0000F648EAEAEAEAEAEAE1005B07F6F6075B0098EAEAEAEAEAEA40F60000F648
+              EAEAEAEAEA9900F6FFF6F6F6F6FFF60090EAEAEAEAEA40F60000F648EAEAEAEA
+              E100FFF651F6F6F6FF5108FF0098EAEAEAEA40F60000F648EAEAEAEA00F6F600
+              1400F6FF00140008F600E9EAEAEA40F60000F648EAEAEA995BFF5114371D4848
+              1D371451FF5B98EAEAEA40F60000F648EAEAEA4807F6FF001D371D1D371D00FF
+              F60748EAEAEA40F60000F648EAEAEA00F6F6F6FF481D2F2F1D48FFF6F6F600EA
+              EAEA40F60000F648EAEAEA00F6F6F6FF481D2F2F1D48F6F6F6F600EAEAEA40F6
+              0000F648EAEAEA4807F6FF001D371D1D371D00F6F60748EAEAEA40F60000F648
+              EAEAEA995BFF5114371D48481D371451FF5B99EAEAEA40F60000F648EAEAEAEA
+              00F6F6001400FFFF001400F6F600EAEAEAEA40F60000F648EAEAEAEAE100FFF6
+              51FFF6F6FF51F6FF00E1EAEAEAEA40F60000F648EAEAEAEAEA9900F6FFF6F6F6
+              F6FFF60099EAEAEAEAEA40F60000F648EAEAEAEAEAEAE1005B07F6F6075B00E1
+              EAEAEAEAEAEA40F60000F648EAEAEAEAEAEAEAEA994800004899EAEAEAEAEAEA
+              E29948F60000F648EAEAEAEAEAEAEAEAEAEAEAEAEAEAEAEAEAEAEAEAE15148F6
+              0000F648EAEAEAEAEAEAEAEAEAEAEAEAEAEAEAEAE1EAE1E1919148F60000FF00
+              EAEAEAEAEAEAEAEAEAEAEAEAEAEAEAEA91EA515191EA00FF0000FF0800484848
+              48484848484848484848484848484848480008FF0000FFFFFFF6F6F6F6F6F6F6
+              F6F6F6F6F6F6F6F6F6F6F6F6F6FFFFFF0000
+            }
+            ParentShowHint = False
+            ShowHint = True
+            TabOrder = 0
+            OnClick = btCancelarCCClick
+          end
+          object btSalvarCC: TBitBtn
+            Left = 97
+            Height = 29
+            Hint = 'Salvar registro de conta corrente'
+            Top = 1
+            Width = 80
+            Caption = 'Salvar'
+            Glyph.Data = {
+              56080000424D560800000000000036000000280000001A0000001A0000000100
+              18000000000020080000C40E0000C40E00000000000000000000FFFFFFFFFFFF
+              FFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFF
+              FFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFF
+              FFFFFFFFFFFFFFFF0000FFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFF
+              FFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFF
+              FFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFF0000FFFFFFFFFFFF
+              FFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFF
+              FFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFF
+              FFFFFFFFFFFFFFFF0000FFFFFFFFFFFFFFFFFFFFFFFFF2C9ADF2C6A9F0CFB8E8
+              EDEFE9E8E7E9E8E7E9E8E7E9E8E7E9E8E7E9E8E7E9E8E7E9E8E7E9E8E7E9E8E7
+              E9EEF0F1D1BAF2C6A9F3CAAEFFFFFFFFFFFFFFFFFFFFFFFF0000FFFFFFFFFFFF
+              FFFFFFF6CDB0E46814E97628E68E52E7F4FBE7E6E4E7E7E5E7E7E5E7E7E5E7E7
+              E5E7E7E5E7E7E5E7E7E5E7E7E5E8E7E5E0EBF3DD864AEA7629DA620DF3CAAEFF
+              FFFFFFFFFFFFFFFF0000FFFFFFFFFFFFFFFFFFFED2B7ED772CD96923FBA56EF2
+              FFFFF3F2F1F3F3F2F3F3F2F3F3F2F3F3F2F3F3F2F3F3F2F3F3F2F3F3F2F4F4F3
+              E4F0F6F09B63DC6C26DC6C20F3C9ACFFFFFFFFFFFFFFFFFF0000FFFFFFFFFFFF
+              FFFFFFFDD2B7EC782CDE6E27F7A36CF1FEFFF2F1F0F2F2F1F2F2F1F2F2F1F2F2
+              F1F2F2F1F2F2F1F2F2F1F2F2F1F3F3F2E3F0F6EE9963E07029DF6E23F3C9ADFF
+              FFFFFFFFFFFFFFFF0000FFFFFFFFFFFFFFFFFFFCD1B6F78236F98B44F4A069F6
+              FFFFF1F1F0F2F2F1F2F2F1F2F2F1F2F2F1F2F2F1F2F2F1F2F2F1F2F2F1F3F3F2
+              E3F0F6EB975FFC8D46E6762BF2C8ACFFFFFFFFFFFFFFFFFF0000FFFFFFFFFFFF
+              FFFFFFFCD1B6F68135F78841F4A069F9FFFFF1F1F0F2F2F1F2F2F1F2F2F1F2F2
+              F1F2F2F1F2F2F1F2F2F1F2F2F1F3F3F2E3F0F6EB975FFA8B44E6752AF2C8ACFF
+              FFFFFFFFFFFFFFFF0000FFFFFFFFFFFFFFFFFFFCD1B6F68135F78841F4A069F9
+              FFFFF1F1F0F2F2F1F2F2F1F2F2F1F2F2F1F2F2F1F2F2F1F2F2F1F2F2F1F3F3F2
+              E3F0F6EB975FFA8B44E6752AF2C8ACFFFFFFFFFFFFFFFFFF0000FFFFFFFFFFFF
+              FFFFFFFCD1B6F68135F78841F4A069F9FFFFF1F1F0F2F2F1F2F2F1F2F2F1F2F2
+              F1F2F2F1F2F2F1F2F2F1F2F2F1F3F3F2E3F0F6EB975FFA8B44E6752AF2C8ACFF
+              FFFFFFFFFFFFFFFF0000FFFFFFFFFFFFFFFFFFFCD1B6F68135F78841F4A26CFA
+              FFFFF0F4F5F1F4F6F1F4F6F1F4F6F1F4F6F0F4F5F2F5F6F1F5F6F1F5F6F3F6F7
+              E3F2FBEA9863FA8B44E6752AF2C8ACFFFFFFFFFFFFFFFFFF0000FFFFFFFFFFFF
+              FFFFFFFCD1B6F68135F78A44F58F4EF6EBE1F7E2D4F7E3D4F7E3D4F7E3D4F8E3
+              D4F4E1D4F1DFD2F2DFD3F1DFD2F3E0D4E6DFDAF28D4BF98C46E6752AF2C8ACFF
+              FFFFFFFFFFFFFFFF0000FFFFFFFFFFFFFFFFFFFCD1B6F68135F78C47F78A44F7
+              7D30F77E30F77E30F77E30F77E30F67E30F77E30F77E30F77E30F77E30F77E30
+              F97F31F78B44F88D48E6752AF2C8ACFFFFFFFFFFFFFFFFFF0000FFFFFFFFFFFF
+              FFFFFFFCD1B6F68135F78C47F78C47F98E49F98E49F98C46F98840F98840F988
+              40F98840F98840F98840F98840F98840F98840F78B46F88D48E6752AF2C8ACFF
+              FFFFFFFFFFFFFFFF0000FFFFFFFFFFFFFFFFFFFCD1B6F68135F78C47F98E49E5
+              7A35E77A34E58344E3AB86E3A67DE3A67DE3A67DE3A67DE3A67DE3A881E3A881
+              E3AA85F8863CF88D48E6752AF2C8ACFFFFFFFFFFFFFFFFFF0000FFFFFFFFFFFF
+              FFFFFFFCD1B6F68135F88D48EE823CCB5E1ACE550ADFC3B2E8F3FAE7EEF2E7EE
+              F2E7EEF2E7EDF2E8F2F9E3E0E0E5DFDCDCF7FFEB9B67FA8B43E6752AF2C8ACFF
+              FFFFFFFFFFFFFFFF0000FFFFFFFFFFFFFFFFFFFCD1B6F68135F88D48EF843FCE
+              611DD1590EE0BDA7E9ECEEE8E7E6E8E7E6E8E7E6E8E6E5EAF9FFD94D00D24500
+              E2EEF6EB9862FA8B44E6752AF2C8ACFFFFFFFFFFFFFFFFFF0000FFFFFFFFFFFF
+              FFFFFFFCD1B6F68135F88D48EF843FCE611DD1590EE0BDA7E9ECEEE8E7E6E8E7
+              E6E8E7E6E8E6E5E8F7FFE26B17DB6010E1EFF8EB9862FA8B44E6752AF2C8ABFF
+              FFFFFFFFFFFFFFFF0000FFFFFFFFFFFFFFFFFFFCD1B6F68135F88D48EF843FCE
+              611DD1590EE0BDA7E9ECEEE8E7E6E8E7E6E8E7E6E8E6E5E8F7FFE26A16DA5F0F
+              E1EFF8EB9862FA8B44E57023F1C4A3FFFFFFFFFFFFFFFFFF0000FFFFFFFFFFFF
+              FFFFFFFCD1B5F68136F88D49EF843FCE611ED1590FE0BEA7E9ECEEE8E7E6E8E7
+              E6E8E7E6E8E6E5E8F7FFE06006D95600E0EDF5EB9962F98337EB8C4BFFFFFFFF
+              FFFFFFFFFFFFFFFF0000FFFFFFFFFFFFFFFFFFFBD2B7F57320F78237EE782DC9
+              530ACD4A00DDB79FE6EAECE5E4E3E5E4E3E5E4E3E5E4E3E6EEF3E3B28FE0A986
+              DEF1FCEA8A4CF89351FFFFFFFFFFFFFFFFFFFFFFFFFFFFFF0000FFFFFFFFFFFF
+              FFFFFFFFFFFFFCD2B7FCD0B5F8CEB2EBBFA2ECBB9DF3E3D8F5F5F4F4F3F1F4F3
+              F1F4F3F1F4F3F1F4F2F0F5F9FBF5F9FBF2F6F8F6D1B8FFFFFFFFFFFFFFFFFFFF
+              FFFFFFFFFFFFFFFF0000FFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFF
+              FFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFF
+              FFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFF0000FFFFFFFFFFFF
+              FFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFF
+              FFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFF
+              FFFFFFFFFFFFFFFF0000FFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFF
+              FFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFF
+              FFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFF0000
+            }
+            ParentShowHint = False
+            ShowHint = True
+            TabOrder = 1
+            OnClick = btSalvarCCClick
+          end
+        end
+      end
+      object pnContaCorrenteTitulo: TPanel
+        AnchorSideLeft.Control = pnContaCorrente
+        AnchorSideTop.Control = pnContaCorrente
+        AnchorSideRight.Control = pnContaCorrente
+        AnchorSideRight.Side = asrBottom
+        Left = -5
+        Height = 36
+        Top = 1
+        Width = 447
+        Anchors = []
+        Caption = 'Editar Conta Corrente'
+        Color = clGradientActiveCaption
+        Font.CharSet = ANSI_CHARSET
+        Font.Height = -16
+        Font.Pitch = fpVariable
+        Font.Quality = fqDraft
+        Font.Style = [fsBold]
+        ParentBackground = False
+        ParentColor = False
+        ParentFont = False
+        TabOrder = 2
+      end
+    end
+    object pnAcerto: TPanel
+      AnchorSideLeft.Control = pnTrans
+      AnchorSideLeft.Side = asrBottom
+      AnchorSideTop.Control = pnTela
+      AnchorSideBottom.Control = pnTela
+      AnchorSideBottom.Side = asrBottom
+      Left = 485
+      Height = 632
+      Top = 1
+      Width = 435
+      Anchors = [akTop, akLeft, akBottom]
+      ClientHeight = 632
+      ClientWidth = 435
+      Color = clGradientActiveCaption
+      ParentBackground = False
+      ParentColor = False
+      TabOrder = 1
+      object pnAcertoGrid: TPanel
+        Left = -20
+        Height = 424
+        Top = 69
+        Width = 482
+        Anchors = []
+        ClientHeight = 424
+        ClientWidth = 482
+        ParentBackground = False
+        TabOrder = 0
+        object dbgAcerto: TDBGrid
+          Left = 20
+          Height = 387
+          Top = 3
+          Width = 435
+          Anchors = []
+          Color = clWindow
+          Columns = <          
+            item
+              Title.Caption = 'IDContaCorrente'
+              Visible = False
+              FieldName = 'IDContaCorrente'
+            end          
+            item
+              Title.Caption = 'IDAcerto'
+              Visible = False
+              FieldName = 'IDAcerto'
+            end          
+            item
+              Title.Caption = 'IDCliente'
+              Visible = False
+              FieldName = 'IDCliente'
+            end          
+            item
+              Title.Caption = 'Data'
+              FieldName = 'Data'
+            end          
+            item
+              Title.Caption = 'Historico'
+              FieldName = 'Historico'
+            end          
+            item
+              Title.Caption = 'Entrada'
+              Width = 50
+              FieldName = 'Entrada'
+            end          
+            item
+              Title.Caption = 'Saida'
+              Width = 50
+              FieldName = 'Saida'
+            end          
+            item
+              Title.Caption = 'Status'
+              Visible = False
+              FieldName = 'Status'
+            end>
+          DataSource = dsCCAcerto
+          ReadOnly = True
+          TabOrder = 0
+          TabStop = False
+        end
+        object pnAcertoGridSaldo: TPanel
+          AnchorSideTop.Control = dbgAcerto
+          AnchorSideTop.Side = asrBottom
+          Left = -1
+          Height = 35
+          Top = 390
+          Width = 480
+          Anchors = [akTop]
+          ClientHeight = 35
+          ClientWidth = 480
+          Font.CharSet = ANSI_CHARSET
+          Font.Height = -16
+          Font.Pitch = fpVariable
+          Font.Quality = fqDraft
+          Font.Style = [fsBold]
+          ParentBackground = False
+          ParentFont = False
+          TabOrder = 1
+          object DBEdit3: TDBEdit
+            Left = 305
+            Height = 29
+            Top = 4
+            Width = 120
+            DataField = 'SaldoAcerto'
+            DataSource = dsAcertoSaldo
+            ReadOnly = True
+            Alignment = taRightJustify
+            MaxLength = 0
+            TabOrder = 0
+          end
+          object Label7: TLabel
+            Left = 256
+            Height = 19
+            Top = 8
+            Width = 43
+            Caption = 'Saldo'
+          end
+          object dbnAcertoGrid: TDBNavigator
+            Left = 40
+            Height = 25
+            Top = 3
+            Width = 156
+            BevelOuter = bvNone
+            ChildSizing.EnlargeHorizontal = crsScaleChilds
+            ChildSizing.EnlargeVertical = crsScaleChilds
+            ChildSizing.ShrinkHorizontal = crsScaleChilds
+            ChildSizing.ShrinkVertical = crsScaleChilds
+            ChildSizing.Layout = cclLeftToRightThenTopToBottom
+            ChildSizing.ControlsPerLine = 100
+            ClientHeight = 25
+            ClientWidth = 156
+            DataSource = dsCCAcerto
+            Options = []
+            TabOrder = 1
+            VisibleButtons = [nbFirst, nbPrior, nbNext, nbLast]
+          end
+        end
+      end
+      object pnAcertoEditar: TPanel
+        Left = -3
+        Height = 134
+        Top = 497
+        Width = 433
+        Anchors = []
+        ClientHeight = 134
+        ClientWidth = 433
+        Color = clGradientActiveCaption
+        ParentBackground = False
+        ParentColor = False
+        TabOrder = 1
+        object pnAcertoBotao: TPanel
+          Left = 23
+          Height = 73
+          Top = 11
+          Width = 282
+          Anchors = []
+          ClientHeight = 73
+          ClientWidth = 282
+          ParentBackground = False
+          TabOrder = 0
+          object btFecharAcerto: TBitBtn
+            Left = 184
+            Height = 30
+            Hint = 'Fechar para edição o acerto'
+            Top = 8
+            Width = 96
+            Caption = 'Fechar Acerto'
+            ParentShowHint = False
+            ShowHint = True
+            TabOrder = 0
+            OnClick = btFecharAcertoClick
+          end
+          object btAbrirAcerto: TBitBtn
+            Left = 88
+            Height = 30
+            Hint = 'Abrir acerto'
+            Top = 7
+            Width = 91
+            Caption = 'Abrir Acerto'
+            ParentShowHint = False
+            ShowHint = True
+            TabOrder = 1
+            OnClick = btAbrirAcertoClick
+          end
+          object btNovoAcerto: TBitBtn
+            Left = 7
+            Height = 30
+            Hint = 'Novo acerto'
+            Top = 8
+            Width = 75
+            Caption = 'Novo'
+            Glyph.Data = {
+              76060000424D7606000000000000360400002800000018000000180000000100
+              0800000000004002000000000000000000000000000000000000000000000000
+              80000080000000808000800000008000800080800000C0C0C000C0DCC000F0CA
+              A6000020400000206000002080000020A0000020C0000020E000004000000040
+              20000040400000406000004080000040A0000040C0000040E000006000000060
+              20000060400000606000006080000060A0000060C0000060E000008000000080
+              20000080400000806000008080000080A0000080C0000080E00000A0000000A0
+              200000A0400000A0600000A0800000A0A00000A0C00000A0E00000C0000000C0
+              200000C0400000C0600000C0800000C0A00000C0C00000C0E00000E0000000E0
+              200000E0400000E0600000E0800000E0A00000E0C00000E0E000400000004000
+              20004000400040006000400080004000A0004000C0004000E000402000004020
+              20004020400040206000402080004020A0004020C0004020E000404000004040
+              20004040400040406000404080004040A0004040C0004040E000406000004060
+              20004060400040606000406080004060A0004060C0004060E000408000004080
+              20004080400040806000408080004080A0004080C0004080E00040A0000040A0
+              200040A0400040A0600040A0800040A0A00040A0C00040A0E00040C0000040C0
+              200040C0400040C0600040C0800040C0A00040C0C00040C0E00040E0000040E0
+              200040E0400040E0600040E0800040E0A00040E0C00040E0E000800000008000
+              20008000400080006000800080008000A0008000C0008000E000802000008020
+              20008020400080206000802080008020A0008020C0008020E000804000008040
+              20008040400080406000804080008040A0008040C0008040E000806000008060
+              20008060400080606000806080008060A0008060C0008060E000808000008080
+              20008080400080806000808080008080A0008080C0008080E00080A0000080A0
+              200080A0400080A0600080A0800080A0A00080A0C00080A0E00080C0000080C0
+              200080C0400080C0600080C0800080C0A00080C0C00080C0E00080E0000080E0
+              200080E0400080E0600080E0800080E0A00080E0C00080E0E000C0000000C000
+              2000C0004000C0006000C0008000C000A000C000C000C000E000C0200000C020
+              2000C0204000C0206000C0208000C020A000C020C000C020E000C0400000C040
+              2000C0404000C0406000C0408000C040A000C040C000C040E000C0600000C060
+              2000C0604000C0606000C0608000C060A000C060C000C060E000C0800000C080
+              2000C0804000C0806000C0808000C080A000C080C000C080E000C0A00000C0A0
+              2000C0A04000C0A06000C0A08000C0A0A000C0A0C000C0A0E000C0C00000C0C0
+              2000C0C04000C0C06000C0C08000C0C0A000F0FBFF00A4A0A000808080000000
+              FF0000FF000000FFFF00FF000000FF00FF00FFFF0000FFFFFF00FFFFFFEF9F97
+              979797979797979797979797979FEFFFFFFFFFFF8F4646464646464646464646
+              464646464646464FFFFFFF8F4747474747474747474747474747474747474747
+              47FFEF46474747474747474747474747474747474747474746EF9F4647474747
+              4747474747474747474747474747474746979746474747474747474747474747
+              4747474747474747468F9746474747474747478FEF08F6EF9747474747474747
+              468F9746474747474747EFFFF6F6F6F6FFEF474747474747468F974647474747
+              47EFF6F6F6F6F6F6F6F6EF4747474747468F97464747474797FFF6F6F6A7A7F6
+              F6F6FF9747474747468F974647474747EFF6F6F6FF9F5FFFF6F6F6EF47474747
+              468F974647474747F6F6F6A79F9F9F9FA7F6F6F647474747468F974647474747
+              F6F6F6A75F9F9F5F9FF6F6F647474747468F974647474747EFF6F6F6FF9F5FFF
+              F6F6F6EF47474747468F97464747474797FFF6F6F6A79FF6F6F6FF9F47474747
+              468F97464747474747EFF6F6F6F6F6F6F6F6F64747474747468F974647474747
+              474707FFF6F6F6F6FFF6474747474747468F9746474747474747479FEFF6F607
+              9F47474747474747468F97464747474747474747474747474747474747474747
+              468F9F4647474747474747474747474747474747474747474697EF4647474747
+              4747474747474747474747474747474746EFFF47474747474747474747474747
+              474747474747474747FFFFFF4746464646464646464646464646464646464647
+              F6FFFFFFFFEF974F4F4F4F4F4F4F4F4F4F4F4F4F4F97E7FFFFFF
+            }
+            ParentShowHint = False
+            ShowHint = True
+            TabOrder = 2
+            OnClick = btNovoAcertoClick
+          end
+          object dbnAcerto: TDBNavigator
+            Left = 56
+            Height = 25
+            Top = 40
+            Width = 156
+            BevelOuter = bvNone
+            ChildSizing.EnlargeHorizontal = crsScaleChilds
+            ChildSizing.EnlargeVertical = crsScaleChilds
+            ChildSizing.ShrinkHorizontal = crsScaleChilds
+            ChildSizing.ShrinkVertical = crsScaleChilds
+            ChildSizing.Layout = cclLeftToRightThenTopToBottom
+            ChildSizing.ControlsPerLine = 100
+            ClientHeight = 25
+            ClientWidth = 156
+            DataSource = dsAcertoSaldo
+            Options = []
+            TabOrder = 3
+            VisibleButtons = [nbFirst, nbPrior, nbNext, nbLast]
+          end
+        end
+        object btSair: TBitBtn
+          Left = 322
+          Height = 30
+          Top = 51
+          Width = 73
+          Anchors = []
+          Caption = 'Sair'
+          Glyph.Data = {
+            0E070000424D0E0700000000000036040000280000001A0000001A0000000100
+            080000000000D8020000C40E0000C40E00000000000000000000000000000000
+            80000080000000808000800000008000800080800000C0C0C000C0DCC000F0CA
+            A6000020400000206000002080000020A0000020C0000020E000004000000040
+            20000040400000406000004080000040A0000040C0000040E000006000000060
+            20000060400000606000006080000060A0000060C0000060E000008000000080
+            20000080400000806000008080000080A0000080C0000080E00000A0000000A0
+            200000A0400000A0600000A0800000A0A00000A0C00000A0E00000C0000000C0
+            200000C0400000C0600000C0800000C0A00000C0C00000C0E00000E0000000E0
+            200000E0400000E0600000E0800000E0A00000E0C00000E0E000400000004000
+            20004000400040006000400080004000A0004000C0004000E000402000004020
+            20004020400040206000402080004020A0004020C0004020E000404000004040
+            20004040400040406000404080004040A0004040C0004040E000406000004060
+            20004060400040606000406080004060A0004060C0004060E000408000004080
+            20004080400040806000408080004080A0004080C0004080E00040A0000040A0
+            200040A0400040A0600040A0800040A0A00040A0C00040A0E00040C0000040C0
+            200040C0400040C0600040C0800040C0A00040C0C00040C0E00040E0000040E0
+            200040E0400040E0600040E0800040E0A00040E0C00040E0E000800000008000
+            20008000400080006000800080008000A0008000C0008000E000802000008020
+            20008020400080206000802080008020A0008020C0008020E000804000008040
+            20008040400080406000804080008040A0008040C0008040E000806000008060
+            20008060400080606000806080008060A0008060C0008060E000808000008080
+            20008080400080806000808080008080A0008080C0008080E00080A0000080A0
+            200080A0400080A0600080A0800080A0A00080A0C00080A0E00080C0000080C0
+            200080C0400080C0600080C0800080C0A00080C0C00080C0E00080E0000080E0
+            200080E0400080E0600080E0800080E0A00080E0C00080E0E000C0000000C000
+            2000C0004000C0006000C0008000C000A000C000C000C000E000C0200000C020
+            2000C0204000C0206000C0208000C020A000C020C000C020E000C0400000C040
+            2000C0404000C0406000C0408000C040A000C040C000C040E000C0600000C060
+            2000C0604000C0606000C0608000C060A000C060C000C060E000C0800000C080
+            2000C0804000C0806000C0808000C080A000C080C000C080E000C0A00000C0A0
+            2000C0A04000C0A06000C0A08000C0A0A000C0A0C000C0A0E000C0C00000C0C0
+            2000C0C04000C0C06000C0C08000C0C0A000F0FBFF00A4A0A000808080000000
+            FF0000FF000000FFFF00FF000000FF00FF00FFFF0000FFFFFF00FFFFFFFFFFFF
+            FFFF772FFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFF0000FFFFFFFFFFFFB7272727
+            FFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFF0000FFFFFFFFF62F272F2F27FFFFFFFF
+            FFFFFFFFFFFFFFFFFFFFFFFF0000FFFFFF6F27272F2F2F27FFFFFFFFFFFFFFFF
+            FFFFFFFFFFFFFFFF0000FFB727272F2F2F2F2F27F5F7F7F7F7F7F7F6FFFFFFFF
+            FFFFFFFF0000F6272F2F2F2F2F2F2F2F48494949494949A3FFFFFFFFFFFFFFFF
+            0000F6272F2F2F2F2F2F2F2F49525252525249A4FFFFFFFFFFFFFFFF0000F627
+            2F2F2F2F2F2F2F2F49525252525249A4FFFFFFFFFFFFFFFF0000F6272F2F2F2F
+            2F2F2F2F49525252525249A4FFFFFFFFFFFFFFFF0000F6272F2F2F2F2F2F2F2F
+            49525252525249A4FFFFFFFFFFFFFFFF0000F6272F2F2F2F272F2F2F49525252
+            525249A4FFFFFFFFFFFFFFFF0000F6272F2F2F65992F2F2F49525252525249A4
+            FFFFFFFFFFFFFFFF0000F6272F2F2F2F272F2F2F49525252525249A4FFFFF634
+            F6FFFFFF0000F6272F2F2F2F2F2F2F2F495252525A5252A4F6F6BE3333BEFFFF
+            0000F6272F2F2F2F2F2F2F2F495249333333333333333333333274FF0000F627
+            2F2F2F2F2F2F2F2F4952493D3D3D3D3D3C3C3C3C3C3C34F60000F6272F2F2F2F
+            2F2F2F2F495249343535343D7D7D3D3D3D3DF6FF0000F6272F2F2F2F2F2F2F2F
+            49525249494949A4FFFF083C7DFFFFFF0000F6272F2F2F2F2F2F2F2F49525252
+            525249A4FFFFFF08FFFFFFFF0000F6272F2F2F2F2F2F2F2F49525252525249A4
+            FFFFFFFFFFFFFFFF0000F6272F2F2F2F2F2F2F2F49525252525249A4FFFFFFFF
+            FFFFFFFF0000F6272F2F2F2F2F2F2F6551525252525249A4FFFFFFFFFFFFFFFF
+            0000F6272F2F2F2F2F669A9B51525252525249A4FFFFFFFFFFFFFFFF0000F627
+            2F2F2F275B9A9B9B51525252525249A4FFFFFFFFFFFFFFFF0000F6272F2F659A
+            9B9B9B9B51525252525249A4FFFFFFFFFFFFFFFF0000FF27669A9A9B9B9B9B9B
+            51525252525249F7FFFFFFFFFFFFFFFF0000
+          }
+          TabOrder = 1
+          OnClick = btSairClick
+        end
+      end
+      object pnAcertoTitulo: TPanel
+        Left = 60
+        Height = 24
+        Top = 40
+        Width = 344
+        Anchors = []
+        ClientHeight = 24
+        ClientWidth = 344
+        Color = clGradientActiveCaption
+        Font.CharSet = ANSI_CHARSET
+        Font.Height = -16
+        Font.Pitch = fpVariable
+        Font.Quality = fqDraft
+        Font.Style = [fsBold]
+        ParentBackground = False
+        ParentColor = False
+        ParentFont = False
+        TabOrder = 2
+        object Label6: TLabel
+          Left = 6
+          Height = 19
+          Top = 3
+          Width = 125
+          Anchors = []
+          Caption = 'Editar Acerto Nº'
+        end
+        object dbeSaldoAcerto: TDBEdit
+          Left = 135
+          Height = 29
+          Top = 0
+          Width = 80
+          DataField = 'IDAcerto'
+          DataSource = dsAcertoSaldo
+          Alignment = taRightJustify
+          Anchors = []
+          MaxLength = 0
+          TabOrder = 0
+        end
+        object dbStatus: TDBText
+          Left = 234
+          Height = 19
+          Top = 3
+          Width = 69
+          Anchors = []
+          DataField = 'Status'
+          DataSource = dsAcertoSaldo
+          Font.CharSet = ANSI_CHARSET
+          Font.Color = clRed
+          Font.Height = -16
+          Font.Pitch = fpVariable
+          Font.Quality = fqDraft
+          Font.Style = [fsBold]
+          ParentFont = False
+        end
+      end
+    end
+    object pnTrans: TPanel
+      Left = 443
+      Height = 594
+      Top = 41
+      Width = 42
+      Anchors = []
+      ClientHeight = 594
+      ClientWidth = 42
+      ParentBackground = False
+      TabOrder = 2
+      object btTransAcerto: TBitBtn
+        Left = 7
+        Height = 30
+        Hint = 'Adiciona registro ao aceto'
+        Top = 119
+        Width = 30
+        Anchors = []
+        Caption = '-->'
+        Font.CharSet = ANSI_CHARSET
+        Font.Height = -15
+        Font.Name = 'Segoe UI'
+        Font.Pitch = fpVariable
+        Font.Quality = fqDraft
+        Font.Style = [fsBold]
+        ParentFont = False
+        ParentShowHint = False
+        ShowHint = True
+        TabOrder = 0
+        OnClick = btTransAcertoClick
+      end
+      object btTransCC: TButton
+        Left = 0
+        Height = 25
+        Top = 221
+        Width = 40
+        Caption = '<--'
+        Font.Style = [fsBold]
+        ParentFont = False
+        TabOrder = 1
+        OnClick = btTransCCClick
+      end
+    end
+    object pnTitulo: TPanel
+      Left = 1
+      Height = 40
+      Top = 1
+      Width = 936
+      Align = alTop
+      ClientHeight = 40
+      ClientWidth = 936
+      ParentBackground = False
+      TabOrder = 3
+      object rgFiltroAcerto: TRadioGroup
+        Left = 745
+        Height = 32
+        Top = 6
+        Width = 185
+        AutoFill = True
+        Caption = 'Filtro de Acerto'
+        ChildSizing.LeftRightSpacing = 6
+        ChildSizing.EnlargeHorizontal = crsHomogenousChildResize
+        ChildSizing.EnlargeVertical = crsHomogenousChildResize
+        ChildSizing.ShrinkHorizontal = crsScaleChilds
+        ChildSizing.ShrinkVertical = crsScaleChilds
+        ChildSizing.Layout = cclLeftToRightThenTopToBottom
+        ChildSizing.ControlsPerLine = 2
+        ClientHeight = 15
+        ClientWidth = 183
+        Color = clGradientActiveCaption
+        Columns = 2
+        Items.Strings = (
+          'Por Nome'
+          'Todos'
+        )
+        ParentBackground = False
+        ParentColor = False
+        TabOrder = 0
+        OnClick = rgFiltroAcertoClick
+      end
+      object pnFiltroCliente: TPanel
+        Left = -1
+        Height = 40
+        Top = 0
+        Width = 690
+        Caption = 'pnFiltroCliente'
+        ClientHeight = 40
+        ClientWidth = 690
+        ParentBackground = False
+        TabOrder = 1
+        object rgFiltroCliente: TRadioGroup
+          Left = 1
+          Height = 32
+          Top = 5
+          Width = 185
+          AutoFill = True
+          Caption = 'Filtro de cliente'
+          ChildSizing.LeftRightSpacing = 6
+          ChildSizing.EnlargeHorizontal = crsHomogenousChildResize
+          ChildSizing.EnlargeVertical = crsHomogenousChildResize
+          ChildSizing.ShrinkHorizontal = crsScaleChilds
+          ChildSizing.ShrinkVertical = crsScaleChilds
+          ChildSizing.Layout = cclLeftToRightThenTopToBottom
+          ChildSizing.ControlsPerLine = 2
+          ClientHeight = 15
+          ClientWidth = 183
+          Color = clGradientActiveCaption
+          Columns = 2
+          Items.Strings = (
+            'Com Saldo'
+            'Todos'
+          )
+          ParentBackground = False
+          ParentColor = False
+          TabOrder = 0
+          OnClick = rgFiltroClienteClick
+        end
+        object dbcCliente: TDBLookupComboBox
+          Left = 192
+          Height = 28
+          Top = 14
+          Width = 387
+          KeyField = 'IDPrincipal'
+          ListField = 'Razao'
+          ListFieldIndex = 0
+          ListSource = dsClienteBox
+          LookupCache = False
+          TabOrder = 1
+          OnChange = dbcClienteChange
+        end
+        object btBuscarClienteCC: TButton
+          Left = 584
+          Height = 25
+          Hint = 'Buscar Cliente'
+          Top = 12
+          Width = 75
+          Caption = 'Buscar'
+          ParentShowHint = False
+          ShowHint = True
+          TabOrder = 2
+          OnClick = btBuscarClienteCCClick
+        end
+        object Label1: TLabel
+          Left = 192
+          Height = 16
+          Top = 0
+          Width = 41
+          Caption = 'Cliente'
+        end
+      end
+    end
+  end
+  object zqCC: TZQuery
+    Connection = zConn
+    SQL.Strings = (
+      'select'
+      ' *'
+      'from ContaCorrente'
+      'order by "Data"'
+    )
+    Params = <>
+    Left = 304
+    Top = 200
+    object zqCCIDContaCorrente: TZInt64Field
+      FieldKind = fkData
+      FieldName = 'IDContaCorrente'
+      Index = 0
+      LookupCache = False
+      ProviderFlags = [pfInUpdate, pfInWhere]
+      ReadOnly = False
+      Required = False
+    end
+    object zqCCIDAcerto: TZInt64Field
+      FieldKind = fkData
+      FieldName = 'IDAcerto'
+      Index = 1
+      LookupCache = False
+      ProviderFlags = [pfInUpdate, pfInWhere]
+      ReadOnly = False
+      Required = False
+    end
+    object zqCCIDCliente: TZInt64Field
+      FieldKind = fkData
+      FieldName = 'IDCliente'
+      Index = 2
+      LookupCache = False
+      ProviderFlags = [pfInUpdate, pfInWhere]
+      ReadOnly = False
+      Required = True
+    end
+    object zqCCData: TZDateField
+      FieldKind = fkData
+      FieldName = 'Data'
+      Index = 3
+      LookupCache = False
+      ProviderFlags = [pfInUpdate, pfInWhere]
+      ReadOnly = False
+      Required = True
+    end
+    object zqCCHistorico: TZRawStringField
+      FieldKind = fkData
+      FieldName = 'Historico'
+      Index = 4
+      LookupCache = False
+      ProviderFlags = [pfInUpdate, pfInWhere]
+      ReadOnly = False
+      Required = False
+    end
+    object zqCCEntrada: TZDoubleField
+      FieldKind = fkData
+      FieldName = 'Entrada'
+      Index = 5
+      LookupCache = False
+      ProviderFlags = [pfInUpdate, pfInWhere]
+      ReadOnly = False
+      Required = False
+      Precision = 10
+    end
+    object zqCCSaida: TZDoubleField
+      FieldKind = fkData
+      FieldName = 'Saida'
+      Index = 6
+      LookupCache = False
+      ProviderFlags = [pfInUpdate, pfInWhere]
+      ReadOnly = False
+      Required = False
+      Precision = 10
+    end
+    object zqCCStatus: TZRawStringField
+      FieldKind = fkData
+      FieldName = 'Status'
+      Index = 7
+      LookupCache = False
+      ProviderFlags = [pfInUpdate, pfInWhere]
+      ReadOnly = False
+      Required = False
+      Size = 9
+    end
+  end
+  object dsCC: TDataSource
+    DataSet = zqCC
+    Left = 400
+    Top = 200
+  end
+  object zqNovoIDCC: TZQuery
+    Connection = zConn
+    SQL.Strings = (
+      'select'
+      '   max("IDContaCorrente") as ID'
+      'from CONTACORRENTE'
+    )
+    Params = <>
+    Left = 304
+    Top = 352
+    object zqNovoIDCCID: TZInt64Field
+      FieldKind = fkData
+      FieldName = 'ID'
+      Index = 0
+      LookupCache = False
+      ProviderFlags = [pfInUpdate, pfInWhere]
+      ReadOnly = False
+      Required = False
+    end
+  end
+  object dsAcertoSaldo: TDataSource
+    DataSet = zqAcertoSaldo
+    Left = 648
+    Top = 257
+  end
+  object dsClienteBox: TDataSource
+    DataSet = zqClienteBox
+    Left = 328
+  end
+  object zqCCAcerto: TZQuery
+    Connection = zConn
+    SQL.Strings = (
+      'select '
+      '   * '
+      'from ContaCorrente'
+      'order by "Data"'
+    )
+    Params = <>
+    Left = 568
+    Top = 320
+    object zqCCAcertoIDContaCorrente: TZInt64Field
+      FieldKind = fkData
+      FieldName = 'IDContaCorrente'
+      Index = 0
+      LookupCache = False
+      ProviderFlags = [pfInUpdate, pfInWhere]
+      ReadOnly = False
+      Required = False
+    end
+    object zqCCAcertoIDAcerto: TZInt64Field
+      FieldKind = fkData
+      FieldName = 'IDAcerto'
+      Index = 1
+      LookupCache = False
+      ProviderFlags = [pfInUpdate, pfInWhere]
+      ReadOnly = False
+      Required = False
+    end
+    object zqCCAcertoIDCliente: TZInt64Field
+      FieldKind = fkData
+      FieldName = 'IDCliente'
+      Index = 2
+      LookupCache = False
+      ProviderFlags = [pfInUpdate, pfInWhere]
+      ReadOnly = False
+      Required = True
+    end
+    object zqCCAcertoData: TZDateField
+      FieldKind = fkData
+      FieldName = 'Data'
+      Index = 3
+      LookupCache = False
+      ProviderFlags = [pfInUpdate, pfInWhere]
+      ReadOnly = False
+      Required = True
+    end
+    object zqCCAcertoHistorico: TZRawStringField
+      FieldKind = fkData
+      FieldName = 'Historico'
+      Index = 4
+      LookupCache = False
+      ProviderFlags = [pfInUpdate, pfInWhere]
+      ReadOnly = False
+      Required = False
+    end
+    object zqCCAcertoEntrada: TZDoubleField
+      FieldKind = fkData
+      FieldName = 'Entrada'
+      Index = 5
+      LookupCache = False
+      ProviderFlags = [pfInUpdate, pfInWhere]
+      ReadOnly = False
+      Required = False
+      Precision = 10
+    end
+    object zqCCAcertoSaida: TZDoubleField
+      FieldKind = fkData
+      FieldName = 'Saida'
+      Index = 6
+      LookupCache = False
+      ProviderFlags = [pfInUpdate, pfInWhere]
+      ReadOnly = False
+      Required = False
+      Precision = 10
+    end
+    object zqCCAcertoStatus: TZRawStringField
+      FieldKind = fkData
+      FieldName = 'Status'
+      Index = 7
+      LookupCache = False
+      ProviderFlags = [pfInUpdate, pfInWhere]
+      ReadOnly = False
+      Required = False
+      Size = 9
+    end
+  end
+  object dsCCAcerto: TDataSource
+    DataSet = zqCCAcerto
+    Left = 648
+    Top = 320
+  end
+  object zqNovoIDAcerto: TZQuery
+    Connection = zConn
+    SQL.Strings = (
+      'select'
+      '   max("IDAcerto") as ID'
+      'from ACERTO'
+    )
+    Params = <>
+    Left = 568
+    Top = 384
+    object zqNovoIDAcertoID: TZInt64Field
+      FieldKind = fkData
+      FieldName = 'ID'
+      Index = 0
+      LookupCache = False
+      ProviderFlags = [pfInUpdate, pfInWhere]
+      ReadOnly = False
+      Required = True
+    end
+  end
+  object dsClienteSaldo: TDataSource
+    DataSet = ztClienteSaldo
+    Left = 400
+    Top = 272
+  end
+  object ztClienteSaldo: TZTable
+    Connection = zConn
+    TableName = 'CLIENTE'
+    Left = 304
+    Top = 272
+    object ztClienteSaldoIDCliente: TLongintField
+      FieldKind = fkData
+      FieldName = 'IDCliente'
+      Index = 0
+      LookupCache = False
+      ProviderFlags = [pfInUpdate, pfInWhere]
+      ReadOnly = False
+      Required = True
+    end
+    object ztClienteSaldoSaldoContaCorrente: TFloatField
+      FieldKind = fkData
+      FieldName = 'SaldoContaCorrente'
+      Index = 1
+      LookupCache = False
+      ProviderFlags = [pfInUpdate, pfInWhere]
+      ReadOnly = False
+      Required = False
+      Precision = 10
+    end
+  end
+  object zConn: TZConnection
+    ControlsCodePage = cCP_UTF8
+    Properties.Strings = (
+      'RawStringEncoding=DB_CP'
+    )
+    DisableSavepoints = False
+    HostName = 'localhost'
+    Port = 0
+    Protocol = 'sqlite'
+    Left = 420
+    Top = 120
+  end
+  object zqClienteBox: TZQuery
+    Connection = zConn
+    SQL.Strings = (
+      'select'
+      '  "IDPrincipal",'
+      '  "Razao",'
+      '  max("SaldoContaCorrente") as SaldoCC'
+      'from Cliente'
+      'group by "IDPrincipal", "Razao"'
+      'order by "Razao"'
+    )
+    Params = <>
+    Left = 208
+    Top = 8
+    object zqClienteBoxIDPrincipal: TZIntegerField
+      FieldKind = fkData
+      FieldName = 'IDPrincipal'
+      Index = 0
+      LookupCache = False
+      ProviderFlags = [pfInUpdate, pfInWhere]
+      ReadOnly = False
+      Required = False
+    end
+    object zqClienteBoxRazao: TZRawStringField
+      FieldKind = fkData
+      FieldName = 'Razao'
+      Index = 1
+      LookupCache = False
+      ProviderFlags = [pfInUpdate, pfInWhere]
+      ReadOnly = False
+      Required = False
+      Size = 40
+    end
+    object zqClienteBoxSALDOCC: TZDoubleField
+      FieldKind = fkData
+      FieldName = 'SALDOCC'
+      Index = 2
+      LookupCache = False
+      ProviderFlags = [pfInUpdate, pfInWhere]
+      ReadOnly = True
+      Required = False
+      Precision = 2
+    end
+  end
+  object zqAcertoSaldo: TZQuery
+    AfterScroll = zqAcertoSaldoAfterScroll
+    Connection = zConn
+    SQL.Strings = (
+      'select'
+      '   *'
+      'From Acerto'
+    )
+    Params = <>
+    Left = 568
+    Top = 257
+    object zqAcertoSaldoIDAcerto: TZIntegerField
+      FieldKind = fkData
+      FieldName = 'IDAcerto'
+      Index = 0
+      LookupCache = False
+      ProviderFlags = [pfInUpdate, pfInWhere]
+      ReadOnly = False
+      Required = True
+    end
+    object zqAcertoSaldoIDCliente: TZIntegerField
+      FieldKind = fkData
+      FieldName = 'IDCliente'
+      Index = 1
+      LookupCache = False
+      ProviderFlags = [pfInUpdate, pfInWhere]
+      ReadOnly = False
+      Required = True
+    end
+    object zqAcertoSaldoSaldoAcerto: TZDoubleField
+      FieldKind = fkData
+      FieldName = 'SaldoAcerto'
+      Index = 2
+      LookupCache = False
+      ProviderFlags = [pfInUpdate, pfInWhere]
+      ReadOnly = False
+      Required = False
+      Precision = 10
+    end
+    object zqAcertoSaldoStatus: TZRawStringField
+      FieldKind = fkData
+      FieldName = 'Status'
+      Index = 3
+      LookupCache = False
+      ProviderFlags = [pfInUpdate, pfInWhere]
+      ReadOnly = False
+      Required = False
+      Size = 9
+    end
+  end
+end
