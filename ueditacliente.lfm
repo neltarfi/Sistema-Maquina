@@ -790,7 +790,7 @@ object fEditaCliente: TfEditaCliente
     OnClick = btCancelarClick
   end
   object zqCliente2: TZQuery
-    Connection = fCadCliente.zConn
+    Connection = fPrincipal.zConn
     SQL.Strings = (
       'select Razao from Cliente'
       'where IDCliente <> 0'

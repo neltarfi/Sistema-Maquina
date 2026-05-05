@@ -24,7 +24,6 @@ type
     Label1: TLabel;
     Panel1: TPanel;
     Panel2: TPanel;
-    zConn: TZConnection;
     zqCliente: TZQuery;
     zqClienteBairro: TZRawStringField;
     zqClienteCelular: TZRawStringField;
@@ -122,13 +121,17 @@ procedure TfCadCliente.FormClose(Sender: TObject; var CloseAction: TCloseAction
 begin
      if zqClienteIDCliente.Value >= 1 then
         fCadCliente.ModalResult:=zqClienteIDCliente.Value;
+     SomenteLeitura:=False;
 end;
 
 procedure TfCadCliente.FormShow(Sender: TObject);
 begin
-  zConn.Disconnect;
-  zConn.Database:=uPrincipal.CaminhoDB;
-  zConn.Connect;
+  if SomenteLeitura then Begin
+     btNovo.Enabled:=False;
+     btNovoCliAdicional.Enabled:=False;
+     btEditar.Enabled:=False;
+  end;
+
   zqCliente.Open;
   AplicaFiltro;
 end;

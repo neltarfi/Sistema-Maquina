@@ -1425,7 +1425,7 @@ object fCadCliente: TfCadCliente
     Top = 320
   end
   object zqNovoIDCliente: TZQuery
-    Connection = zConn
+    Connection = fPrincipal.zConn
     SQL.Strings = (
       'select max("IDCliente") as ID from CLIENTE'
     )
@@ -1442,19 +1442,8 @@ object fCadCliente: TfCadCliente
       Required = True
     end
   end
-  object zConn: TZConnection
-    ControlsCodePage = cCP_UTF8
-    Properties.Strings = (
-      'RawStringEncoding=DB_CP'
-    )
-    DisableSavepoints = False
-    Port = 0
-    Protocol = 'sqlite'
-    Left = 208
-    Top = 232
-  end
   object zqCliente: TZQuery
-    Connection = zConn
+    Connection = fPrincipal.zConn
     SQL.Strings = (
       'select * from Cliente'
       'Where IDCliente <> 0'

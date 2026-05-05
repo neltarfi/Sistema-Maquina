@@ -1403,7 +1403,7 @@ object fRomEntCoco: TfRomEntCoco
     end
   end
   object zqCliente: TZQuery
-    Connection = zConn
+    Connection = fPrincipal.zConn
     SQL.Strings = (
       'select'
       '  "IDCliente",'
@@ -1481,27 +1481,13 @@ object fRomEntCoco: TfRomEntCoco
     Left = 690
     Top = 19
   end
-  object zConn: TZConnection
-    ControlsCodePage = cCP_UTF8
-    Properties.Strings = (
-      'RawStringEncoding=DB_CP'
-    )
-    Connected = True
-    AddLogMsgToExceptionOrWarningMsg = False
-    DisableSavepoints = False
-    Port = 0
-    Database = '/mnt/ArquivoMint/Insync/nelson@tarnoschi.com.br/OneDrive/Documentos/Sistema_Maquina/Base De Dados/DBSistemaMaquina.db'
-    Protocol = 'sqlite'
-    Left = 449
-    Top = 19
-  end
   object dsRomEntradaCoco: TDataSource
     DataSet = ztRomEntradaCoco
     Left = 272
     Top = 48
   end
   object zqNovoIDRomaneioCoco: TZQuery
-    Connection = zConn
+    Connection = fPrincipal.zConn
     SQL.Strings = (
       'Select max(IDRomEntradaCoco) as ID '
       'From RomEntradaCoco'
@@ -1522,7 +1508,7 @@ object fRomEntCoco: TfRomEntCoco
   object ztRomEntradaCoco: TZTable
     AfterScroll = ztRomEntradaCocoAfterScroll
     OnCalcFields = ztRomEntradaCocoCalcFields
-    Connection = zConn
+    Connection = fPrincipal.zConn
     TableName = 'RomEntradaCoco'
     Left = 272
     Top = 96
@@ -1781,7 +1767,7 @@ object fRomEntCoco: TfRomEntCoco
     Top = 184
   end
   object zqNovoIDRomCompraCoco: TZQuery
-    Connection = zConn
+    Connection = fPrincipal.zConn
     SQL.Strings = (
       'select max(IDRomCompraCoco) as ID '
       'from RomCompraCoco'
@@ -1801,7 +1787,7 @@ object fRomEntCoco: TfRomEntCoco
   end
   object ztRomCompraCoco: TZTable
     OnCalcFields = ztRomCompraCocoCalcFields
-    Connection = zConn
+    Connection = fPrincipal.zConn
     TableName = 'RomCompraCoco'
     Left = 648
     Top = 184
@@ -1941,7 +1927,7 @@ object fRomEntCoco: TfRomEntCoco
     end
   end
   object zqLoteCoco: TZQuery
-    Connection = zConn
+    Connection = fPrincipal.zConn
     SQL.Strings = (
       'select IDLoteCoco, NomeLoteCoco, Status'
       'from LoteCoco'
@@ -1986,7 +1972,7 @@ object fRomEntCoco: TfRomEntCoco
     Top = 496
   end
   object zqNovoIDMovLoteCoco: TZQuery
-    Connection = zConn
+    Connection = fPrincipal.zConn
     SQL.Strings = (
       'select max(IDMovLoteCoco) as ID '
       'from MovLoteCoco'
@@ -2005,7 +1991,7 @@ object fRomEntCoco: TfRomEntCoco
     end
   end
   object zqNovoIDEstDepCoco: TZQuery
-    Connection = zConn
+    Connection = fPrincipal.zConn
     SQL.Strings = (
       'select max(IDEstoqueDepositoCoco) as ID'
       'from EstoqueDepositoCoco'
@@ -2024,7 +2010,7 @@ object fRomEntCoco: TfRomEntCoco
     end
   end
   object ztMovLoteCoco: TZTable
-    Connection = zConn
+    Connection = fPrincipal.zConn
     TableName = 'MovLoteCoco'
     Left = 752
     Top = 472
@@ -2124,7 +2110,7 @@ object fRomEntCoco: TfRomEntCoco
     end
   end
   object ztEstoqueDepositoCoco: TZTable
-    Connection = zConn
+    Connection = fPrincipal.zConn
     TableName = 'EstoqueDepositoCoco'
     Left = 752
     Top = 520
@@ -2188,7 +2174,7 @@ object fRomEntCoco: TfRomEntCoco
     end
   end
   object zqNovoIDMovLoteLimpo: TZQuery
-    Connection = zConn
+    Connection = fPrincipal.zConn
     SQL.Strings = (
       'select max(IDMovLoteLimpo) as ID'
       'from MovLoteLimpo'
@@ -2207,7 +2193,7 @@ object fRomEntCoco: TfRomEntCoco
     end
   end
   object ztMovLoteLimpo: TZTable
-    Connection = zConn
+    Connection = fPrincipal.zConn
     TableName = 'MovLoteLimpo'
     Left = 752
     Top = 424
@@ -2289,7 +2275,7 @@ object fRomEntCoco: TfRomEntCoco
     end
   end
   object ztLoteLimpo: TZTable
-    Connection = zConn
+    Connection = fPrincipal.zConn
     TableName = 'LoteLimpo'
     Left = 472
     Top = 424
@@ -2334,7 +2320,7 @@ object fRomEntCoco: TfRomEntCoco
     end
   end
   object zqNovoIDContaCorrente: TZQuery
-    Connection = zConn
+    Connection = fPrincipal.zConn
     SQL.Strings = (
       'select max(IDContaCorrente) as ID '
       'from ContaCorrente'
@@ -2353,7 +2339,7 @@ object fRomEntCoco: TfRomEntCoco
     end
   end
   object ztContaCorrente: TZTable
-    Connection = zConn
+    Connection = fPrincipal.zConn
     TableName = 'ContaCorrente'
     Left = 752
     Top = 376

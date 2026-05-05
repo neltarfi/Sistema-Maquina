@@ -28,6 +28,7 @@ type
     Sair: TMenuItem;
     MovLoteLimpo: TMenuItem;
     Movimrnto: TMenuItem;
+    zConn: TZConnection;
     procedure CadClienteClick(Sender: TObject);
     procedure CadLoteCocoClick(Sender: TObject);
     procedure CadLoteLimpoClick(Sender: TObject);
@@ -48,6 +49,7 @@ type
 var
   fPrincipal: TfPrincipal;
   CaminhoDB:string;
+  SomenteLeitura:Boolean;//não deixa editar o segundo formulario aberto
 
 implementation
 
@@ -64,6 +66,10 @@ begin
      CaminhoDB:=GetCurrentDir+'\Base De Dados\DBSistemaMaquina.db'
   else
      CaminhoDB:=GetCurrentDir+'/Base De Dados/DBSistemaMaquina.db';
+     zConn.Disconnect;
+     zConn.Database:=CaminhoDB;
+     zConn.Connect;
+     SomenteLeitura:=False;
 end;
 
 procedure TfPrincipal.CadClienteClick(Sender: TObject);

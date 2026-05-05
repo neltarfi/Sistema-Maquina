@@ -111,7 +111,6 @@ type
     Panel3: TPanel;
     Panel4: TPanel;
     Panel5: TPanel;
-    zConn: TZConnection;
     zqCliente: TZQuery;
     zqClienteCidade: TZRawStringField;
     zqClienteEndereco: TZRawStringField;
@@ -302,9 +301,6 @@ begin
     CompraCocoEditarFalse;
     edtPesoComprado.Text:='0';
     edtDesconto.Text:='15';
-    zConn.Disconnect;
-    zConn.Database:=uPrincipal.CaminhoDB;
-    zConn.Connect;
     zqCliente.Open;
     dbcCliente.KeyValue:=0;
     LocalizaEndereco;
@@ -328,6 +324,7 @@ begin
     zqNovoIDContaCorrente.Open;
     ztContaCorrente.Open;
     ztRomEntradaCoco.Last;
+    SomenteLeitura:=True;//desabilita botoes de edição do seguendo Form Aberto
 end;
 
 procedure TfRomEntCoco.FormClose(Sender: TObject; var CloseAction: TCloseAction);
@@ -336,7 +333,7 @@ begin
        if CompraCocoModoEdicao then
           ztRomCompraCoco.Cancel;
        ztRomEntradaCoco.Cancel;
-       zconn.Rollback;
+       fPrincipal.zConn.Rollback;
        ztRomEntradaCoco.Refresh;
     end;
     zqCliente.Close;
@@ -374,9 +371,9 @@ begin
        CompraCocoEditarFalse;
     end;
   ztRomEntradaCoco.Cancel;
-  zConn.Rollback;
+  fPrincipal.zConn.Rollback;
 
-  edtPesoComprado.Text:='0';
+  edtPesoComprado.Text:='0';  //para não criar novo  append de Compra antes da hora
 
   ztRomEntradaCoco.Last;
   EntradaCocoEditarFalse;
@@ -384,7 +381,7 @@ end;
 
 procedure TfRomEntCoco.btNovoClick(Sender: TObject);
 begin
-     zConn.StartTransaction;
+     fPrincipal.zConn.StartTransaction;
      EntradaCocoEditarTrue;
      CompraCocoEditarFalse;
      ztRomEntradaCoco.Append;
@@ -918,6 +915,7 @@ begin
         ztRomCompraCocoHistorico.Value:='Compra do romaneio '+intToStr(IDRomEntradaCoco);
         ztRomCompraCocoPesoCoco.Value:=PesoComprado;
         ztRomCompraCocoStatus.Text:='Ativo';
+        zqNovoIDContaCorrente.Refresh;
         IDContaCorrente:=zqNovoIDContaCorrenteID.Value+1;
         ztRomCompraCocoIDContaCorrente.Value:=IDContaCorrente;
         Valor:=ztRomCompraCocoValorLivre.Value;
@@ -943,8 +941,7 @@ begin
         zqCliente.Post;
 
      end;
-
-     zconn.Commit;
+     fPrincipal.zConn.Commit;
      except
      on E: Exception do
         begin
@@ -953,7 +950,7 @@ begin
          ztMovLoteLimpo.Cancel;
          ztMovLoteCoco.Cancel;
 
-         zconn.Rollback;
+         fPrincipal.zConn.Rollback;
          ShowMessage('Erro ao salvar registro '+E.Message);
         end;
      end;

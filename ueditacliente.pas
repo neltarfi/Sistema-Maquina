@@ -73,7 +73,6 @@ var ClientePrincipal:integer;
       Razao:string;
 
   begin
-    fCadCliente.zqCliente.Active:=true;
     fCadCliente.zqNovoIDCliente.Active:=True;
     if ((uCadCliente.botao='Editar')and
        (fCadCliente.zqClienteSerie.Value='Principal'))or
@@ -84,7 +83,8 @@ var ClientePrincipal:integer;
       fCadCliente.zqNovoIDCliente.Refresh;
       fCadCliente.zqCliente.Filtered:=False;
       try
-      fCadCliente.zConn.StartTransaction;
+      fPrincipal.zConn.StartTransaction;
+      ModoEdicao:=True;
       case uCadCliente.Botao of
            'Novo':Begin
                        fCadCliente.zqCliente.Append;
@@ -114,48 +114,35 @@ var ClientePrincipal:integer;
       else MessageDlg('Erro ao tentar Adicionar nova transação', mtError,[mbOk], 0);
       btCancelar.Enabled:=False;
       fCadCliente.zqCliente.Cancel;
-      fCadCliente.zConn.Rollback;
-      ModoEdicao:=True;
+      fPrincipal.zConn.Rollback;
       Close
       end;
-end;
- 
-procedure TfEditaCliente.FormClose(Sender: TObject;
-  var CloseAction: TCloseAction);
-begin
-  if ModoEdicao then begin
-     fCadCliente.zqCliente.Cancel;
-     fCadCliente.zConn.Rollback;
-  end;
-     zqCliente2.Active:=False;
-   fEditaCliente.ModalResult:=TempModalResult;
 end;
 
 procedure TfEditaCliente.btCancelarClick(Sender: TObject);
 begin
-  TempModalResult:=  fCadCliente.zqClienteIDCliente.Value;
-  Close;
+    Close;
 end;
 
 procedure TfEditaCliente.btSalvarClick(Sender: TObject);
 var
-  Principal, Cliente:integer;
+  IDPrincipal, Cliente:integer;
   Razao:string;
 begin
   if not(MessageDlg('Você deseja realmente salvar?', mtConfirmation,
      [mbYes, mbNO], 0) = mrYes) then  Exit;
-  zqCliente2.Active:=True;
   if not(SalvarTrue) then Exit;
+  try
+  zqCliente2.Active:=True;
   Razao:=fCadCliente.zqClienteRazao.Value;
   Cliente:=fCadCliente.zqClienteIDCliente.Value;
-  Principal:=fCadCliente.zqClienteIDprincipal.Value;
-  try
+  IDPrincipal:=fCadCliente.zqClienteIDprincipal.Value;
   fCadCliente.zqCliente.Post;
   btCancelar.Enabled:=False;
   if (uCadCliente.Botao='Editar')and(fCadCliente.zqClienteSerie.Value='Principal') then
      begin
           fCadCliente.zqCliente.Filtered:=false;
-          fCadCliente.zqCliente.Filter:='(IdPrincipal = '+QuotedStr(intToStr(Principal))+')';
+          fCadCliente.zqCliente.Filter:='(IdPrincipal = '+QuotedStr(intToStr(IDPrincipal))+')';
           fCadCliente.zqCliente.Filtered:=True;
           fCadCliente.zqCliente.First;
           while not(fCadCliente.zqCliente.EOF) do
@@ -170,16 +157,27 @@ begin
                fCadCliente.zqCliente.Next;
           end;
      end;
-  fCadCliente.zConn.Commit;
+  fPrincipal.zconn.Commit;
   except
   fCadCliente.zqCliente.Cancel;
-  fCadCliente.zConn.Rollback;
+  fPrincipal.zConn.Rollback;
   MessageDlg('Erro ao tentar salvar nova transação', mtError,[mbOk], 0);
   end;
   TempModalResult:=  fCadCliente.zqClienteIDCliente.Value;
   fCadCliente.edtBuscar.Text:='';
   ModoEdicao:=False;
   Close;
+end;
+
+procedure TfEditaCliente.FormClose(Sender: TObject;
+  var CloseAction: TCloseAction);
+begin
+  if ModoEdicao then begin
+     fCadCliente.zqCliente.Cancel;
+     fPrincipal.zConn.Rollback;
+  end;
+  zqCliente2.Active:=False;
+  fEditaCliente.ModalResult:=fCadCliente.zqClienteIDCliente.Value;
 end;
 
 function TfEditaCliente.SalvarTrue:boolean;

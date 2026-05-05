@@ -8,6 +8,7 @@ object fPrincipal: TfPrincipal
   Color = clGradientActiveCaption
   Menu = MainMenu1
   Position = poDesktopCenter
+  LCLVersion = '4.6.0.0'
   OnShow = FormShow
   object MainMenu1: TMainMenu
     Left = 44
@@ -67,5 +68,18 @@ object fPrincipal: TfPrincipal
       Caption = '&Sair'
       OnClick = SairClick
     end
+  end
+  object zConn: TZConnection
+    ControlsCodePage = cCP_UTF8
+    Properties.Strings = (
+      'RawStringEncoding=DB_CP'
+    )
+    TransactIsolationLevel = tiReadCommitted
+    DisableSavepoints = False
+    Port = 0
+    Database = '/mnt/ArquivoMint/Sistema-Maquina/Base De Dados/DBSistemaMaquina.db'
+    Protocol = 'sqlite'
+    Left = 172
+    Top = 33
   end
 end
