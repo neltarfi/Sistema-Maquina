@@ -1042,6 +1042,7 @@ object fRomEntCoco: TfRomEntCoco
       MaxLength = 5
       ParentFont = False
       TabOrder = 13
+      OnChange = dbeBeberLimpoChange
       OnExit = dbeBeberLimpoExit
     end
     object Label28: TLabel

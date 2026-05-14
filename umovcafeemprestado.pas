@@ -45,7 +45,6 @@ type
     pnBotao: TPanel;
     pnEditar: TPanel;
     pnFiltrar: TPanel;
-    zConn: TZConnection;
     zqClienteIDPrincipal: TZInt64Field;
     zqClienteRazao: TZRawStringField;
     zqClienteSaldo1: TZUInt64Field;
@@ -104,6 +103,7 @@ type
     procedure btSalvarClick(Sender: TObject);
     procedure btDevolverClick(Sender: TObject);
     procedure dbcClienteChange(Sender: TObject);
+    procedure FormClose(Sender: TObject; var CloseAction: TCloseAction);
     procedure FormCreate(Sender: TObject);
     procedure AplicaFiltro();
     procedure EditarTrue();
@@ -129,9 +129,6 @@ uses uFuncoes, uCadCliente, uPrincipal, uCadLoteLimpo;
 
 procedure TfMovCafeEmprestado.FormCreate(Sender: TObject);
 begin
-  zConn.Disconnect;
-  zConn.Database:=uPrincipal.CaminhoDB;
-  zConn.Connect;
   zqCliente.Active:=True;
   zqParaLoteLimpo.Active:=True;
   zqMovCafeEmprestado.Active:=True;
@@ -139,6 +136,7 @@ begin
   EditarFalse;
   pnBotaoEditar.Enabled:=False;
   AplicaFiltro;
+  SomenteLeitura:=True;//desabilita botoes de edição do seguendo Form Aberto
 end;
 
 procedure TfMovCafeEmprestado.btEmprestarClick(Sender: TObject);
@@ -176,7 +174,7 @@ begin
   zqNovoIDCafeEmprestado.Active:=True;
   ztCliente.Active:=True;
   ztLoteLimpo.Active:=True;
-  zConn.StartTransaction;
+  fPrincipal.zConn.StartTransaction;
   zqNovoIDCafeEmprestado.Refresh;
   ztCafeEmprestado.Append;
   ztCafeEmprestadoIDCafeEmprestado.Value:=zqNovoIDCafeEmprestadoID.Value+1;
@@ -224,13 +222,13 @@ begin
   ztCafeEmprestadoStatus.Value:='Ativo';
   ztCafeEmprestado.Post;
   ztMovLoteLimpo.Post;
-  zConn.Commit;
+  fPrincipal.zConn.Commit;
   except
   ztCliente.Cancel;
   ztLoteLimpo.Cancel;
   ztCafeEmprestado.Cancel;
   ztMovLoteLimpo.Cancel;
-  zConn.Rollback;
+  fPrincipal.zConn.Rollback;
   MessageDlg('Erro ao tentar salvar nova transação', mtError,[mbOk], 0);
   end;
   ztCliente.Active:=False;
@@ -346,6 +344,12 @@ begin
   AplicaFiltro;
   pnBotaoEditar.Enabled:=True;
   zqMovCafeEmprestado.Last;
+end;
+
+procedure TfMovCafeEmprestado.FormClose(Sender: TObject;
+  var CloseAction: TCloseAction);
+begin
+  SomenteLeitura:=False;
 end;
 
 end.

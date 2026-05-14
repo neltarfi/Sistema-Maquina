@@ -10,6 +10,7 @@ object fMovCliSacaria: TfMovCliSacaria
   Color = clGradientInactiveCaption
   Position = poScreenCenter
   LCLVersion = '4.6.0.0'
+  OnClose = FormClose
   OnCreate = FormCreate
   object pnBotao: TPanel
     Left = 0
@@ -1126,7 +1127,7 @@ object fMovCliSacaria: TfMovCliSacaria
     Top = 208
   end
   object zqParaLoteSacaria: TZQuery
-    Connection = zConn
+    Connection = fPrincipal.zConn
     SQL.Strings = (
       'select  '
       '   "IDLoteSacaria", '
@@ -1168,7 +1169,7 @@ object fMovCliSacaria: TfMovCliSacaria
     end
   end
   object zqMovLoteSacaria: TZQuery
-    Connection = zConn
+    Connection = fPrincipal.zConn
     SQL.Strings = (
       'SELECT'
       '         L."IDLoteSacaria" || '', '' || L."Nome" as Nome,'
@@ -1274,7 +1275,7 @@ object fMovCliSacaria: TfMovCliSacaria
     end
   end
   object ztMovLoteSacaria: TZTable
-    Connection = zConn
+    Connection = fPrincipal.zConn
     TableName = 'MovLoteSacaria'
     Left = 160
     Top = 104
@@ -1354,7 +1355,7 @@ object fMovCliSacaria: TfMovCliSacaria
     end
   end
   object zqNovoIDMovLoteSacaria: TZQuery
-    Connection = zConn
+    Connection = fPrincipal.zConn
     SQL.Strings = (
       'select'
       '  max("IDMovLoteSacaria") as ID'
@@ -1374,7 +1375,7 @@ object fMovCliSacaria: TfMovCliSacaria
     end
   end
   object zqCliente: TZQuery
-    Connection = zConn
+    Connection = fPrincipal.zConn
     SQL.Strings = (
       'select'
       '   "IDPrincipal",'
@@ -1432,7 +1433,7 @@ object fMovCliSacaria: TfMovCliSacaria
     Top = 152
   end
   object ztCliente: TZTable
-    Connection = zConn
+    Connection = fPrincipal.zConn
     TableName = 'Cliente'
     Left = 360
     Top = 104
@@ -1465,19 +1466,8 @@ object fMovCliSacaria: TfMovCliSacaria
       Required = False
     end
   end
-  object zConn: TZConnection
-    ControlsCodePage = cCP_UTF8
-    Properties.Strings = (
-      'RawStringEncoding=DB_CP'
-    )
-    DisableSavepoints = False
-    Port = 0
-    Protocol = 'sqlite'
-    Left = 21
-    Top = 102
-  end
   object ztLoteSacaria: TZTable
-    Connection = zConn
+    Connection = fPrincipal.zConn
     TableName = 'LoteSacaria'
     Left = 274
     Top = 106

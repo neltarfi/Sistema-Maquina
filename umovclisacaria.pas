@@ -45,7 +45,6 @@ type
     pnBotao: TPanel;
     pnEditar: TPanel;
     pnFiltrar: TPanel;
-    zConn: TZConnection;
     zqClienteIDPrincipal: TZInt64Field;
     zqClienteRazao: TZRawStringField;
     zqClienteSaldoJuta: TZInt64Field;
@@ -92,6 +91,7 @@ type
     procedure btSalvarClick(Sender: TObject);
     procedure btSaidaClick(Sender: TObject);
     procedure dbcClienteChange(Sender: TObject);
+    procedure FormClose(Sender: TObject; var CloseAction: TCloseAction);
     procedure FormCreate(Sender: TObject);
     procedure AplicaFiltro();
     procedure EditarTrue();
@@ -118,9 +118,6 @@ uses uFuncoes, uCadCliente, uPrincipal;
 
 procedure TfMovCliSacaria.FormCreate(Sender: TObject);
 begin
-  zConn.Disconnect;
-  zConn.Database:=uPrincipal.CaminhoDB;
-  zConn.Connect;
   ztCliente.Active:=True;
   zqCliente.Active:=True;
   zqParaLoteSacaria.Active:=True;
@@ -130,6 +127,7 @@ begin
   EditarFalse;
   pnBotaoEditar.Enabled:=False;
   AplicaFiltro;
+  SomenteLeitura:=True;//desabilita botoes de edição do seguendo Form Aberto
   end;
 
 procedure TfMovCliSacaria.btEntradaClick(Sender: TObject);
@@ -165,7 +163,7 @@ begin
   try
   ztMovLoteSacaria.Active:=True;
   zqNovoIDMovLoteSacaria.Active:=True;
-  zConn.StartTransaction;
+  fPrincipal.zConn.StartTransaction;
   zqNovoIDMovLoteSacaria.Refresh;
   ztMovLoteSacaria.Append;
   ztMovLoteSacariaIDMovLoteSacaria.Value:=zqNovoIDMovLoteSacariaID.Value+1;
@@ -205,12 +203,12 @@ begin
   ztMovLoteSacaria.Post;
   ztLoteSacaria.Post;
   ztCliente.Post;
-  zConn.Commit;
+  fPrincipal.zConn.Commit;
   except
   ztCliente.Cancel;
   ztLoteSacaria.Cancel;
   ztMovLoteSacaria.Cancel;
-  zConn.Rollback;
+  fPrincipal.zConn.Rollback;
   MessageDlg('Erro ao tentar salvar nova transação', mtError,[mbOk], 0);
   end;
   ztCliente.Active:=False;
@@ -313,6 +311,12 @@ begin
   zqCliente.Locate('IDPrincipal',dbcCliente.KeyValue,[]);
   AplicaFiltro;
   pnBotaoEditar.Enabled:=True;
+end;
+
+procedure TfMovCliSacaria.FormClose(Sender: TObject;
+  var CloseAction: TCloseAction);
+begin
+  SomenteLeitura:=False;
 end;
 
 end.

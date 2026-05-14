@@ -73,7 +73,6 @@ type
     pnContaCorrenteGridRodape: TPanel;
     pnContaCorrenteTitulo: TPanel;
     pnTela: TPanel;
-    zConn: TZConnection;
     zqCCAcertoData: TZDateField;
     zqCCAcertoEntrada: TZDoubleField;
     zqCCAcertoHistorico: TZRawStringField;
@@ -141,7 +140,6 @@ type
 
 var
   fAcerto: TfAcerto;
-  FormTrue:boolean;//Usada para se o form abrir, consiga desbloqueat db
 
 implementation
 
@@ -176,9 +174,6 @@ end;
 
 procedure TfAcerto.AbreTabelas;
 begin
-  zConn.Disconnect;
-  zConn.Database:=uPrincipal.CaminhoDB;
-  zConn.Connect;
   ztClienteSaldo.Open;
    zqClienteBox.Open;
    zqCC.Open;
@@ -190,7 +185,6 @@ end;
 procedure TfAcerto.FormShow(Sender: TObject);
 begin
    AbreTabelas;
-   FormTrue:=True;
    EditarFalseCC;
    AplicaFiltroClienteBox;
    ztClienteSaldo.Locate('IDCliente',0,[]);
@@ -199,17 +193,16 @@ begin
    zqAcertoSaldo.Last;
    pnAcertoBotao.Enabled:=False;
    pnCCBotaoEditar.Enabled:=False;
+   SomenteLeitura:=True;//desabilita botoes de edição do seguendo Form Aberto
 end;
 
 procedure TfAcerto.FormClose(Sender: TObject; var CloseAction: TCloseAction);
 begin
-  if FormTrue then begin
      ztClienteSaldo.Close;
      zqClienteBox.Close;
      zqCC.Close;
      zqCCAcerto.Close;
      zqAcertoSaldo.Close;
-  end;
 end;
 
 procedure TfAcerto.rgFiltroClienteClick(Sender: TObject);
@@ -283,18 +276,18 @@ begin
     exit;
   end;
   try
-  zConn.StartTransaction;
+  fPrincipal.zConn.StartTransaction;
   zqAcertoSaldo.Append;
   zqAcertoSaldoIDAcerto.Value:=zqNovoIDAcertoID.Value+1;
   zqAcertoSaldoIDCliente.Value:=IDCliente;
   zqAcertoSaldoSaldoAcerto.Value:=0;
   zqAcertoSaldoStatus.Value:='Aberto';
   zqAcertoSaldo.Post;
-  zConn.Commit;
+  fPrincipal.zConn.Commit;
   zqNovoIDAcerto.Refresh;
   except
   zqAcertoSaldo.Cancel;
-  zConn.Rollback;
+  fPrincipal.zConn.Rollback;
   MessageDlg('Erro ao tentar criar Acerto.', mtError,[mbOk], 0);
   end;
   dbcCliente.KeyValue:=IDCliente;
@@ -307,16 +300,16 @@ procedure TfAcerto.btAbrirAcertoClick(Sender: TObject);
 var Cliente:integer;
 begin
   try
-  zConn.StartTransaction;
+  fPrincipal.zConn.StartTransaction;
   zqAcertoSaldo.Edit;
   zqAcertoSaldoStatus.Value:='Aberto';
   zqAcertoSaldo.Post;
-  zConn.Commit;
+  fPrincipal.zConn.Commit;
   AplicaFiltroGrid;
   statusBotoesAcertoAberto;
   Except
   zqAcertoSaldo.Cancel;
-  zConn.Rollback;
+  fPrincipal.zConn.Rollback;
   MessageDlg('Erro ao tentar abrir o Acerto', mtError,[mbOk], 0);
   end;
 end;
@@ -328,11 +321,11 @@ begin
      exit;
   end;
   try
-  zConn.StartTransaction;
+  fPrincipal.zConn.StartTransaction;
   zqAcertoSaldo.Edit;
   zqAcertoSaldoStatus.Value:='Fechado';
   zqAcertoSaldo.Post;
-  zConn.Commit;
+  fPrincipal.zConn.Commit;
   btAbrirAcerto.Enabled:=True;
   btFecharAcerto.Enabled:=False;
   btTransAcerto.Enabled:=False;
@@ -341,7 +334,7 @@ begin
   statusBotoesAcertoAberto;
   Except
   zqAcertoSaldo.Cancel;
-  zConn.Rollback;
+  fPrincipal.zConn.Rollback;
   MessageDlg('Erro ao tentar fechar o Acerto.', mtError,[mbOk], 0);
   end;
 end;
@@ -357,7 +350,7 @@ begin
   zqCC.Active:=True;
   ztClienteSaldo.Active:=True;
   zqNovoIDCC.Active:=True;
-  zConn.StartTransaction;
+  fPrincipal.zConn.StartTransaction;
   zqCC.Append;
   ztClienteSaldo.Locate('IDCliente',dbcCliente.KeyValue,[]);
   ztClienteSaldo.Edit;
@@ -373,7 +366,7 @@ end;
 
 procedure TfAcerto.btEditarCCClick(Sender: TObject);
 begin
-  zConn.StartTransaction;
+  fPrincipal.zConn.StartTransaction;
   EditarTrueCC;
   zqCC.Edit;
   ztClienteSaldo.Edit;
@@ -386,7 +379,7 @@ begin
    EditarFalseCC;
    zqClienteBox.Cancel;
    zqCC.Cancel;
-   zConn.Rollback;
+   fPrincipal.zConn.Rollback;
 end;
 
 procedure TfAcerto.btSalvarCCClick(Sender: TObject);
@@ -406,7 +399,7 @@ begin
        end;
   zqCC.Post;
   ztClienteSaldo.Post;
-  zConn.Commit;
+  fPrincipal.zConn.Commit;
   IDCliente:=dbcCliente.KeyValue;
   AbreTabelas;
   AplicaFiltroClienteBox;
@@ -422,7 +415,7 @@ begin
   except
   zqClienteBox.Cancel;
   zqCC.Cancel;
-  zConn.Rollback;
+  fPrincipal.zConn.Rollback;
   MessageDlg('Erro ao tentar salvar nova transação.', mtError,[mbOk], 0);
   end;
   EditarFalseCC;
@@ -432,7 +425,7 @@ procedure TfAcerto.btTransAcertoClick(Sender: TObject);
 var temp:array of variant;
 begin
   try
-  zConn.StartTransaction;
+  fPrincipal.zConn.StartTransaction;
   ztClienteSaldo.Edit;
   ztClienteSaldoSaldoContaCorrente.Value:=ztClienteSaldoSaldoContaCorrente.Value-zqCCEntrada.Value;
   ztClienteSaldoSaldoContaCorrente.Value:=ztClienteSaldoSaldoContaCorrente.Value+zqCCSaida.Value;
@@ -444,7 +437,7 @@ begin
   zqCC.Edit;
   zqCCIDAcerto.Value:=zqAcertoSaldoIDAcerto.Value;
   zqCC.Post;
-  zConn.Commit;
+  fPrincipal.zConn.Commit;
   AplicaFiltroGrid;
   SetLength(temp, 2);
   temp[0]:= dbcCliente.KeyValue;
@@ -455,7 +448,7 @@ begin
   zqAcertoSaldo.Cancel;
   ztClienteSaldo.Cancel;
   zqCc.Cancel;
-  zConn.Rollback;
+  fPrincipal.zConn.Rollback;
   MessageDlg('Erro ao tentar transferir registro.', mtError,[mbOk], 0);
   end;
   ztClienteSaldo.Refresh;
@@ -470,7 +463,7 @@ var Cliente:integer;
     temp:array of variant;
 begin
   try
-  zConn.StartTransaction;
+  fPrincipal.zConn.StartTransaction;
   ztClienteSaldo.Edit;
   ztClienteSaldoSaldoContaCorrente.Value:=ztClienteSaldoSaldoContaCorrente.Value+zqCCAcertoEntrada.Value;
   ztClienteSaldoSaldoContaCorrente.Value:=ztClienteSaldoSaldoContaCorrente.Value-zqCCAcertoSaida.Value;
@@ -482,7 +475,7 @@ begin
   zqCCAcerto.Edit;
   zqCCAcertoIDAcerto.Value:=0;
   zqCCAcerto.Post;
-  zConn.Commit;
+  fPrincipal.zConn.Commit;
   Cliente:=dbcCliente.KeyValue;
   dbcCliente.KeyValue:=Cliente;
   AplicaFiltroGrid;
@@ -495,7 +488,7 @@ begin
   zqAcertoSaldo.Cancel;
   ztClienteSaldo.Cancel;
   zqCCAcerto.Cancel;
-  zConn.Rollback;
+  fPrincipal.zConn.Rollback;
   MessageDlg('Erro ao tentar transferir registro.', mtError,[mbOk], 0);
   end;
   ztClienteSaldo.Refresh;

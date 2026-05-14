@@ -121,7 +121,6 @@ procedure TfCadCliente.FormClose(Sender: TObject; var CloseAction: TCloseAction
 begin
      if zqClienteIDCliente.Value >= 1 then
         fCadCliente.ModalResult:=zqClienteIDCliente.Value;
-     SomenteLeitura:=False;
 end;
 
 procedure TfCadCliente.FormShow(Sender: TObject);

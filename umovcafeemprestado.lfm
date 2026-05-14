@@ -10,6 +10,7 @@ object fMovCafeEmprestado: TfMovCafeEmprestado
   Color = clGradientInactiveCaption
   Position = poScreenCenter
   LCLVersion = '4.6.0.0'
+  OnClose = FormClose
   OnCreate = FormCreate
   object pnBotao: TPanel
     Left = 0
@@ -1109,7 +1110,7 @@ object fMovCafeEmprestado: TfMovCafeEmprestado
     Top = 208
   end
   object zqParaLoteLimpo: TZQuery
-    Connection = zConn
+    Connection = fPrincipal.zConn
     SQL.Strings = (
       'select  '
       '   "IDLoteLimpo", '
@@ -1151,7 +1152,7 @@ object fMovCafeEmprestado: TfMovCafeEmprestado
     end
   end
   object zqMovCafeEmprestado: TZQuery
-    Connection = zConn
+    Connection = fPrincipal.zConn
     SQL.Strings = (
       'SELECT'
       '         C."IDCliente",'
@@ -1248,7 +1249,7 @@ object fMovCafeEmprestado: TfMovCafeEmprestado
     end
   end
   object ztCafeEmprestado: TZTable
-    Connection = zConn
+    Connection = fPrincipal.zConn
     TableName = 'CafeEmprestado'
     Left = 152
     Top = 80
@@ -1330,7 +1331,7 @@ object fMovCafeEmprestado: TfMovCafeEmprestado
     end
   end
   object zqNovoIDCafeEmprestado: TZQuery
-    Connection = zConn
+    Connection = fPrincipal.zConn
     SQL.Strings = (
       'select'
       '  max("IDCafeEmprestado") as ID'
@@ -1350,7 +1351,7 @@ object fMovCafeEmprestado: TfMovCafeEmprestado
     end
   end
   object zqCliente: TZQuery
-    Connection = zConn
+    Connection = fPrincipal.zConn
     SQL.Strings = (
       'select'
       '   "IDPrincipal",'
@@ -1398,7 +1399,7 @@ object fMovCafeEmprestado: TfMovCafeEmprestado
     Top = 152
   end
   object ztCliente: TZTable
-    Connection = zConn
+    Connection = fPrincipal.zConn
     TableName = 'Cliente'
     Left = 432
     Top = 80
@@ -1422,7 +1423,7 @@ object fMovCafeEmprestado: TfMovCafeEmprestado
     end
   end
   object ztLoteLimpo: TZTable
-    Connection = zConn
+    Connection = fPrincipal.zConn
     TableName = 'LoteLimpo'
     Left = 288
     Top = 80
@@ -1467,7 +1468,7 @@ object fMovCafeEmprestado: TfMovCafeEmprestado
     end
   end
   object ztMovLoteLimpo: TZTable
-    Connection = zConn
+    Connection = fPrincipal.zConn
     TableName = 'MovLoteLimpo'
     Left = 288
     Top = 152
@@ -1549,7 +1550,7 @@ object fMovCafeEmprestado: TfMovCafeEmprestado
     end
   end
   object zqNovoIDMovLoteLimpo: TZQuery
-    Connection = zConn
+    Connection = fPrincipal.zConn
     SQL.Strings = (
       'select'
       '   max("IDMovLoteLimpo") as ID'
@@ -1567,13 +1568,5 @@ object fMovCafeEmprestado: TfMovCafeEmprestado
       ReadOnly = False
       Required = True
     end
-  end
-  object zConn: TZConnection
-    ControlsCodePage = cCP_UTF8
-    DisableSavepoints = False
-    Port = 0
-    Protocol = 'sqlite'
-    Left = 24
-    Top = 80
   end
 end

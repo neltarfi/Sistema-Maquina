@@ -40,7 +40,6 @@ type
     pnBotao: TPanel;
     pnEditar: TPanel;
     pnFiltrar: TPanel;
-    zConn: TZConnection;
     zqDoLoteSacaria: TZQuery;
     zqDoLoteSacariaIDLoteSacaria: TZInt64Field;
     zqDoLoteSacariaNomeDoLoteSacaria: TZRawStringField;
@@ -77,6 +76,7 @@ type
     procedure btSalvarClick(Sender: TObject);
     procedure btSaidaClick(Sender: TObject);
     procedure dbcDoLoteSacariaChange(Sender: TObject);
+    procedure FormClose(Sender: TObject; var CloseAction: TCloseAction);
     procedure FormCreate(Sender: TObject);
     procedure AplicaFiltro();
     procedure EditarTrue();
@@ -103,9 +103,6 @@ uses uFuncoes, uCadCliente, uPrincipal;
 
 procedure TfMovLoteSacaria.FormCreate(Sender: TObject);
 begin
-  zConn.Disconnect;
-  zConn.Database:=uPrincipal.CaminhoDB;
-  zConn.Connect;
   zqDoLoteSacaria.Active:=True;
   zqMovLoteSacaria.Active:=True;
   ztLoteSacaria.Active:=True;
@@ -114,6 +111,7 @@ begin
   EditarFalse;
   pnBotaoEditar.Enabled:=False;
   AplicaFiltro;
+  SomenteLeitura:=True;//desabilita botoes de edição do seguendo Form Aberto
   end;
 
 procedure TfMovLoteSacaria.btEntradaClick(Sender: TObject);
@@ -148,7 +146,7 @@ begin
   try
   ztMovLoteSacaria.Active:=True;
   zqNovoIDMovLoteSacaria.Active:=True;
-  zConn.StartTransaction;
+  fPrincipal.zConn.StartTransaction;
   zqNovoIDMovLoteSacaria.Refresh;
   ztMovLoteSacaria.Append;
   ztMovLoteSacariaIDMovLoteSacaria.Value:=zqNovoIDMovLoteSacariaID.Value+1;
@@ -173,11 +171,11 @@ begin
   ztMovLoteSacariaStatus.Value:='Ativo';
   ztMovLoteSacaria.Post;
   ztLoteSacaria.Post;
-  zConn.Commit;
+  fPrincipal.zConn.Commit;
   except
   ztLoteSacaria.Cancel;
   ztMovLoteSacaria.Cancel;
-  zConn.Rollback;
+  fPrincipal.zConn.Rollback;
   MessageDlg('Erro ao tentar salvar nova transação', mtError,[mbOk], 0);
   end;
   EditarFalse;
@@ -261,6 +259,12 @@ begin
   pnBotaoEditar.Enabled:=True;
   ztLoteSacaria.Locate('IDLoteSacaria',dbcDoLoteSacaria.KeyValue,[]);
   AplicaFiltro;
+end;
+
+procedure TfMovLoteSacaria.FormClose(Sender: TObject;
+  var CloseAction: TCloseAction);
+begin
+  SomenteLeitura:=False;
 end;
 
 end.

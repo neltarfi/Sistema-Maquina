@@ -57,7 +57,6 @@ type
     pnEditar: TPanel;
     rgFiltro: TRadioGroup;
     rgStatus: TDBRadioGroup;
-    zConn: TZConnection;
     zqNovoIDLoteCoco: TZQuery;
     zqNovoIDLoteCocoID: TZInt64Field;
     zqLoteLimpoIDLoteLimpo: TZInt64Field;
@@ -124,8 +123,8 @@ var
   fCadLoteCoco: TfCadLoteCoco;
   Filtrorg:string;
   Botao:String;
-  ModoEdicao:boolean;//Usada para se o form estive em modo de edição ou adição
-                     //de registro, consiga desbloquear db no evento onclose
+  ModoEdicao:boolean;//não deixa sair do form se estiver em modo de edição ou adição
+                     //de registro sem cancelar os datasets.
 
 implementation
 uses uFuncoes, uCadLoteLimpo, uPrincipal;
@@ -136,14 +135,12 @@ uses uFuncoes, uCadLoteLimpo, uPrincipal;
 
 procedure TfCadLoteCoco.FormShow(Sender: TObject);
 begin
-  zConn.Disconnect;
-  zConn.Database:=uPrincipal.CaminhoDB;
-  zConn.Connect;
   AbreDB;
   SelecionaFiltro;
   AplicaFiltro;
   EditarFalse;
   ztLoteCoco.Last;
+  SomenteLeitura:=True;//desabilita botoes de edição do seguendo Form Aberto
 end;
 
 
@@ -153,15 +150,13 @@ begin
     if ModoEdicao then begin
        ztLoteCoco.Cancel;
        FechaDB;
-       zConn.Rollback;
+       fPrincipal.zConn.Rollback;
     end;
+    SomenteLeitura:=False;
 end;
 
 procedure TfCadLoteCoco.AbreDB;
 begin
-     zConn.Disconnect;
-     zConn.Database:=uPrincipal.CaminhoDB;
-     zConn.Connect;
      zqNovoIDLoteCoco.Open;
      zqLoteLimpo.Open;
      ztLoteLimpo.Open;
@@ -183,7 +178,7 @@ end;
 procedure TfCadLoteCoco.btNovoClick(Sender: TObject);
 begin
   try
-  zConn.StartTransaction;
+  fPrincipal.zConn.StartTransaction;
   ztLoteCoco.Append;
   zqNovoIDLoteCoco.Refresh;
   ztLoteCocoIDLoteCoco.Value:= zqNovoIDLoteCocoID.Value + 1;
@@ -201,7 +196,7 @@ end;
 procedure TfCadLoteCoco.btEditarClick(Sender: TObject);
 begin
   try
-  zConn.StartTransaction;
+  fPrincipal.zConn.StartTransaction;
   ztLoteCoco.Edit;
   Botao:='Editar';
   EditarTrue;
@@ -214,7 +209,7 @@ procedure TfCadLoteCoco.btCancelarClick(Sender: TObject);
 begin
     EditarFalse;
     ztLoteCoco.Cancel;
-    zConn.Rollback;
+    fPrincipal.zConn.Rollback;
     AplicaFiltro;
 end;
 
@@ -277,13 +272,13 @@ begin
           zqNovoIDMovLoteLimpo.Active:=False;
      end;
      ztLoteCoco.Post;
-     zConn.Commit;
+     fPrincipal.zConn.Commit;
      AplicaFiltro;
      except
      ztLoteLimpo.Cancel;
      ztLoteCoco.Cancel;
      ztMovLoteLimpo.Cancel;
-     zConn.Rollback;
+     fPrincipal.zConn.Rollback;
      MessageDlg('Erro ao tentar salvar nova transação', mtError,[mbOk], 0);
      end;
      EditarFalse;

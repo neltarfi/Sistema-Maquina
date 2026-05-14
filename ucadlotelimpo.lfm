@@ -642,7 +642,7 @@ object fCadLoteLimpo: TfCadLoteLimpo
       Left = 352
       Height = 62
       Top = 208
-      Width = 112
+      Width = 120
       Caption = 'Cancelar'
       Glyph.Data = {
         E61F0000424DE61F000000000000360000002800000034000000340000000100
@@ -906,7 +906,7 @@ object fCadLoteLimpo: TfCadLoteLimpo
       OnClick = btCancelarClick
     end
     object btSalvar: TBitBtn
-      Left = 472
+      Left = 480
       Height = 62
       Top = 208
       Width = 112
@@ -1528,7 +1528,7 @@ object fCadLoteLimpo: TfCadLoteLimpo
     TabOrder = 2
   end
   object zqNovoIDLoteLimpo: TZQuery
-    Connection = zConn
+    Connection = fPrincipal.zConn
     SQL.Strings = (
       'select '
       '   max("IDLoteLimpo")  as ID '
@@ -1550,7 +1550,7 @@ object fCadLoteLimpo: TfCadLoteLimpo
   end
   object ztLoteLimpo: TZTable
     AfterScroll = ztLoteLimpoAfterScroll
-    Connection = zConn
+    Connection = fPrincipal.zConn
     TableName = 'LOTELIMPO'
     Left = 32
     Top = 256
@@ -1593,18 +1593,6 @@ object fCadLoteLimpo: TfCadLoteLimpo
       Required = False
       Size = 9
     end
-  end
-  object zConn: TZConnection
-    ControlsCodePage = cCP_UTF8
-    Properties.Strings = (
-      'RawStringEncoding=DB_CP'
-    )
-    DisableSavepoints = False
-    HostName = 'localhost'
-    Port = 0
-    Protocol = 'sqlite'
-    Left = 34
-    Top = 192
   end
   object dsLoteLimpo: TDataSource
     DataSet = ztLoteLimpo

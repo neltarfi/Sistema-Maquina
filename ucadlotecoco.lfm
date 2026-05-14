@@ -1794,7 +1794,7 @@ object fCadLoteCoco: TfCadLoteCoco
     Top = 176
   end
   object zqNovoIDLoteCoco: TZQuery
-    Connection = zConn
+    Connection = fPrincipal.zConn
     SQL.Strings = (
       'select '
       '   max("IDLoteCoco")  as ID '
@@ -1814,7 +1814,7 @@ object fCadLoteCoco: TfCadLoteCoco
     end
   end
   object ztLoteCoco: TZTable
-    Connection = zConn
+    Connection = fPrincipal.zConn
     TableName = 'LoteCoco'
     Left = 216
     Top = 176
@@ -1909,7 +1909,7 @@ object fCadLoteCoco: TfCadLoteCoco
     end
   end
   object ztMovLoteLimpo: TZTable
-    Connection = zConn
+    Connection = fPrincipal.zConn
     TableName = 'MovLoteLimpo'
     Left = 416
     Top = 224
@@ -1991,7 +1991,7 @@ object fCadLoteCoco: TfCadLoteCoco
     end
   end
   object zqNovoIDMovLoteLimpo: TZQuery
-    Connection = zConn
+    Connection = fPrincipal.zConn
     SQL.Strings = (
       'select '
       '   max("IDMovLoteLimpo") as ID '
@@ -2011,7 +2011,7 @@ object fCadLoteCoco: TfCadLoteCoco
     end
   end
   object ztLoteLimpo: TZTable
-    Connection = zConn
+    Connection = fPrincipal.zConn
     TableName = 'LoteLimpo'
     Left = 416
     Top = 168
@@ -2041,7 +2041,7 @@ object fCadLoteCoco: TfCadLoteCoco
     Top = 224
   end
   object zqLoteLimpo: TZQuery
-    Connection = zConn
+    Connection = fPrincipal.zConn
     SQL.Strings = (
       'select  '
       '   "IDLoteLimpo", '
@@ -2092,18 +2092,5 @@ object fCadLoteCoco: TfCadLoteCoco
       Required = False
       Size = 9
     end
-  end
-  object zConn: TZConnection
-    ControlsCodePage = cCP_UTF8
-    Properties.Strings = (
-      'RawStringEncoding=DB_CP'
-    )
-    DisableSavepoints = False
-    HostName = 'localhost'
-    Port = 0
-    Database = '/mnt/ArquivoMint/Sistema Maquina/Base De Dados/DBSistemaMaquina.db'
-    Protocol = 'sqlite'
-    Left = 216
-    Top = 120
   end
 end

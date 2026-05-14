@@ -10,6 +10,7 @@ object fMovLoteSacaria: TfMovLoteSacaria
   Color = clGradientInactiveCaption
   Position = poScreenCenter
   LCLVersion = '4.6.0.0'
+  OnClose = FormClose
   OnCreate = FormCreate
   object pnBotao: TPanel
     Left = 0
@@ -1078,7 +1079,7 @@ object fMovLoteSacaria: TfMovLoteSacaria
     Top = 208
   end
   object zqDoLoteSacaria: TZQuery
-    Connection = zConn
+    Connection = fPrincipal.zConn
     SQL.Strings = (
       'select  '
       '   "IDLoteSacaria", '
@@ -1131,7 +1132,7 @@ object fMovLoteSacaria: TfMovLoteSacaria
     end
   end
   object zqMovLoteSacaria: TZQuery
-    Connection = zConn
+    Connection = fPrincipal.zConn
     SQL.Strings = (
       'SELECT'
       '         Cliente."Razao" || '', '' || Cliente."Endereco" as Nome,'
@@ -1226,7 +1227,7 @@ object fMovLoteSacaria: TfMovLoteSacaria
     end
   end
   object ztMovLoteSacaria: TZTable
-    Connection = zConn
+    Connection = fPrincipal.zConn
     TableName = 'MovLoteSacaria'
     Left = 176
     Top = 104
@@ -1306,7 +1307,7 @@ object fMovLoteSacaria: TfMovLoteSacaria
     end
   end
   object zqNovoIDMovLoteSacaria: TZQuery
-    Connection = zConn
+    Connection = fPrincipal.zConn
     SQL.Strings = (
       'select'
       '  max("IDMovLoteSacaria") as ID'
@@ -1326,7 +1327,7 @@ object fMovLoteSacaria: TfMovLoteSacaria
     end
   end
   object ztLoteSacaria: TZTable
-    Connection = zConn
+    Connection = fPrincipal.zConn
     TableName = 'LoteSacaria'
     Left = 696
     Top = 208
@@ -1374,13 +1375,5 @@ object fMovLoteSacaria: TfMovLoteSacaria
     DataSet = ztLoteSacaria
     Left = 784
     Top = 208
-  end
-  object zConn: TZConnection
-    ControlsCodePage = cCP_UTF8
-    DisableSavepoints = False
-    Port = 0
-    Protocol = 'sqlite'
-    Left = 31
-    Top = 104
   end
 end

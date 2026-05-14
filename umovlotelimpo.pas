@@ -50,7 +50,6 @@ type
     pnBotao: TPanel;
     pnEditar: TPanel;
     pnFiltrar: TPanel;
-    zConn: TZConnection;
     zqClienteIDCliente: TZInt64Field;
     zqClienteNome: TZRawStringField;
     zqClienteRazao: TZRawStringField;
@@ -102,6 +101,7 @@ type
     procedure AplicaFiltro();
     procedure EditarTrue();
     procedure editarFalse();
+    procedure FormClose(Sender: TObject; var CloseAction: TCloseAction);
     procedure FormShow(Sender: TObject);
     function SalvarTrue:boolean;
   private
@@ -124,9 +124,6 @@ uses uFuncoes, uCadCliente, uCadLoteLimpo, uPrincipal;
 
 procedure TfMovLoteLimpo.FormShow(Sender: TObject);
 begin
-  zconn.Disconnect;
-  zConn.Database:=uPrincipal.CaminhoDB;
-  zConn.Connect;
   zqCliente.Active:=True;
   zqDoLoteLimpo.Active:=True;
   zqParaLoteLimpo.Active:=True;
@@ -137,6 +134,7 @@ begin
   zqDoLoteLimpo.Filter:='((Status = '+QuotedStr('Ativo')+') or (Status = ' + QuotedStr('Protegido') + '))';
   zqDoLoteLimpo.Filtered:=True;
   EditarFalse;
+  SomenteLeitura:=True;//desabilita botoes de edição do seguendo Form Aberto
 end;
 
 procedure TfMovLoteLimpo.btEntradaClick(Sender: TObject);
@@ -174,7 +172,7 @@ begin
   try
   ztMovLoteLimpo.Active:=True;
   zqNovoIDMovLoteLimpo.Active:=True;
-  zConn.StartTransaction;
+  fPrincipal.zConn.StartTransaction;
   ztMovLoteLimpo.Append;
   ztMovLoteLimpoIDMovLoteLimpo.Value:=zqNovoIDMovLoteLimpoID.Value+1;
   ztMovLoteLimpoIDLoteLimpo.Value:=dbcDoLoteLimpo.KeyValue;
@@ -225,11 +223,11 @@ begin
        ztSaldoLoteLimpoSaldo.Value:=ztSaldoLoteLimpoSaldo.Value + strToFloat(edtPeso.Text);
        ztSaldoLoteLimpo.Post;
   end;
-  zConn.Commit;
+  fPrincipal.zConn.Commit;
   except
   ztSaldoLoteLimpo.Cancel;
   ztMovLoteLimpo.Cancel;
-  zConn.Rollback;
+  fPrincipal.zConn.Rollback;
   MessageDlg('Erro ao tentar salvar nova transação', mtError,[mbOk], 0);
   end;
   ztMovLoteLimpo.Active:=False;
@@ -310,6 +308,12 @@ begin
   ztSaldoLoteLimpo.Filtered:=True;
   lbOperacao.Caption:='';
   EditarForm:=False;
+end;
+
+procedure TfMovLoteLimpo.FormClose(Sender: TObject;
+  var CloseAction: TCloseAction);
+begin
+  SomenteLeitura:=False;
 end;
 
 procedure TfMovLoteLimpo.AplicaFiltro();

@@ -1186,7 +1186,7 @@ object fAcerto: TfAcerto
     end
   end
   object zqCC: TZQuery
-    Connection = zConn
+    Connection = fPrincipal.zConn
     SQL.Strings = (
       'select'
       ' *'
@@ -1278,7 +1278,7 @@ object fAcerto: TfAcerto
     Top = 200
   end
   object zqNovoIDCC: TZQuery
-    Connection = zConn
+    Connection = fPrincipal.zConn
     SQL.Strings = (
       'select'
       '   max("IDContaCorrente") as ID'
@@ -1307,7 +1307,7 @@ object fAcerto: TfAcerto
     Left = 328
   end
   object zqCCAcerto: TZQuery
-    Connection = zConn
+    Connection = fPrincipal.zConn
     SQL.Strings = (
       'select '
       '   * '
@@ -1399,7 +1399,7 @@ object fAcerto: TfAcerto
     Top = 320
   end
   object zqNovoIDAcerto: TZQuery
-    Connection = zConn
+    Connection = fPrincipal.zConn
     SQL.Strings = (
       'select'
       '   max("IDAcerto") as ID'
@@ -1424,7 +1424,7 @@ object fAcerto: TfAcerto
     Top = 272
   end
   object ztClienteSaldo: TZTable
-    Connection = zConn
+    Connection = fPrincipal.zConn
     TableName = 'CLIENTE'
     Left = 304
     Top = 272
@@ -1448,20 +1448,8 @@ object fAcerto: TfAcerto
       Precision = 10
     end
   end
-  object zConn: TZConnection
-    ControlsCodePage = cCP_UTF8
-    Properties.Strings = (
-      'RawStringEncoding=DB_CP'
-    )
-    DisableSavepoints = False
-    HostName = 'localhost'
-    Port = 0
-    Protocol = 'sqlite'
-    Left = 420
-    Top = 120
-  end
   object zqClienteBox: TZQuery
-    Connection = zConn
+    Connection = fPrincipal.zConn
     SQL.Strings = (
       'select'
       '  "IDPrincipal",'
@@ -1506,7 +1494,7 @@ object fAcerto: TfAcerto
   end
   object zqAcertoSaldo: TZQuery
     AfterScroll = zqAcertoSaldoAfterScroll
-    Connection = zConn
+    Connection = fPrincipal.zConn
     SQL.Strings = (
       'select'
       '   *'
