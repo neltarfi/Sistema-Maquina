@@ -125,7 +125,7 @@ end;
 
 procedure TfCadCliente.FormShow(Sender: TObject);
 begin
-  if SomenteLeitura then Begin
+  if FormSomenteLeitura then Begin
      btNovo.Enabled:=False;
      btNovoCliAdicional.Enabled:=False;
      btEditar.Enabled:=False;

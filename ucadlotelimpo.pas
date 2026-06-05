@@ -84,7 +84,7 @@ begin
   ztLoteLimpo.Last;
   TempModalResult:= ztLoteLimpoIDLoteLimpo.Value;
   editarFalse;
-  if SomenteLeitura then begin
+  if FormSomenteLeitura then begin
        btNovo.Enabled:=False;
        btEditar.Enabled:=False;
   end;

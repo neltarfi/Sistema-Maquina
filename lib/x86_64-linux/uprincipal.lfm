@@ -1,0 +1,85 @@
+object fPrincipal: TfPrincipal
+  Left = 254
+  Height = 574
+  Top = 107
+  Width = 889
+  BorderIcons = [biMinimize, biMaximize]
+  Caption = 'Sistema Maquina'
+  Color = clGradientActiveCaption
+  Menu = MainMenu1
+  Position = poDesktopCenter
+  LCLVersion = '4.6.0.0'
+  OnShow = FormShow
+  object MainMenu1: TMainMenu
+    Left = 44
+    Top = 32
+    object Cadastro: TMenuItem
+      Caption = '&Cadastro'
+      object CadCliente: TMenuItem
+        Caption = 'Cadastro de C&liente'
+        OnClick = CadClienteClick
+      end
+      object CadLoteLimpo: TMenuItem
+        Caption = 'Cadastro de l&ote de café limpo'
+        OnClick = CadLoteLimpoClick
+      end
+      object CadLoteCoco: TMenuItem
+        Caption = 'Cadastro de lote de ca&fé coco'
+        OnClick = CadLoteCocoClick
+      end
+    end
+    object Movimrnto: TMenuItem
+      Caption = '&Movimento'
+      object MovLoteLimpo: TMenuItem
+        Caption = '&Café limpo'
+        OnClick = MovLoteLimpoClick
+      end
+      object mnCafe: TMenuItem
+        Caption = 'Ca&fé em coco'
+        object mnRomEntCoco: TMenuItem
+          Caption = 'Romaneio de Entraca de café em coco'
+          OnClick = mnRomEntCocoClick
+        end
+      end
+      object mnCafeEmprestado: TMenuItem
+        Caption = 'Café &Ememprestado ao Cliente'
+        OnClick = mnCafeEmprestadoClick
+      end
+      object MovLoteSacaria: TMenuItem
+        Caption = 'Movimeto de s&acaria'
+        object MovSacaLote: TMenuItem
+          Caption = 'Movimento por &Lote'
+          OnClick = MovSacaLoteClick
+        end
+        object MovCliSacaria: TMenuItem
+          Caption = 'Movimento por &Cliente'
+          OnClick = MovCliSacariaClick
+        end
+      end
+    end
+    object mnFinanceiro: TMenuItem
+      Caption = '&Financeiro'
+      object mnAcerto: TMenuItem
+        Caption = '&Acerto'
+        OnClick = mnAcertoClick
+      end
+    end
+    object Sair: TMenuItem
+      Caption = '&Sair'
+      OnClick = SairClick
+    end
+  end
+  object zConn: TZConnection
+    ControlsCodePage = cCP_UTF8
+    Properties.Strings = (
+      'RawStringEncoding=DB_CP'
+    )
+    TransactIsolationLevel = tiReadCommitted
+    DisableSavepoints = False
+    Port = 0
+    Database = '/mnt/ArquivoMint/Sistema-Maquina/Base De Dados/DBSistemaMaquina.db'
+    Protocol = 'sqlite'
+    Left = 172
+    Top = 33
+  end
+end

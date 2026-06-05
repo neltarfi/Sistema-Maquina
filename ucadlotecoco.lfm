@@ -1565,7 +1565,7 @@ object fCadLoteCoco: TfCadLoteCoco
         Left = 126
         Height = 28
         Top = 64
-        Width = 64
+        Width = 98
         DataField = 'Tulha'
         DataSource = dsLoteCoco
         ItemHeight = 0
@@ -1598,10 +1598,10 @@ object fCadLoteCoco: TfCadLoteCoco
         TabOrder = 5
       end
       object rgStatus: TDBRadioGroup
-        Left = 384
+        Left = 376
         Height = 46
         Top = 54
-        Width = 136
+        Width = 144
         AutoFill = True
         Caption = 'Status'
         ChildSizing.LeftRightSpacing = 6
@@ -1629,7 +1629,7 @@ object fCadLoteCoco: TfCadLoteCoco
         Left = 544
         Height = 47
         Top = 80
-        Width = 96
+        Width = 104
         Caption = 'Apurar beneficio'
         TabOrder = 6
         OnClick = btApurarBeneficioClick

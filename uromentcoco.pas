@@ -327,7 +327,7 @@ begin
     zqNovoIDContaCorrente.Open;
     ztContaCorrente.Open;
     ztRomEntradaCoco.Last;
-    SomenteLeitura:=True;//desabilita botoes de edição do seguendo Form Aberto
+    FormSomenteLeitura:=True;//desabilita botoes de edição do seguendo Form Aberto
 end;
 
 procedure TfRomEntCoco.FormClose(Sender: TObject; var CloseAction: TCloseAction);
@@ -556,6 +556,7 @@ end;
 
 procedure TfRomEntCoco.edtPesoCompradoExit(Sender: TObject);
 begin
+     PesoComprado:=strToFloat(edtPesoComprado.Text);
      ztRomEntradaCocoCalcFields(ztRomEntradaCoco); //dispara o método oncalcFields
 end;
 
@@ -815,9 +816,10 @@ begin
 
   dbePesoDepositado.Text:=intToStr(ztRomEntradaCocoSaldoCoco.Value -
                             StrToint(edtPesoComprado.Text));
+  edtPesoComprado.Text:=FloatToStr(PesoComprado);
 
   if (Not EntradaCocoModoEdicao)then Exit;
-  if (strToInt(edtPesoComprado.Text)>0) and
+  if (PesoComprado>0) and
         (Not CompraCocoModoEdicao)then begin
          ztRomCompraCoco.AutoCalcFields:=False;
          ztRomCompraCoco.Append;
@@ -833,7 +835,7 @@ begin
          ztRomCompraCoco.AutoCalcFields:=True;
          Exit;
      end;
-     if (strToInt(edtPesoComprado.Text)<1) and
+     if (PesoComprado<1) and
         CompraCocoModoEdicao then begin
          ztRomCompraCoco.Cancel;
          CompraCocoEditarFalse;
@@ -888,7 +890,6 @@ begin
      BeberCoco:=ztRomEntradaCocoBeberCoco.Value*(-1);
      BeberLimpo:=ztRomEntradaCocoBeberLimpo.Value;
      SaldoCoco:=ztRomEntradaCocoSaldoCoco.Value;
-     PesoComprado:=strToFloat(edtPesoComprado.Text);
      if (PesoComprado=0) then
         ztRomEntradaCocoIDRomCompraCoco.Value:=0
      else Begin
@@ -897,9 +898,7 @@ begin
          ztRomEntradaCocoIDRomCompraCoco.Value:=IDRomCompraCoco
      end;
      ztRomEntradaCocoStatus.Value:='Ativo';
-     PesoComprado:=strToFloat(edtPesoComprado.Text);
      ztRomEntradaCoco.Post;
-     edtPesoComprado.Text:=floatToStr(PesoComprado);
 
                    //café para beber
      if BeberLimpo>0 then SalvaCafeBeber;
@@ -969,6 +968,7 @@ begin
      CompraCocoEditarFalse;
      EntradaCocoEditarFalse;
      ztRomEntradaCoco.Refresh;
+     edtPesoComprado.Text:=FloatToStr(PesoComprado);
 end;
 
 procedure TfRomEntCoco.SalvaCafeBeber;

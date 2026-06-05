@@ -111,7 +111,7 @@ begin
   EditarFalse;
   pnBotaoEditar.Enabled:=False;
   AplicaFiltro;
-  SomenteLeitura:=True;//desabilita botoes de edição do seguendo Form Aberto
+  FormSomenteLeitura:=True;//desabilita botoes de edição do seguendo Form Aberto
   end;
 
 procedure TfMovLoteSacaria.btEntradaClick(Sender: TObject);
@@ -264,7 +264,7 @@ end;
 procedure TfMovLoteSacaria.FormClose(Sender: TObject;
   var CloseAction: TCloseAction);
 begin
-  SomenteLeitura:=False;
+  FormSomenteLeitura:=False;
 end;
 
 end.

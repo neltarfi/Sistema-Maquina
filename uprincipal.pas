@@ -49,7 +49,7 @@ type
 var
   fPrincipal: TfPrincipal;
   CaminhoDB:string;
-  SomenteLeitura:Boolean;//não deixa editar o segundo formulario aberto
+  FormSomenteLeitura:Boolean;//não deixa editar o segundo formulario aberto
 
 implementation
 
@@ -69,7 +69,7 @@ begin
      zConn.Disconnect;
      zConn.Database:=CaminhoDB;
      zConn.Connect;
-     SomenteLeitura:=False;
+     FormSomenteLeitura:=False;
 end;
 
 procedure TfPrincipal.CadClienteClick(Sender: TObject);

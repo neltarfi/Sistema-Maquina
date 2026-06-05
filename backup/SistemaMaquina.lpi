@@ -1,0 +1,185 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CONFIG>
+  <ProjectOptions>
+    <Version Value="12"/>
+    <PathDelim Value="\"/>
+    <General>
+      <SessionStorage Value="InProjectDir"/>
+      <Title Value="SistemaMaquina"/>
+      <Scaled Value="True"/>
+      <ResourceType Value="res"/>
+      <UseXPManifest Value="True"/>
+      <XPManifest>
+        <DpiAware Value="True"/>
+      </XPManifest>
+      <Icon Value="0"/>
+    </General>
+    <BuildModes>
+      <Item Name="Default" Default="True"/>
+    </BuildModes>
+    <PublishOptions>
+      <Version Value="2"/>
+      <UseFileFilters Value="True"/>
+    </PublishOptions>
+    <RunParams>
+      <FormatVersion Value="2"/>
+    </RunParams>
+    <RequiredPackages>
+      <Item>
+        <PackageName Value="DateTimeCtrlsDsgn"/>
+      </Item>
+      <Item>
+        <PackageName Value="DateTimeCtrls"/>
+      </Item>
+      <Item>
+        <PackageName Value="FCL"/>
+      </Item>
+      <Item>
+        <PackageName Value="zcomponentdesign"/>
+      </Item>
+      <Item>
+        <PackageName Value="zcomponent"/>
+      </Item>
+      <Item>
+        <PackageName Value="LCL"/>
+      </Item>
+    </RequiredPackages>
+    <Units>
+      <Unit>
+        <Filename Value="SistemaMaquina.lpr"/>
+        <IsPartOfProject Value="True"/>
+      </Unit>
+      <Unit>
+        <Filename Value="uprincipal.pas"/>
+        <IsPartOfProject Value="True"/>
+        <ComponentName Value="fPrincipal"/>
+        <HasResources Value="True"/>
+        <ResourceBaseClass Value="Form"/>
+        <UnitName Value="uPrincipal"/>
+      </Unit>
+      <Unit>
+        <Filename Value="classes\ufuncoes.pas"/>
+        <IsPartOfProject Value="True"/>
+        <UnitName Value="uFuncoes"/>
+      </Unit>
+      <Unit>
+        <Filename Value="ucadcliente.pas"/>
+        <IsPartOfProject Value="True"/>
+        <ComponentName Value="fCadCliente"/>
+        <HasResources Value="True"/>
+        <ResourceBaseClass Value="Form"/>
+        <UnitName Value="ucadCliente"/>
+      </Unit>
+      <Unit>
+        <Filename Value="ueditacliente.pas"/>
+        <IsPartOfProject Value="True"/>
+        <ComponentName Value="fEditaCliente"/>
+        <HasResources Value="True"/>
+        <ResourceBaseClass Value="Form"/>
+        <UnitName Value="ueditaCliente"/>
+      </Unit>
+      <Unit>
+        <Filename Value="ucadlotelimpo.pas"/>
+        <IsPartOfProject Value="True"/>
+        <ComponentName Value="fCadLoteLimpo"/>
+        <HasResources Value="True"/>
+        <ResourceBaseClass Value="Form"/>
+        <UnitName Value="uCadLoteLimpo"/>
+      </Unit>
+      <Unit>
+        <Filename Value="ucadlotecoco.pas"/>
+        <IsPartOfProject Value="True"/>
+        <ComponentName Value="fCadLoteCoco"/>
+        <HasResources Value="True"/>
+        <ResourceBaseClass Value="Form"/>
+        <UnitName Value="uCadLoteCoco"/>
+      </Unit>
+      <Unit>
+        <Filename Value="uacerto.pas"/>
+        <IsPartOfProject Value="True"/>
+        <ComponentName Value="fAcerto"/>
+        <HasResources Value="True"/>
+        <ResourceBaseClass Value="Form"/>
+        <UnitName Value="uAcerto"/>
+      </Unit>
+      <Unit>
+        <Filename Value="umovlotelimpo.pas"/>
+        <IsPartOfProject Value="True"/>
+        <ComponentName Value="fMovLoteLimpo"/>
+        <HasResources Value="True"/>
+        <ResourceBaseClass Value="Form"/>
+        <UnitName Value="uMovLoteLimpo"/>
+      </Unit>
+      <Unit>
+        <Filename Value="umovcafeemprestado.pas"/>
+        <IsPartOfProject Value="True"/>
+        <ComponentName Value="fMovCafeEmprestado"/>
+        <HasResources Value="True"/>
+        <ResourceBaseClass Value="Form"/>
+        <UnitName Value="uMovCafeEmprestado"/>
+      </Unit>
+      <Unit>
+        <Filename Value="uromentcoco.pas"/>
+        <IsPartOfProject Value="True"/>
+        <ComponentName Value="fRomEntCoco"/>
+        <HasResources Value="True"/>
+        <ResourceBaseClass Value="Form"/>
+        <UnitName Value="uRomEntCoco"/>
+      </Unit>
+      <Unit>
+        <Filename Value="umovlotesacaria.pas"/>
+        <IsPartOfProject Value="True"/>
+        <ComponentName Value="fMovLoteSacaria"/>
+        <HasResources Value="True"/>
+        <ResourceBaseClass Value="Form"/>
+        <UnitName Value="uMovLoteSacaria"/>
+      </Unit>
+      <Unit>
+        <Filename Value="umovclisacaria.pas"/>
+        <IsPartOfProject Value="True"/>
+        <ComponentName Value="fMovCliSacaria"/>
+        <HasResources Value="True"/>
+        <ResourceBaseClass Value="Form"/>
+        <UnitName Value="uMovCliSacaria"/>
+      </Unit>
+    </Units>
+  </ProjectOptions>
+  <CompilerOptions>
+    <Version Value="11"/>
+    <PathDelim Value="\"/>
+    <Target>
+      <Filename Value="SistemaMaquina"/>
+    </Target>
+    <SearchPaths>
+      <IncludeFiles Value="$(ProjOutDir)"/>
+      <OtherUnitFiles Value="classes"/>
+      <UnitOutputDirectory Value="lib\$(TargetCPU)-$(TargetOS)"/>
+    </SearchPaths>
+    <CodeGeneration>
+      <SmallerCode Value="True"/>
+    </CodeGeneration>
+    <Linking>
+      <Debugging>
+        <DebugInfoType Value="dsDwarf3"/>
+      </Debugging>
+      <Options>
+        <Win32>
+          <GraphicApplication Value="True"/>
+        </Win32>
+      </Options>
+    </Linking>
+  </CompilerOptions>
+  <Debugging>
+    <Exceptions>
+      <Item>
+        <Name Value="EAbort"/>
+      </Item>
+      <Item>
+        <Name Value="ECodetoolError"/>
+      </Item>
+      <Item>
+        <Name Value="EFOpenError"/>
+      </Item>
+    </Exceptions>
+  </Debugging>
+</CONFIG>

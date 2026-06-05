@@ -155,21 +155,7 @@ begin
          dbcCliente.KeyValue:=zqAcertoSaldoIDCliente.Value; //existir pelo menos um Acerto
       ztClienteSaldo.Locate('IDCliente',zqAcertoSaldoIDCliente.Value,[]);
       AplicaFiltroGrid;
-      if zqAcertoSaldoStatus.Value='Fechado' then begin
-           btTransAcerto.Enabled:=False;
-           btTransCC.Enabled:=False;
-           btAbrirAcerto.Enabled:=True;
-           btFecharAcerto.Enabled:=False;
-      end;
-      if zqAcertoSaldoStatus.Value='Aberto' then begin
-           StatusBotoesAcertoAberto;
-      end;
-      if zqAcertoSaldoStatus.Value='Protegido' then begin
-           btTransAcerto.Enabled:=False;
-           btTransCC.Enabled:=False;
-           btAbrirAcerto.Enabled:=False;
-           btFecharAcerto.Enabled:=False;
-      end;
+      StatusBotoesAcertoAberto;
 end;
 
 procedure TfAcerto.AbreTabelas;
@@ -193,7 +179,8 @@ begin
    zqAcertoSaldo.Last;
    pnAcertoBotao.Enabled:=False;
    pnCCBotaoEditar.Enabled:=False;
-   SomenteLeitura:=True;//desabilita botoes de edição do seguendo Form Aberto
+   StatusBotoesAcertoAberto;
+   FormSomenteLeitura:=True;//desabilita botoes de edição do seguendo Form Aberto
 end;
 
 procedure TfAcerto.FormClose(Sender: TObject; var CloseAction: TCloseAction);
@@ -203,6 +190,7 @@ begin
      zqCC.Close;
      zqCCAcerto.Close;
      zqAcertoSaldo.Close;
+     FormSomenteLeitura:=False;
 end;
 
 procedure TfAcerto.rgFiltroClienteClick(Sender: TObject);
@@ -604,12 +592,28 @@ end;
 
 procedure TfAcerto.StatusBotoesAcertoAberto;
 begin
-  if not(zqAcertoSaldoStatus.Value='Aberto') then begin
+    //Botão NovoAcerto
+  if (zqClienteBoxIDPrincipal.Value=0) then
+     btNovoAcerto.Enabled:=False
+  else
+     btNovoAcerto.Enabled:=True;
+
+  //Acerto Fechado
+  if (zqAcertoSaldoStatus.Value='Fechado')then begin
      btTransAcerto.Enabled:=False;
      btTransCC.Enabled:=False;
      btAbrirAcerto.Enabled:=True;
      btFecharAcerto.Enabled:=False;
      exit;
+  end;
+
+  //Acerto vazio
+  if(zqAcertoSaldoStatus.Value='') then begin
+     btTransAcerto.Enabled:=False;
+     btTransCC.Enabled:=False;
+     btAbrirAcerto.Enabled:=False;
+     btFecharAcerto.Enabled:=False;
+     Exit;
   end;
 
   //Acerto aberto
