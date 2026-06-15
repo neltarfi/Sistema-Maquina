@@ -17,8 +17,7 @@ type
     CadCliente: TMenuItem;
     CadLoteLimpo: TMenuItem;
     CadLoteCoco: TMenuItem;
-    mnRomEntCoco: TMenuItem;
-    mnCafe: TMenuItem;
+    mnMovCoco: TMenuItem;
     mnAcerto: TMenuItem;
     mnFinanceiro: TMenuItem;
     mnCafeEmprestado: TMenuItem;
@@ -33,9 +32,9 @@ type
     procedure CadLoteCocoClick(Sender: TObject);
     procedure CadLoteLimpoClick(Sender: TObject);
     procedure FormShow(Sender: TObject);
+    procedure mnMovCocoClick(Sender: TObject);
     procedure mnAcertoClick(Sender: TObject);
     procedure mnCafeEmprestadoClick(Sender: TObject);
-    procedure mnRomEntCocoClick(Sender: TObject);
     procedure MovCliSacariaClick(Sender: TObject);
     procedure MovSacaLoteClick(Sender: TObject);
     procedure SairClick(Sender: TObject);
@@ -53,7 +52,7 @@ var
 
 implementation
 
-uses uCadCliente, uCadLoteLimpo, uCadLoteCoco, uMovLoteLimpo,
+uses uCadCliente, uCadLoteLimpo, uCadLoteCoco, uMovLoteLimpo, uMovCoco,
   uMovLoteSacaria, uMovCliSacaria, uMovCafeEmprestado, uAcerto, uRomEntCoco;
 
 {$R *.lfm}
@@ -70,6 +69,13 @@ begin
      zConn.Database:=CaminhoDB;
      zConn.Connect;
      FormSomenteLeitura:=False;
+end;
+
+procedure TfPrincipal.mnMovCocoClick(Sender: TObject);
+begin
+    fMovCoco:=TfMovCoco.Create(Self);
+    fMovCoco.ShowModal;
+    fMovCoco.Destroy;
 end;
 
 procedure TfPrincipal.CadClienteClick(Sender: TObject);
@@ -105,13 +111,6 @@ begin
   fMovCafeEmprestado:=TfMovCafeEmprestado.Create(Self);
   fMovCafeEmprestado.ShowModal;
   fMovCafeEmprestado.Destroy;
-end;
-
-procedure TfPrincipal.mnRomEntCocoClick(Sender: TObject);
-begin
-    fRomEntCoco:=TfRomEntCoco.Create(self);
-    fRomEntCoco.ShowModal;
-    fRomEntCoco.Destroy;
 end;
 
 procedure TfPrincipal.MovCliSacariaClick(Sender: TObject);

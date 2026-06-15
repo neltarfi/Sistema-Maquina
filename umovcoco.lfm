@@ -1,0 +1,101 @@
+object fMovCoco: TfMovCoco
+  Left = 194
+  Height = 449
+  Top = 250
+  Width = 612
+  BorderIcons = []
+  Caption = 'Movimento de café Coco'
+  ClientHeight = 449
+  ClientWidth = 612
+  Color = clGradientActiveCaption
+  Position = poScreenCenter
+  LCLVersion = '4.6.0.0'
+  OnShow = FormShow
+  object DBGrid1: TDBGrid
+    Left = 8
+    Height = 248
+    Top = 56
+    Width = 592
+    Color = clWindow
+    Columns = <>
+    TabOrder = 0
+  end
+  object btEntrada: TButton
+    Left = 79
+    Height = 25
+    Top = 343
+    Width = 75
+    Caption = 'Entrada coco'
+    TabOrder = 1
+    OnClick = btEntradaClick
+  end
+  object btSaida: TButton
+    Left = 208
+    Height = 25
+    Top = 343
+    Width = 75
+    Caption = 'Saída coco'
+    TabOrder = 2
+  end
+  object btSair: TButton
+    Left = 450
+    Height = 25
+    Top = 343
+    Width = 75
+    Caption = 'Sair'
+    TabOrder = 3
+    OnClick = btSairClick
+  end
+  object cgFiltro: TCheckGroup
+    Left = 168
+    Height = 46
+    Top = 2
+    Width = 129
+    AutoFill = True
+    Caption = 'Filtro'
+    ChildSizing.LeftRightSpacing = 6
+    ChildSizing.TopBottomSpacing = 6
+    ChildSizing.EnlargeHorizontal = crsHomogenousChildResize
+    ChildSizing.EnlargeVertical = crsHomogenousChildResize
+    ChildSizing.ShrinkHorizontal = crsScaleChilds
+    ChildSizing.ShrinkVertical = crsScaleChilds
+    ChildSizing.Layout = cclLeftToRightThenTopToBottom
+    ChildSizing.ControlsPerLine = 2
+    ClientHeight = 26
+    ClientWidth = 125
+    Columns = 2
+    Items.Strings = (
+      'Entrada'
+      'Saida'
+    )
+    ParentBackground = False
+    TabOrder = 4
+    Data = {
+      020000000202
+    }
+  end
+  object rgFiltroNome: TRadioGroup
+    Left = 8
+    Height = 48
+    Top = 0
+    Width = 130
+    AutoFill = True
+    Caption = 'Filtro de Nome'
+    ChildSizing.LeftRightSpacing = 6
+    ChildSizing.EnlargeHorizontal = crsHomogenousChildResize
+    ChildSizing.EnlargeVertical = crsHomogenousChildResize
+    ChildSizing.ShrinkHorizontal = crsScaleChilds
+    ChildSizing.ShrinkVertical = crsScaleChilds
+    ChildSizing.Layout = cclLeftToRightThenTopToBottom
+    ChildSizing.ControlsPerLine = 2
+    ClientHeight = 28
+    ClientWidth = 126
+    Columns = 2
+    Items.Strings = (
+      'Todos'
+      'Nome'
+    )
+    ParentBackground = False
+    TabOrder = 5
+  end
+end

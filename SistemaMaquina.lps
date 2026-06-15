@@ -7,7 +7,7 @@
       <Unit>
         <Filename Value="SistemaMaquina.lpr"/>
         <IsPartOfProject Value="True"/>
-        <UsageCount Value="96"/>
+        <UsageCount Value="100"/>
       </Unit>
       <Unit>
         <Filename Value="uprincipal.pas"/>
@@ -16,9 +16,9 @@
         <HasResources Value="True"/>
         <ResourceBaseClass Value="Form"/>
         <UnitName Value="uPrincipal"/>
-        <TopLine Value="56"/>
-        <CursorPos X="10" Y="72"/>
-        <UsageCount Value="96"/>
+        <TopLine Value="76"/>
+        <CursorPos X="5" Y="76"/>
+        <UsageCount Value="100"/>
         <Loaded Value="True"/>
         <LoadedDesigner Value="True"/>
       </Unit>
@@ -29,7 +29,7 @@
         <EditorIndex Value="-1"/>
         <TopLine Value="238"/>
         <CursorPos X="25" Y="244"/>
-        <UsageCount Value="96"/>
+        <UsageCount Value="100"/>
       </Unit>
       <Unit>
         <Filename Value="ucadcliente.pas"/>
@@ -38,12 +38,10 @@
         <HasResources Value="True"/>
         <ResourceBaseClass Value="Form"/>
         <UnitName Value="ucadCliente"/>
-        <EditorIndex Value="1"/>
+        <EditorIndex Value="-1"/>
         <TopLine Value="111"/>
         <CursorPos X="10" Y="128"/>
-        <UsageCount Value="96"/>
-        <Loaded Value="True"/>
-        <LoadedDesigner Value="True"/>
+        <UsageCount Value="100"/>
       </Unit>
       <Unit>
         <Filename Value="ueditacliente.pas"/>
@@ -55,7 +53,7 @@
         <EditorIndex Value="-1"/>
         <TopLine Value="167"/>
         <CursorPos X="3" Y="180"/>
-        <UsageCount Value="96"/>
+        <UsageCount Value="100"/>
       </Unit>
       <Unit>
         <Filename Value="ucadlotelimpo.pas"/>
@@ -64,12 +62,10 @@
         <HasResources Value="True"/>
         <ResourceBaseClass Value="Form"/>
         <UnitName Value="uCadLoteLimpo"/>
-        <EditorIndex Value="2"/>
+        <EditorIndex Value="-1"/>
         <TopLine Value="70"/>
         <CursorPos X="10" Y="87"/>
-        <UsageCount Value="96"/>
-        <Loaded Value="True"/>
-        <LoadedDesigner Value="True"/>
+        <UsageCount Value="100"/>
       </Unit>
       <Unit>
         <Filename Value="ucadlotecoco.pas"/>
@@ -78,12 +74,10 @@
         <HasResources Value="True"/>
         <ResourceBaseClass Value="Form"/>
         <UnitName Value="uCadLoteCoco"/>
-        <EditorIndex Value="6"/>
+        <EditorIndex Value="-1"/>
         <TopLine Value="158"/>
         <CursorPos X="9" Y="155"/>
-        <UsageCount Value="96"/>
-        <Loaded Value="True"/>
-        <LoadedDesigner Value="True"/>
+        <UsageCount Value="100"/>
       </Unit>
       <Unit>
         <Filename Value="uacerto.pas"/>
@@ -92,12 +86,10 @@
         <HasResources Value="True"/>
         <ResourceBaseClass Value="Form"/>
         <UnitName Value="uAcerto"/>
-        <EditorIndex Value="4"/>
-        <TopLine Value="591"/>
+        <EditorIndex Value="-1"/>
+        <TopLine Value="555"/>
         <CursorPos X="7" Y="158"/>
-        <UsageCount Value="96"/>
-        <Loaded Value="True"/>
-        <LoadedDesigner Value="True"/>
+        <UsageCount Value="100"/>
       </Unit>
       <Unit>
         <Filename Value="umovlotelimpo.pas"/>
@@ -109,7 +101,7 @@
         <EditorIndex Value="-1"/>
         <TopLine Value="300"/>
         <CursorPos X="7" Y="316"/>
-        <UsageCount Value="96"/>
+        <UsageCount Value="100"/>
       </Unit>
       <Unit>
         <Filename Value="umovcafeemprestado.pas"/>
@@ -118,12 +110,10 @@
         <HasResources Value="True"/>
         <ResourceBaseClass Value="Form"/>
         <UnitName Value="uMovCafeEmprestado"/>
-        <EditorIndex Value="3"/>
+        <EditorIndex Value="-1"/>
         <TopLine Value="325"/>
         <CursorPos X="7" Y="352"/>
-        <UsageCount Value="96"/>
-        <Loaded Value="True"/>
-        <LoadedDesigner Value="True"/>
+        <UsageCount Value="100"/>
       </Unit>
       <Unit>
         <Filename Value="uromentcoco.pas"/>
@@ -132,11 +122,10 @@
         <HasResources Value="True"/>
         <ResourceBaseClass Value="Form"/>
         <UnitName Value="uRomEntCoco"/>
-        <IsVisibleTab Value="True"/>
-        <EditorIndex Value="5"/>
-        <TopLine Value="799"/>
+        <EditorIndex Value="1"/>
+        <TopLine Value="783"/>
         <CursorPos X="50" Y="819"/>
-        <UsageCount Value="96"/>
+        <UsageCount Value="100"/>
         <Loaded Value="True"/>
         <LoadedDesigner Value="True"/>
       </Unit>
@@ -150,7 +139,7 @@
         <EditorIndex Value="-1"/>
         <TopLine Value="240"/>
         <CursorPos X="7" Y="267"/>
-        <UsageCount Value="96"/>
+        <UsageCount Value="100"/>
       </Unit>
       <Unit>
         <Filename Value="umovclisacaria.pas"/>
@@ -162,7 +151,22 @@
         <EditorIndex Value="-1"/>
         <TopLine Value="292"/>
         <CursorPos X="7" Y="319"/>
-        <UsageCount Value="96"/>
+        <UsageCount Value="100"/>
+      </Unit>
+      <Unit>
+        <Filename Value="umovcoco.pas"/>
+        <IsPartOfProject Value="True"/>
+        <ComponentName Value="fMovCoco"/>
+        <HasResources Value="True"/>
+        <ResourceBaseClass Value="Form"/>
+        <UnitName Value="uMovCoco"/>
+        <IsVisibleTab Value="True"/>
+        <EditorIndex Value="2"/>
+        <TopLine Value="17"/>
+        <CursorPos X="5" Y="24"/>
+        <UsageCount Value="24"/>
+        <Loaded Value="True"/>
+        <LoadedDesigner Value="True"/>
       </Unit>
       <Unit>
         <Filename Value="../../.lazarus/onlinepackagemanager/packages/zeosdbo/src/component/ZAbstractDataset.pas"/>
@@ -324,124 +328,124 @@
     </Units>
     <JumpHistory HistoryIndex="29">
       <Position>
-        <Filename Value="uromentcoco.pas"/>
-        <Caret Line="897" TopLine="876"/>
+        <Filename Value="umovcoco.pas"/>
+        <Caret Line="8" Column="58" TopLine="6"/>
       </Position>
       <Position>
-        <Filename Value="uromentcoco.pas"/>
-        <Caret Line="898" TopLine="876"/>
+        <Filename Value="umovcoco.pas"/>
+        <Caret Line="15" Column="5" TopLine="6"/>
       </Position>
       <Position>
-        <Filename Value="uromentcoco.pas"/>
-        <Caret Line="899" TopLine="876"/>
+        <Filename Value="umovcoco.pas"/>
+        <Caret Line="16" Column="5" TopLine="6"/>
       </Position>
       <Position>
-        <Filename Value="uromentcoco.pas"/>
-        <Caret Line="900" TopLine="876"/>
+        <Filename Value="umovcoco.pas"/>
+        <Caret Line="17" Column="5" TopLine="6"/>
       </Position>
       <Position>
-        <Filename Value="uromentcoco.pas"/>
-        <Caret Line="899" TopLine="876"/>
+        <Filename Value="umovcoco.pas"/>
+        <Caret Line="31" Column="18" TopLine="11"/>
       </Position>
       <Position>
-        <Filename Value="uromentcoco.pas"/>
-        <Caret Line="901" TopLine="876"/>
+        <Filename Value="umovcoco.pas"/>
+        <Caret Line="42" Column="25" TopLine="19"/>
       </Position>
       <Position>
-        <Filename Value="uromentcoco.pas"/>
-        <Caret Line="903" TopLine="878"/>
+        <Filename Value="uprincipal.pas"/>
+        <Caret Line="118" TopLine="102"/>
       </Position>
       <Position>
-        <Filename Value="uromentcoco.pas"/>
-        <Caret Line="904" TopLine="879"/>
+        <Filename Value="uprincipal.pas"/>
+        <Caret Line="117" TopLine="101"/>
       </Position>
       <Position>
-        <Filename Value="uromentcoco.pas"/>
-        <Caret Line="907" TopLine="882"/>
+        <Filename Value="uprincipal.pas"/>
+        <Caret Line="38" Column="54" TopLine="28"/>
       </Position>
       <Position>
-        <Filename Value="uromentcoco.pas"/>
-        <Caret Line="910" TopLine="885"/>
+        <Filename Value="uprincipal.pas"/>
+        <Caret Line="37" Column="54" TopLine="27"/>
       </Position>
       <Position>
-        <Filename Value="uromentcoco.pas"/>
-        <Caret Line="913" TopLine="888"/>
+        <Filename Value="uprincipal.pas"/>
+        <Caret Line="77" Column="5" TopLine="53"/>
       </Position>
       <Position>
-        <Filename Value="uromentcoco.pas"/>
-        <Caret Line="914" TopLine="889"/>
+        <Filename Value="umovcoco.pas"/>
+        <Caret Line="48" Column="9" TopLine="28"/>
       </Position>
       <Position>
-        <Filename Value="uromentcoco.pas"/>
-        <Caret Line="915" TopLine="890"/>
+        <Filename Value="umovcoco.pas"/>
+        <Caret Line="49" Column="9" TopLine="29"/>
       </Position>
       <Position>
-        <Filename Value="uromentcoco.pas"/>
-        <Caret Line="916" TopLine="891"/>
+        <Filename Value="umovcoco.pas"/>
+        <Caret Line="48" Column="9" TopLine="28"/>
       </Position>
       <Position>
-        <Filename Value="uromentcoco.pas"/>
-        <Caret Line="917" TopLine="892"/>
+        <Filename Value="umovcoco.pas"/>
+        <Caret Line="50" Column="9" TopLine="30"/>
       </Position>
       <Position>
-        <Filename Value="uromentcoco.pas"/>
-        <Caret Line="918" TopLine="893"/>
+        <Filename Value="umovcoco.pas"/>
+        <Caret Line="55" Column="22" TopLine="35"/>
       </Position>
       <Position>
-        <Filename Value="uromentcoco.pas"/>
-        <Caret Line="919" TopLine="894"/>
+        <Filename Value="umovcoco.pas"/>
+        <Caret Line="62" Column="22" TopLine="38"/>
       </Position>
       <Position>
-        <Filename Value="uromentcoco.pas"/>
-        <Caret Line="920" TopLine="895"/>
+        <Filename Value="umovcoco.pas"/>
+        <Caret Line="68" Column="31" TopLine="44"/>
       </Position>
       <Position>
-        <Filename Value="uromentcoco.pas"/>
-        <Caret Line="921" TopLine="896"/>
+        <Filename Value="umovcoco.pas"/>
+        <Caret Line="64" Column="30" TopLine="48"/>
       </Position>
       <Position>
-        <Filename Value="uromentcoco.pas"/>
-        <Caret Line="922" TopLine="897"/>
+        <Filename Value="umovcoco.pas"/>
+        <Caret Line="81" Column="33" TopLine="60"/>
       </Position>
       <Position>
-        <Filename Value="uromentcoco.pas"/>
-        <Caret Line="926" TopLine="901"/>
+        <Filename Value="umovcoco.pas"/>
+        <Caret Line="24" TopLine="18"/>
       </Position>
       <Position>
-        <Filename Value="uromentcoco.pas"/>
-        <Caret Line="927" TopLine="902"/>
+        <Filename Value="umovcoco.pas"/>
+        <Caret Line="23" TopLine="18"/>
       </Position>
       <Position>
-        <Filename Value="uromentcoco.pas"/>
-        <Caret Line="928" TopLine="903"/>
+        <Filename Value="umovcoco.pas"/>
+        <Caret Line="63" Column="10" TopLine="47"/>
       </Position>
       <Position>
-        <Filename Value="uromentcoco.pas"/>
-        <Caret Line="929" TopLine="904"/>
+        <Filename Value="umovcoco.pas"/>
+        <Caret Line="24" Column="41" TopLine="24"/>
       </Position>
       <Position>
-        <Filename Value="uromentcoco.pas"/>
-        <Caret Line="930" TopLine="905"/>
+        <Filename Value="umovcoco.pas"/>
+        <Caret Line="57" Column="7" TopLine="46"/>
       </Position>
       <Position>
-        <Filename Value="uromentcoco.pas"/>
-        <Caret Line="931" TopLine="906"/>
+        <Filename Value="umovcoco.pas"/>
+        <Caret Line="63" Column="28" TopLine="46"/>
       </Position>
       <Position>
-        <Filename Value="uromentcoco.pas"/>
-        <Caret Line="932" TopLine="907"/>
+        <Filename Value="umovcoco.pas"/>
+        <Caret Line="58" Column="28" TopLine="48"/>
       </Position>
       <Position>
-        <Filename Value="uromentcoco.pas"/>
-        <Caret Line="891" Column="49" TopLine="882"/>
+        <Filename Value="umovcoco.pas"/>
+        <Caret Line="66" Column="17" TopLine="53"/>
       </Position>
       <Position>
-        <Filename Value="uromentcoco.pas"/>
-        <Caret Line="901" Column="33" TopLine="880"/>
+        <Filename Value="umovcoco.pas"/>
+        <Caret Line="64" Column="39" TopLine="53"/>
       </Position>
       <Position>
-        <Filename Value="uromentcoco.pas"/>
-        <Caret Line="955" Column="33" TopLine="934"/>
+        <Filename Value="umovcoco.pas"/>
+        <Caret Line="63" Column="31" TopLine="54"/>
       </Position>
     </JumpHistory>
     <RunParams>
