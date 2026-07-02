@@ -134,7 +134,7 @@ begin
   zqDoLoteLimpo.Filter:='((Status = '+QuotedStr('Ativo')+') or (Status = ' + QuotedStr('Protegido') + '))';
   zqDoLoteLimpo.Filtered:=True;
   EditarFalse;
-  FormSomenteLeitura:=True;//desabilita botoes de edição do seguendo Form Aberto
+  FormCadastroSomenteLeitura:=True;//desabilita botoes de edição do seguendo Form Aberto
 end;
 
 procedure TfMovLoteLimpo.btEntradaClick(Sender: TObject);
@@ -313,7 +313,7 @@ end;
 procedure TfMovLoteLimpo.FormClose(Sender: TObject;
   var CloseAction: TCloseAction);
 begin
-  FormSomenteLeitura:=False;
+  FormCadastroSomenteLeitura:=False;
 end;
 
 procedure TfMovLoteLimpo.AplicaFiltro();

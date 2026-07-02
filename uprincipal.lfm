@@ -72,9 +72,10 @@ object fPrincipal: TfPrincipal
       'RawStringEncoding=DB_CP'
     )
     TransactIsolationLevel = tiReadCommitted
+    Connected = True
     DisableSavepoints = False
     Port = 0
-    Database = '/mnt/ArquivoMint/Sistema-Maquina/Base De Dados/DBSistemaMaquina.db'
+    Database = '/mnt/Arquivo/Projetos Lazarus/Linux/Sistema-Maquina/Base De Dados/DBSistemaMaquina.db'
     Protocol = 'sqlite'
     Left = 172
     Top = 33

@@ -136,7 +136,7 @@ begin
   EditarFalse;
   pnBotaoEditar.Enabled:=False;
   AplicaFiltro;
-  FormSomenteLeitura:=True;//desabilita botoes de edição do seguendo Form Aberto
+  FormCadastroSomenteLeitura:=True;//desabilita botoes de edição do seguendo Form Aberto
 end;
 
 procedure TfMovCafeEmprestado.btEmprestarClick(Sender: TObject);
@@ -349,7 +349,7 @@ end;
 procedure TfMovCafeEmprestado.FormClose(Sender: TObject;
   var CloseAction: TCloseAction);
 begin
-  FormSomenteLeitura:=False;
+  FormCadastroSomenteLeitura:=False;
 end;
 
 end.

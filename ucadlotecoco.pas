@@ -140,7 +140,7 @@ begin
   AplicaFiltro;
   EditarFalse;
   ztLoteCoco.Last;
-  FormSomenteLeitura:=True;//desabilita botoes de edição do seguendo Form Aberto
+  FormCadastroSomenteLeitura:=True;//desabilita botoes de edição do seguendo Form Aberto
 end;
 
 
@@ -152,7 +152,7 @@ begin
        FechaDB;
        fPrincipal.zConn.Rollback;
     end;
-    FormSomenteLeitura:=False;
+    FormCadastroSomenteLeitura:=False;
 end;
 
 procedure TfCadLoteCoco.AbreDB;

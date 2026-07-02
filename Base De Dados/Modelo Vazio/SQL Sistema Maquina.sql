@@ -122,6 +122,14 @@ CREATE TABLE LoteSacaria (
     Status        CHAR (9) 
 );
 
+CREATE TABLE MovCoco (
+    IDMovCoco        INTEGER PRIMARY KEY,
+    Data             DATE,
+    IDCliente        INTEGER,
+    IDRomEntradaCoco INTEGER,
+    IDRomSaidaCoco   INTEGER
+);
+
 CREATE TABLE MovLoteCoco (
     IDMovLoteCoco    INTEGER      PRIMARY KEY
                                   UNIQUE

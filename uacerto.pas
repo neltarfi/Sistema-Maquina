@@ -180,7 +180,7 @@ begin
    pnAcertoBotao.Enabled:=False;
    pnCCBotaoEditar.Enabled:=False;
    StatusBotoesAcertoAberto;
-   FormSomenteLeitura:=True;//desabilita botoes de edição do seguendo Form Aberto
+   FormCadastroSomenteLeitura:=True;//desabilita botoes de edição do seguendo Form Aberto
 end;
 
 procedure TfAcerto.FormClose(Sender: TObject; var CloseAction: TCloseAction);
@@ -190,7 +190,7 @@ begin
      zqCC.Close;
      zqCCAcerto.Close;
      zqAcertoSaldo.Close;
-     FormSomenteLeitura:=False;
+     FormCadastroSomenteLeitura:=False;
 end;
 
 procedure TfAcerto.rgFiltroClienteClick(Sender: TObject);

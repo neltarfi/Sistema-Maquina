@@ -17,7 +17,6 @@ type
     btCancelar: TBitBtn;
     btCancelarRom: TBitBtn;
     btImprimir: TBitBtn;
-    btNovo: TBitBtn;
     btSair: TBitBtn;
     btBuscar: TButton;
     btSalvar: TBitBtn;
@@ -52,7 +51,6 @@ type
     dbeDesconto2: TDBEdit;
     dbeSaldoCoco: TDBEdit;
     dbmObs: TDBMemo;
-    dbnRomaneio: TDBNavigator;
     dbrgSacoKg: TDBRadioGroup;
     dsCliente: TDataSource;
     dbeCodRomaneio: TDBEdit;
@@ -123,6 +121,7 @@ type
     zqLoteCocoStatus: TZRawStringField;
     zqNovoIDContaCorrenteID: TZInt64Field;
     zqNovoIDEstDepCocoID: TZInt64Field;
+    zqNovoIDMovCocoID: TZInt64Field;
     zqNovoIDMovLoteCocoID: TZInt64Field;
     zqNovoIDMovLoteLimpoID: TZInt64Field;
     zqNovoIDRomaneioCoco: TZQuery;
@@ -134,6 +133,8 @@ type
     zqNovoIDEstDepCoco: TZQuery;
     zqNovoIDMovLoteLimpo: TZQuery;
     zqNovoIDContaCorrente: TZQuery;
+    zqNovoIDMovCoco: TZQuery;
+    ztMovCoco: TZTable;
     ztContaCorrente: TZTable;
     ztContaCorrenteData: TZDateField;
     ztContaCorrenteEntrada: TZDoubleField;
@@ -148,6 +149,11 @@ type
     ztLoteLimpoNome: TZRawStringField;
     ztLoteLimpoSaldo: TZDoubleField;
     ztLoteLimpoStatus: TZRawStringField;
+    ztMovCocoData: TZDateField;
+    ztMovCocoIDCliente: TZInt64Field;
+    ztMovCocoIDMovCoco: TZInt64Field;
+    ztMovCocoIDRomEntradaCoco: TZInt64Field;
+    ztMovCocoIDRomSaidaCoco: TZInt64Field;
     ztMovLoteCocoData: TZDateField;
     ztMovLoteCocoHistorico: TZRawStringField;
     ztMovLoteLimpo: TZTable;
@@ -219,7 +225,6 @@ type
     ztRomEntradaCocoTotalPlastico: TLongintField;
     procedure btBuscarClick(Sender: TObject);
     procedure btCancelarClick(Sender: TObject);
-    procedure btNovoClick(Sender: TObject);
     procedure btSairClick(Sender: TObject);
     procedure btSalvarClick(Sender: TObject);
     procedure dbcClienteChange(Sender: TObject);
@@ -292,7 +297,7 @@ var
 
 implementation
 
-uses uCadCliente, uPrincipal, uFuncoes;
+uses uCadCliente, uPrincipal, uFuncoes, uMovCoco;
 {$R *.lfm}
 
 { TfRomEntCoco }
@@ -326,12 +331,28 @@ begin
     ztEstoqueDepositoCoco.Open;
     zqNovoIDContaCorrente.Open;
     ztContaCorrente.Open;
-    ztRomEntradaCoco.Last;
-    FormSomenteLeitura:=True;//desabilita botoes de edição do seguendo Form Aberto
+    ztMovCoco.Open;
+    zqNovoIDMovCoco.Open;
+    Case FormOperacao of
+         'VisualizarRegistro': begin
+                                   ztRomEntradaCoco.Locate('IDRomEntradaCoco',
+                                   fMovCoco.ztMovCocoIDRomEntradaCoco.Value,[]);
+                               end;
+         'InserirRegistro':    begin
+                                    fPrincipal.zConn.StartTransaction;
+                                    EntradaCocoEditarTrue;
+                                    CompraCocoEditarFalse;
+                                    ztRomEntradaCoco.Append;
+                                    dbcCliente.KeyValue:=0;
+                                    LocalizaEndereco;
+                                    NovoValorRegistro;
+                               end;
+    end;
 end;
 
 procedure TfRomEntCoco.FormClose(Sender: TObject; var CloseAction: TCloseAction);
 begin
+    fRomEntCoco.ModalResult:=ztMovCocoIDMovCoco.Value;
     if EntradaCocoModoEdicao then begin
        if CompraCocoModoEdicao then
           ztRomCompraCoco.Cancel;
@@ -354,6 +375,9 @@ begin
     ztEstoqueDepositoCoco.Close;
     zqNovoIDContaCorrente.Close;
     ztContaCorrente.Close;
+    ztMovCoco.Close;
+    zqNovoIDMovCoco.Close;
+
 end;
 
 procedure TfRomEntCoco.btBuscarClick(Sender: TObject);
@@ -380,17 +404,7 @@ begin
 
   ztRomEntradaCoco.Last;
   EntradaCocoEditarFalse;
-end;
-
-procedure TfRomEntCoco.btNovoClick(Sender: TObject);
-begin
-     fPrincipal.zConn.StartTransaction;
-     EntradaCocoEditarTrue;
-     CompraCocoEditarFalse;
-     ztRomEntradaCoco.Append;
-     dbcCliente.KeyValue:=0;
-     LocalizaEndereco;
-     NovoValorRegistro;
+  close;
 end;
 
 procedure TfRomEntCoco.btSairClick(Sender: TObject);
@@ -562,7 +576,6 @@ end;
 
 procedure TfRomEntCoco.EntradaCocoEditarTrue;
 begin
-     btNovo.Enabled:=False;
      btCancelar.Enabled:=True;
      btSalvar.Enabled:=True;
      btImprimir.Enabled:=False;
@@ -570,12 +583,10 @@ begin
      btSair.Enabled:=False;
      EntradaCocoModoEdicao:=True;
      Gravacao;
-     dbnRomaneio.Enabled:=False;
 end;
 
 procedure TfRomEntCoco.EntradaCocoEditarFalse;
 begin
-     btNovo.Enabled:=True;
      btCancelar.Enabled:=False;
      btSalvar.Enabled:=False;
      btImprimir.Enabled:=True;
@@ -583,7 +594,6 @@ begin
      btSair.Enabled:=True;
      EntradaCocoModoEdicao:=False;
      Leitura;
-     dbnRomaneio.Enabled:=True;
 end;
 
 procedure TfRomEntCoco.CompraCocoEditarTrue;
@@ -900,6 +910,16 @@ begin
      ztRomEntradaCocoStatus.Value:='Ativo';
      ztRomEntradaCoco.Post;
 
+                    //MovCoco
+     ztMovCoco.Append;
+     zqNovoIDMovCoco.Refresh;
+     ztMovCocoIDMovCoco.Value:=zqNovoIDMovCocoID.Value+1;
+     ztMovCocoIDRomEntradaCoco.Value:=IDRomEntradaCoco;
+     ztMovCocoData.Value:=ztRomEntradaCocoData.Value;
+     ztMovCocoIDRomSaidaCoco.Value:=0;
+     ztMovCocoIDCliente.Value:=IDCliente;
+     ztMovCoco.Post;
+
                    //café para beber
      if BeberLimpo>0 then SalvaCafeBeber;
 
@@ -953,6 +973,10 @@ begin
 
      end;
      fPrincipal.zConn.Commit;
+     if not(MessageDlg('Você deseja imprimir o Romaneio?', mtConfirmation,
+        [mbYes, mbNO], 0) = mrYes) then begin
+
+        end;
      except
      on E: Exception do
         begin
@@ -969,6 +993,7 @@ begin
      EntradaCocoEditarFalse;
      ztRomEntradaCoco.Refresh;
      edtPesoComprado.Text:=FloatToStr(PesoComprado);
+     Close;
 end;
 
 procedure TfRomEntCoco.SalvaCafeBeber;

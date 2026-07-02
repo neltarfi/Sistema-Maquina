@@ -85,6 +85,8 @@ begin
   fEditaCliente:= TfEditaCliente.Create(Self);
    temp:=fEditaCliente.ShowModal;
    fEditaCliente.Destroy;
+   zqCliente.Refresh;
+   zqCliente.Locate('IDCliente',temp,[]);
    AplicaFiltro;
 end;
 
@@ -125,7 +127,7 @@ end;
 
 procedure TfCadCliente.FormShow(Sender: TObject);
 begin
-  if FormSomenteLeitura then Begin
+  if FormCadastroSomenteLeitura then Begin
      btNovo.Enabled:=False;
      btNovoCliAdicional.Enabled:=False;
      btEditar.Enabled:=False;

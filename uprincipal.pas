@@ -48,7 +48,7 @@ type
 var
   fPrincipal: TfPrincipal;
   CaminhoDB:string;
-  FormSomenteLeitura:Boolean;//não deixa editar o segundo formulario aberto
+  FormCadastroSomenteLeitura:Boolean;//não deixa editar o segundo formulario aberto
 
 implementation
 
@@ -68,7 +68,7 @@ begin
      zConn.Disconnect;
      zConn.Database:=CaminhoDB;
      zConn.Connect;
-     FormSomenteLeitura:=False;
+     FormCadastroSomenteLeitura:=False;
 end;
 
 procedure TfPrincipal.mnMovCocoClick(Sender: TObject);
