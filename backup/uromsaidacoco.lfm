@@ -1,0 +1,414 @@
+object fRomSaidaCoco: TfRomSaidaCoco
+  Left = 337
+  Height = 481
+  Top = 250
+  Width = 901
+  Caption = 'Romaneio de saída de café em coco'
+  ClientHeight = 481
+  ClientWidth = 901
+  Color = clGradientActiveCaption
+  Position = poScreenCenter
+  LCLVersion = '4.6.0.0'
+  OnClose = FormClose
+  OnShow = FormShow
+  object DBEdit1: TDBEdit
+    Left = 8
+    Height = 26
+    Top = 24
+    Width = 58
+    DataField = 'IDRomSaidaCoco'
+    DataSource = dsRomSaidaCoco
+    MaxLength = 0
+    TabOrder = 0
+  end
+  object DBDateEdit1: TDBDateEdit
+    Left = 72
+    Height = 26
+    Top = 24
+    Width = 103
+    CalendarDisplaySettings = [dsShowHeadings, dsShowDayNames]
+    DateOrder = doNone
+    ButtonWidth = 23
+    NumGlyphs = 1
+    MaxLength = 0
+    TabOrder = 1
+    Text = 'DBDateEdit1'
+    DataField = 'Data'
+    DataSource = dsRomSaidaCoco
+  end
+  object dbcCliente: TDBLookupComboBox
+    Left = 200
+    Height = 28
+    Top = 22
+    Width = 384
+    KeyField = 'IDCliente'
+    ListField = 'Razao'
+    ListFieldIndex = 0
+    ListSource = dsCliente
+    LookupCache = False
+    TabOrder = 2
+  end
+  object btBuscaNome: TButton
+    Left = 592
+    Height = 25
+    Top = 22
+    Width = 75
+    Caption = 'Busca'
+    TabOrder = 3
+    OnClick = btBuscaNomeClick
+  end
+  object Panel1: TPanel
+    Left = 8
+    Height = 264
+    Top = 136
+    Width = 504
+    Caption = 'Panel1'
+    ClientHeight = 264
+    ClientWidth = 504
+    ParentBackground = False
+    TabOrder = 4
+    object DBGrid1: TDBGrid
+      Left = 8
+      Height = 200
+      Top = 24
+      Width = 488
+      Color = clWindow
+      Columns = <      
+        item
+          Title.Caption = 'IDLote'
+          Width = 50
+          FieldName = 'IDLoteCoco'
+        end      
+        item
+          Title.Caption = 'Nome do Lote'
+          Width = 230
+          FieldName = 'NomeLoteCoco'
+        end      
+        item
+          Title.Caption = 'Safra'
+          Width = 50
+          FieldName = 'Safra'
+        end      
+        item
+          Title.Caption = 'Tulha'
+          Width = 50
+          FieldName = 'Tulha'
+        end      
+        item
+          Title.Caption = 'Saldo'
+          Width = 64
+          FieldName = 'SaldoCoco'
+        end      
+        item
+          Title.Caption = 'Status'
+          Visible = False
+          FieldName = 'Status'
+        end>
+      DataSource = dsLoteCoco
+      TabOrder = 0
+    end
+    object DBNavigator1: TDBNavigator
+      Left = 128
+      Height = 25
+      Top = 232
+      Width = 241
+      BevelOuter = bvNone
+      ChildSizing.EnlargeHorizontal = crsScaleChilds
+      ChildSizing.EnlargeVertical = crsScaleChilds
+      ChildSizing.ShrinkHorizontal = crsScaleChilds
+      ChildSizing.ShrinkVertical = crsScaleChilds
+      ChildSizing.Layout = cclLeftToRightThenTopToBottom
+      ChildSizing.ControlsPerLine = 100
+      ClientHeight = 25
+      ClientWidth = 241
+      DataSource = dsLoteCoco
+      Options = []
+      TabOrder = 1
+      VisibleButtons = [nbFirst, nbPrior, nbNext, nbLast]
+    end
+    object Label4: TLabel
+      Left = 8
+      Height = 16
+      Top = 8
+      Width = 27
+      Caption = 'Lote'
+    end
+  end
+  object Panel2: TPanel
+    Left = 544
+    Height = 264
+    Top = 136
+    Width = 352
+    Caption = 'Panel2'
+    ClientHeight = 264
+    ClientWidth = 352
+    ParentBackground = False
+    TabOrder = 5
+    object btCancelar: TButton
+      Left = 56
+      Height = 25
+      Top = 232
+      Width = 75
+      Caption = 'Cancelar'
+      TabOrder = 0
+      OnClick = btCancelarClick
+    end
+    object btSalvar: TButton
+      Left = 216
+      Height = 25
+      Top = 232
+      Width = 75
+      Caption = 'Salvar'
+      TabOrder = 1
+    end
+    object DBEdit2: TDBEdit
+      Left = 220
+      Height = 26
+      Top = 21
+      Width = 80
+      MaxLength = 0
+      TabOrder = 2
+    end
+    object DBEdit3: TDBEdit
+      Left = 220
+      Height = 26
+      Top = 56
+      Width = 80
+      MaxLength = 0
+      TabOrder = 3
+    end
+    object DBEdit4: TDBEdit
+      Left = 128
+      Height = 26
+      Top = 88
+      Width = 80
+      MaxLength = 0
+      TabOrder = 4
+    end
+    object DBEdit5: TDBEdit
+      Left = 220
+      Height = 26
+      Top = 88
+      Width = 80
+      MaxLength = 0
+      TabOrder = 5
+    end
+  end
+  object Button2: TButton
+    Left = 512
+    Height = 25
+    Top = 224
+    Width = 29
+    Caption = '>'
+    TabOrder = 6
+  end
+  object Label1: TLabel
+    Left = 8
+    Height = 16
+    Top = 9
+    Width = 12
+    Caption = 'ID'
+  end
+  object Label2: TLabel
+    Left = 72
+    Height = 16
+    Top = 9
+    Width = 28
+    Caption = 'Data'
+  end
+  object Label3: TLabel
+    Left = 200
+    Height = 16
+    Top = 6
+    Width = 37
+    Caption = 'Nome'
+  end
+  object btSair: TButton
+    Left = 760
+    Height = 25
+    Top = 440
+    Width = 75
+    Caption = 'Sair'
+    TabOrder = 7
+    OnClick = btSairClick
+  end
+  object ztCliente: TZTable
+    Connection = fPrincipal.zConn
+    TableName = 'Cliente'
+    Left = 360
+    Top = 16
+    object ztClienteIDCliente: TZInt64Field
+      FieldKind = fkData
+      FieldName = 'IDCliente'
+      Index = 0
+      LookupCache = False
+      ProviderFlags = [pfInUpdate, pfInWhere]
+      ReadOnly = False
+      Required = True
+    end
+    object ztClienteRazao: TZRawStringField
+      FieldKind = fkData
+      FieldName = 'Razao'
+      Index = 1
+      LookupCache = False
+      ProviderFlags = [pfInUpdate, pfInWhere]
+      ReadOnly = False
+      Required = False
+      Size = 40
+    end
+  end
+  object ztLoteCoco: TZTable
+    Filter = 'SaldoCoco>0'
+    Filtered = True
+    Connection = fPrincipal.zConn
+    TableName = 'LoteCoco'
+    Left = 64
+    Top = 259
+    object ztLoteCocoIDLoteCoco: TZInt64Field
+      FieldKind = fkData
+      FieldName = 'IDLoteCoco'
+      Index = 0
+      LookupCache = False
+      ProviderFlags = [pfInUpdate, pfInWhere]
+      ReadOnly = False
+      Required = True
+    end
+    object ztLoteCocoNomeLoteCoco: TZRawStringField
+      FieldKind = fkData
+      FieldName = 'NomeLoteCoco'
+      Index = 1
+      LookupCache = False
+      ProviderFlags = [pfInUpdate, pfInWhere]
+      ReadOnly = False
+      Required = True
+      Size = 30
+    end
+    object ztLoteCocoSafra: TZRawStringField
+      FieldKind = fkData
+      FieldName = 'Safra'
+      Index = 2
+      LookupCache = False
+      ProviderFlags = [pfInUpdate, pfInWhere]
+      ReadOnly = False
+      Required = True
+      Size = 4
+    end
+    object ztLoteCocoTulha: TZRawStringField
+      FieldKind = fkData
+      FieldName = 'Tulha'
+      Index = 3
+      LookupCache = False
+      ProviderFlags = [pfInUpdate, pfInWhere]
+      ReadOnly = False
+      Required = True
+      Size = 10
+    end
+    object ztLoteCocoSaldoCoco: TZDoubleField
+      FieldKind = fkData
+      FieldName = 'SaldoCoco'
+      Index = 4
+      LookupCache = False
+      ProviderFlags = [pfInUpdate, pfInWhere]
+      ReadOnly = False
+      Required = False
+      Precision = 10
+    end
+    object ztLoteCocoStatus: TZRawStringField
+      FieldKind = fkData
+      FieldName = 'Status'
+      Index = 5
+      LookupCache = False
+      ProviderFlags = [pfInUpdate, pfInWhere]
+      ReadOnly = False
+      Required = False
+      Size = 9
+    end
+  end
+  object ztRomSaidaCoco: TZTable
+    Connection = fPrincipal.zConn
+    TableName = 'RomSaidaCoco'
+    Left = 24
+    Top = 64
+    object ztRomSaidaCocoIDRomSaidaCoco: TZInt64Field
+      FieldKind = fkData
+      FieldName = 'IDRomSaidaCoco'
+      Index = 0
+      LookupCache = False
+      ProviderFlags = [pfInUpdate, pfInWhere]
+      ReadOnly = False
+      Required = False
+    end
+    object ztRomSaidaCocoData: TZDateField
+      FieldKind = fkData
+      FieldName = 'Data'
+      Index = 1
+      LookupCache = False
+      ProviderFlags = [pfInUpdate, pfInWhere]
+      ReadOnly = False
+      Required = False
+    end
+    object ztRomSaidaCocoRenda: TZInt64Field
+      FieldKind = fkData
+      FieldName = 'Renda'
+      Index = 2
+      LookupCache = False
+      ProviderFlags = [pfInUpdate, pfInWhere]
+      ReadOnly = False
+      Required = False
+    end
+    object ztRomSaidaCocoPesoSaidaSimples: TZInt64Field
+      FieldKind = fkData
+      FieldName = 'PesoSaidaSimples'
+      Index = 3
+      LookupCache = False
+      ProviderFlags = [pfInUpdate, pfInWhere]
+      ReadOnly = False
+      Required = False
+    end
+    object ztRomSaidaCocoPesoVendido: TZInt64Field
+      FieldKind = fkData
+      FieldName = 'PesoVendido'
+      Index = 4
+      LookupCache = False
+      ProviderFlags = [pfInUpdate, pfInWhere]
+      ReadOnly = False
+      Required = False
+    end
+    object ztRomSaidaCocoValor: TZDoubleField
+      FieldKind = fkData
+      FieldName = 'Valor'
+      Index = 5
+      LookupCache = False
+      ProviderFlags = [pfInUpdate, pfInWhere]
+      ReadOnly = False
+      Required = False
+      Precision = 10
+    end
+    object ztRomSaidaCocoObs: TZRawCLobField
+      FieldKind = fkData
+      FieldName = 'Obs'
+      Index = 6
+      LookupCache = False
+      ProviderFlags = [pfInUpdate, pfInWhere]
+      ReadOnly = False
+      Required = False
+      BlobType = ftMemo
+      Transliterate = False
+    end
+  end
+  object dsLoteCoco: TDataSource
+    DataSet = ztLoteCoco
+    Left = 208
+    Top = 259
+  end
+  object dsCliente: TDataSource
+    DataSet = ztCliente
+    Left = 441
+    Top = 16
+  end
+  object dsRomSaidaCoco: TDataSource
+    DataSet = ztRomSaidaCoco
+    Left = 136
+    Top = 64
+  end
+end

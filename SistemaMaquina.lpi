@@ -150,6 +150,14 @@
         <ResourceBaseClass Value="Form"/>
         <UnitName Value="uMovCoco"/>
       </Unit>
+      <Unit>
+        <Filename Value="uromsaidacoco.pas"/>
+        <IsPartOfProject Value="True"/>
+        <ComponentName Value="fRomSaidaCoco"/>
+        <HasResources Value="True"/>
+        <ResourceBaseClass Value="Form"/>
+        <UnitName Value="uRomSaidaCoco"/>
+      </Unit>
     </Units>
   </ProjectOptions>
   <CompilerOptions>

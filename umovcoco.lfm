@@ -145,6 +145,25 @@ object fMovCoco: TfMovCoco
     TabOrder = 7
     OnClick = rgFiltroOperacaoClick
   end
+  object DBNavigator1: TDBNavigator
+    Left = 185
+    Height = 25
+    Top = 400
+    Width = 241
+    BevelOuter = bvNone
+    ChildSizing.EnlargeHorizontal = crsScaleChilds
+    ChildSizing.EnlargeVertical = crsScaleChilds
+    ChildSizing.ShrinkHorizontal = crsScaleChilds
+    ChildSizing.ShrinkVertical = crsScaleChilds
+    ChildSizing.Layout = cclLeftToRightThenTopToBottom
+    ChildSizing.ControlsPerLine = 100
+    ClientHeight = 25
+    ClientWidth = 241
+    DataSource = dsMovCoco
+    Options = []
+    TabOrder = 8
+    VisibleButtons = [nbFirst, nbPrior, nbNext, nbLast]
+  end
   object dsMovCoco: TDataSource
     DataSet = ztMovCoco
     Left = 160
@@ -157,7 +176,6 @@ object fMovCoco: TfMovCoco
   end
   object zqCliente: TZQuery
     Connection = fPrincipal.zConn
-    Active = True
     SQL.Strings = (
       'select IDCliente, Razao, IDPrincipal'
       'from Cliente'

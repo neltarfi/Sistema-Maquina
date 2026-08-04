@@ -157,8 +157,8 @@ object fRomEntCoco: TfRomEntCoco
     Width = 839
     Align = alBottom
     BorderStyle = bsSingle
-    ClientHeight = 168
-    ClientWidth = 837
+    ClientHeight = 166
+    ClientWidth = 835
     Color = clGradientActiveCaption
     ParentBackground = False
     ParentColor = False
@@ -321,8 +321,8 @@ object fRomEntCoco: TfRomEntCoco
       Height = 79
       Top = 11
       Width = 350
-      ClientHeight = 79
-      ClientWidth = 350
+      ClientHeight = 75
+      ClientWidth = 346
       ParentBackground = False
       TabOrder = 0
       object btCancelar: TBitBtn
@@ -1848,7 +1848,7 @@ object fRomEntCoco: TfRomEntCoco
   object zqLoteCoco: TZQuery
     Connection = fPrincipal.zConn
     SQL.Strings = (
-      'select IDLoteCoco, NomeLoteCoco, Status'
+      'select IDLoteCoco, NomeLoteCoco,SaldoCoco, Status'
       'from LoteCoco'
       'where Status=''Ativo'''
     )
@@ -1874,10 +1874,20 @@ object fRomEntCoco: TfRomEntCoco
       Required = True
       Size = 30
     end
+    object zqLoteCocoSaldoCoco: TZDoubleField
+      FieldKind = fkData
+      FieldName = 'SaldoCoco'
+      Index = 2
+      LookupCache = False
+      ProviderFlags = [pfInUpdate, pfInWhere]
+      ReadOnly = False
+      Required = False
+      Precision = 10
+    end
     object zqLoteCocoStatus: TZRawStringField
       FieldKind = fkData
       FieldName = 'Status'
-      Index = 2
+      Index = 3
       LookupCache = False
       ProviderFlags = [pfInUpdate, pfInWhere]
       ReadOnly = False

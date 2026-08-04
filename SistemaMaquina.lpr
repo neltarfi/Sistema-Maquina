@@ -12,7 +12,8 @@ uses
   Interfaces, // this includes the LCL widgetset
   Forms, datetimectrls, zcomponent, ucadCliente, ueditaCliente, uPrincipal,
   uCadLoteLimpo, uCadLoteCoco, uAcerto, uMovLoteLimpo, uRomEntCoco,
-  uMovCafeEmprestado, uMovCliSacaria, uMovLoteSacaria, uFuncoes, uMovCoco;
+  uMovCafeEmprestado, uMovCliSacaria, uMovLoteSacaria, uFuncoes, uMovCoco,
+  uRomSaidaCoco;
 
 {$R *.res}
 
@@ -22,6 +23,7 @@ begin
   Application.Initialize;
   Application.CreateForm(TfPrincipal, fPrincipal);
   Application.CreateForm(TfMovCoco, fMovCoco);
+  Application.CreateForm(TfRomSaidaCoco, fRomSaidaCoco);
   Application.Run;
 end.
 

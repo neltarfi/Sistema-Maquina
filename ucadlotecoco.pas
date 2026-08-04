@@ -97,6 +97,9 @@ type
     procedure btNovoClick(Sender: TObject);
     procedure btSairClick(Sender: TObject);
     procedure btSalvarClick(Sender: TObject);
+    procedure dbeBicaChange(Sender: TObject);
+    procedure dbeCafeBomChange(Sender: TObject);
+    procedure dbeEscolhaChange(Sender: TObject);
     procedure dbgLoteCocoCellClick(Column: TColumn);
     procedure dbgLoteCocoDblClick(Sender: TObject);
     procedure dbgLoteCocoKeyUp(Sender: TObject; var Key: Word;
@@ -283,6 +286,22 @@ begin
      MessageDlg('Erro ao tentar salvar nova transação', mtError,[mbOk], 0);
      end;
      EditarFalse;
+end;
+
+procedure TfCadLoteCoco.dbeBicaChange(Sender: TObject);
+begin
+  DBAceitaDecimal(dbeBica);
+
+end;
+
+procedure TfCadLoteCoco.dbeCafeBomChange(Sender: TObject);
+begin
+  DBAceitaDecimal(dbeCafeBom);
+end;
+
+procedure TfCadLoteCoco.dbeEscolhaChange(Sender: TObject);
+begin
+  DBAceitaDecimal(dbeEscolha);
 end;
 
 procedure TfCadLoteCoco.IncluiRegistro(ID:integer;PesoCafe:string);

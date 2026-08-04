@@ -177,7 +177,8 @@ begin
      fPrincipal.zConn.Rollback;
   end;
   zqCliente2.Active:=False;
-  fEditaCliente.ModalResult:=fCadCliente.zqClienteIDCliente.Value;
+  if fCadCliente.zqClienteIDCliente.Value > 0 then
+     fEditaCliente.ModalResult:=fCadCliente.zqClienteIDCliente.Value;
 end;
 
 function TfEditaCliente.SalvarTrue:boolean;

@@ -91,6 +91,7 @@ CREATE TABLE LoteCoco (
     NomeLoteCoco VARCHAR (30)    NOT NULL,
     Safra        CHAR (4)        NOT NULL,
     Tulha        VARCHAR (10)    NOT NULL,
+    SaldoCoco    NUMERIC (10)    DEFAULT (0),
     CafeBom      NUMERIC (10, 3) DEFAULT (0) 
                                  NOT NULL,
     Bica         NUMERIC (10, 3) DEFAULT (0) 
@@ -230,6 +231,16 @@ CREATE TABLE RomEntradaCoco (
     PesoDepositado   INTEGER (10),
     IDRomCompraCoco  INTEGER (10)    NOT NULL,
     Status           VARCHAR (7)     NOT NULL
+);
+
+CREATE TABLE RomSaidaCoco (
+    IDRomSaidaCoco   INTEGER      PRIMARY KEY,
+    Data             DATE,
+    Renda            INTEGER,
+    PesoSaidaSimples INTEGER,
+    PesoVendido      INTEGER,
+    Valor            REAL (10, 2),
+    Obs              TEXT
 );
 
 INSERT INTO Cliente ( IDCliente, IDPrincipal, Serie, DataReg, Razao, Endereco)

@@ -118,6 +118,7 @@ type
     zqClienteSaldoContaCorrente: TZDoubleField;
     zqLoteCocoIDLoteCoco: TZInt64Field;
     zqLoteCocoNomeLoteCoco: TZRawStringField;
+    zqLoteCocoSaldoCoco: TZDoubleField;
     zqLoteCocoStatus: TZRawStringField;
     zqNovoIDContaCorrenteID: TZInt64Field;
     zqNovoIDEstDepCocoID: TZInt64Field;
@@ -352,7 +353,8 @@ end;
 
 procedure TfRomEntCoco.FormClose(Sender: TObject; var CloseAction: TCloseAction);
 begin
-    fRomEntCoco.ModalResult:=ztMovCocoIDMovCoco.Value;
+    if ztMovCocoIDMovCoco.Value > 0 then
+       fRomEntCoco.ModalResult:=ztMovCocoIDMovCoco.Value;
     if EntradaCocoModoEdicao then begin
        if CompraCocoModoEdicao then
           ztRomCompraCoco.Cancel;
@@ -970,6 +972,12 @@ begin
         zqCliente.Edit;
         zqClienteSaldoContaCorrente.Value:=zqClienteSaldoContaCorrente.Value+Valor;
         zqCliente.Post;
+
+                    //incremente SaldoCoco
+        zqLoteCoco.Locate('SaldoCoco',dbcLoteCoco.KeyValue,[]);
+        zqLoteCoco.Edit;
+        zqLoteCocoSaldoCoco.Value:= zqLoteCocoSaldoCoco.Value+SaldoCoco+BeberCoco;
+        zqLoteCoco.Post;
 
      end;
      fPrincipal.zConn.Commit;

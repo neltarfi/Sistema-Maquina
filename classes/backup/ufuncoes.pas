@@ -241,7 +241,7 @@ begin
     C := s[i];
 
     // Se for um número, permite
-    if C[1] in ['0'..'9',','] then
+    if C[1] in ['0'..'9'] then
     begin
       Filtrada := Filtrada + C;
     end
@@ -262,6 +262,7 @@ begin
   // Atualiza o campo apenas se houve mudança para evitar loop infinito
   if Edit.Text <> Filtrada then
   begin
+    Edit.OnChange:=nil;
     Edit.Text := Filtrada;
     Edit.SelStart := Length(Filtrada); // Mantém o cursor no fim
   end;

@@ -1247,6 +1247,7 @@ object fMovLoteLimpo: TfMovLoteLimpo
       Top = 168
       Width = 84
       Alignment = taRightJustify
+      MaxLength = 9
       TabOrder = 6
     end
     object Label6: TLabel

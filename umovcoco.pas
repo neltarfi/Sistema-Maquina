@@ -17,6 +17,7 @@ type
     btSaida: TButton;
     btSair: TButton;
     BuscaNome: TButton;
+    DBNavigator1: TDBNavigator;
     dsCliente: TDataSource;
     DBlcbNome: TDBLookupComboBox;
     dsMovCoco: TDataSource;
@@ -57,7 +58,7 @@ var
 
 implementation
 
-uses uRomEntCoco, uPrincipal, uCadCliente;
+uses uRomEntCoco, uPrincipal, uCadCliente, uRomSaidaCoco;
 
 {$R *.lfm}
 
@@ -75,9 +76,14 @@ begin
 end;
 
 procedure TfMovCoco.btSaidaClick(Sender: TObject);
+var temp:integer;
 begin
-   FormOperacao:='InserirRegistro';
-
+     FormOperacao:='InserirRegistro';
+     fRomSaidaCoco:=TfRomSaidaCoco.Create(self);
+     temp:=fRomSaidaCoco.ShowModal;
+     fRomSaidaCoco.Destroy;
+     ztMovCoco.Refresh;
+     ztMovCoco.Locate('IDMovCoco',temp,[]);
 end;
 
 procedure TfMovCoco.btSairClick(Sender: TObject);
@@ -88,10 +94,11 @@ end;
 procedure TfMovCoco.BuscaNomeClick(Sender: TObject);
 var temp:integer;
 begin
-  fCadCliente:=TfCadCliente.Create(Self);
+    fCadCliente:=TfCadCliente.Create(Self);
     temp:=fCadCliente.ShowModal;
     fCadCliente.Destroy;
     DBlcbNome.KeyValue:=temp;
+    AplicaFiltro;
 end;
 
 procedure TfMovCoco.DBGrid1DblClick(Sender: TObject);
@@ -105,9 +112,9 @@ begin
         fRomEntCoco.Destroy;
      end
      else begin
-        {fRomSaidaCoco:=TfRomSaidaCoco.Create(self);
+        fRomSaidaCoco:=TfRomSaidaCoco.Create(self);
         fRomSaidaCoco.ShowModal;
-        fRomSaidaCoco.Destroy;}
+        fRomSaidaCoco.Destroy;
      end;
 
   end;
@@ -133,22 +140,29 @@ end;
 procedure TfMovCoco.AplicaFiltro;
 var NomeInicio, NomeFim, OpEntrada, OpSaida:integer;
 begin
-     if rgFiltroNome.ItemIndex=0 then begin
-        NomeInicio:=1;
-        NomeFim:=zqCliente.RecordCount-1;
-     end
-     else begin
-         NomeInicio:=DBlcbNome.KeyValue;
-         NomeFim:=NomeInicio;
+     case rgFiltroNome.ItemIndex of
+        0: begin
+                NomeInicio:=1;               //mostra todos nomes
+                NomeFim:=zqCliente.RecordCount-1;
+           end;
+         1:begin
+                NomeInicio:=DBlcbNome.KeyValue;
+                NomeFim:=NomeInicio;           //mostra nome selecionado
+           end;
      end;
      case rgFiltroOperacao.ItemIndex of
         0: begin
                 OpEntrada:=-1;  //mosta todos os registros
                 OpSaida:=-1;
            end;
-        1: OpEntrada:=0;  //mostra registros de entrada
-
-        2: OPSaida:=0;   //mostra registros de saida
+        1: begin
+                OpEntrada:=0;  //mostra registros de entrada
+                OpSaida:=-1;
+            end;
+        2: begin
+                OpEntrada:=-1;
+                OPSaida:=0;   //mostra registros de saida
+           end;
      end;
      ztMovCoco.Filtered:=False;
      ztMovCoco.Filter:='IDCliente >=' +intToStr(NomeInicio)+'and IDCliente <='+IntToStr(NomeFim)+
