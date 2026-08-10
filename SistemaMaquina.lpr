@@ -10,8 +10,8 @@ uses
   athreads,
   {$ENDIF}
   Interfaces, // this includes the LCL widgetset
-  Forms, datetimectrls, zcomponent, ucadCliente, ueditaCliente, uPrincipal,
-  uCadLoteLimpo, uCadLoteCoco, uAcerto, uMovLoteLimpo, uRomEntCoco,
+  Forms, datetimectrls, memdslaz, zcomponent, ucadCliente, ueditaCliente,
+  uPrincipal, uCadLoteLimpo, uCadLoteCoco, uAcerto, uMovLoteLimpo, uRomEntCoco,
   uMovCafeEmprestado, uMovCliSacaria, uMovLoteSacaria, uFuncoes, uMovCoco,
   uRomSaidaCoco;
 

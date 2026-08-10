@@ -1,76 +1,29 @@
 object fRomSaidaCoco: TfRomSaidaCoco
   Left = 337
-  Height = 481
+  Height = 696
   Top = 250
-  Width = 901
+  Width = 920
   Caption = 'Romaneio de saída de café em coco'
-  ClientHeight = 481
-  ClientWidth = 901
+  ClientHeight = 696
+  ClientWidth = 920
   Color = clGradientActiveCaption
   Position = poScreenCenter
-  LCLVersion = '4.6.0.0'
+  LCLVersion = '4.8.0.0'
   OnClose = FormClose
   OnShow = FormShow
-  object DBEdit1: TDBEdit
-    Left = 8
-    Height = 26
-    Top = 24
-    Width = 58
-    DataField = 'IDRomSaidaCoco'
-    DataSource = dsRomSaidaCoco
-    MaxLength = 0
-    TabOrder = 0
-  end
-  object DBDateEdit1: TDBDateEdit
-    Left = 72
-    Height = 26
-    Top = 24
-    Width = 103
-    CalendarDisplaySettings = [dsShowHeadings, dsShowDayNames]
-    DateOrder = doNone
-    ButtonWidth = 23
-    NumGlyphs = 1
-    MaxLength = 0
-    TabOrder = 1
-    Text = 'DBDateEdit1'
-    DataField = 'Data'
-    DataSource = dsRomSaidaCoco
-  end
-  object dbcCliente: TDBLookupComboBox
-    Left = 200
-    Height = 28
-    Top = 22
-    Width = 384
-    KeyField = 'IDCliente'
-    ListField = 'Razao'
-    ListFieldIndex = 0
-    ListSource = dsCliente
-    LookupCache = False
-    TabOrder = 2
-  end
-  object btBuscaNome: TButton
-    Left = 592
-    Height = 25
-    Top = 22
-    Width = 75
-    Caption = 'Busca'
-    TabOrder = 3
-    OnClick = btBuscaNomeClick
-  end
   object Panel1: TPanel
     Left = 8
     Height = 264
-    Top = 136
+    Top = 64
     Width = 504
-    Caption = 'Panel1'
     ClientHeight = 264
     ClientWidth = 504
     ParentBackground = False
-    TabOrder = 4
+    TabOrder = 0
     object DBGrid1: TDBGrid
       Left = 8
-      Height = 200
-      Top = 24
+      Height = 216
+      Top = 8
       Width = 488
       Color = clWindow
       Columns = <      
@@ -134,109 +87,258 @@ object fRomSaidaCoco: TfRomSaidaCoco
       Caption = 'Lote'
     end
   end
+  object Button2: TButton
+    Left = 520
+    Height = 25
+    Top = 168
+    Width = 24
+    Caption = '-->'
+    Font.Style = [fsBold]
+    ParentFont = False
+    TabOrder = 1
+  end
   object Panel2: TPanel
-    Left = 544
+    Left = 552
     Height = 264
-    Top = 136
-    Width = 352
-    Caption = 'Panel2'
+    Top = 64
+    Width = 360
     ClientHeight = 264
-    ClientWidth = 352
+    ClientWidth = 360
     ParentBackground = False
-    TabOrder = 5
+    TabOrder = 2
+    object Label5: TLabel
+      Left = 24
+      Height = 16
+      Top = 8
+      Width = 248
+      Caption = 'Peso atual do lote...............................................'
+    end
+    object Label6: TLabel
+      Left = 24
+      Height = 16
+      Top = 40
+      Width = 250
+      Caption = 'Peso sem valor......................................................'
+    end
+    object Label7: TLabel
+      Left = 24
+      Height = 16
+      Top = 136
+      Width = 248
+      Caption = 'Peso com valor.....................................................'
+    end
+    object Label8: TLabel
+      Left = 24
+      Height = 16
+      Top = 80
+      Width = 59
+      Caption = 'Renda.......'
+    end
+    object Label25: TLabel
+      Left = 24
+      Height = 16
+      Top = 168
+      Width = 70
+      Caption = 'Preço............'
+    end
+    object RadioGroup1: TRadioGroup
+      Left = 96
+      Height = 25
+      Top = 168
+      Width = 161
+      AutoFill = True
+      ChildSizing.LeftRightSpacing = 6
+      ChildSizing.EnlargeHorizontal = crsHomogenousChildResize
+      ChildSizing.EnlargeVertical = crsHomogenousChildResize
+      ChildSizing.ShrinkHorizontal = crsScaleChilds
+      ChildSizing.ShrinkVertical = crsScaleChilds
+      ChildSizing.Layout = cclLeftToRightThenTopToBottom
+      ChildSizing.ControlsPerLine = 2
+      ClientHeight = 23
+      ClientWidth = 159
+      Columns = 2
+      Items.Strings = (
+        'R$/Saco'
+        'R$/kg'
+      )
+      ParentBackground = False
+      TabOrder = 0
+    end
+    object Edit1: TEdit
+      Left = 272
+      Height = 26
+      Top = 168
+      Width = 80
+      TabOrder = 1
+      Text = 'Edit1'
+    end
+    object Edit2: TEdit
+      Left = 272
+      Height = 26
+      Top = 8
+      Width = 80
+      TabOrder = 2
+      Text = 'Edit2'
+    end
+    object Edit3: TEdit
+      Left = 272
+      Height = 26
+      Top = 40
+      Width = 80
+      TabOrder = 3
+      Text = 'Edit3'
+    end
+    object Edit4: TEdit
+      Left = 272
+      Height = 26
+      Top = 136
+      Width = 80
+      TabOrder = 4
+      Text = 'Edit4'
+    end
+    object Edit5: TEdit
+      Left = 88
+      Height = 26
+      Top = 80
+      Width = 80
+      TabOrder = 5
+      Text = 'Edit5'
+    end
+    object Edit6: TEdit
+      Left = 272
+      Height = 26
+      Top = 200
+      Width = 80
+      TabOrder = 6
+      Text = 'Edit6'
+    end
+    object btAdicionar: TButton
+      Left = 192
+      Height = 25
+      Top = 232
+      Width = 75
+      Caption = 'Adicionar'
+      TabOrder = 7
+    end
     object btCancelar: TButton
       Left = 56
       Height = 25
       Top = 232
       Width = 75
       Caption = 'Cancelar'
-      TabOrder = 0
+      TabOrder = 8
       OnClick = btCancelarClick
     end
+  end
+  object Panel3: TPanel
+    Left = 8
+    Height = 353
+    Top = 336
+    Width = 904
+    Caption = 'Panel3'
+    ClientHeight = 353
+    ClientWidth = 904
+    ParentBackground = False
+    TabOrder = 3
     object btSalvar: TButton
-      Left = 216
+      Left = 608
       Height = 25
-      Top = 232
+      Top = 320
       Width = 75
       Caption = 'Salvar'
+      TabOrder = 0
+    end
+    object Label1: TLabel
+      Left = 8
+      Height = 16
+      Top = 9
+      Width = 12
+      Caption = 'ID'
+    end
+    object DBEdit1: TDBEdit
+      Left = 8
+      Height = 26
+      Top = 24
+      Width = 58
+      DataField = 'IDRomSaidaCoco'
+      DataSource = dsRomSaidaCoco
+      MaxLength = 0
       TabOrder = 1
     end
-    object DBEdit2: TDBEdit
-      Left = 220
+    object DBDateEdit1: TDBDateEdit
+      Left = 72
       Height = 26
-      Top = 21
-      Width = 80
+      Top = 24
+      Width = 103
+      CalendarDisplaySettings = [dsShowHeadings, dsShowDayNames]
+      DateOrder = doNone
+      ButtonWidth = 23
+      NumGlyphs = 1
       MaxLength = 0
       TabOrder = 2
+      Text = 'DBDateEdit1'
+      DataField = 'Data'
+      DataSource = dsRomSaidaCoco
     end
-    object DBEdit3: TDBEdit
-      Left = 220
-      Height = 26
-      Top = 56
-      Width = 80
-      MaxLength = 0
+    object Label2: TLabel
+      Left = 72
+      Height = 16
+      Top = 9
+      Width = 28
+      Caption = 'Data'
+    end
+    object dbcCliente: TDBLookupComboBox
+      Left = 200
+      Height = 28
+      Top = 22
+      Width = 384
+      KeyField = 'IDCliente'
+      ListField = 'Razao'
+      ListFieldIndex = 0
+      ListSource = dsCliente
+      LookupCache = False
       TabOrder = 3
     end
-    object DBEdit4: TDBEdit
-      Left = 128
-      Height = 26
-      Top = 88
-      Width = 80
-      MaxLength = 0
-      TabOrder = 4
+    object Label3: TLabel
+      Left = 200
+      Height = 16
+      Top = 6
+      Width = 37
+      Caption = 'Nome'
     end
-    object DBEdit5: TDBEdit
-      Left = 220
-      Height = 26
-      Top = 88
-      Width = 80
-      MaxLength = 0
+    object btBuscaNome: TButton
+      Left = 592
+      Height = 25
+      Top = 22
+      Width = 75
+      Caption = 'Busca'
+      TabOrder = 4
+      OnClick = btBuscaNomeClick
+    end
+    object DBGrid2: TDBGrid
+      Left = 8
+      Height = 224
+      Top = 56
+      Width = 728
+      Color = clWindow
+      Columns = <>
       TabOrder = 5
     end
   end
-  object Button2: TButton
-    Left = 512
-    Height = 25
-    Top = 224
-    Width = 29
-    Caption = '>'
-    TabOrder = 6
-  end
-  object Label1: TLabel
-    Left = 8
-    Height = 16
-    Top = 9
-    Width = 12
-    Caption = 'ID'
-  end
-  object Label2: TLabel
-    Left = 72
-    Height = 16
-    Top = 9
-    Width = 28
-    Caption = 'Data'
-  end
-  object Label3: TLabel
-    Left = 200
-    Height = 16
-    Top = 6
-    Width = 37
-    Caption = 'Nome'
-  end
   object btSair: TButton
-    Left = 760
+    Left = 816
     Height = 25
-    Top = 440
+    Top = 704
     Width = 75
     Caption = 'Sair'
-    TabOrder = 7
+    TabOrder = 4
     OnClick = btSairClick
   end
   object ztCliente: TZTable
     Connection = fPrincipal.zConn
     TableName = 'Cliente'
-    Left = 360
-    Top = 16
+    Left = 320
+    Top = 360
     object ztClienteIDCliente: TZInt64Field
       FieldKind = fkData
       FieldName = 'IDCliente'
@@ -262,8 +364,8 @@ object fRomSaidaCoco: TfRomSaidaCoco
     Filtered = True
     Connection = fPrincipal.zConn
     TableName = 'LoteCoco'
-    Left = 64
-    Top = 259
+    Left = 56
+    Top = 160
     object ztLoteCocoIDLoteCoco: TZInt64Field
       FieldKind = fkData
       FieldName = 'IDLoteCoco'
@@ -398,13 +500,13 @@ object fRomSaidaCoco: TfRomSaidaCoco
   end
   object dsLoteCoco: TDataSource
     DataSet = ztLoteCoco
-    Left = 208
-    Top = 259
+    Left = 136
+    Top = 160
   end
   object dsCliente: TDataSource
     DataSet = ztCliente
-    Left = 441
-    Top = 16
+    Left = 400
+    Top = 360
   end
   object dsRomSaidaCoco: TDataSource
     DataSet = ztRomSaidaCoco

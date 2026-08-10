@@ -5,37 +5,49 @@ unit uRomSaidaCoco;
 interface
 
 uses
-  Classes, SysUtils, DB, Forms, Controls, Graphics, Dialogs, DBCtrls,
-  DBExtCtrls, StdCtrls, DBGrids, ExtCtrls, ZDataset, ZAbstractRODataset;
+  Classes, SysUtils, DB, BufDataset, memds, fpjsondataset, Forms, Controls,
+  Graphics, Dialogs, DBCtrls, DBExtCtrls, StdCtrls, DBGrids, ExtCtrls, ZDataset,
+  ZAbstractRODataset;
 
 type
 
   { TfRomSaidaCoco }
 
   TfRomSaidaCoco = class(TForm)
+    btAdicionar: TButton;
     btBuscaNome: TButton;
-    Button2: TButton;
     btCancelar: TButton;
-    btSalvar: TButton;
     btSair: TButton;
+    btSalvar: TButton;
+    Button2: TButton;
+    dbcCliente: TDBLookupComboBox;
+    DBDateEdit1: TDBDateEdit;
+    DBEdit1: TDBEdit;
+    DBGrid2: TDBGrid;
     dsLoteCoco: TDataSource;
     dsCliente: TDataSource;
     dsRomSaidaCoco: TDataSource;
-    DBDateEdit1: TDBDateEdit;
-    DBEdit1: TDBEdit;
-    DBEdit2: TDBEdit;
-    DBEdit3: TDBEdit;
-    DBEdit4: TDBEdit;
-    DBEdit5: TDBEdit;
     DBGrid1: TDBGrid;
-    dbcCliente: TDBLookupComboBox;
     DBNavigator1: TDBNavigator;
+    Edit1: TEdit;
+    Edit2: TEdit;
+    Edit3: TEdit;
+    Edit4: TEdit;
+    Edit5: TEdit;
+    Edit6: TEdit;
     Label1: TLabel;
     Label2: TLabel;
+    Label25: TLabel;
     Label3: TLabel;
     Label4: TLabel;
+    Label5: TLabel;
+    Label6: TLabel;
+    Label7: TLabel;
+    Label8: TLabel;
     Panel1: TPanel;
     Panel2: TPanel;
+    Panel3: TPanel;
+    RadioGroup1: TRadioGroup;
     ztCliente: TZTable;
     ztLoteCoco: TZTable;
     ztClienteIDCliente: TZInt64Field;
