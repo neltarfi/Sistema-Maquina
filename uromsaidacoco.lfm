@@ -1,10 +1,10 @@
 object fRomSaidaCoco: TfRomSaidaCoco
   Left = 337
-  Height = 696
+  Height = 738
   Top = 250
   Width = 920
   Caption = 'Romaneio de saída de café em coco'
-  ClientHeight = 696
+  ClientHeight = 738
   ClientWidth = 920
   Color = clGradientActiveCaption
   Position = poScreenCenter
@@ -110,36 +110,46 @@ object fRomSaidaCoco: TfRomSaidaCoco
       Left = 24
       Height = 16
       Top = 8
-      Width = 248
+      Width = 254
       Caption = 'Peso atual do lote...............................................'
+      Font.Style = [fsBold]
+      ParentFont = False
     end
     object Label6: TLabel
       Left = 24
       Height = 16
       Top = 40
-      Width = 250
+      Width = 254
       Caption = 'Peso sem valor......................................................'
+      Font.Style = [fsBold]
+      ParentFont = False
     end
     object Label7: TLabel
       Left = 24
       Height = 16
       Top = 136
-      Width = 248
+      Width = 251
       Caption = 'Peso com valor.....................................................'
+      Font.Style = [fsBold]
+      ParentFont = False
     end
     object Label8: TLabel
       Left = 24
       Height = 16
       Top = 80
-      Width = 59
+      Width = 60
       Caption = 'Renda.......'
+      Font.Style = [fsBold]
+      ParentFont = False
     end
     object Label25: TLabel
       Left = 24
       Height = 16
       Top = 168
-      Width = 70
+      Width = 71
       Caption = 'Preço............'
+      Font.Style = [fsBold]
+      ParentFont = False
     end
     object RadioGroup1: TRadioGroup
       Left = 96
@@ -157,11 +167,13 @@ object fRomSaidaCoco: TfRomSaidaCoco
       ClientHeight = 23
       ClientWidth = 159
       Columns = 2
+      Font.Style = [fsBold]
       Items.Strings = (
         'R$/Saco'
         'R$/kg'
       )
       ParentBackground = False
+      ParentFont = False
       TabOrder = 0
     end
     object Edit1: TEdit
@@ -170,7 +182,6 @@ object fRomSaidaCoco: TfRomSaidaCoco
       Top = 168
       Width = 80
       TabOrder = 1
-      Text = 'Edit1'
     end
     object Edit2: TEdit
       Left = 272
@@ -178,7 +189,6 @@ object fRomSaidaCoco: TfRomSaidaCoco
       Top = 8
       Width = 80
       TabOrder = 2
-      Text = 'Edit2'
     end
     object Edit3: TEdit
       Left = 272
@@ -186,7 +196,6 @@ object fRomSaidaCoco: TfRomSaidaCoco
       Top = 40
       Width = 80
       TabOrder = 3
-      Text = 'Edit3'
     end
     object Edit4: TEdit
       Left = 272
@@ -194,7 +203,6 @@ object fRomSaidaCoco: TfRomSaidaCoco
       Top = 136
       Width = 80
       TabOrder = 4
-      Text = 'Edit4'
     end
     object Edit5: TEdit
       Left = 88
@@ -202,7 +210,6 @@ object fRomSaidaCoco: TfRomSaidaCoco
       Top = 80
       Width = 80
       TabOrder = 5
-      Text = 'Edit5'
     end
     object Edit6: TEdit
       Left = 272
@@ -210,7 +217,6 @@ object fRomSaidaCoco: TfRomSaidaCoco
       Top = 200
       Width = 80
       TabOrder = 6
-      Text = 'Edit6'
     end
     object btAdicionar: TButton
       Left = 192
@@ -231,23 +237,15 @@ object fRomSaidaCoco: TfRomSaidaCoco
     end
   end
   object Panel3: TPanel
-    Left = 8
+    Left = 80
     Height = 353
     Top = 336
-    Width = 904
+    Width = 744
     Caption = 'Panel3'
     ClientHeight = 353
-    ClientWidth = 904
+    ClientWidth = 744
     ParentBackground = False
     TabOrder = 3
-    object btSalvar: TButton
-      Left = 608
-      Height = 25
-      Top = 320
-      Width = 75
-      Caption = 'Salvar'
-      TabOrder = 0
-    end
     object Label1: TLabel
       Left = 8
       Height = 16
@@ -263,7 +261,7 @@ object fRomSaidaCoco: TfRomSaidaCoco
       DataField = 'IDRomSaidaCoco'
       DataSource = dsRomSaidaCoco
       MaxLength = 0
-      TabOrder = 1
+      TabOrder = 0
     end
     object DBDateEdit1: TDBDateEdit
       Left = 72
@@ -275,7 +273,7 @@ object fRomSaidaCoco: TfRomSaidaCoco
       ButtonWidth = 23
       NumGlyphs = 1
       MaxLength = 0
-      TabOrder = 2
+      TabOrder = 1
       Text = 'DBDateEdit1'
       DataField = 'Data'
       DataSource = dsRomSaidaCoco
@@ -297,7 +295,7 @@ object fRomSaidaCoco: TfRomSaidaCoco
       ListFieldIndex = 0
       ListSource = dsCliente
       LookupCache = False
-      TabOrder = 3
+      TabOrder = 2
     end
     object Label3: TLabel
       Left = 200
@@ -312,7 +310,7 @@ object fRomSaidaCoco: TfRomSaidaCoco
       Top = 22
       Width = 75
       Caption = 'Busca'
-      TabOrder = 4
+      TabOrder = 3
       OnClick = btBuscaNomeClick
     end
     object DBGrid2: TDBGrid
@@ -322,7 +320,34 @@ object fRomSaidaCoco: TfRomSaidaCoco
       Width = 728
       Color = clWindow
       Columns = <>
+      TabOrder = 4
+    end
+    object DBNavigator2: TDBNavigator
+      Left = 240
+      Height = 25
+      Top = 288
+      Width = 241
+      BevelOuter = bvNone
+      ChildSizing.EnlargeHorizontal = crsScaleChilds
+      ChildSizing.EnlargeVertical = crsScaleChilds
+      ChildSizing.ShrinkHorizontal = crsScaleChilds
+      ChildSizing.ShrinkVertical = crsScaleChilds
+      ChildSizing.Layout = cclLeftToRightThenTopToBottom
+      ChildSizing.ControlsPerLine = 100
+      ClientHeight = 25
+      ClientWidth = 241
+      DataSource = dsMemLoteCoco
+      Options = []
       TabOrder = 5
+      VisibleButtons = [nbFirst, nbPrior, nbNext, nbLast]
+    end
+    object btEscluir: TButton
+      Left = 312
+      Height = 25
+      Top = 320
+      Width = 97
+      Caption = 'Escluir registro'
+      TabOrder = 6
     end
   end
   object btSair: TButton
@@ -333,6 +358,22 @@ object fRomSaidaCoco: TfRomSaidaCoco
     Caption = 'Sair'
     TabOrder = 4
     OnClick = btSairClick
+  end
+  object btSalvar: TButton
+    Left = 656
+    Height = 25
+    Top = 704
+    Width = 75
+    Caption = 'Salvar'
+    TabOrder = 5
+  end
+  object btCancelarReg: TButton
+    Left = 520
+    Height = 25
+    Top = 704
+    Width = 120
+    Caption = 'Cancelar Registros'
+    TabOrder = 6
   end
   object ztCliente: TZTable
     Connection = fPrincipal.zConn
@@ -512,5 +553,24 @@ object fRomSaidaCoco: TfRomSaidaCoco
     DataSet = ztRomSaidaCoco
     Left = 136
     Top = 64
+  end
+  object ZMemLoteCoco: TZMemTable
+    ControlsCodePage = cDynamic
+    Left = 192
+    Top = 512
+    object ZMemLoteCocoIDLoteCoco: TLongintField
+      FieldKind = fkData
+      FieldName = 'IDLoteCoco'
+      Index = 0
+      LookupCache = False
+      ProviderFlags = [pfInUpdate, pfInWhere]
+      ReadOnly = False
+      Required = False
+    end
+  end
+  object dsMemLoteCoco: TDataSource
+    DataSet = ZMemLoteCoco
+    Left = 304
+    Top = 512
   end
 end

@@ -84,6 +84,17 @@ CREATE TABLE EstoqueDepositoCoco (
     Status                VARCHAR (7)  NOT NULL
 );
 
+CREATE TABLE ItensRomSaidaCoco (
+    IDItensRomSaidaCoco INTEGER         PRIMARY KEY,
+    IDRomSaidaCoco      INTEGER,
+    PesoSemValor        INTEGER         DEFAULT (0),
+    PesoComValor        INTEGER         DEFAULT (0),
+    Renda               INTEGER (5),
+    SacoKg              VARCHAR (4),
+    Preco               NUMERIC (10, 2) DEFAULT (0),
+    ValorTotal          NUMERIC (10, 2) DEFAULT (0) 
+);
+
 CREATE TABLE LoteCoco (
     IDLoteCoco   INTEGER         PRIMARY KEY
                                  UNIQUE
@@ -234,13 +245,13 @@ CREATE TABLE RomEntradaCoco (
 );
 
 CREATE TABLE RomSaidaCoco (
-    IDRomSaidaCoco   INTEGER      PRIMARY KEY,
-    Data             DATE,
-    Renda            INTEGER,
-    PesoSaidaSimples INTEGER,
-    PesoVendido      INTEGER,
-    Valor            REAL (10, 2),
-    Obs              TEXT
+    IDRomSaidaCoco INTEGER         PRIMARY KEY,
+    IDCliente      INTEGER,
+    Data           DATE,
+    PesoSemValor   INTEGER         DEFAULT (0),
+    PesoComValor   INTEGER         DEFAULT (0),
+    Valor          NUMERIC (10, 2) DEFAULT (0),
+    Obs            TEXT
 );
 
 INSERT INTO Cliente ( IDCliente, IDPrincipal, Serie, DataReg, Razao, Endereco)

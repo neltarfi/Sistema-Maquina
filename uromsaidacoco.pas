@@ -17,13 +17,17 @@ type
     btAdicionar: TButton;
     btBuscaNome: TButton;
     btCancelar: TButton;
+    btCancelarReg: TButton;
     btSair: TButton;
+    btEscluir: TButton;
     btSalvar: TButton;
     Button2: TButton;
+    dsMemLoteCoco: TDataSource;
     dbcCliente: TDBLookupComboBox;
     DBDateEdit1: TDBDateEdit;
     DBEdit1: TDBEdit;
     DBGrid2: TDBGrid;
+    DBNavigator2: TDBNavigator;
     dsLoteCoco: TDataSource;
     dsCliente: TDataSource;
     dsRomSaidaCoco: TDataSource;
@@ -48,6 +52,8 @@ type
     Panel2: TPanel;
     Panel3: TPanel;
     RadioGroup1: TRadioGroup;
+    ZMemLoteCoco: TZMemTable;
+    ZMemLoteCocoIDLoteCoco: TLongintField;
     ztCliente: TZTable;
     ztLoteCoco: TZTable;
     ztClienteIDCliente: TZInt64Field;
