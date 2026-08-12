@@ -572,6 +572,7 @@ end;
 
 procedure TfRomEntCoco.edtPesoCompradoExit(Sender: TObject);
 begin
+     if edtPesoComprado.Text='' then edtPesoComprado.Text:='0';
      PesoComprado:=strToFloat(edtPesoComprado.Text);
      ztRomEntradaCocoCalcFields(ztRomEntradaCoco); //dispara o método oncalcFields
 end;

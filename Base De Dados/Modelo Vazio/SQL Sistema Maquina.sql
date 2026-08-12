@@ -208,7 +208,7 @@ CREATE TABLE RomCompraCoco (
     IDRomEntradaCoco INTEGER,
     Data             DATE,
     Historico        VARCHAR (20),
-    PesoCoco         NUMERIC (10),
+    PesoCoco         NUMERIC (10) NOT NULL,
     SacoKg           VARCHAR (4),
     PorcFundoRural   NUMERIC (10),
     Aliquota         NUMERIC (10),
@@ -241,7 +241,7 @@ CREATE TABLE RomEntradaCoco (
     Obs              VARCHAR (30),
     PesoDepositado   INTEGER (10),
     IDRomCompraCoco  INTEGER (10)    NOT NULL,
-    Status           VARCHAR (7)     NOT NULL
+    Status           VARCHAR (7) 
 );
 
 CREATE TABLE RomSaidaCoco (
