@@ -87,7 +87,7 @@ object fRomSaidaCoco: TfRomSaidaCoco
       Caption = 'Lote'
     end
   end
-  object Button2: TButton
+  object btTransfereSaldo: TButton
     Left = 520
     Height = 25
     Top = 168
@@ -96,8 +96,9 @@ object fRomSaidaCoco: TfRomSaidaCoco
     Font.Style = [fsBold]
     ParentFont = False
     TabOrder = 1
+    OnClick = btTransfereSaldoClick
   end
-  object Panel2: TPanel
+  object PanelAdicionaItens: TPanel
     Left = 552
     Height = 264
     Top = 64
@@ -124,15 +125,6 @@ object fRomSaidaCoco: TfRomSaidaCoco
       Font.Style = [fsBold]
       ParentFont = False
     end
-    object Label7: TLabel
-      Left = 24
-      Height = 16
-      Top = 136
-      Width = 251
-      Caption = 'Peso com valor.....................................................'
-      Font.Style = [fsBold]
-      ParentFont = False
-    end
     object Label8: TLabel
       Left = 24
       Height = 16
@@ -142,20 +134,15 @@ object fRomSaidaCoco: TfRomSaidaCoco
       Font.Style = [fsBold]
       ParentFont = False
     end
-    object Label25: TLabel
-      Left = 24
-      Height = 16
-      Top = 168
-      Width = 71
-      Caption = 'Preço............'
-      Font.Style = [fsBold]
-      ParentFont = False
-    end
-    object Edit2: TEdit
+    object edtPesoCoco: TEdit
       Left = 272
       Height = 26
       Top = 8
       Width = 80
+      Alignment = taRightJustify
+      Font.Style = [fsBold]
+      ParentFont = False
+      ReadOnly = True
       TabOrder = 0
     end
     object btAdicionar: TButton
@@ -165,6 +152,7 @@ object fRomSaidaCoco: TfRomSaidaCoco
       Width = 75
       Caption = 'Adicionar'
       TabOrder = 1
+      OnClick = btAdicionarClick
     end
     object btCancelar: TButton
       Left = 56
@@ -175,92 +163,127 @@ object fRomSaidaCoco: TfRomSaidaCoco
       TabOrder = 2
       OnClick = btCancelarClick
     end
-    object DBEdit2: TDBEdit
+    object edtPesoSemValor: TEdit
       Left = 272
       Height = 26
       Top = 40
       Width = 80
-      DataField = 'PesoSemValor'
-      DataSource = dsMemLoteCoco
-      MaxLength = 0
+      Alignment = taRightJustify
+      Font.Style = [fsBold]
+      ParentFont = False
       TabOrder = 3
+      OnChange = edtPesoSemValorChange
+      OnExit = edtPesoSemValorExit
     end
-    object DBEdit3: TDBEdit
+    object edtRenda: TEdit
       Left = 88
       Height = 26
       Top = 80
       Width = 80
-      DataField = 'Renda'
-      DataSource = dsMemLoteCoco
-      MaxLength = 0
+      Alignment = taRightJustify
+      Font.Style = [fsBold]
+      ParentFont = False
       TabOrder = 4
+      OnChange = edtRendaChange
+      OnExit = edtRendaExit
     end
-    object DBEdit4: TDBEdit
-      Left = 272
-      Height = 26
-      Top = 136
-      Width = 80
-      DataField = 'PesoComValor'
-      DataSource = dsMemLoteCoco
-      MaxLength = 0
+    object PanelAdicionaValor: TPanel
+      Left = 16
+      Height = 72
+      Top = 144
+      Width = 336
+      ClientHeight = 72
+      ClientWidth = 336
+      ParentBackground = False
       TabOrder = 5
+      object Label25: TLabel
+        Left = 8
+        Height = 16
+        Top = 10
+        Width = 71
+        Caption = 'Preço............'
+        Font.Style = [fsBold]
+        ParentFont = False
+      end
+      object Label9: TLabel
+        Left = 8
+        Height = 16
+        Top = 48
+        Width = 251
+        Caption = 'Valor Total.............................................................'
+        Font.Style = [fsBold]
+        ParentFont = False
+      end
+      object edtPreco: TEdit
+        Left = 256
+        Height = 26
+        Top = 8
+        Width = 80
+        Alignment = taRightJustify
+        Font.Style = [fsBold]
+        ParentFont = False
+        TabOrder = 0
+        OnChange = edtPrecoChange
+        OnExit = edtPrecoExit
+      end
+      object edtValorTotal: TEdit
+        Left = 256
+        Height = 26
+        Top = 40
+        Width = 80
+        Alignment = taRightJustify
+        Font.Style = [fsBold]
+        ParentFont = False
+        ReadOnly = True
+        TabOrder = 1
+      end
+      object rgSacoKg: TDBRadioGroup
+        Left = 80
+        Height = 27
+        Top = 7
+        Width = 169
+        AutoFill = True
+        ChildSizing.LeftRightSpacing = 6
+        ChildSizing.EnlargeHorizontal = crsHomogenousChildResize
+        ChildSizing.EnlargeVertical = crsHomogenousChildResize
+        ChildSizing.ShrinkHorizontal = crsScaleChilds
+        ChildSizing.ShrinkVertical = crsScaleChilds
+        ChildSizing.Layout = cclLeftToRightThenTopToBottom
+        ChildSizing.ControlsPerLine = 2
+        Columns = 2
+        Font.Style = [fsBold]
+        Items.Strings = (
+          'R$/Saco'
+          'R$/Kg'
+        )
+        ParentFont = False
+        TabOrder = 2
+        Values.Strings = (
+          'Saco'
+          'Kg'
+        )
+      end
     end
-    object DBEdit6: TDBEdit
-      Left = 272
-      Height = 26
-      Top = 200
-      Width = 80
-      DataField = 'ValorTotal'
-      DataSource = dsMemLoteCoco
-      MaxLength = 0
-      TabOrder = 6
-    end
-    object DBEdit5: TDBEdit
-      Left = 272
-      Height = 26
-      Top = 168
-      Width = 80
-      DataField = 'Preco'
-      DataSource = dsMemLoteCoco
-      MaxLength = 0
-      TabOrder = 7
-    end
-    object DBRadioGroup1: TDBRadioGroup
-      Left = 96
-      Height = 24
-      Top = 170
-      Width = 169
-      AutoFill = True
-      ChildSizing.LeftRightSpacing = 6
-      ChildSizing.EnlargeHorizontal = crsHomogenousChildResize
-      ChildSizing.EnlargeVertical = crsHomogenousChildResize
-      ChildSizing.ShrinkHorizontal = crsScaleChilds
-      ChildSizing.ShrinkVertical = crsScaleChilds
-      ChildSizing.Layout = cclLeftToRightThenTopToBottom
-      ChildSizing.ControlsPerLine = 2
-      Columns = 2
-      DataField = 'SacoKg'
-      DataSource = dsMemLoteCoco
-      Font.Style = [fsBold]
-      Items.Strings = (
-        'R$/Saco'
-        'R$/Kg'
-      )
-      ParentFont = False
-      TabOrder = 8
-      Values.Strings = (
-        'Saco'
-        'Kg'
-      )
-    end
-    object Label9: TLabel
-      Left = 24
+    object Label7: TLabel
+      Left = 27
       Height = 16
-      Top = 200
+      Top = 112
       Width = 251
-      Caption = 'Valor Total.............................................................'
+      Caption = 'Peso com valor.....................................................'
       Font.Style = [fsBold]
       ParentFont = False
+    end
+    object edtPesoComValor: TEdit
+      Left = 272
+      Height = 26
+      Top = 112
+      Width = 80
+      Alignment = taRightJustify
+      Font.Style = [fsBold]
+      ParentFont = False
+      TabOrder = 6
+      OnChange = edtPesoComValorChange
+      OnExit = edtPesoComValorExit
     end
   end
   object Panel3: TPanel
@@ -348,8 +371,8 @@ object fRomSaidaCoco: TfRomSaidaCoco
       Color = clWindow
       Columns = <      
         item
-          Title.Caption = 'IDItensRomSaidaCoco'
-          FieldName = 'IDItensRomSaidaCoco'
+          Title.Caption = 'IDLoteCoco'
+          FieldName = 'IDLoteCoco'
         end      
         item
           Title.Caption = 'PesoSemValor'
@@ -375,7 +398,8 @@ object fRomSaidaCoco: TfRomSaidaCoco
           Title.Caption = 'ValorTotal'
           FieldName = 'ValorTotal'
         end>
-      DataSource = dsMemLoteCoco
+      DataSource = dsmItensLoteCoco
+      ReadOnly = True
       TabOrder = 4
     end
     object DBNavigator2: TDBNavigator
@@ -392,7 +416,7 @@ object fRomSaidaCoco: TfRomSaidaCoco
       ChildSizing.ControlsPerLine = 100
       ClientHeight = 25
       ClientWidth = 241
-      DataSource = dsMemLoteCoco
+      DataSource = dsmItensLoteCoco
       Options = []
       TabOrder = 5
       VisibleButtons = [nbFirst, nbPrior, nbNext, nbLast]
@@ -457,7 +481,7 @@ object fRomSaidaCoco: TfRomSaidaCoco
     end
   end
   object ztLoteCoco: TZTable
-    Filter = 'Status=''Ativo'''
+    Filter = 'Status=''Ativo'' and SaldoCoco>0'
     Filtered = True
     Connection = fPrincipal.zConn
     TableName = 'LoteCoco'
@@ -610,20 +634,53 @@ object fRomSaidaCoco: TfRomSaidaCoco
     Left = 24
     Top = 424
   end
-  object ZMemLoteCoco: TZMemTable
-    ControlsCodePage = cDynamic
-    Left = 192
-    Top = 512
-    object ZMemLoteCocoIDItensRomSaidaCoco: TLongintField
+  object dsmItensLoteCoco: TDataSource
+    DataSet = mItensLoteCoco
+    Left = 344
+    Top = 511
+  end
+  object mItensLoteCoco: TMemDataset
+    FieldDefs = <    
+      item
+        Name = 'IDLoteCoco'
+        DataType = ftInteger
+      end    
+      item
+        Name = 'PesoSemValor'
+        DataType = ftInteger
+      end    
+      item
+        Name = 'PesoComValor'
+        DataType = ftInteger
+      end    
+      item
+        Name = 'Renda'
+        DataType = ftInteger
+      end    
+      item
+        Name = 'SacoKg'
+        DataType = ftString
+      end    
+      item
+        Name = 'Preco'
+        DataType = ftCurrency
+      end    
+      item
+        Name = 'ValorTotal'
+        DataType = ftCurrency
+      end>
+    Left = 206
+    Top = 511
+    object mItensLoteCocoIDLoteCoco: TLongintField
       FieldKind = fkData
-      FieldName = 'IDItensRomSaidaCoco'
+      FieldName = 'IDLoteCoco'
       Index = 0
       LookupCache = False
       ProviderFlags = [pfInUpdate, pfInWhere]
       ReadOnly = False
       Required = False
     end
-    object ZMemLoteCocoPesoSemValor: TLongintField
+    object mItensLoteCocoPesoSemValor: TLongintField
       FieldKind = fkData
       FieldName = 'PesoSemValor'
       Index = 1
@@ -632,7 +689,7 @@ object fRomSaidaCoco: TfRomSaidaCoco
       ReadOnly = False
       Required = False
     end
-    object ZMemLoteCocoPesoComValor: TLongintField
+    object mItensLoteCocoPesoComValor: TLongintField
       FieldKind = fkData
       FieldName = 'PesoComValor'
       Index = 2
@@ -641,7 +698,7 @@ object fRomSaidaCoco: TfRomSaidaCoco
       ReadOnly = False
       Required = False
     end
-    object ZMemLoteCocoRenda: TLongintField
+    object mItensLoteCocoRenda: TLongintField
       FieldKind = fkData
       FieldName = 'Renda'
       Index = 3
@@ -650,7 +707,7 @@ object fRomSaidaCoco: TfRomSaidaCoco
       ReadOnly = False
       Required = False
     end
-    object ZMemLoteCocoSacoKg: TStringField
+    object mItensLoteCocoSacoKg: TStringField
       FieldKind = fkData
       FieldName = 'SacoKg'
       Index = 4
@@ -658,8 +715,9 @@ object fRomSaidaCoco: TfRomSaidaCoco
       ProviderFlags = [pfInUpdate, pfInWhere]
       ReadOnly = False
       Required = False
+      Size = 0
     end
-    object ZMemLoteCocoPreco: TCurrencyField
+    object mItensLoteCocoPreco: TCurrencyField
       FieldKind = fkData
       FieldName = 'Preco'
       Index = 5
@@ -667,8 +725,9 @@ object fRomSaidaCoco: TfRomSaidaCoco
       ProviderFlags = [pfInUpdate, pfInWhere]
       ReadOnly = False
       Required = False
+      Precision = 2
     end
-    object ZMemLoteCocoValorTotal: TCurrencyField
+    object mItensLoteCocoValorTotal: TCurrencyField
       FieldKind = fkData
       FieldName = 'ValorTotal'
       Index = 6
@@ -676,11 +735,7 @@ object fRomSaidaCoco: TfRomSaidaCoco
       ProviderFlags = [pfInUpdate, pfInWhere]
       ReadOnly = False
       Required = False
+      Precision = 2
     end
-  end
-  object dsMemLoteCoco: TDataSource
-    DataSet = ZMemLoteCoco
-    Left = 304
-    Top = 512
   end
 end

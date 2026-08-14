@@ -7,7 +7,7 @@
       <Unit>
         <Filename Value="SistemaMaquina.lpr"/>
         <IsPartOfProject Value="True"/>
-        <UsageCount Value="138"/>
+        <UsageCount Value="154"/>
       </Unit>
       <Unit>
         <Filename Value="uprincipal.pas"/>
@@ -18,7 +18,7 @@
         <UnitName Value="uPrincipal"/>
         <TopLine Value="55"/>
         <CursorPos X="18" Y="71"/>
-        <UsageCount Value="138"/>
+        <UsageCount Value="154"/>
         <Loaded Value="True"/>
         <LoadedDesigner Value="True"/>
       </Unit>
@@ -27,9 +27,9 @@
         <IsPartOfProject Value="True"/>
         <UnitName Value="uFuncoes"/>
         <EditorIndex Value="5"/>
-        <TopLine Value="52"/>
-        <CursorPos X="12" Y="65"/>
-        <UsageCount Value="138"/>
+        <TopLine Value="6"/>
+        <CursorPos X="24" Y="12"/>
+        <UsageCount Value="154"/>
         <Loaded Value="True"/>
       </Unit>
       <Unit>
@@ -42,7 +42,7 @@
         <EditorIndex Value="-1"/>
         <TopLine Value="90"/>
         <CursorPos X="22" Y="88"/>
-        <UsageCount Value="138"/>
+        <UsageCount Value="154"/>
       </Unit>
       <Unit>
         <Filename Value="ueditacliente.pas"/>
@@ -54,7 +54,7 @@
         <EditorIndex Value="-1"/>
         <TopLine Value="161"/>
         <CursorPos X="6" Y="181"/>
-        <UsageCount Value="138"/>
+        <UsageCount Value="154"/>
       </Unit>
       <Unit>
         <Filename Value="ucadlotelimpo.pas"/>
@@ -66,7 +66,7 @@
         <EditorIndex Value="-1"/>
         <TopLine Value="70"/>
         <CursorPos X="18" Y="87"/>
-        <UsageCount Value="138"/>
+        <UsageCount Value="154"/>
       </Unit>
       <Unit>
         <Filename Value="ucadlotecoco.pas"/>
@@ -78,7 +78,7 @@
         <EditorIndex Value="-1"/>
         <TopLine Value="279"/>
         <CursorPos X="29" Y="304"/>
-        <UsageCount Value="138"/>
+        <UsageCount Value="154"/>
       </Unit>
       <Unit>
         <Filename Value="uacerto.pas"/>
@@ -90,7 +90,7 @@
         <EditorIndex Value="2"/>
         <TopLine Value="212"/>
         <CursorPos X="3" Y="237"/>
-        <UsageCount Value="138"/>
+        <UsageCount Value="154"/>
         <Loaded Value="True"/>
         <LoadedDesigner Value="True"/>
       </Unit>
@@ -104,7 +104,7 @@
         <EditorIndex Value="-1"/>
         <TopLine Value="291"/>
         <CursorPos X="15" Y="316"/>
-        <UsageCount Value="138"/>
+        <UsageCount Value="154"/>
       </Unit>
       <Unit>
         <Filename Value="umovcafeemprestado.pas"/>
@@ -116,7 +116,7 @@
         <EditorIndex Value="-1"/>
         <TopLine Value="325"/>
         <CursorPos X="15" Y="352"/>
-        <UsageCount Value="138"/>
+        <UsageCount Value="154"/>
       </Unit>
       <Unit>
         <Filename Value="uromentcoco.pas"/>
@@ -125,11 +125,10 @@
         <HasResources Value="True"/>
         <ResourceBaseClass Value="Form"/>
         <UnitName Value="uRomEntCoco"/>
-        <IsVisibleTab Value="True"/>
         <EditorIndex Value="1"/>
-        <TopLine Value="331"/>
-        <CursorPos X="61" Y="346"/>
-        <UsageCount Value="138"/>
+        <TopLine Value="881"/>
+        <CursorPos X="53" Y="977"/>
+        <UsageCount Value="154"/>
         <Loaded Value="True"/>
         <LoadedDesigner Value="True"/>
       </Unit>
@@ -143,7 +142,7 @@
         <EditorIndex Value="-1"/>
         <TopLine Value="240"/>
         <CursorPos X="15" Y="267"/>
-        <UsageCount Value="138"/>
+        <UsageCount Value="154"/>
       </Unit>
       <Unit>
         <Filename Value="umovclisacaria.pas"/>
@@ -155,7 +154,7 @@
         <EditorIndex Value="-1"/>
         <TopLine Value="292"/>
         <CursorPos X="15" Y="319"/>
-        <UsageCount Value="138"/>
+        <UsageCount Value="154"/>
       </Unit>
       <Unit>
         <Filename Value="umovcoco.pas"/>
@@ -165,9 +164,9 @@
         <ResourceBaseClass Value="Form"/>
         <UnitName Value="uMovCoco"/>
         <EditorIndex Value="3"/>
-        <TopLine Value="62"/>
-        <CursorPos X="3" Y="70"/>
-        <UsageCount Value="62"/>
+        <TopLine Value="41"/>
+        <CursorPos X="46" Y="44"/>
+        <UsageCount Value="78"/>
         <Loaded Value="True"/>
         <LoadedDesigner Value="True"/>
       </Unit>
@@ -178,10 +177,11 @@
         <HasResources Value="True"/>
         <ResourceBaseClass Value="Form"/>
         <UnitName Value="uRomSaidaCoco"/>
+        <IsVisibleTab Value="True"/>
         <EditorIndex Value="4"/>
-        <TopLine Value="130"/>
-        <CursorPos X="42" Y="149"/>
-        <UsageCount Value="40"/>
+        <TopLine Value="271"/>
+        <CursorPos X="59" Y="280"/>
+        <UsageCount Value="56"/>
         <Loaded Value="True"/>
         <LoadedDesigner Value="True"/>
       </Unit>
@@ -190,7 +190,7 @@
         <EditorIndex Value="-1"/>
         <TopLine Value="746"/>
         <CursorPos Y="752"/>
-        <UsageCount Value="9"/>
+        <UsageCount Value="7"/>
         <DefaultSyntaxHighlighter Value="Delphi"/>
       </Unit>
       <Unit>
@@ -198,13 +198,13 @@
         <EditorIndex Value="-1"/>
         <TopLine Value="732"/>
         <CursorPos Y="740"/>
-        <UsageCount Value="9"/>
+        <UsageCount Value="7"/>
         <DefaultSyntaxHighlighter Value="Delphi"/>
       </Unit>
       <Unit>
         <Filename Value="ucadlotelimpo.lfm"/>
         <EditorIndex Value="-1"/>
-        <UsageCount Value="6"/>
+        <UsageCount Value="4"/>
         <DefaultSyntaxHighlighter Value="LFM"/>
       </Unit>
       <Unit>
@@ -212,41 +212,41 @@
         <EditorIndex Value="-1"/>
         <TopLine Value="1222"/>
         <CursorPos Y="1239"/>
-        <UsageCount Value="10"/>
+        <UsageCount Value="8"/>
       </Unit>
       <Unit>
         <Filename Value="/usr/share/lazarus/4.6.0/lcl/include/buttoncontrol.inc"/>
         <EditorIndex Value="-1"/>
         <TopLine Value="11"/>
         <CursorPos Y="22"/>
-        <UsageCount Value="9"/>
+        <UsageCount Value="7"/>
       </Unit>
       <Unit>
         <Filename Value="/usr/share/lazarus/4.6.0/lcl/include/buttons.inc"/>
         <EditorIndex Value="-1"/>
         <TopLine Value="153"/>
         <CursorPos Y="170"/>
-        <UsageCount Value="9"/>
+        <UsageCount Value="7"/>
       </Unit>
       <Unit>
         <Filename Value="/usr/share/lazarus/4.6.0/lcl/include/bitbtn.inc"/>
         <EditorIndex Value="-1"/>
         <TopLine Value="54"/>
         <CursorPos Y="68"/>
-        <UsageCount Value="9"/>
+        <UsageCount Value="7"/>
       </Unit>
       <Unit>
         <Filename Value="../../.lazarus/onlinepackagemanager/packages/zeosdbo/src/dbc/ZDbcCache.pas"/>
         <EditorIndex Value="-1"/>
         <TopLine Value="3077"/>
         <CursorPos Y="3094"/>
-        <UsageCount Value="9"/>
+        <UsageCount Value="7"/>
         <DefaultSyntaxHighlighter Value="Delphi"/>
       </Unit>
       <Unit>
         <Filename Value="uacerto.lfm"/>
         <EditorIndex Value="-1"/>
-        <UsageCount Value="6"/>
+        <UsageCount Value="4"/>
         <DefaultSyntaxHighlighter Value="LFM"/>
       </Unit>
       <Unit>
@@ -254,7 +254,7 @@
         <EditorIndex Value="-1"/>
         <TopLine Value="2066"/>
         <CursorPos Y="2073"/>
-        <UsageCount Value="9"/>
+        <UsageCount Value="7"/>
         <DefaultSyntaxHighlighter Value="Delphi"/>
       </Unit>
       <Unit>
@@ -262,7 +262,7 @@
         <EditorIndex Value="-1"/>
         <TopLine Value="5470"/>
         <CursorPos Y="5479"/>
-        <UsageCount Value="9"/>
+        <UsageCount Value="7"/>
       </Unit>
       <Unit>
         <Filename Value="/usr/share/lazarus/4.6.0/lcl/lclmessageglue.pas"/>
@@ -270,14 +270,14 @@
         <EditorIndex Value="-1"/>
         <TopLine Value="112"/>
         <CursorPos Y="125"/>
-        <UsageCount Value="9"/>
+        <UsageCount Value="7"/>
       </Unit>
       <Unit>
         <Filename Value="/usr/share/lazarus/4.6.0/lcl/interfaces/gtk2/gtk2proc.inc"/>
         <EditorIndex Value="-1"/>
         <TopLine Value="3792"/>
         <CursorPos Y="3804"/>
-        <UsageCount Value="9"/>
+        <UsageCount Value="7"/>
       </Unit>
       <Unit>
         <Filename Value="/usr/share/lazarus/4.6.0/lcl/interfaces/gtk2/gtk2wsstdctrls.pp"/>
@@ -285,14 +285,14 @@
         <EditorIndex Value="-1"/>
         <TopLine Value="2464"/>
         <CursorPos Y="2473"/>
-        <UsageCount Value="9"/>
+        <UsageCount Value="7"/>
       </Unit>
       <Unit>
         <Filename Value="/.lazarus/onlinepackagemanager/packages/zeosdbo/src/dbc/ZDbcSqLite.pas"/>
         <EditorIndex Value="-1"/>
         <TopLine Value="730"/>
         <CursorPos Y="740"/>
-        <UsageCount Value="9"/>
+        <UsageCount Value="7"/>
         <DefaultSyntaxHighlighter Value="Delphi"/>
       </Unit>
       <Unit>
@@ -300,7 +300,7 @@
         <EditorIndex Value="-1"/>
         <TopLine Value="4607"/>
         <CursorPos Y="4624"/>
-        <UsageCount Value="9"/>
+        <UsageCount Value="7"/>
         <DefaultSyntaxHighlighter Value="Delphi"/>
       </Unit>
       <Unit>
@@ -308,7 +308,7 @@
         <EditorIndex Value="-1"/>
         <TopLine Value="738"/>
         <CursorPos Y="752"/>
-        <UsageCount Value="9"/>
+        <UsageCount Value="7"/>
         <DefaultSyntaxHighlighter Value="Delphi"/>
       </Unit>
       <Unit>
@@ -316,7 +316,7 @@
         <EditorIndex Value="-1"/>
         <TopLine Value="3077"/>
         <CursorPos Y="3094"/>
-        <UsageCount Value="9"/>
+        <UsageCount Value="7"/>
         <DefaultSyntaxHighlighter Value="Delphi"/>
       </Unit>
       <Unit>
@@ -324,7 +324,7 @@
         <EditorIndex Value="-1"/>
         <TopLine Value="735"/>
         <CursorPos Y="740"/>
-        <UsageCount Value="10"/>
+        <UsageCount Value="8"/>
         <DefaultSyntaxHighlighter Value="Delphi"/>
       </Unit>
       <Unit>
@@ -332,14 +332,14 @@
         <EditorIndex Value="-1"/>
         <TopLine Value="48"/>
         <CursorPos Y="65"/>
-        <UsageCount Value="12"/>
+        <UsageCount Value="10"/>
       </Unit>
       <Unit>
         <Filename Value="/home/nelson/.lazarus/onlinepackagemanager/packages/zeosdbo/src/component/ZAbstractRODataset.pas"/>
         <EditorIndex Value="-1"/>
-        <TopLine Value="4599"/>
+        <TopLine Value="4598"/>
         <CursorPos Y="4611"/>
-        <UsageCount Value="10"/>
+        <UsageCount Value="9"/>
         <DefaultSyntaxHighlighter Value="Delphi"/>
       </Unit>
       <Unit>
@@ -347,7 +347,7 @@
         <EditorIndex Value="-1"/>
         <TopLine Value="548"/>
         <CursorPos Y="564"/>
-        <UsageCount Value="9"/>
+        <UsageCount Value="7"/>
         <DefaultSyntaxHighlighter Value="Delphi"/>
       </Unit>
       <Unit>
@@ -355,7 +355,7 @@
         <EditorIndex Value="-1"/>
         <TopLine Value="927"/>
         <CursorPos Y="944"/>
-        <UsageCount Value="9"/>
+        <UsageCount Value="7"/>
       </Unit>
       <Unit>
         <Filename Value="/home/nelson/.lazarus/onlinepackagemanager/packages/zeosdbo/src/component/ZAbstractConnection.pas"/>
@@ -371,14 +371,14 @@
         <EditorIndex Value="-1"/>
         <TopLine Value="1938"/>
         <CursorPos Y="1948"/>
-        <UsageCount Value="12"/>
+        <UsageCount Value="10"/>
       </Unit>
       <Unit>
         <Filename Value="/usr/share/lazarus/4.6.0/lcl/include/customedit.inc"/>
         <EditorIndex Value="-1"/>
         <TopLine Value="610"/>
         <CursorPos Y="620"/>
-        <UsageCount Value="12"/>
+        <UsageCount Value="10"/>
       </Unit>
       <Unit>
         <Filename Value="../../componentes/pas2js-main/packages/rtl/src/rtti.pas"/>
@@ -386,121 +386,144 @@
         <EditorIndex Value="-1"/>
         <TopLine Value="37"/>
         <CursorPos X="13" Y="51"/>
-        <UsageCount Value="10"/>
+        <UsageCount Value="8"/>
+      </Unit>
+      <Unit>
+        <Filename Value="/home/nelson/.lazarus/onlinepackagemanager/packages/zeosdbo/src/component/ZMemTable.pas"/>
+        <EditorIndex Value="-1"/>
+        <TopLine Value="395"/>
+        <CursorPos X="32" Y="409"/>
+        <UsageCount Value="9"/>
+        <DefaultSyntaxHighlighter Value="Delphi"/>
+      </Unit>
+      <Unit>
+        <Filename Value="/usr/share/lazarus/4.8.0/lcl/include/dbedit.inc"/>
+        <EditorIndex Value="-1"/>
+        <TopLine Value="51"/>
+        <CursorPos Y="65"/>
+        <UsageCount Value="9"/>
       </Unit>
     </Units>
-    <JumpHistory HistoryIndex="27">
+    <JumpHistory HistoryIndex="29">
       <Position>
         <Filename Value="uromsaidacoco.pas"/>
-        <Caret Line="144" Column="42" TopLine="125"/>
+        <Caret Line="152" Column="24" TopLine="143"/>
       </Position>
       <Position>
         <Filename Value="uromsaidacoco.pas"/>
-        <Caret Line="145" Column="42" TopLine="126"/>
+        <Caret Line="153" Column="24" TopLine="144"/>
       </Position>
       <Position>
         <Filename Value="uromsaidacoco.pas"/>
-        <Caret Line="146" Column="42" TopLine="127"/>
+        <Caret Line="152" Column="24" TopLine="143"/>
       </Position>
       <Position>
         <Filename Value="uromsaidacoco.pas"/>
-        <Caret Line="147" Column="42" TopLine="128"/>
+        <Caret Line="93" Column="28" TopLine="80"/>
       </Position>
       <Position>
         <Filename Value="uromsaidacoco.pas"/>
-        <Caret Line="148" Column="42" TopLine="129"/>
+        <Caret Line="94" Column="26" TopLine="86"/>
       </Position>
       <Position>
         <Filename Value="uromsaidacoco.pas"/>
-        <Caret Line="147" Column="42" TopLine="128"/>
+        <Caret Line="223" Column="60" TopLine="217"/>
       </Position>
       <Position>
         <Filename Value="uromsaidacoco.pas"/>
-        <Caret Line="146" Column="42" TopLine="127"/>
+        <Caret Line="133" Column="15" TopLine="116"/>
       </Position>
       <Position>
         <Filename Value="uromsaidacoco.pas"/>
-        <Caret Line="145" Column="42" TopLine="126"/>
+        <Caret Line="226" Column="31" TopLine="210"/>
       </Position>
       <Position>
         <Filename Value="uromsaidacoco.pas"/>
-        <Caret Line="144" Column="42" TopLine="125"/>
+        <Caret Line="223" Column="68" TopLine="209"/>
       </Position>
       <Position>
         <Filename Value="uromsaidacoco.pas"/>
-        <Caret Line="143" Column="42" TopLine="124"/>
+        <Caret Line="94" Column="28" TopLine="88"/>
       </Position>
       <Position>
         <Filename Value="uromsaidacoco.pas"/>
-        <Caret Line="142" Column="42" TopLine="123"/>
+        <Caret Line="93" Column="35" TopLine="85"/>
       </Position>
       <Position>
         <Filename Value="uromsaidacoco.pas"/>
-        <Caret Line="141" Column="42" TopLine="122"/>
+        <Caret Line="189" Column="43" TopLine="169"/>
       </Position>
       <Position>
         <Filename Value="uromsaidacoco.pas"/>
-        <Caret Line="148" Column="42" TopLine="129"/>
+        <Caret Line="226" Column="38" TopLine="213"/>
       </Position>
       <Position>
         <Filename Value="uromsaidacoco.pas"/>
-        <Caret Line="147" Column="42" TopLine="128"/>
+        <Caret Line="106" Column="19" TopLine="90"/>
       </Position>
       <Position>
         <Filename Value="uromsaidacoco.pas"/>
-        <Caret Line="148" Column="42" TopLine="129"/>
+        <Caret Line="125" Column="22" TopLine="112"/>
       </Position>
       <Position>
         <Filename Value="uromsaidacoco.pas"/>
-        <Caret Line="149" Column="42" TopLine="130"/>
+        <Caret Line="135" Column="16" TopLine="112"/>
+      </Position>
+      <Position>
+        <Filename Value="uromsaidacoco.pas"/>
+        <Caret Line="198" Column="65" TopLine="226"/>
+      </Position>
+      <Position>
+        <Filename Value="uromsaidacoco.pas"/>
+        <Caret Line="120" Column="61" TopLine="101"/>
+      </Position>
+      <Position>
+        <Filename Value="uromsaidacoco.pas"/>
+        <Caret Line="142" Column="32" TopLine="140"/>
+      </Position>
+      <Position>
+        <Filename Value="uromsaidacoco.pas"/>
+        <Caret Line="158" Column="25" TopLine="146"/>
+      </Position>
+      <Position>
+        <Filename Value="uromsaidacoco.pas"/>
+        <Caret Line="139" Column="32" TopLine="137"/>
+      </Position>
+      <Position>
+        <Filename Value="uromsaidacoco.pas"/>
+        <Caret Line="159" Column="17" TopLine="137"/>
       </Position>
       <Position>
         <Filename Value="classes/ufuncoes.pas"/>
-        <Caret Line="65" Column="12" TopLine="52"/>
+        <Caret Line="228" Column="35" TopLine="222"/>
       </Position>
       <Position>
-        <Filename Value="uromentcoco.pas"/>
-        <Caret Line="318" TopLine="313"/>
+        <Filename Value="uromsaidacoco.pas"/>
+        <Caret Line="270" Column="71" TopLine="254"/>
       </Position>
       <Position>
-        <Filename Value="uromentcoco.pas"/>
-        <Caret Line="321" Column="25" TopLine="306"/>
+        <Filename Value="uromsaidacoco.pas"/>
+        <Caret Line="171" Column="16" TopLine="157"/>
       </Position>
       <Position>
-        <Filename Value="uacerto.pas"/>
-        <Caret Line="237" Column="3" TopLine="234"/>
+        <Filename Value="uromsaidacoco.pas"/>
+        <Caret Line="287" Column="55" TopLine="263"/>
       </Position>
       <Position>
-        <Filename Value="uromentcoco.pas"/>
-        <Caret Line="338" TopLine="318"/>
+        <Filename Value="uromsaidacoco.pas"/>
+        <Caret Line="92" TopLine="86"/>
       </Position>
       <Position>
-        <Filename Value="uromentcoco.pas"/>
-        <Caret Line="343" Column="61" TopLine="330"/>
+        <Filename Value="uromsaidacoco.pas"/>
+        <Caret Line="94" Column="45" TopLine="94"/>
       </Position>
       <Position>
-        <Filename Value="uromentcoco.pas"/>
-        <Caret Line="348" Column="61" TopLine="331"/>
+        <Filename Value="uromsaidacoco.pas"/>
+        <Caret Line="161" Column="3" TopLine="159"/>
       </Position>
       <Position>
-        <Filename Value="uromentcoco.pas"/>
-        <Caret Line="572" Column="3" TopLine="570"/>
-      </Position>
-      <Position>
-        <Filename Value="uacerto.pas"/>
-        <Caret Line="237" Column="3" TopLine="212"/>
-      </Position>
-      <Position>
-        <Filename Value="uromentcoco.pas"/>
-        <Caret Line="840" Column="21" TopLine="830"/>
-      </Position>
-      <Position>
-        <Filename Value="uacerto.pas"/>
-        <Caret Line="237" Column="3" TopLine="212"/>
-      </Position>
-      <Position>
-        <Filename Value="uromentcoco.pas"/>
-        <Caret Line="577" Column="29" TopLine="564"/>
+        <Filename Value="uromsaidacoco.pas"/>
+        <Caret Line="198" Column="11" TopLine="177"/>
       </Position>
     </JumpHistory>
     <RunParams>

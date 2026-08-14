@@ -9,6 +9,7 @@ function cnpj(num: string): boolean;
 function IntegerTrue(const num: string): Boolean;
 function FloatTrue(num:string; Comprimento:integer):boolean;
 procedure AceitaInteiro(var Edit:TEdit);
+procedure AceitaDecimal(var Edit:TEdit);
 procedure DBAceitaInteiro(var Edit:TDBEdit);
 procedure DBAceitaDecimal(var Edit:TDBEdit);
 implementation
@@ -214,6 +215,48 @@ begin
       Filtrada := C + Filtrada;
     end;
 
+    inc(i);
+  end;
+
+  // Atualiza o campo apenas se houve mudança para evitar loop infinito
+  if Edit.Text <> Filtrada then
+  begin
+    Edit.Text := Filtrada;
+    Edit.SelStart := Length(Filtrada); // Mantém o cursor no fim
+  end;
+end;
+
+procedure AceitaDecimal(var Edit:TEdit);
+var
+  S, Filtrada: string;
+  i: Integer;
+  C: String;
+begin
+  S := Edit.Text;
+  Filtrada := '';
+  i := 1;
+
+  while i <= Length(S) do
+  begin
+    // Captura o caractere UTF-8 completo (pode ter mais de 1 byte)
+    C := s[i];
+
+    // Se for um número, permite
+    if C[1] in ['0'..'9'] then
+    begin
+      Filtrada := Filtrada + C;
+    end
+
+     // Se for sinal de menos, permite apenas um no inicio da string
+    else if (C[1] = '-') and (Pos('-', Filtrada) = 0) then
+    begin
+      Filtrada := C + Filtrada;
+    end
+     // Se for virgula, permite apenas um no inicio da string
+    else if (C[1] = ',') and (Pos(',', Filtrada) = 0) then
+    begin
+      Filtrada := Filtrada + C;
+    end;
     inc(i);
   end;
 

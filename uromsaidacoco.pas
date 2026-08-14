@@ -21,14 +21,14 @@ type
     btSair: TButton;
     btEscluir: TButton;
     btSalvar: TButton;
-    Button2: TButton;
-    DBEdit2: TDBEdit;
-    DBEdit3: TDBEdit;
-    DBEdit4: TDBEdit;
-    DBEdit5: TDBEdit;
-    DBEdit6: TDBEdit;
-    DBRadioGroup1: TDBRadioGroup;
-    dsMemLoteCoco: TDataSource;
+    btTransfereSaldo: TButton;
+    rgSacoKg: TDBRadioGroup;
+    edtPreco: TEdit;
+    edtPesoComValor: TEdit;
+    edtValorTotal: TEdit;
+    edtPesoSemValor: TEdit;
+    edtRenda: TEdit;
+    dsmItensLoteCoco: TDataSource;
     dbcCliente: TDBLookupComboBox;
     DBDateEdit1: TDBDateEdit;
     DBEdit1: TDBEdit;
@@ -39,7 +39,7 @@ type
     dsRomSaidaCoco: TDataSource;
     DBGrid1: TDBGrid;
     DBNavigator1: TDBNavigator;
-    Edit2: TEdit;
+    edtPesoCoco: TEdit;
     Label1: TLabel;
     Label2: TLabel;
     Label25: TLabel;
@@ -50,17 +50,18 @@ type
     Label7: TLabel;
     Label8: TLabel;
     Label9: TLabel;
+    mItensLoteCoco: TMemDataset;
+    mItensLoteCocoIDLoteCoco: TLongintField;
+    mItensLoteCocoPesoComValor: TLongintField;
+    mItensLoteCocoPesoSemValor: TLongintField;
+    mItensLoteCocoPreco: TCurrencyField;
+    mItensLoteCocoRenda: TLongintField;
+    mItensLoteCocoSacoKg: TStringField;
+    mItensLoteCocoValorTotal: TCurrencyField;
     Panel1: TPanel;
-    Panel2: TPanel;
+    PanelAdicionaItens: TPanel;
     Panel3: TPanel;
-    ZMemLoteCoco: TZMemTable;
-    ZMemLoteCocoIDItensRomSaidaCoco: TLongintField;
-    ZMemLoteCocoPesoComValor: TLongintField;
-    ZMemLoteCocoPesoSemValor: TLongintField;
-    ZMemLoteCocoPreco: TCurrencyField;
-    ZMemLoteCocoRenda: TLongintField;
-    ZMemLoteCocoSacoKg: TStringField;
-    ZMemLoteCocoValorTotal: TCurrencyField;
+    PanelAdicionaValor: TPanel;
     ztCliente: TZTable;
     ztLoteCoco: TZTable;
     ztClienteIDCliente: TZInt64Field;
@@ -79,13 +80,27 @@ type
     ztRomSaidaCocoPesoComValor: TZInt64Field;
     ztRomSaidaCocoPesoSemValor: TZInt64Field;
     ztRomSaidaCocoValor: TZDoubleField;
+    procedure btAdicionarClick(Sender: TObject);
     procedure btBuscaNomeClick(Sender: TObject);
     procedure btCancelarClick(Sender: TObject);
     procedure btSairClick(Sender: TObject);
+    procedure btTransfereSaldoClick(Sender: TObject);
+    procedure edtPesoComValorChange(Sender: TObject);
+    procedure edtPesoComValorExit(Sender: TObject);
+    procedure edtPesoSemValorChange(Sender: TObject);
+    procedure edtPesoSemValorExit(Sender: TObject);
+    procedure edtPrecoChange(Sender: TObject);
+    procedure edtPrecoExit(Sender: TObject);
+    procedure edtRendaChange(Sender: TObject);
+    procedure edtRendaExit(Sender: TObject);
     procedure FormClose(Sender: TObject; var CloseAction: TCloseAction);
     procedure FormShow(Sender: TObject);
     procedure EditarTrue;
     procedure EditarFalse;
+    procedure AtualizaStatusBotao;
+    procedure CalculaItens;
+    procedure LimpaItens;
+    procedure LimpaValor;
   private
 
   public
@@ -95,10 +110,11 @@ type
 var
   fRomSaidaCoco: TfRomSaidaCoco;
   SaidaCocoModoEdicao:boolean;
+  PesoCoco:integer;
 
 implementation
 
-uses uPrincipal, uCadCliente, uMovCoco;
+uses uPrincipal, uCadCliente, uMovCoco, uFuncoes;
 
 {$R *.lfm}
 
@@ -107,6 +123,57 @@ uses uPrincipal, uCadCliente, uMovCoco;
 procedure TfRomSaidaCoco.btSairClick(Sender: TObject);
 begin
   Close;
+end;
+
+procedure TfRomSaidaCoco.btTransfereSaldoClick(Sender: TObject);
+begin
+  PanelAdicionaItens.Enabled:=True;
+  PesoCoco:=strToInt(ztLoteCocoSaldoCoco.Text);
+  edtPesoCoco.Text:=floatToStr(PesoCoco);
+  Panel1.Enabled:=False;
+  btTransfereSaldo.Enabled:=False;
+  LimpaValor;
+
+end;
+
+procedure TfRomSaidaCoco.edtPesoComValorChange(Sender: TObject);
+begin
+  AceitaInteiro(edtPesoComValor);
+end;
+
+procedure TfRomSaidaCoco.edtPesoComValorExit(Sender: TObject);
+begin
+  CalculaItens;
+end;
+
+procedure TfRomSaidaCoco.edtPesoSemValorChange(Sender: TObject);
+begin
+  AceitaInteiro(edtPesoSemValor);
+end;
+
+procedure TfRomSaidaCoco.edtPesoSemValorExit(Sender: TObject);
+begin
+  CalculaItens;
+end;
+
+procedure TfRomSaidaCoco.edtPrecoChange(Sender: TObject);
+begin
+  AceitaDecimal(edtPreco);
+end;
+
+procedure TfRomSaidaCoco.edtPrecoExit(Sender: TObject);
+begin
+  CalculaItens;
+end;
+
+procedure TfRomSaidaCoco.edtRendaChange(Sender: TObject);
+begin
+  AceitaInteiro(edtRenda);
+end;
+
+procedure TfRomSaidaCoco.edtRendaExit(Sender: TObject);
+begin
+  CalculaItens;
 end;
 
 procedure TfRomSaidaCoco.btBuscaNomeClick(Sender: TObject);
@@ -119,22 +186,48 @@ begin
     dbcCliente.KeyValue:=temp;
 end;
 
+procedure TfRomSaidaCoco.btAdicionarClick(Sender: TObject);
+var Erro:string;
+begin
+  Erro:='';
+  if strToInt(edtRenda.Text)<1 then
+     Erro:='-O campo da Renda não pode ficar vazio' + chr(13);
+  if (strToInt(edtPesoSemValor.Text)<1) and (strToInt(edtPesoComValor.Text)<1) then
+     Erro:= Erro+'-Os campos Peso sem valor e Peso com valor não podem ficar zerados ao menmo tempo';
+  if not (Erro ='') then begin
+     showMessage(Erro);
+     Exit;
+  end;
+  Panel1.Enabled:=True;
+  btTransfereSaldo.Enabled:=True;
+  AtualizaStatusBotao;
+  mItensLoteCoco.Append;
+  mItensLoteCocoIDLoteCoco.Value:=ztLoteCocoIDLoteCoco.Value;
+
+  mItensLoteCoco.Post;
+  AtualizaStatusBotao;
+  PanelAdicionaItens.Enabled:=False;
+  LimpaItens;
+  edtPesoCoco.Text:='0';
+end;
+
 procedure TfRomSaidaCoco.btCancelarClick(Sender: TObject);
 begin
-  Close;
-
+  Panel1.Enabled:=True;
+  PanelAdicionaItens.Enabled:=False;
+  btTransfereSaldo.Enabled:=True;
+  AtualizaStatusBotao;
+  Limpaitens;
+  edtPesoCoco.Text:='0';
 end;
 
 procedure TfRomSaidaCoco.FormClose(Sender: TObject;
 var CloseAction: TCloseAction);
 begin
-      if SaidaCocoModoEdicao then begin
-         ztRomSaidaCoco.Cancel;
-         fPrincipal.zConn.Rollback;
-      end;
       ztCliente.Close;
       ztLoteCoco.Close;
       ztRomSaidaCoco.Close;
+      mItensLoteCoco.Close;
 end;
 
 procedure TfRomSaidaCoco.FormShow(Sender: TObject);
@@ -142,10 +235,15 @@ begin
   ztCliente.Open;
   ztLoteCoco.Open;
   ztRomSaidaCoco.Open;
+  mItensLoteCoco.Open;
   case FormOperacao of
        'InserirRegistro': begin
-                               fPrincipal.zConn.StartTransaction;
-                               ztRomSaidaCoco.Append;
+                               AtualizaStatusBotao;
+                               PanelAdicionaItens.Enabled:=False;
+                               LimpaItens;
+                               PanelAdicionaValor.Enabled:=False;
+                               //fPrincipal.zConn.StartTransaction;
+                               //ztRomSaidaCoco.Append;
                                EditarTrue;
                           end;
 
@@ -167,6 +265,50 @@ end;
 procedure TfRomSaidaCoco.EditarFalse;
 begin
   SaidaCocoModoEdicao:=False;
+end;
+
+procedure TfRomSaidaCoco.AtualizaStatusBotao;
+begin
+  if ztLoteCoco.RecordCount>0 then
+     btTransfereSaldo.Enabled:=True
+  else
+     btTransfereSaldo.Enabled:=False;
+end;
+
+procedure TfRomSaidaCoco.CalculaItens;
+begin
+     if edtPesoSemValor.Text='' then edtPesoSemValor.Text:='0';
+     if edtRenda.Text='' then edtRenda.Text:='0';
+     if edtPesoComValor.Text='' then edtPesoComValor.Text:='0';
+     if edtPreco.Text='' then edtPreco.Text:='0';
+     edtPesoCoco.Text := IntToStr(PesoCoco-strToInt(edtPesoSemValor.Text)
+                                   - strToInt(edtPesoComValor.Text));
+     if strToInt(edtPesoCoco.Text)<0 then begin
+        LimpaItens;
+        edtPesoCoco.Text:=intToStr(PesoCoco);
+     end;
+     if (strToInt(edtPesoComValor.Text)>0) and (strToInt(edtRenda.Text)>0) then
+        PanelAdicionaValor.Enabled:=True
+     else
+        PanelAdicionaValor.Enabled:=False;
+     if strToInt(edtPreco.Text)<0 then
+        edtPreco.Text:=intToStr(strToInt(edtPreco.Text)*(-1));
+end;
+
+procedure TfRomSaidaCoco.LimpaItens;
+begin
+  edtPesoCoco.Text:='0';
+  edtRenda.Text:='0';
+  edtPesoSemValor.Text:='0';
+  LimpaValor;
+end;
+
+procedure TfRomSaidaCoco.LimpaValor;
+begin
+  edtPesoComValor.Text:='0';
+  rgSacoKg.ItemIndex:=0;
+  edtPreco.Text:='0';
+  edtValorTotal.Text:='0';
 end;
 
 end.

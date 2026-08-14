@@ -974,8 +974,8 @@ begin
         zqClienteSaldoContaCorrente.Value:=zqClienteSaldoContaCorrente.Value+Valor;
         zqCliente.Post;
 
-                    //incremente SaldoCoco
-        zqLoteCoco.Locate('SaldoCoco',dbcLoteCoco.KeyValue,[]);
+                    //incremente SaldoCoco na tabela LoteCoco
+        zqLoteCoco.Locate('IDLoteCoco',dbcLoteCoco.KeyValue,[]);
         zqLoteCoco.Edit;
         zqLoteCocoSaldoCoco.Value:= zqLoteCocoSaldoCoco.Value+SaldoCoco+BeberCoco;
         zqLoteCoco.Post;
