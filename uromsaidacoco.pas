@@ -293,11 +293,11 @@ begin
      if (strToInt(edtPesoComValor.Text)>0) then begin
         PanelAdicionaValor.Enabled:=True;
         if rgSacoKg.ItemIndex=0 then
-           edtValorTotal.Text:= floatTostr(Currency(strToInt(edtPesoComValor.Text)*
-                                strToFloat(edtPreco.Text)/40))
+           edtValorTotal.Text:= floatTostr(Decimal(strToInt(edtPesoComValor.Text)*
+                                (strToFloat(edtPreco.Text)/40),2))
         else
-           edtValorTotal.Text:= floatTostr(Currency(strToInt(edtPesoComValor.Text)*
-                                strToFloat(edtPreco.Text)*(strToFloat(edtRenda.Text)/40000)));
+           edtValorTotal.Text:= floatTostr(Decimal(strToInt(edtPesoComValor.Text)*
+                                strToFloat(edtPreco.Text)*(strToFloat(edtRenda.Text)/40000),2));
      end
      else begin
         PanelAdicionaValor.Enabled:=False;

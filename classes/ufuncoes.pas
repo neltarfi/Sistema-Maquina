@@ -12,7 +12,8 @@ procedure AceitaInteiro(var Edit:TEdit);
 procedure AceitaDecimal(var Edit:TEdit);
 procedure DBAceitaInteiro(var Edit:TDBEdit);
 procedure DBAceitaDecimal(var Edit:TDBEdit);
-function Currency(Valor:double):double;
+function Decimal(Valor:double; CasasDecimais:integer):double;
+
 implementation
 uses SysUtils, Dialogs;
 
@@ -311,10 +312,14 @@ begin
   end;
 end;
 
-function Currency(Valor:double):double;
+function Decimal(Valor:double; CasasDecimais:integer):double;
+var Potencia, i:integer;
 begin
-  Valor:=trunc(valor*100);
-  result:= Valor/100;
+  Potencia:=1;
+  For i:=1 to (CasasDecimais) do
+      Potencia:= Potencia*10;
+  Valor:=trunc(valor*Potencia);
+  result:= Valor/Potencia;
 end;
 
 end.
