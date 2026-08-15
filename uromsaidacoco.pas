@@ -6,8 +6,8 @@ interface
 
 uses
   Classes, SysUtils, DB, BufDataset, memds, fpjsondataset, Forms, Controls,
-  Graphics, Dialogs, DBCtrls, DBExtCtrls, StdCtrls, DBGrids, ExtCtrls, ZDataset,
-  ZAbstractRODataset;
+  Graphics, Dialogs, DBCtrls, DBExtCtrls, StdCtrls, DBGrids, ExtCtrls, MaskEdit,
+  ZDataset, ZAbstractRODataset;
 
 type
 
@@ -22,10 +22,8 @@ type
     btEscluir: TButton;
     btSalvar: TButton;
     btTransfereSaldo: TButton;
-    rgSacoKg: TDBRadioGroup;
     edtPreco: TEdit;
     edtPesoComValor: TEdit;
-    edtValorTotal: TEdit;
     edtPesoSemValor: TEdit;
     edtRenda: TEdit;
     dsmItensLoteCoco: TDataSource;
@@ -50,6 +48,7 @@ type
     Label7: TLabel;
     Label8: TLabel;
     Label9: TLabel;
+    edtValorTotal: TMaskEdit;
     mItensLoteCoco: TMemDataset;
     mItensLoteCocoIDLoteCoco: TLongintField;
     mItensLoteCocoPesoComValor: TLongintField;
@@ -62,6 +61,7 @@ type
     PanelAdicionaItens: TPanel;
     Panel3: TPanel;
     PanelAdicionaValor: TPanel;
+    rgSacoKg: TRadioGroup;
     ztCliente: TZTable;
     ztLoteCoco: TZTable;
     ztClienteIDCliente: TZInt64Field;
@@ -101,6 +101,7 @@ type
     procedure CalculaItens;
     procedure LimpaItens;
     procedure LimpaValor;
+    procedure rgSacoKgSelectionChanged(Sender: TObject);
   private
 
   public
@@ -289,12 +290,22 @@ begin
         LimpaItens;
         edtPesoCoco.Text:=intToStr(PesoCoco);
      end;
-     if (strToInt(edtPesoComValor.Text)>0) and (strToInt(edtRenda.Text)>0) then
-        PanelAdicionaValor.Enabled:=True
-     else
+     if (strToInt(edtPesoComValor.Text)>0) then begin
+        PanelAdicionaValor.Enabled:=True;
+        if rgSacoKg.ItemIndex=0 then
+           edtValorTotal.Text:= floatTostr(Currency(strToInt(edtPesoComValor.Text)*
+                                strToFloat(edtPreco.Text)/40))
+        else
+           edtValorTotal.Text:= floatTostr(Currency(strToInt(edtPesoComValor.Text)*
+                                strToFloat(edtPreco.Text)*(strToFloat(edtRenda.Text)/40000)));
+     end
+     else begin
         PanelAdicionaValor.Enabled:=False;
-     if strToInt(edtPreco.Text)<0 then
-        edtPreco.Text:=intToStr(strToInt(edtPreco.Text)*(-1));
+        LimpaValor;
+     end;
+     if strToFloat(edtPreco.Text)<0 then
+        edtPreco.Text:=FloatToStr(strToFloat(edtPreco.Text)*(-1));
+
 end;
 
 procedure TfRomSaidaCoco.LimpaItens;
@@ -311,6 +322,11 @@ begin
   rgSacoKg.ItemIndex:=0;
   edtPreco.Text:='0';
   edtValorTotal.Text:='0';
+end;
+
+procedure TfRomSaidaCoco.rgSacoKgSelectionChanged(Sender: TObject);
+begin
+  CalculaItens;
 end;
 
 end.

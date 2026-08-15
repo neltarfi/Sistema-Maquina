@@ -9,8 +9,10 @@ function cnpj(num: string): boolean;
 function IntegerTrue(const num: string): Boolean;
 function FloatTrue(num:string; Comprimento:integer):boolean;
 procedure AceitaInteiro(var Edit:TEdit);
+procedure AceitaDecimal(var Edit:TEdit);
 procedure DBAceitaInteiro(var Edit:TDBEdit);
 procedure DBAceitaDecimal(var Edit:TDBEdit);
+function Currency(Valor:double):double;
 implementation
 uses SysUtils, Dialogs;
 
@@ -307,6 +309,12 @@ begin
     Edit.Text := Filtrada;
     Edit.SelStart := Length(Filtrada); // Mantém o cursor no fim
   end;
+end;
+
+function Currency(Valor:double):double;
+begin
+  Valor:=arred(valor*100);
+  result:= Valor/100;
 end;
 
 end.
