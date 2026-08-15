@@ -1,10 +1,10 @@
 object fRomSaidaCoco: TfRomSaidaCoco
   Left = 337
-  Height = 738
+  Height = 692
   Top = 250
   Width = 920
   Caption = 'Romaneio de saída de café em coco'
-  ClientHeight = 738
+  ClientHeight = 692
   ClientWidth = 920
   Color = clGradientActiveCaption
   Position = poScreenCenter
@@ -14,7 +14,7 @@ object fRomSaidaCoco: TfRomSaidaCoco
   object Panel1: TPanel
     Left = 8
     Height = 264
-    Top = 64
+    Top = 8
     Width = 504
     ClientHeight = 264
     ClientWidth = 504
@@ -90,7 +90,7 @@ object fRomSaidaCoco: TfRomSaidaCoco
   object btTransfereSaldo: TButton
     Left = 520
     Height = 25
-    Top = 168
+    Top = 120
     Width = 24
     Caption = '-->'
     Font.Style = [fsBold]
@@ -101,7 +101,7 @@ object fRomSaidaCoco: TfRomSaidaCoco
   object PanelAdicionaItens: TPanel
     Left = 552
     Height = 264
-    Top = 64
+    Top = 8
     Width = 360
     ClientHeight = 264
     ClientWidth = 360
@@ -289,7 +289,7 @@ object fRomSaidaCoco: TfRomSaidaCoco
   object Panel3: TPanel
     Left = 80
     Height = 353
-    Top = 336
+    Top = 288
     Width = 744
     Caption = 'Panel3'
     ClientHeight = 353
@@ -433,24 +433,24 @@ object fRomSaidaCoco: TfRomSaidaCoco
   object btSair: TButton
     Left = 816
     Height = 25
-    Top = 704
+    Top = 656
     Width = 75
     Caption = 'Sair'
     TabOrder = 4
     OnClick = btSairClick
   end
   object btSalvar: TButton
-    Left = 656
+    Left = 664
     Height = 25
-    Top = 704
+    Top = 656
     Width = 75
     Caption = 'Salvar'
     TabOrder = 5
   end
   object btCancelarReg: TButton
-    Left = 520
+    Left = 528
     Height = 25
-    Top = 704
+    Top = 656
     Width = 120
     Caption = 'Cancelar Registros'
     TabOrder = 6

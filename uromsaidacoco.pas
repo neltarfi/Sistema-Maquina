@@ -193,7 +193,9 @@ begin
   if strToInt(edtRenda.Text)<1 then
      Erro:='-O campo da Renda não pode ficar vazio' + chr(13);
   if (strToInt(edtPesoSemValor.Text)<1) and (strToInt(edtPesoComValor.Text)<1) then
-     Erro:= Erro+'-Os campos Peso sem valor e Peso com valor não podem ficar zerados ao menmo tempo';
+     Erro:= Erro+'-Os campos Peso sem valor e Peso com valor não podem ficar zerados ao menmo tempo'+chr(13);
+  if (strToInt(edtPesoComValor.Text)>0) and (strToInt(edtPreco.Text)=0) then
+     Erro:= Erro+'-O campo Preço não pode ser zero';
   if not (Erro ='') then begin
      showMessage(Erro);
      Exit;

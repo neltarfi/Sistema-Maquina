@@ -8,7 +8,7 @@ object fPrincipal: TfPrincipal
   Color = clGradientActiveCaption
   Menu = MainMenu1
   Position = poDesktopCenter
-  LCLVersion = '4.6.0.0'
+  LCLVersion = '4.8.0.0'
   OnShow = FormShow
   object MainMenu1: TMainMenu
     Left = 44
@@ -72,10 +72,8 @@ object fPrincipal: TfPrincipal
       'RawStringEncoding=DB_CP'
     )
     TransactIsolationLevel = tiReadCommitted
-    Connected = True
     DisableSavepoints = False
     Port = 0
-    Database = '/mnt/Arquivo/Projetos Lazarus/Linux/Sistema-Maquina/Base De Dados/DBSistemaMaquina.db'
     Protocol = 'sqlite'
     Left = 172
     Top = 33

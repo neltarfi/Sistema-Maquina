@@ -88,7 +88,7 @@
         <ResourceBaseClass Value="Form"/>
         <UnitName Value="uAcerto"/>
         <EditorIndex Value="2"/>
-        <TopLine Value="212"/>
+        <TopLine Value="219"/>
         <CursorPos X="3" Y="237"/>
         <UsageCount Value="154"/>
         <Loaded Value="True"/>
@@ -126,7 +126,7 @@
         <ResourceBaseClass Value="Form"/>
         <UnitName Value="uRomEntCoco"/>
         <EditorIndex Value="1"/>
-        <TopLine Value="881"/>
+        <TopLine Value="960"/>
         <CursorPos X="53" Y="977"/>
         <UsageCount Value="154"/>
         <Loaded Value="True"/>
@@ -179,8 +179,8 @@
         <UnitName Value="uRomSaidaCoco"/>
         <IsVisibleTab Value="True"/>
         <EditorIndex Value="4"/>
-        <TopLine Value="271"/>
-        <CursorPos X="59" Y="280"/>
+        <TopLine Value="188"/>
+        <CursorPos X="72" Y="197"/>
         <UsageCount Value="56"/>
         <Loaded Value="True"/>
         <LoadedDesigner Value="True"/>
@@ -321,10 +321,11 @@
       </Unit>
       <Unit>
         <Filename Value="/home/nelson/.lazarus/onlinepackagemanager/packages/zeosdbo/src/dbc/ZDbcSqLite.pas"/>
-        <EditorIndex Value="-1"/>
-        <TopLine Value="735"/>
+        <EditorIndex Value="6"/>
+        <TopLine Value="736"/>
         <CursorPos Y="740"/>
-        <UsageCount Value="8"/>
+        <UsageCount Value="10"/>
+        <Loaded Value="True"/>
         <DefaultSyntaxHighlighter Value="Delphi"/>
       </Unit>
       <Unit>
@@ -407,18 +408,6 @@
     <JumpHistory HistoryIndex="29">
       <Position>
         <Filename Value="uromsaidacoco.pas"/>
-        <Caret Line="152" Column="24" TopLine="143"/>
-      </Position>
-      <Position>
-        <Filename Value="uromsaidacoco.pas"/>
-        <Caret Line="153" Column="24" TopLine="144"/>
-      </Position>
-      <Position>
-        <Filename Value="uromsaidacoco.pas"/>
-        <Caret Line="152" Column="24" TopLine="143"/>
-      </Position>
-      <Position>
-        <Filename Value="uromsaidacoco.pas"/>
         <Caret Line="93" Column="28" TopLine="80"/>
       </Position>
       <Position>
@@ -471,10 +460,6 @@
       </Position>
       <Position>
         <Filename Value="uromsaidacoco.pas"/>
-        <Caret Line="198" Column="65" TopLine="226"/>
-      </Position>
-      <Position>
-        <Filename Value="uromsaidacoco.pas"/>
         <Caret Line="120" Column="61" TopLine="101"/>
       </Position>
       <Position>
@@ -524,6 +509,22 @@
       <Position>
         <Filename Value="uromsaidacoco.pas"/>
         <Caret Line="198" Column="11" TopLine="177"/>
+      </Position>
+      <Position>
+        <Filename Value="uromsaidacoco.pas"/>
+        <Caret Line="280" Column="59" TopLine="271"/>
+      </Position>
+      <Position>
+        <Filename Value="classes/ufuncoes.pas"/>
+        <Caret Line="12" Column="24" TopLine="6"/>
+      </Position>
+      <Position>
+        <Filename Value="uromsaidacoco.pas"/>
+        <Caret Line="280" Column="59" TopLine="271"/>
+      </Position>
+      <Position>
+        <Filename Value="uromsaidacoco.pas"/>
+        <Caret Line="198" Column="53" TopLine="183"/>
       </Position>
     </JumpHistory>
     <RunParams>
