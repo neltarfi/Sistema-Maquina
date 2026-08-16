@@ -9,7 +9,7 @@ object fMovLoteLimpo: TfMovLoteLimpo
   ClientWidth = 1007
   Color = clGradientInactiveCaption
   Position = poScreenCenter
-  LCLVersion = '4.6.0.0'
+  LCLVersion = '4.8.0.0'
   OnClose = FormClose
   OnShow = FormShow
   object pnBotao: TPanel
@@ -1249,6 +1249,8 @@ object fMovLoteLimpo: TfMovLoteLimpo
       Alignment = taRightJustify
       MaxLength = 9
       TabOrder = 6
+      OnChange = edtPesoChange
+      OnExit = edtPesoExit
     end
     object Label6: TLabel
       Left = 64

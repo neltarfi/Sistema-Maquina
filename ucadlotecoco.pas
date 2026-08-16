@@ -98,8 +98,11 @@ type
     procedure btSairClick(Sender: TObject);
     procedure btSalvarClick(Sender: TObject);
     procedure dbeBicaChange(Sender: TObject);
+    procedure dbeBicaExit(Sender: TObject);
     procedure dbeCafeBomChange(Sender: TObject);
+    procedure dbeCafeBomExit(Sender: TObject);
     procedure dbeEscolhaChange(Sender: TObject);
+    procedure dbeEscolhaExit(Sender: TObject);
     procedure dbgLoteCocoCellClick(Column: TColumn);
     procedure dbgLoteCocoDblClick(Sender: TObject);
     procedure dbgLoteCocoKeyUp(Sender: TObject; var Key: Word;
@@ -294,14 +297,29 @@ begin
 
 end;
 
+procedure TfCadLoteCoco.dbeBicaExit(Sender: TObject);
+begin
+  ztLoteCocoBica.Value:=Decimal(ztLoteCocoBica.Value,3);
+end;
+
 procedure TfCadLoteCoco.dbeCafeBomChange(Sender: TObject);
 begin
   DBAceitaDecimal(dbeCafeBom);
 end;
 
+procedure TfCadLoteCoco.dbeCafeBomExit(Sender: TObject);
+begin
+   ztLoteCocoCafeBom.Value:=Decimal(ztLoteCocoCafeBom.Value,3);
+end;
+
 procedure TfCadLoteCoco.dbeEscolhaChange(Sender: TObject);
 begin
   DBAceitaDecimal(dbeEscolha);
+end;
+
+procedure TfCadLoteCoco.dbeEscolhaExit(Sender: TObject);
+begin
+  ztLoteCocoEscolha.Value:=Decimal(ztLoteCocoEscolha.Value,3);
 end;
 
 procedure TfCadLoteCoco.IncluiRegistro(ID:integer;PesoCafe:string);

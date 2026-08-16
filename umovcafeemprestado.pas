@@ -103,6 +103,8 @@ type
     procedure btSalvarClick(Sender: TObject);
     procedure btDevolverClick(Sender: TObject);
     procedure dbcClienteChange(Sender: TObject);
+    procedure edtPesoChange(Sender: TObject);
+    procedure edtPesoExit(Sender: TObject);
     procedure FormClose(Sender: TObject; var CloseAction: TCloseAction);
     procedure FormCreate(Sender: TObject);
     procedure AplicaFiltro();
@@ -344,6 +346,18 @@ begin
   AplicaFiltro;
   pnBotaoEditar.Enabled:=True;
   zqMovCafeEmprestado.Last;
+end;
+
+procedure TfMovCafeEmprestado.edtPesoChange(Sender: TObject);
+begin
+  AceitaDecimal(edtPeso);
+end;
+
+procedure TfMovCafeEmprestado.edtPesoExit(Sender: TObject);
+begin
+  if strToFloat(edtPeso.Text)<0 then
+    edtPeso.Text:=floatToStr(strToFloat(edtPeso.Text)*(-1));
+  edtPeso.Text:=floatToStr(decimal(strToFloat(edtPeso.Text),3));
 end;
 
 procedure TfMovCafeEmprestado.FormClose(Sender: TObject;

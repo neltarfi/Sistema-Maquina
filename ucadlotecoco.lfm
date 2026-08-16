@@ -1665,6 +1665,7 @@ object fCadLoteCoco: TfCadLoteCoco
         MaxLength = 9
         TabOrder = 0
         OnChange = dbeCafeBomChange
+        OnExit = dbeCafeBomExit
       end
       object Label7: TLabel
         Left = 17
@@ -1684,6 +1685,7 @@ object fCadLoteCoco: TfCadLoteCoco
         MaxLength = 9
         TabOrder = 1
         OnChange = dbeBicaChange
+        OnExit = dbeBicaExit
       end
       object Label8: TLabel
         Left = 17
@@ -1703,6 +1705,7 @@ object fCadLoteCoco: TfCadLoteCoco
         MaxLength = 9
         TabOrder = 2
         OnChange = dbeEscolhaChange
+        OnExit = dbeEscolhaExit
       end
       object Label10: TLabel
         Left = 105

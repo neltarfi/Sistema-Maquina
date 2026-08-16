@@ -101,6 +101,8 @@ type
     procedure AplicaFiltro();
     procedure EditarTrue();
     procedure editarFalse();
+    procedure edtPesoChange(Sender: TObject);
+    procedure edtPesoExit(Sender: TObject);
     procedure FormClose(Sender: TObject; var CloseAction: TCloseAction);
     procedure FormShow(Sender: TObject);
     function SalvarTrue:boolean;
@@ -308,6 +310,18 @@ begin
   ztSaldoLoteLimpo.Filtered:=True;
   lbOperacao.Caption:='';
   EditarForm:=False;
+end;
+
+procedure TfMovLoteLimpo.edtPesoChange(Sender: TObject);
+begin
+  AceitaDecimal(edtPeso);
+end;
+
+procedure TfMovLoteLimpo.edtPesoExit(Sender: TObject);
+begin
+  if strToFloat(edtPeso.Text)<0 then
+    edtPeso.Text:=floatToStr(strToFloat(edtPeso.Text)*(-1));
+  edtPeso.Text:=floatToStr(decimal(strToFloat(edtPeso.Text),3));
 end;
 
 procedure TfMovLoteLimpo.FormClose(Sender: TObject;

@@ -9,7 +9,7 @@ object fMovCafeEmprestado: TfMovCafeEmprestado
   ClientWidth = 1007
   Color = clGradientInactiveCaption
   Position = poScreenCenter
-  LCLVersion = '4.6.0.0'
+  LCLVersion = '4.8.0.0'
   OnClose = FormClose
   OnCreate = FormCreate
   object pnBotao: TPanel
@@ -981,6 +981,8 @@ object fMovCafeEmprestado: TfMovCafeEmprestado
       Width = 84
       Alignment = taRightJustify
       TabOrder = 3
+      OnChange = edtPesoChange
+      OnExit = edtPesoExit
     end
     object Label6: TLabel
       Left = 63
