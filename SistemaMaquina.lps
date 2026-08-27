@@ -16,8 +16,9 @@
         <HasResources Value="True"/>
         <ResourceBaseClass Value="Form"/>
         <UnitName Value="uPrincipal"/>
-        <TopLine Value="55"/>
-        <CursorPos X="18" Y="71"/>
+        <IsVisibleTab Value="True"/>
+        <TopLine Value="59"/>
+        <CursorPos X="3" Y="67"/>
         <UsageCount Value="161"/>
         <Loaded Value="True"/>
         <LoadedDesigner Value="True"/>
@@ -117,9 +118,8 @@
         <HasResources Value="True"/>
         <ResourceBaseClass Value="Form"/>
         <UnitName Value="uMovCafeEmprestado"/>
-        <IsVisibleTab Value="True"/>
         <EditorIndex Value="1"/>
-        <TopLine Value="345"/>
+        <TopLine Value="343"/>
         <CursorPos X="61" Y="359"/>
         <UsageCount Value="161"/>
         <Loaded Value="True"/>
@@ -185,7 +185,7 @@
         <ResourceBaseClass Value="Form"/>
         <UnitName Value="uRomSaidaCoco"/>
         <EditorIndex Value="6"/>
-        <TopLine Value="290"/>
+        <TopLine Value="292"/>
         <CursorPos X="94" Y="300"/>
         <UsageCount Value="63"/>
         <Loaded Value="True"/>
@@ -197,7 +197,6 @@
         <TopLine Value="746"/>
         <CursorPos Y="752"/>
         <UsageCount Value="7"/>
-        <DefaultSyntaxHighlighter Value="Delphi"/>
       </Unit>
       <Unit>
         <Filename Value="../../.lazarus/onlinepackagemanager/packages/zeosdbo/src/dbc/ZDbcSqLite.pas"/>
@@ -205,7 +204,6 @@
         <TopLine Value="732"/>
         <CursorPos Y="740"/>
         <UsageCount Value="7"/>
-        <DefaultSyntaxHighlighter Value="Delphi"/>
       </Unit>
       <Unit>
         <Filename Value="ucadlotelimpo.lfm"/>
@@ -247,7 +245,6 @@
         <TopLine Value="3077"/>
         <CursorPos Y="3094"/>
         <UsageCount Value="7"/>
-        <DefaultSyntaxHighlighter Value="Delphi"/>
       </Unit>
       <Unit>
         <Filename Value="uacerto.lfm"/>
@@ -261,7 +258,6 @@
         <TopLine Value="2066"/>
         <CursorPos Y="2073"/>
         <UsageCount Value="7"/>
-        <DefaultSyntaxHighlighter Value="Delphi"/>
       </Unit>
       <Unit>
         <Filename Value="/usr/share/lazarus/4.6.0/lcl/include/wincontrol.inc"/>
@@ -299,7 +295,6 @@
         <TopLine Value="730"/>
         <CursorPos Y="740"/>
         <UsageCount Value="7"/>
-        <DefaultSyntaxHighlighter Value="Delphi"/>
       </Unit>
       <Unit>
         <Filename Value="/home/nelson/.lazarus/onlinepackagemanager/packages/zeosdbo/src/dbc/ZDbcIntfs.pas"/>
@@ -420,10 +415,6 @@
     </Units>
     <JumpHistory HistoryIndex="29">
       <Position>
-        <Filename Value="uromentcoco.pas"/>
-        <Caret Line="441" Column="34" TopLine="432"/>
-      </Position>
-      <Position>
         <Filename Value="classes/ufuncoes.pas"/>
         <Caret Line="274" Column="33" TopLine="264"/>
       </Position>
@@ -538,6 +529,10 @@
       <Position>
         <Filename Value="umovlotelimpo.pas"/>
         <Caret Line="323" Column="53" TopLine="314"/>
+      </Position>
+      <Position>
+        <Filename Value="uprincipal.pas"/>
+        <Caret Line="73" Column="67" TopLine="55"/>
       </Position>
     </JumpHistory>
     <RunParams>

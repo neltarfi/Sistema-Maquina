@@ -1,2 +1,2 @@
-cd /mnt/ArquivoMint/Insync/nelson@tarnoschi.com.br/OneDrive/Documentos/Sistema_Maquina
+cd /home/nelson/smb4k/192.168.100.99/SistemaMaquina
 ./SistemaMaquina
