@@ -8,7 +8,7 @@ object fCadLoteLimpo: TfCadLoteLimpo
   ClientHeight = 678
   ClientWidth = 875
   Position = poScreenCenter
-  LCLVersion = '4.6.0.0'
+  LCLVersion = '4.8.0.0'
   OnClose = FormClose
   OnShow = FormShow
   object Panel1: TPanel
@@ -1531,9 +1531,9 @@ object fCadLoteLimpo: TfCadLoteLimpo
     Connection = fPrincipal.zConn
     SQL.Strings = (
       'select '
-      '   max("IDLoteLimpo")  as ID '
-      'from LoteLimpo'
-      'Where "IDLoteLimpo" > 0'
+      '   max("IDLOTELIMPO")  as ID '
+      'from LOTELIMPO'
+      'Where "IDLOTELIMPO" > 0'
     )
     Params = <>
     Left = 136
@@ -1554,18 +1554,18 @@ object fCadLoteLimpo: TfCadLoteLimpo
     TableName = 'LOTELIMPO'
     Left = 32
     Top = 256
-    object ztLoteLimpoIDLoteLimpo: TZIntegerField
+    object ztLoteLimpoIDLOTELIMPO: TZIntegerField
       FieldKind = fkData
-      FieldName = 'IDLoteLimpo'
+      FieldName = 'IDLOTELIMPO'
       Index = 0
       LookupCache = False
       ProviderFlags = [pfInUpdate, pfInWhere]
       ReadOnly = False
       Required = True
     end
-    object ztLoteLimpoNome: TZRawStringField
+    object ztLoteLimpoNOME: TZRawStringField
       FieldKind = fkData
-      FieldName = 'Nome'
+      FieldName = 'NOME'
       Index = 1
       LookupCache = False
       ProviderFlags = [pfInUpdate, pfInWhere]
@@ -1573,19 +1573,23 @@ object fCadLoteLimpo: TfCadLoteLimpo
       Required = False
       Size = 30
     end
-    object ztLoteLimpoSaldo: TZDoubleField
+    object ztLoteLimpoSALDO: TZBCDField
       FieldKind = fkData
-      FieldName = 'Saldo'
+      FieldName = 'SALDO'
       Index = 2
       LookupCache = False
       ProviderFlags = [pfInUpdate, pfInWhere]
       ReadOnly = False
       Required = False
-      Precision = 2
+      Precision = 10
+      Currency = False
+      MaxValue = 0
+      MinValue = 0
+      Size = 3
     end
-    object ztLoteLimpoStatus: TZRawStringField
+    object ztLoteLimpoSTATUS: TZRawStringField
       FieldKind = fkData
-      FieldName = 'Status'
+      FieldName = 'STATUS'
       Index = 3
       LookupCache = False
       ProviderFlags = [pfInUpdate, pfInWhere]

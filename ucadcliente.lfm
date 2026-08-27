@@ -8,7 +8,7 @@ object fCadCliente: TfCadCliente
   ClientHeight = 687
   ClientWidth = 1125
   Position = poScreenCenter
-  LCLVersion = '4.6.0.0'
+  LCLVersion = '4.8.0.0'
   OnClose = FormClose
   OnShow = FormShow
   object Panel1: TPanel
@@ -1427,7 +1427,7 @@ object fCadCliente: TfCadCliente
   object zqNovoIDCliente: TZQuery
     Connection = fPrincipal.zConn
     SQL.Strings = (
-      'select max("IDCliente") as ID from CLIENTE'
+      'select max("IDCLIENTE") as ID from CLIENTE'
     )
     Params = <>
     Left = 352
@@ -1455,18 +1455,18 @@ object fCadCliente: TfCadCliente
     WhereMode = wmWhereAll
     Left = 208
     Top = 320
-    object zqClienteIDCliente: TZIntegerField
+    object zqClienteIDCLIENTE: TZIntegerField
       FieldKind = fkData
-      FieldName = 'IDCliente'
+      FieldName = 'IDCLIENTE'
       Index = 0
       LookupCache = False
       ProviderFlags = [pfInUpdate, pfInWhere]
       ReadOnly = False
       Required = True
     end
-    object zqClienteSerie: TZRawStringField
+    object zqClienteSERIE: TZRawStringField
       FieldKind = fkData
-      FieldName = 'Serie'
+      FieldName = 'SERIE'
       Index = 1
       LookupCache = False
       ProviderFlags = [pfInUpdate, pfInWhere]
@@ -1474,27 +1474,27 @@ object fCadCliente: TfCadCliente
       Required = False
       Size = 9
     end
-    object zqClienteIDPrincipal: TZIntegerField
+    object zqClienteIDPRINCIPAL: TZIntegerField
       FieldKind = fkData
-      FieldName = 'IDPrincipal'
+      FieldName = 'IDPRINCIPAL'
       Index = 2
       LookupCache = False
       ProviderFlags = [pfInUpdate, pfInWhere]
       ReadOnly = False
       Required = False
     end
-    object zqClienteDataReg: TZDateField
+    object zqClienteDATAREG: TZDateField
       FieldKind = fkData
-      FieldName = 'DataReg'
+      FieldName = 'DATAREG'
       Index = 3
       LookupCache = False
       ProviderFlags = [pfInUpdate, pfInWhere]
       ReadOnly = False
       Required = False
     end
-    object zqClienteRazao: TZRawStringField
+    object zqClienteRAZAO: TZRawStringField
       FieldKind = fkData
-      FieldName = 'Razao'
+      FieldName = 'RAZAO'
       Index = 4
       LookupCache = False
       ProviderFlags = [pfInUpdate, pfInWhere]
@@ -1522,9 +1522,9 @@ object fCadCliente: TfCadCliente
       Required = False
       Size = 14
     end
-    object zqClienteEndereco: TZRawStringField
+    object zqClienteENDERECO: TZRawStringField
       FieldKind = fkData
-      FieldName = 'Endereco'
+      FieldName = 'ENDERECO'
       Index = 7
       LookupCache = False
       ProviderFlags = [pfInUpdate, pfInWhere]
@@ -1532,9 +1532,9 @@ object fCadCliente: TfCadCliente
       Required = False
       Size = 40
     end
-    object zqClienteInsEstadual: TZRawStringField
+    object zqClienteINSESTADUAL: TZRawStringField
       FieldKind = fkData
-      FieldName = 'InsEstadual'
+      FieldName = 'INSESTADUAL'
       Index = 8
       LookupCache = False
       ProviderFlags = [pfInUpdate, pfInWhere]
@@ -1542,9 +1542,9 @@ object fCadCliente: TfCadCliente
       Required = False
       Size = 12
     end
-    object zqClienteComplemento: TZRawStringField
+    object zqClienteCOMPLEMENTO: TZRawStringField
       FieldKind = fkData
-      FieldName = 'Complemento'
+      FieldName = 'COMPLEMENTO'
       Index = 9
       LookupCache = False
       ProviderFlags = [pfInUpdate, pfInWhere]
@@ -1552,9 +1552,9 @@ object fCadCliente: TfCadCliente
       Required = False
       Size = 40
     end
-    object zqClienteBairro: TZRawStringField
+    object zqClienteBAIRRO: TZRawStringField
       FieldKind = fkData
-      FieldName = 'Bairro'
+      FieldName = 'BAIRRO'
       Index = 10
       LookupCache = False
       ProviderFlags = [pfInUpdate, pfInWhere]
@@ -1562,9 +1562,9 @@ object fCadCliente: TfCadCliente
       Required = False
       Size = 40
     end
-    object zqClienteCidade: TZRawStringField
+    object zqClienteCIDADE: TZRawStringField
       FieldKind = fkData
-      FieldName = 'Cidade'
+      FieldName = 'CIDADE'
       Index = 11
       LookupCache = False
       ProviderFlags = [pfInUpdate, pfInWhere]
@@ -1572,18 +1572,18 @@ object fCadCliente: TfCadCliente
       Required = False
       Size = 40
     end
-    object zqClienteEstado: TZRawStringField
+    object zqClienteESTADO: TZRawStringField
       FieldKind = fkData
-      FieldName = 'Estado'
+      FieldName = 'ESTADO'
       Index = 12
       LookupCache = False
       ProviderFlags = [pfInUpdate, pfInWhere]
       ReadOnly = False
       Required = False
     end
-    object zqClienteTelefone: TZRawStringField
+    object zqClienteTELEFONE: TZRawStringField
       FieldKind = fkData
-      FieldName = 'Telefone'
+      FieldName = 'TELEFONE'
       Index = 13
       LookupCache = False
       ProviderFlags = [pfInUpdate, pfInWhere]
@@ -1591,9 +1591,9 @@ object fCadCliente: TfCadCliente
       Required = False
       Size = 11
     end
-    object zqClienteCelular: TZRawStringField
+    object zqClienteCELULAR: TZRawStringField
       FieldKind = fkData
-      FieldName = 'Celular'
+      FieldName = 'CELULAR'
       Index = 14
       LookupCache = False
       ProviderFlags = [pfInUpdate, pfInWhere]
@@ -1601,57 +1601,65 @@ object fCadCliente: TfCadCliente
       Required = False
       Size = 12
     end
-    object zqClienteObs: TZRawStringField
+    object zqClienteOBS: TZBlobField
       FieldKind = fkData
-      FieldName = 'Obs'
+      FieldName = 'OBS'
       Index = 15
       LookupCache = False
       ProviderFlags = [pfInUpdate, pfInWhere]
       ReadOnly = False
       Required = False
-      Size = 100
     end
-    object zqClienteSaldoSacariaPlastico: TZIntegerField
+    object zqClienteSALDOSACARIAPLASTICO: TZIntegerField
       FieldKind = fkData
-      FieldName = 'SaldoSacariaPlastico'
+      FieldName = 'SALDOSACARIAPLASTICO'
       Index = 16
       LookupCache = False
       ProviderFlags = [pfInUpdate, pfInWhere]
       ReadOnly = False
       Required = False
     end
-    object zqClienteSaldoSacariaJuta: TZIntegerField
+    object zqClienteSALDOSACARIAJUTA: TZRawStringField
       FieldKind = fkData
-      FieldName = 'SaldoSacariaJuta'
+      FieldName = 'SALDOSACARIAJUTA'
       Index = 17
       LookupCache = False
       ProviderFlags = [pfInUpdate, pfInWhere]
       ReadOnly = False
       Required = False
+      Size = 10
     end
-    object zqClienteSaldoCafeEmprestado: TZDoubleField
+    object zqClienteSALDOCAFEEMPRESTADO: TZBCDField
       FieldKind = fkData
-      FieldName = 'SaldoCafeEmprestado'
+      FieldName = 'SALDOCAFEEMPRESTADO'
       Index = 18
       LookupCache = False
       ProviderFlags = [pfInUpdate, pfInWhere]
       ReadOnly = False
       Required = False
-      Precision = 2
+      Precision = 10
+      Currency = False
+      MaxValue = 0
+      MinValue = 0
+      Size = 3
     end
-    object zqClienteSaldoContaCorrente: TZDoubleField
+    object zqClienteSADOCONTACORRENTE: TZBCDField
       FieldKind = fkData
-      FieldName = 'SaldoContaCorrente'
+      FieldName = 'SADOCONTACORRENTE'
       Index = 19
       LookupCache = False
       ProviderFlags = [pfInUpdate, pfInWhere]
       ReadOnly = False
       Required = False
-      Precision = 2
+      Precision = 10
+      Currency = False
+      MaxValue = 0
+      MinValue = 0
+      Size = 2
     end
-    object zqClienteStatus: TZRawStringField
+    object zqClienteSTATUS: TZRawStringField
       FieldKind = fkData
-      FieldName = 'Status'
+      FieldName = 'STATUS'
       Index = 20
       LookupCache = False
       ProviderFlags = [pfInUpdate, pfInWhere]

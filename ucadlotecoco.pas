@@ -57,37 +57,40 @@ type
     pnEditar: TPanel;
     rgFiltro: TRadioGroup;
     rgStatus: TDBRadioGroup;
+    zqLoteLimpoIDLOTELIMPO: TZIntegerField;
+    zqLoteLimpoNOMEDOLOTELIMPO: TZRawStringField;
+    zqLoteLimpoSALDO: TZBCDField;
+    zqLoteLimpoSTATUS: TZRawStringField;
     zqNovoIDLoteCoco: TZQuery;
     zqNovoIDLoteCocoID: TZInt64Field;
-    zqLoteLimpoIDLoteLimpo: TZInt64Field;
-    zqLoteLimpoNomeDoLoteLimpo: TZRawStringField;
-    zqLoteLimpoSaldo: TZDoubleField;
-    zqLoteLimpoStatus: TZRawStringField;
     zqNovoIDMovLoteLimpo: TZQuery;
     zqLoteLimpo: TZQuery;
     zqNovoIDMovLoteLimpoID: TZIntegerField;
-    ztLoteCocoBica: TZDoubleField;
-    ztLoteCocoCafeBom: TZDoubleField;
-    ztLoteCocoEscolha: TZDoubleField;
-    ztLoteCocoIDLoteCoco: TZIntegerField;
-    ztLoteCocoNomeLoteCoco: TZRawStringField;
-    ztLoteCocoObs: TZRawStringField;
-    ztLoteCocoSafra: TZRawStringField;
-    ztLoteCocoStatus: TStringField;
-    ztLoteCocoTulha: TZRawStringField;
+    ztLoteCocoBICA: TZBCDField;
+    ztLoteCocoCAFEBOM: TZBCDField;
+    ztLoteCocoESCOLHA: TZBCDField;
+    ztLoteCocoIDLOTECOCO: TZIntegerField;
+    ztLoteCocoNOMELOTECOCO: TZRawStringField;
+    ztLoteCocoOBS: TZBlobField;
+    ztLoteCocoSAFRA: TZRawStringField;
+    ztLoteCocoSALDOCOCO: TZIntegerField;
+    ztLoteCocoSTATUS: TZRawStringField;
+    ztLoteCocoTULHA: TZRawStringField;
     ztLoteLimpo: TZTable;
-    ztLoteLimpoIDLoteLimpo: TZInt64Field;
-    ztLoteLimpoSaldo: TZDoubleField;
+    ztLoteLimpoIDLOTELIMPO: TZIntegerField;
+    ztLoteLimpoNOME: TZRawStringField;
+    ztLoteLimpoSALDO: TZBCDField;
+    ztLoteLimpoSTATUS: TZRawStringField;
     ztMovLoteLimpo: TZTable;
     ztLoteCoco: TZTable;
-    ztMovLoteLimpoData: TZDateField;
-    ztMovLoteLimpoHistorico: TZRawStringField;
-    ztMovLoteLimpoIDCliente: TZInt64Field;
-    ztMovLoteLimpoIDLoteLimpo: TZInt64Field;
-    ztMovLoteLimpoIDMovLoteLimpo: TZInt64Field;
-    ztMovLoteLimpoPesoEntrada: TZDoubleField;
-    ztMovLoteLimpoPesoSaida: TZDoubleField;
-    ztMovLoteLimpoStatus: TZRawStringField;
+    ztMovLoteLimpoDATA: TZDateField;
+    ztMovLoteLimpoHISTORICO: TZRawStringField;
+    ztMovLoteLimpoIDCLIENTE: TZIntegerField;
+    ztMovLoteLimpoIDLOTELIMPO: TZIntegerField;
+    ztMovLoteLimpoIDMOVLOTELIMPO: TZIntegerField;
+    ztMovLoteLimpoPESOENTRADA: TZBCDField;
+    ztMovLoteLimpoPESOSAIDA: TZBCDField;
+    ztMovLoteLimpoSTATUS: TZRawStringField;
     procedure btApurarBeneficioClick(Sender: TObject);
     procedure btBuscaLoteBicaClick(Sender: TObject);
     procedure btBuscaLoteCafeBomClick(Sender: TObject);
@@ -231,6 +234,9 @@ begin
   pnApurar.Enabled:=True;
   btCancelar.SetFocus;
   pnEditar.Enabled:=False;
+  ztLoteCocoCafeBom.Value:=0;
+  ztLoteCocoBica.Value:=0;
+  ztLoteCocoEscolha.Value:=0;
 end;
 
 procedure TfCadLoteCoco.dbgLoteCocoCellClick(Column: TColumn);
@@ -299,6 +305,10 @@ end;
 
 procedure TfCadLoteCoco.dbeBicaExit(Sender: TObject);
 begin
+  if ztLoteCocoBica.Text='' then
+     ztLoteCocoBica.Value:=0;
+  if ztLoteCocoBica.Value<0 then
+     ztLoteCocoBica.Value:=ztLoteCocoBica.Value*(-1);
   ztLoteCocoBica.Value:=Decimal(ztLoteCocoBica.Value,3);
 end;
 
@@ -309,6 +319,10 @@ end;
 
 procedure TfCadLoteCoco.dbeCafeBomExit(Sender: TObject);
 begin
+  if ztLoteCocoCafeBom.Text='' then
+     ztLoteCocoCafeBom.Value:=0;
+  if ztLoteCocoCafeBom.Value<0 then
+     ztLoteCocoCafeBom.Value:=ztLoteCocoCafeBom.Value*(-1);
    ztLoteCocoCafeBom.Value:=Decimal(ztLoteCocoCafeBom.Value,3);
 end;
 
@@ -319,6 +333,10 @@ end;
 
 procedure TfCadLoteCoco.dbeEscolhaExit(Sender: TObject);
 begin
+  if ztLoteCocoEscolha.Text='' then
+     ztLoteCocoEscolha.Value:=0;
+  if ztLoteCocoEscolha.Value<0 then
+     ztLoteCocoEscolha.Value:=ztLoteCocoEscolha.Value*(-1);
   ztLoteCocoEscolha.Value:=Decimal(ztLoteCocoEscolha.Value,3);
 end;
 

@@ -62,9 +62,9 @@ uses uCadCliente, uCadLoteLimpo, uCadLoteCoco, uMovLoteLimpo, uMovCoco,
 procedure TfPrincipal.FormShow(Sender: TObject);
 begin
   if ((Copy(GetCurrentDir,2,1)=':')or (Copy(GetCurrentDir,2,1)='\')) then
-     CaminhoDB:=GetCurrentDir+'\Base De Dados\DBSistemaMaquina.db'
+     CaminhoDB:=GetCurrentDir+'\Base De Dados\DBSistemaMaquina.fdb'
   else
-     CaminhoDB:=GetCurrentDir+'/Base De Dados/DBSistemaMaquina.db';
+     CaminhoDB:=GetCurrentDir+'/Base De Dados/DBSistemaMaquina.fdb';
      zConn.Disconnect;
      zConn.Database:=CaminhoDB;
      zConn.Connect;

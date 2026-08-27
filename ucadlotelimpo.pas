@@ -35,10 +35,10 @@ type
     zqNovoIDLoteLimpo: TZQuery;
     zqNovoIDLoteLimpoID: TZInt64Field;
     ztLoteLimpo: TZTable;
-    ztLoteLimpoIDLoteLimpo: TZIntegerField;
-    ztLoteLimpoNome: TZRawStringField;
-    ztLoteLimpoSaldo: TZDoubleField;
-    ztLoteLimpoStatus: TZRawStringField;
+    ztLoteLimpoIDLOTELIMPO: TZIntegerField;
+    ztLoteLimpoNOME: TZRawStringField;
+    ztLoteLimpoSALDO: TZBCDField;
+    ztLoteLimpoSTATUS: TZRawStringField;
     procedure btCancelarClick(Sender: TObject);
     procedure btEditarClick(Sender: TObject);
     procedure btNovoClick(Sender: TObject);

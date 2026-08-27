@@ -43,7 +43,7 @@ type
     Label8: TLabel;
     Label9: TLabel;
     zqCliente2: TZQuery;
-    zqCliente2Razao: TZRawStringField;
+    zqCliente2RAZAO: TZRawStringField;
     procedure btCancelarClick(Sender: TObject);
     procedure btSalvarClick(Sender: TObject);
     procedure FormClose(Sender: TObject; var CloseAction: TCloseAction);

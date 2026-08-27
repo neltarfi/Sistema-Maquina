@@ -72,9 +72,14 @@ object fPrincipal: TfPrincipal
       'RawStringEncoding=DB_CP'
     )
     TransactIsolationLevel = tiReadCommitted
+    Connected = True
     DisableSavepoints = False
+    HostName = 'localhost'
     Port = 0
-    Protocol = 'sqlite'
+    Database = '/mnt/Arquivo/Projetos Lazarus/Linux/Sistema-Maquina/Base De Dados/DBSistemaMaquina.fdb'
+    User = 'SYSDBA'
+    Password = '123'
+    Protocol = 'firebird'
     Left = 172
     Top = 33
   end

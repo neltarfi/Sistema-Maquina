@@ -9,7 +9,7 @@ object fEditaCliente: TfEditaCliente
   ClientWidth = 792
   Color = clGradientInactiveCaption
   Position = poScreenCenter
-  LCLVersion = '4.6.0.0'
+  LCLVersion = '4.8.0.0'
   OnClose = FormClose
   OnShow = FormShow
   object dbeID: TDBEdit
@@ -792,15 +792,15 @@ object fEditaCliente: TfEditaCliente
   object zqCliente2: TZQuery
     Connection = fPrincipal.zConn
     SQL.Strings = (
-      'select Razao from Cliente'
-      'where IDCliente <> 0'
+      'select RAZAO from CLIENTE'
+      'where IDCLIENTE <> 0'
     )
     Params = <>
     Left = 30
     Top = 503
-    object zqCliente2Razao: TZRawStringField
+    object zqCliente2RAZAO: TZRawStringField
       FieldKind = fkData
-      FieldName = 'Razao'
+      FieldName = 'RAZAO'
       Index = 0
       LookupCache = False
       ProviderFlags = [pfInUpdate, pfInWhere]

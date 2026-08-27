@@ -1802,8 +1802,8 @@ object fCadLoteCoco: TfCadLoteCoco
     Connection = fPrincipal.zConn
     SQL.Strings = (
       'select '
-      '   max("IDLoteCoco")  as ID '
-      'from LoteCoco'
+      '   max("IDLOTECOCO")  as ID '
+      'from LOTECOCO'
     )
     Params = <>
     Left = 568
@@ -1823,18 +1823,18 @@ object fCadLoteCoco: TfCadLoteCoco
     TableName = 'LoteCoco'
     Left = 216
     Top = 176
-    object ztLoteCocoIDLoteCoco: TZIntegerField
+    object ztLoteCocoIDLOTECOCO: TZIntegerField
       FieldKind = fkData
-      FieldName = 'IDLoteCoco'
+      FieldName = 'IDLOTECOCO'
       Index = 0
       LookupCache = False
       ProviderFlags = [pfInUpdate, pfInWhere]
       ReadOnly = False
       Required = True
     end
-    object ztLoteCocoNomeLoteCoco: TZRawStringField
+    object ztLoteCocoNOMELOTECOCO: TZRawStringField
       FieldKind = fkData
-      FieldName = 'NomeLoteCoco'
+      FieldName = 'NOMELOTECOCO'
       Index = 1
       LookupCache = False
       ProviderFlags = [pfInUpdate, pfInWhere]
@@ -1842,9 +1842,9 @@ object fCadLoteCoco: TfCadLoteCoco
       Required = False
       Size = 30
     end
-    object ztLoteCocoSafra: TZRawStringField
+    object ztLoteCocoSAFRA: TZRawStringField
       FieldKind = fkData
-      FieldName = 'Safra'
+      FieldName = 'SAFRA'
       Index = 2
       LookupCache = False
       ProviderFlags = [pfInUpdate, pfInWhere]
@@ -1852,9 +1852,9 @@ object fCadLoteCoco: TfCadLoteCoco
       Required = False
       Size = 4
     end
-    object ztLoteCocoTulha: TZRawStringField
+    object ztLoteCocoTULHA: TZRawStringField
       FieldKind = fkData
-      FieldName = 'Tulha'
+      FieldName = 'TULHA'
       Index = 3
       LookupCache = False
       ProviderFlags = [pfInUpdate, pfInWhere]
@@ -1862,50 +1862,70 @@ object fCadLoteCoco: TfCadLoteCoco
       Required = False
       Size = 10
     end
-    object ztLoteCocoCafeBom: TZDoubleField
+    object ztLoteCocoSALDOCOCO: TZIntegerField
       FieldKind = fkData
-      FieldName = 'CafeBom'
+      FieldName = 'SALDOCOCO'
       Index = 4
       LookupCache = False
       ProviderFlags = [pfInUpdate, pfInWhere]
       ReadOnly = False
       Required = False
-      Precision = 9
     end
-    object ztLoteCocoBica: TZDoubleField
+    object ztLoteCocoCAFEBOM: TZBCDField
       FieldKind = fkData
-      FieldName = 'Bica'
+      FieldName = 'CAFEBOM'
       Index = 5
       LookupCache = False
       ProviderFlags = [pfInUpdate, pfInWhere]
       ReadOnly = False
       Required = False
-      Precision = 9
+      Precision = 10
+      Currency = False
+      MaxValue = 0
+      MinValue = 0
+      Size = 3
     end
-    object ztLoteCocoEscolha: TZDoubleField
+    object ztLoteCocoBICA: TZBCDField
       FieldKind = fkData
-      FieldName = 'Escolha'
+      FieldName = 'BICA'
       Index = 6
       LookupCache = False
       ProviderFlags = [pfInUpdate, pfInWhere]
       ReadOnly = False
       Required = False
-      Precision = 9
+      Precision = 10
+      Currency = False
+      MaxValue = 0
+      MinValue = 0
+      Size = 3
     end
-    object ztLoteCocoObs: TZRawStringField
+    object ztLoteCocoESCOLHA: TZBCDField
       FieldKind = fkData
-      FieldName = 'Obs'
+      FieldName = 'ESCOLHA'
       Index = 7
       LookupCache = False
       ProviderFlags = [pfInUpdate, pfInWhere]
       ReadOnly = False
       Required = False
-      Size = 100
+      Precision = 10
+      Currency = False
+      MaxValue = 0
+      MinValue = 0
+      Size = 3
     end
-    object ztLoteCocoStatus: TStringField
+    object ztLoteCocoOBS: TZBlobField
       FieldKind = fkData
-      FieldName = 'Status'
+      FieldName = 'OBS'
       Index = 8
+      LookupCache = False
+      ProviderFlags = [pfInUpdate, pfInWhere]
+      ReadOnly = False
+      Required = False
+    end
+    object ztLoteCocoSTATUS: TZRawStringField
+      FieldKind = fkData
+      FieldName = 'STATUS'
+      Index = 9
       LookupCache = False
       ProviderFlags = [pfInUpdate, pfInWhere]
       ReadOnly = False
@@ -1918,80 +1938,88 @@ object fCadLoteCoco: TfCadLoteCoco
     TableName = 'MovLoteLimpo'
     Left = 416
     Top = 224
-    object ztMovLoteLimpoIDMovLoteLimpo: TZInt64Field
+    object ztMovLoteLimpoIDMOVLOTELIMPO: TZIntegerField
       FieldKind = fkData
-      FieldName = 'IDMovLoteLimpo'
+      FieldName = 'IDMOVLOTELIMPO'
       Index = 0
       LookupCache = False
       ProviderFlags = [pfInUpdate, pfInWhere]
       ReadOnly = False
       Required = True
     end
-    object ztMovLoteLimpoIDLoteLimpo: TZInt64Field
+    object ztMovLoteLimpoIDLOTELIMPO: TZIntegerField
       FieldKind = fkData
-      FieldName = 'IDLoteLimpo'
+      FieldName = 'IDLOTELIMPO'
       Index = 1
       LookupCache = False
       ProviderFlags = [pfInUpdate, pfInWhere]
       ReadOnly = False
-      Required = True
+      Required = False
     end
-    object ztMovLoteLimpoIDCliente: TZInt64Field
+    object ztMovLoteLimpoIDCLIENTE: TZIntegerField
       FieldKind = fkData
-      FieldName = 'IDCliente'
+      FieldName = 'IDCLIENTE'
       Index = 2
       LookupCache = False
       ProviderFlags = [pfInUpdate, pfInWhere]
       ReadOnly = False
-      Required = True
+      Required = False
     end
-    object ztMovLoteLimpoData: TZDateField
+    object ztMovLoteLimpoDATA: TZDateField
       FieldKind = fkData
-      FieldName = 'Data'
+      FieldName = 'DATA'
       Index = 3
       LookupCache = False
       ProviderFlags = [pfInUpdate, pfInWhere]
       ReadOnly = False
-      Required = True
+      Required = False
     end
-    object ztMovLoteLimpoHistorico: TZRawStringField
+    object ztMovLoteLimpoHISTORICO: TZRawStringField
       FieldKind = fkData
-      FieldName = 'Historico'
+      FieldName = 'HISTORICO'
       Index = 4
       LookupCache = False
       ProviderFlags = [pfInUpdate, pfInWhere]
       ReadOnly = False
-      Required = True
+      Required = False
       Size = 30
     end
-    object ztMovLoteLimpoPesoEntrada: TZDoubleField
+    object ztMovLoteLimpoPESOENTRADA: TZBCDField
       FieldKind = fkData
-      FieldName = 'PesoEntrada'
+      FieldName = 'PESOENTRADA'
       Index = 5
       LookupCache = False
       ProviderFlags = [pfInUpdate, pfInWhere]
       ReadOnly = False
       Required = False
       Precision = 10
+      Currency = False
+      MaxValue = 0
+      MinValue = 0
+      Size = 3
     end
-    object ztMovLoteLimpoPesoSaida: TZDoubleField
+    object ztMovLoteLimpoPESOSAIDA: TZBCDField
       FieldKind = fkData
-      FieldName = 'PesoSaida'
+      FieldName = 'PESOSAIDA'
       Index = 6
       LookupCache = False
       ProviderFlags = [pfInUpdate, pfInWhere]
       ReadOnly = False
       Required = False
       Precision = 10
+      Currency = False
+      MaxValue = 0
+      MinValue = 0
+      Size = 3
     end
-    object ztMovLoteLimpoStatus: TZRawStringField
+    object ztMovLoteLimpoSTATUS: TZRawStringField
       FieldKind = fkData
-      FieldName = 'Status'
+      FieldName = 'STATUS'
       Index = 7
       LookupCache = False
       ProviderFlags = [pfInUpdate, pfInWhere]
       ReadOnly = False
-      Required = True
+      Required = False
       Size = 9
     end
   end
@@ -1999,7 +2027,7 @@ object fCadLoteCoco: TfCadLoteCoco
     Connection = fPrincipal.zConn
     SQL.Strings = (
       'select '
-      '   max("IDMovLoteLimpo") as ID '
+      '   max("IDMOVLOTELIMPO") as ID '
       'from MOVLOTELIMPO'
     )
     Params = <>
@@ -2020,24 +2048,48 @@ object fCadLoteCoco: TfCadLoteCoco
     TableName = 'LoteLimpo'
     Left = 416
     Top = 168
-    object ztLoteLimpoIDLoteLimpo: TZInt64Field
+    object ztLoteLimpoIDLOTELIMPO: TZIntegerField
       FieldKind = fkData
-      FieldName = 'IDLoteLimpo'
+      FieldName = 'IDLOTELIMPO'
       Index = 0
       LookupCache = False
       ProviderFlags = [pfInUpdate, pfInWhere]
       ReadOnly = False
       Required = True
     end
-    object ztLoteLimpoSaldo: TZDoubleField
+    object ztLoteLimpoNOME: TZRawStringField
       FieldKind = fkData
-      FieldName = 'Saldo'
+      FieldName = 'NOME'
       Index = 1
       LookupCache = False
       ProviderFlags = [pfInUpdate, pfInWhere]
       ReadOnly = False
       Required = False
+      Size = 30
+    end
+    object ztLoteLimpoSALDO: TZBCDField
+      FieldKind = fkData
+      FieldName = 'SALDO'
+      Index = 2
+      LookupCache = False
+      ProviderFlags = [pfInUpdate, pfInWhere]
+      ReadOnly = False
+      Required = False
       Precision = 10
+      Currency = False
+      MaxValue = 0
+      MinValue = 0
+      Size = 3
+    end
+    object ztLoteLimpoSTATUS: TZRawStringField
+      FieldKind = fkData
+      FieldName = 'STATUS'
+      Index = 3
+      LookupCache = False
+      ProviderFlags = [pfInUpdate, pfInWhere]
+      ReadOnly = False
+      Required = False
+      Size = 9
     end
   end
   object dsLoteLimpo: TDataSource
@@ -2049,47 +2101,51 @@ object fCadLoteCoco: TfCadLoteCoco
     Connection = fPrincipal.zConn
     SQL.Strings = (
       'select  '
-      '   "IDLoteLimpo", '
-      '     cast("IDLoteLimpo" as varchar(10)) || '' '' || "Nome" as NomeDoLoteLimpo,'
-      '  "Saldo",'
-      '   "Status"'
-      ' from LoteLimpo '
+      '   "IDLOTELIMPO", '
+      '     cast("IDLOTELIMPO" as varchar(10)) || '' '' || "NOME" as NomeDoLoteLimpo,'
+      '  "SALDO",'
+      '   "STATUS"'
+      ' from LOTELIMPO'
     )
     Params = <>
     Left = 216
     Top = 224
-    object zqLoteLimpoIDLoteLimpo: TZInt64Field
+    object zqLoteLimpoIDLOTELIMPO: TZIntegerField
       FieldKind = fkData
-      FieldName = 'IDLoteLimpo'
+      FieldName = 'IDLOTELIMPO'
       Index = 0
       LookupCache = False
       ProviderFlags = [pfInUpdate, pfInWhere]
       ReadOnly = False
       Required = True
     end
-    object zqLoteLimpoNomeDoLoteLimpo: TZRawStringField
+    object zqLoteLimpoNOMEDOLOTELIMPO: TZRawStringField
       FieldKind = fkData
-      FieldName = 'NomeDoLoteLimpo'
+      FieldName = 'NOMEDOLOTELIMPO'
       Index = 1
       LookupCache = False
       ProviderFlags = [pfInUpdate, pfInWhere]
-      ReadOnly = False
-      Required = True
-      Size = 30
+      ReadOnly = True
+      Required = False
+      Size = 41
     end
-    object zqLoteLimpoSaldo: TZDoubleField
+    object zqLoteLimpoSALDO: TZBCDField
       FieldKind = fkData
-      FieldName = 'Saldo'
+      FieldName = 'SALDO'
       Index = 2
       LookupCache = False
       ProviderFlags = [pfInUpdate, pfInWhere]
       ReadOnly = False
       Required = False
       Precision = 10
+      Currency = False
+      MaxValue = 0
+      MinValue = 0
+      Size = 3
     end
-    object zqLoteLimpoStatus: TZRawStringField
+    object zqLoteLimpoSTATUS: TZRawStringField
       FieldKind = fkData
-      FieldName = 'Status'
+      FieldName = 'STATUS'
       Index = 3
       LookupCache = False
       ProviderFlags = [pfInUpdate, pfInWhere]
