@@ -881,8 +881,8 @@ object fMovCafeEmprestado: TfMovCafeEmprestado
       Height = 28
       Top = 16
       Width = 424
-      KeyField = 'IDPrincipal'
-      ListField = 'Razao'
+      KeyField = 'IDPRINCIPAL'
+      ListField = 'RAZAO'
       ListFieldIndex = 0
       ListSource = dsCliente
       LookupCache = False
@@ -905,40 +905,36 @@ object fMovCafeEmprestado: TfMovCafeEmprestado
       Color = clWindow
       Columns = <      
         item
-          Title.Caption = 'Data'
-          FieldName = 'Data'
+          Title.Caption = 'IDCLIENTE'
+          FieldName = 'IDCLIENTE'
         end      
         item
-          Title.Caption = 'Nome Cliente'
-          FieldName = 'Nome'
+          Title.Caption = 'NOME'
+          FieldName = 'NOME'
         end      
         item
-          Title.Caption = 'IDCliente'
-          Visible = False
-          FieldName = 'IDCliente'
+          Title.Caption = 'IDLOTELIMPO'
+          FieldName = 'IDLOTELIMPO'
         end      
         item
-          Title.Caption = 'IDLoteLimpo'
-          Visible = False
-          FieldName = 'IDLoteLimpo'
+          Title.Caption = 'DATA'
+          FieldName = 'DATA'
         end      
         item
-          Title.Caption = 'Historico'
-          FieldName = 'Historico'
+          Title.Caption = 'HISTORICO'
+          FieldName = 'HISTORICO'
         end      
         item
-          Title.Caption = 'PesoEmprestar'
-          Width = 64
-          FieldName = 'PesoEmprestar'
+          Title.Caption = 'PESOEMPRESTAR'
+          FieldName = 'PESOEMPRESTAR'
         end      
         item
-          Title.Caption = 'PesoDevolver'
-          Width = 64
-          FieldName = 'PesoDevolver'
+          Title.Caption = 'PESODEVOLVER'
+          FieldName = 'PESODEVOLVER'
         end      
         item
-          Title.Caption = 'Status'
-          FieldName = 'Status'
+          Title.Caption = 'STATUS'
+          FieldName = 'STATUS'
         end>
       DataSource = dsMovCafeEmprestado
       ReadOnly = True
@@ -1041,8 +1037,8 @@ object fMovCafeEmprestado: TfMovCafeEmprestado
       Height = 28
       Top = 86
       Width = 396
-      KeyField = 'IDLoteLimpo'
-      ListField = 'NomeParaLoteLimpo'
+      KeyField = 'IDLOTELIMPO'
+      ListField = 'NOMEPARALOTELIMPO'
       ListFieldIndex = 0
       ListSource = dsParaLoteLimpo
       LookupCache = False
@@ -1084,7 +1080,7 @@ object fMovCafeEmprestado: TfMovCafeEmprestado
       Height = 26
       Top = 6
       Width = 80
-      DataField = 'Saldo'
+      DataField = 'SALDO'
       DataSource = dsCliente
       Alignment = taRightJustify
       MaxLength = 0
@@ -1111,107 +1107,55 @@ object fMovCafeEmprestado: TfMovCafeEmprestado
     Left = 592
     Top = 208
   end
-  object zqParaLoteLimpo: TZQuery
-    Connection = fPrincipal.zConn
-    SQL.Strings = (
-      'select  '
-      '   "IDLoteLimpo", '
-      '    cast("IDLoteLimpo" as varchar(10)) || '' '' || "Nome" as NomeParaLoteLimpo,'
-      '   "Status"'
-      ' from LoteLimpo'
-    )
-    Params = <>
-    Left = 432
+  object dsCliente: TDataSource
+    DataSet = zqCliente
+    Left = 800
     Top = 152
-    object zqParaLoteLimpoIDLoteLimpo: TZInt64Field
+  end
+  object ztCafeEmprestado: TZTable
+    Connection = fPrincipal.zConn
+    TableName = 'CAFEEMPRESTADO'
+    Left = 104
+    Top = 93
+    object ztCafeEmprestadoIDCAFEEMPRESTADO: TZIntegerField
       FieldKind = fkData
-      FieldName = 'IDLoteLimpo'
+      FieldName = 'IDCAFEEMPRESTADO'
       Index = 0
       LookupCache = False
       ProviderFlags = [pfInUpdate, pfInWhere]
       ReadOnly = False
       Required = True
     end
-    object zqParaLoteLimpoStatus: TZRawStringField
+    object ztCafeEmprestadoIDLOTELIMPO: TZIntegerField
       FieldKind = fkData
-      FieldName = 'Status'
+      FieldName = 'IDLOTELIMPO'
       Index = 1
       LookupCache = False
       ProviderFlags = [pfInUpdate, pfInWhere]
       ReadOnly = False
       Required = False
-      Size = 9
     end
-    object zqParaLoteLimpoNomeParaLoteLimpo: TZRawStringField
+    object ztCafeEmprestadoIDCLIENTE: TZIntegerField
       FieldKind = fkData
-      FieldName = 'NomeParaLoteLimpo'
+      FieldName = 'IDCLIENTE'
       Index = 2
       LookupCache = False
       ProviderFlags = [pfInUpdate, pfInWhere]
       ReadOnly = False
-      Required = True
-      Size = 30
+      Required = False
     end
-  end
-  object zqMovCafeEmprestado: TZQuery
-    Connection = fPrincipal.zConn
-    SQL.Strings = (
-      'SELECT'
-      '         C."IDCliente",'
-      '         (Cast(L."IDLoteLimpo" as varchar(10)) || '', '' || L."Nome") as Nome,'
-      '         C."IDLoteLimpo",'
-      '         C."Data",'
-      '         C."Historico",'
-      '         C."PesoEmprestar",'
-      '         C."PesoDevolver",'
-      '         C."Status"'
-      'FROM  CafeEmprestado as C'
-      'inner join LoteLimpo as L on L."IDLoteLimpo" = C."IDLoteLimpo"'
-      'order by "Data"'
-    )
-    Params = <>
-    Left = 432
-    Top = 208
-    object zqMovCafeEmprestadoData: TZDateField
+    object ztCafeEmprestadoDATA: TZDateField
       FieldKind = fkData
-      FieldName = 'Data'
-      Index = 0
-      LookupCache = False
-      ProviderFlags = [pfInUpdate, pfInWhere]
-      ReadOnly = False
-      Required = True
-    end
-    object zqMovCafeEmprestadoNome: TZRawStringField
-      FieldKind = fkData
-      FieldName = 'Nome'
-      Index = 1
-      LookupCache = False
-      ProviderFlags = [pfInUpdate, pfInWhere]
-      ReadOnly = False
-      Required = True
-      Size = 30
-    end
-    object zqMovCafeEmprestadoIDCliente: TZInt64Field
-      FieldKind = fkData
-      FieldName = 'IDCliente'
-      Index = 2
-      LookupCache = False
-      ProviderFlags = [pfInUpdate, pfInWhere]
-      ReadOnly = False
-      Required = True
-    end
-    object zqMovCafeEmprestadoIDLoteLimpo: TZInt64Field
-      FieldKind = fkData
-      FieldName = 'IDLoteLimpo'
+      FieldName = 'DATA'
       Index = 3
       LookupCache = False
       ProviderFlags = [pfInUpdate, pfInWhere]
       ReadOnly = False
       Required = False
     end
-    object zqMovCafeEmprestadoHistorico: TZRawStringField
+    object ztCafeEmprestadoHISTORICO: TZRawStringField
       FieldKind = fkData
-      FieldName = 'Historico'
+      FieldName = 'HISTORICO'
       Index = 4
       LookupCache = False
       ProviderFlags = [pfInUpdate, pfInWhere]
@@ -1219,29 +1163,37 @@ object fMovCafeEmprestado: TfMovCafeEmprestado
       Required = False
       Size = 30
     end
-    object zqMovCafeEmprestadoPesoEmprestar: TZDoubleField
+    object ztCafeEmprestadoPESOEMPRESTAR: TZBCDField
       FieldKind = fkData
-      FieldName = 'PesoEmprestar'
+      FieldName = 'PESOEMPRESTAR'
       Index = 5
       LookupCache = False
       ProviderFlags = [pfInUpdate, pfInWhere]
       ReadOnly = False
       Required = False
       Precision = 10
+      Currency = False
+      MaxValue = 0
+      MinValue = 0
+      Size = 3
     end
-    object zqMovCafeEmprestadoPesoDevolver: TZDoubleField
+    object ztCafeEmprestadoPESODEVOLVER: TZBCDField
       FieldKind = fkData
-      FieldName = 'PesoDevolver'
+      FieldName = 'PESODEVOLVER'
       Index = 6
       LookupCache = False
       ProviderFlags = [pfInUpdate, pfInWhere]
       ReadOnly = False
       Required = False
       Precision = 10
+      Currency = False
+      MaxValue = 0
+      MinValue = 0
+      Size = 3
     end
-    object zqMovCafeEmprestadoStatus: TZRawStringField
+    object ztCafeEmprestadoSTATUS: TZRawStringField
       FieldKind = fkData
-      FieldName = 'Status'
+      FieldName = 'STATUS'
       Index = 7
       LookupCache = False
       ProviderFlags = [pfInUpdate, pfInWhere]
@@ -1250,50 +1202,128 @@ object fMovCafeEmprestado: TfMovCafeEmprestado
       Size = 9
     end
   end
-  object ztCafeEmprestado: TZTable
+  object ztLoteLimpo: TZTable
     Connection = fPrincipal.zConn
-    TableName = 'CafeEmprestado'
-    Left = 152
-    Top = 80
-    object ztCafeEmprestadoIDCafeEmprestado: TZInt64Field
+    TableName = 'LOTELIMPO'
+    Left = 288
+    Top = 87
+    object ztLoteLimpoIDLOTELIMPO: TZIntegerField
       FieldKind = fkData
-      FieldName = 'IDCafeEmprestado'
+      FieldName = 'IDLOTELIMPO'
       Index = 0
       LookupCache = False
       ProviderFlags = [pfInUpdate, pfInWhere]
       ReadOnly = False
       Required = True
     end
-    object ztCafeEmprestadoIDLoteLimpo: TZInt64Field
+    object ztLoteLimpoNOME: TZRawStringField
       FieldKind = fkData
-      FieldName = 'IDLoteLimpo'
+      FieldName = 'NOME'
+      Index = 1
+      LookupCache = False
+      ProviderFlags = [pfInUpdate, pfInWhere]
+      ReadOnly = False
+      Required = False
+      Size = 30
+    end
+    object ztLoteLimpoSALDO: TZBCDField
+      FieldKind = fkData
+      FieldName = 'SALDO'
+      Index = 2
+      LookupCache = False
+      ProviderFlags = [pfInUpdate, pfInWhere]
+      ReadOnly = False
+      Required = False
+      Precision = 10
+      Currency = False
+      MaxValue = 0
+      MinValue = 0
+      Size = 3
+    end
+    object ztLoteLimpoSTATUS: TZRawStringField
+      FieldKind = fkData
+      FieldName = 'STATUS'
+      Index = 3
+      LookupCache = False
+      ProviderFlags = [pfInUpdate, pfInWhere]
+      ReadOnly = False
+      Required = False
+      Size = 9
+    end
+  end
+  object ztCliente: TZTable
+    Connection = fPrincipal.zConn
+    TableName = 'CLIENTE'
+    Left = 430
+    Top = 87
+    object ztClienteIDCLIENTE: TZIntegerField
+      FieldKind = fkData
+      FieldName = 'IDCLIENTE'
+      Index = 0
+      LookupCache = False
+      ProviderFlags = [pfInUpdate, pfInWhere]
+      ReadOnly = False
+      Required = True
+    end
+    object ztClienteSALDOCAFEEMPRESTADO: TZBCDField
+      FieldKind = fkData
+      FieldName = 'SALDOCAFEEMPRESTADO'
+      Index = 1
+      LookupCache = False
+      ProviderFlags = [pfInUpdate, pfInWhere]
+      ReadOnly = False
+      Required = False
+      Precision = 10
+      Currency = False
+      MaxValue = 0
+      MinValue = 0
+      Size = 3
+    end
+  end
+  object ztMovLoteLimpo: TZTable
+    Connection = fPrincipal.zConn
+    TableName = 'MOVLOTELIMPO'
+    Left = 296
+    Top = 152
+    object ztMovLoteLimpoIDMOVLOTELIMPO: TZIntegerField
+      FieldKind = fkData
+      FieldName = 'IDMOVLOTELIMPO'
+      Index = 0
+      LookupCache = False
+      ProviderFlags = [pfInUpdate, pfInWhere]
+      ReadOnly = False
+      Required = True
+    end
+    object ztMovLoteLimpoIDLOTELIMPO: TZIntegerField
+      FieldKind = fkData
+      FieldName = 'IDLOTELIMPO'
       Index = 1
       LookupCache = False
       ProviderFlags = [pfInUpdate, pfInWhere]
       ReadOnly = False
       Required = False
     end
-    object ztCafeEmprestadoIDCliente: TZInt64Field
+    object ztMovLoteLimpoIDCLIENTE: TZIntegerField
       FieldKind = fkData
-      FieldName = 'IDCliente'
+      FieldName = 'IDCLIENTE'
       Index = 2
       LookupCache = False
       ProviderFlags = [pfInUpdate, pfInWhere]
       ReadOnly = False
-      Required = True
+      Required = False
     end
-    object ztCafeEmprestadoData: TZDateField
+    object ztMovLoteLimpoDATA: TZDateField
       FieldKind = fkData
-      FieldName = 'Data'
+      FieldName = 'DATA'
       Index = 3
       LookupCache = False
       ProviderFlags = [pfInUpdate, pfInWhere]
       ReadOnly = False
-      Required = True
+      Required = False
     end
-    object ztCafeEmprestadoHistorico: TZRawStringField
+    object ztMovLoteLimpoHISTORICO: TZRawStringField
       FieldKind = fkData
-      FieldName = 'Historico'
+      FieldName = 'HISTORICO'
       Index = 4
       LookupCache = False
       ProviderFlags = [pfInUpdate, pfInWhere]
@@ -1301,29 +1331,37 @@ object fMovCafeEmprestado: TfMovCafeEmprestado
       Required = False
       Size = 30
     end
-    object ztCafeEmprestadoPesoEmprestar: TZDoubleField
+    object ztMovLoteLimpoPESOENTRADA: TZBCDField
       FieldKind = fkData
-      FieldName = 'PesoEmprestar'
+      FieldName = 'PESOENTRADA'
       Index = 5
       LookupCache = False
       ProviderFlags = [pfInUpdate, pfInWhere]
       ReadOnly = False
       Required = False
       Precision = 10
+      Currency = False
+      MaxValue = 0
+      MinValue = 0
+      Size = 3
     end
-    object ztCafeEmprestadoPesoDevolver: TZDoubleField
+    object ztMovLoteLimpoPESOSAIDA: TZBCDField
       FieldKind = fkData
-      FieldName = 'PesoDevolver'
+      FieldName = 'PESOSAIDA'
       Index = 6
       LookupCache = False
       ProviderFlags = [pfInUpdate, pfInWhere]
       ReadOnly = False
       Required = False
       Precision = 10
+      Currency = False
+      MaxValue = 0
+      MinValue = 0
+      Size = 3
     end
-    object ztCafeEmprestadoStatus: TZRawStringField
+    object ztMovLoteLimpoSTATUS: TZRawStringField
       FieldKind = fkData
-      FieldName = 'Status'
+      FieldName = 'STATUS'
       Index = 7
       LookupCache = False
       ProviderFlags = [pfInUpdate, pfInWhere]
@@ -1336,13 +1374,13 @@ object fMovCafeEmprestado: TfMovCafeEmprestado
     Connection = fPrincipal.zConn
     SQL.Strings = (
       'select'
-      '  max("IDCafeEmprestado") as ID'
-      'from CafeEmprestado'
+      '  max("IDCAFEEMPRESTADO") as ID'
+      'from CAFEEMPRESTADO'
     )
     Params = <>
-    Left = 152
+    Left = 104
     Top = 152
-    object zqNovoIDCafeEmprestadoID: TZInt64Field
+    object zqNovoIDCafeEmprestadoID: TZIntegerField
       FieldKind = fkData
       FieldName = 'ID'
       Index = 0
@@ -1350,218 +1388,76 @@ object fMovCafeEmprestado: TfMovCafeEmprestado
       ProviderFlags = [pfInUpdate, pfInWhere]
       ReadOnly = False
       Required = True
+    end
+  end
+  object zqParaLoteLimpo: TZQuery
+    Connection = fPrincipal.zConn
+    SQL.Strings = (
+      'select  '
+      '   "IDLOTELIMPO", '
+      '    cast("IDLOTELIMPO" as varchar(10)) || '' '' || "NOME" as NomeParaLoteLimpo,'
+      '   "STATUS"'
+      ' from LOTELIMPO'
+    )
+    Params = <>
+    Left = 430
+    Top = 154
+    object zqParaLoteLimpoIDLOTELIMPO: TZIntegerField
+      FieldKind = fkData
+      FieldName = 'IDLOTELIMPO'
+      Index = 0
+      LookupCache = False
+      ProviderFlags = [pfInUpdate, pfInWhere]
+      ReadOnly = False
+      Required = True
+    end
+    object zqParaLoteLimpoNOMEPARALOTELIMPO: TZRawStringField
+      FieldKind = fkData
+      FieldName = 'NOMEPARALOTELIMPO'
+      Index = 1
+      LookupCache = False
+      ProviderFlags = [pfInUpdate, pfInWhere]
+      ReadOnly = True
+      Required = False
+      Size = 41
+    end
+    object zqParaLoteLimpoSTATUS: TZRawStringField
+      FieldKind = fkData
+      FieldName = 'STATUS'
+      Index = 2
+      LookupCache = False
+      ProviderFlags = [pfInUpdate, pfInWhere]
+      ReadOnly = False
+      Required = False
+      Size = 9
     end
   end
   object zqCliente: TZQuery
     Connection = fPrincipal.zConn
     SQL.Strings = (
       'select'
-      '   "IDPrincipal",'
-      '   "Razao",'
-      '   max("SaldoCafeEmprestado") as Saldo'
-      'from Cliente'
-      'group by "IDPrincipal", "Razao"'
-      'order by "Razao"'
+      '   "IDPRINCIPAL",'
+      '   "RAZAO",'
+      '   max("SALDOCAFEEMPRESTADO") as Saldo'
+      'from CLIENTE'
+      'group by "IDPRINCIPAL", "RAZAO"'
+      'order by "RAZAO"'
     )
     Params = <>
-    Left = 718
+    Left = 712
     Top = 152
-    object zqClienteIDPrincipal: TZInt64Field
-      FieldKind = fkData
-      FieldName = 'IDPrincipal'
-      Index = 0
-      LookupCache = False
-      ProviderFlags = [pfInUpdate, pfInWhere]
-      ReadOnly = False
-      Required = False
-    end
-    object zqClienteRazao: TZRawStringField
-      FieldKind = fkData
-      FieldName = 'Razao'
-      Index = 1
-      LookupCache = False
-      ProviderFlags = [pfInUpdate, pfInWhere]
-      ReadOnly = False
-      Required = False
-      Size = 40
-    end
-    object zqClienteSaldo1: TZUInt64Field
-      FieldKind = fkData
-      FieldName = 'Saldo'
-      Index = 2
-      LookupCache = False
-      ProviderFlags = [pfInUpdate, pfInWhere]
-      ReadOnly = True
-      Required = False
-    end
-  end
-  object dsCliente: TDataSource
-    DataSet = zqCliente
-    Left = 800
-    Top = 152
-  end
-  object ztCliente: TZTable
-    Connection = fPrincipal.zConn
-    TableName = 'Cliente'
-    Left = 432
-    Top = 80
-    object ztClienteIDCliente: TZUInt64Field
-      FieldKind = fkData
-      FieldName = 'IDCliente'
-      Index = 0
-      LookupCache = False
-      ProviderFlags = [pfInUpdate, pfInWhere]
-      ReadOnly = False
-      Required = True
-    end
-    object ztClienteSaldoCafeEmprestado: TZInt64Field
-      FieldKind = fkData
-      FieldName = 'SaldoCafeEmprestado'
-      Index = 1
-      LookupCache = False
-      ProviderFlags = [pfInUpdate, pfInWhere]
-      ReadOnly = False
-      Required = False
-    end
-  end
-  object ztLoteLimpo: TZTable
-    Connection = fPrincipal.zConn
-    TableName = 'LoteLimpo'
-    Left = 288
-    Top = 80
-    object ztLoteLimpoIDLoteLimpo: TZInt64Field
-      FieldKind = fkData
-      FieldName = 'IDLoteLimpo'
-      Index = 0
-      LookupCache = False
-      ProviderFlags = [pfInUpdate, pfInWhere]
-      ReadOnly = False
-      Required = True
-    end
-    object ztLoteLimpoNome: TZRawStringField
-      FieldKind = fkData
-      FieldName = 'Nome'
-      Index = 1
-      LookupCache = False
-      ProviderFlags = [pfInUpdate, pfInWhere]
-      ReadOnly = False
-      Required = True
-      Size = 30
-    end
-    object ztLoteLimpoSaldo: TZDoubleField
-      FieldKind = fkData
-      FieldName = 'Saldo'
-      Index = 2
-      LookupCache = False
-      ProviderFlags = [pfInUpdate, pfInWhere]
-      ReadOnly = False
-      Required = False
-      Precision = 10
-    end
-    object ztLoteLimpoStatus: TZRawStringField
-      FieldKind = fkData
-      FieldName = 'Status'
-      Index = 3
-      LookupCache = False
-      ProviderFlags = [pfInUpdate, pfInWhere]
-      ReadOnly = False
-      Required = False
-      Size = 9
-    end
-  end
-  object ztMovLoteLimpo: TZTable
-    Connection = fPrincipal.zConn
-    TableName = 'MovLoteLimpo'
-    Left = 288
-    Top = 152
-    object ztMovLoteLimpoIDMovLoteLimpo: TZInt64Field
-      FieldKind = fkData
-      FieldName = 'IDMovLoteLimpo'
-      Index = 0
-      LookupCache = False
-      ProviderFlags = [pfInUpdate, pfInWhere]
-      ReadOnly = False
-      Required = True
-    end
-    object ztMovLoteLimpoIDLoteLimpo: TZInt64Field
-      FieldKind = fkData
-      FieldName = 'IDLoteLimpo'
-      Index = 1
-      LookupCache = False
-      ProviderFlags = [pfInUpdate, pfInWhere]
-      ReadOnly = False
-      Required = True
-    end
-    object ztMovLoteLimpoIDCliente: TZInt64Field
-      FieldKind = fkData
-      FieldName = 'IDCliente'
-      Index = 2
-      LookupCache = False
-      ProviderFlags = [pfInUpdate, pfInWhere]
-      ReadOnly = False
-      Required = True
-    end
-    object ztMovLoteLimpoData: TZDateField
-      FieldKind = fkData
-      FieldName = 'Data'
-      Index = 3
-      LookupCache = False
-      ProviderFlags = [pfInUpdate, pfInWhere]
-      ReadOnly = False
-      Required = True
-    end
-    object ztMovLoteLimpoHistorico: TZRawStringField
-      FieldKind = fkData
-      FieldName = 'Historico'
-      Index = 4
-      LookupCache = False
-      ProviderFlags = [pfInUpdate, pfInWhere]
-      ReadOnly = False
-      Required = True
-      Size = 30
-    end
-    object ztMovLoteLimpoPesoEntrada: TZDoubleField
-      FieldKind = fkData
-      FieldName = 'PesoEntrada'
-      Index = 5
-      LookupCache = False
-      ProviderFlags = [pfInUpdate, pfInWhere]
-      ReadOnly = False
-      Required = False
-      Precision = 10
-    end
-    object ztMovLoteLimpoPesoSaida: TZDoubleField
-      FieldKind = fkData
-      FieldName = 'PesoSaida'
-      Index = 6
-      LookupCache = False
-      ProviderFlags = [pfInUpdate, pfInWhere]
-      ReadOnly = False
-      Required = False
-      Precision = 10
-    end
-    object ztMovLoteLimpoStatus: TZRawStringField
-      FieldKind = fkData
-      FieldName = 'Status'
-      Index = 7
-      LookupCache = False
-      ProviderFlags = [pfInUpdate, pfInWhere]
-      ReadOnly = False
-      Required = True
-      Size = 9
-    end
   end
   object zqNovoIDMovLoteLimpo: TZQuery
     Connection = fPrincipal.zConn
     SQL.Strings = (
       'select'
-      '   max("IDMovLoteLimpo") as ID'
-      'from MovLoteLimpo'
+      '   max("IDMOVLOTELIMPO") as ID'
+      'from MOVLOTELIMPO'
     )
     Params = <>
-    Left = 152
+    Left = 104
     Top = 208
-    object zqNovoIDMovLoteLimpoID: TZInt64Field
+    object zqNovoIDMovLoteLimpoID: TZIntegerField
       FieldKind = fkData
       FieldName = 'ID'
       Index = 0
@@ -1569,6 +1465,111 @@ object fMovCafeEmprestado: TfMovCafeEmprestado
       ProviderFlags = [pfInUpdate, pfInWhere]
       ReadOnly = False
       Required = True
+    end
+  end
+  object zqMovCafeEmprestado: TZQuery
+    Connection = fPrincipal.zConn
+    SQL.Strings = (
+      'SELECT'
+      '         CAFEEMPRESTADO."IDCLIENTE",'
+      '         (Cast(LOTELIMPO."IDLOTELIMPO" as varchar(10)) || '', '' || LOTELIMPO."NOME") as Nome,'
+      '         CAFEEMPRESTADO."IDLOTELIMPO",'
+      '         CAFEEMPRESTADO."DATA",'
+      '         CAFEEMPRESTADO."HISTORICO",'
+      '         CAFEEMPRESTADO."PESOEMPRESTAR",'
+      '         CAFEEMPRESTADO."PESODEVOLVER",'
+      '         CAFEEMPRESTADO."STATUS"'
+      'FROM  CAFEEMPRESTADO'
+      'inner join LOTELIMPO on LOTELIMPO."IDLOTELIMPO" = CAFEEMPRESTADO."IDLOTELIMPO"'
+      'order by "DATA"'
+    )
+    Params = <>
+    Left = 430
+    Top = 208
+    object zqMovCafeEmprestadoIDCLIENTE: TZIntegerField
+      FieldKind = fkData
+      FieldName = 'IDCLIENTE'
+      Index = 0
+      LookupCache = False
+      ProviderFlags = [pfInUpdate, pfInWhere]
+      ReadOnly = False
+      Required = False
+    end
+    object zqMovCafeEmprestadoNOME: TZRawStringField
+      FieldKind = fkData
+      FieldName = 'NOME'
+      Index = 1
+      LookupCache = False
+      ProviderFlags = [pfInUpdate, pfInWhere]
+      ReadOnly = True
+      Required = False
+      Size = 42
+    end
+    object zqMovCafeEmprestadoIDLOTELIMPO: TZIntegerField
+      FieldKind = fkData
+      FieldName = 'IDLOTELIMPO'
+      Index = 2
+      LookupCache = False
+      ProviderFlags = [pfInUpdate, pfInWhere]
+      ReadOnly = False
+      Required = False
+    end
+    object zqMovCafeEmprestadoDATA: TZDateField
+      FieldKind = fkData
+      FieldName = 'DATA'
+      Index = 3
+      LookupCache = False
+      ProviderFlags = [pfInUpdate, pfInWhere]
+      ReadOnly = False
+      Required = False
+    end
+    object zqMovCafeEmprestadoHISTORICO: TZRawStringField
+      FieldKind = fkData
+      FieldName = 'HISTORICO'
+      Index = 4
+      LookupCache = False
+      ProviderFlags = [pfInUpdate, pfInWhere]
+      ReadOnly = False
+      Required = False
+      Size = 30
+    end
+    object zqMovCafeEmprestadoPESOEMPRESTAR: TZBCDField
+      FieldKind = fkData
+      FieldName = 'PESOEMPRESTAR'
+      Index = 5
+      LookupCache = False
+      ProviderFlags = [pfInUpdate, pfInWhere]
+      ReadOnly = False
+      Required = False
+      Precision = 10
+      Currency = False
+      MaxValue = 0
+      MinValue = 0
+      Size = 3
+    end
+    object zqMovCafeEmprestadoPESODEVOLVER: TZBCDField
+      FieldKind = fkData
+      FieldName = 'PESODEVOLVER'
+      Index = 6
+      LookupCache = False
+      ProviderFlags = [pfInUpdate, pfInWhere]
+      ReadOnly = False
+      Required = False
+      Precision = 10
+      Currency = False
+      MaxValue = 0
+      MinValue = 0
+      Size = 3
+    end
+    object zqMovCafeEmprestadoSTATUS: TZRawStringField
+      FieldKind = fkData
+      FieldName = 'STATUS'
+      Index = 7
+      LookupCache = False
+      ProviderFlags = [pfInUpdate, pfInWhere]
+      ReadOnly = False
+      Required = False
+      Size = 9
     end
   end
 end
