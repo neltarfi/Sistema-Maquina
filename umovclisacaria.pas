@@ -91,6 +91,8 @@ type
     procedure btSalvarClick(Sender: TObject);
     procedure btSaidaClick(Sender: TObject);
     procedure dbcClienteChange(Sender: TObject);
+    procedure edtQuantidadeChange(Sender: TObject);
+    procedure edtQuantidadeExit(Sender: TObject);
     procedure FormClose(Sender: TObject; var CloseAction: TCloseAction);
     procedure FormCreate(Sender: TObject);
     procedure AplicaFiltro();
@@ -132,18 +134,21 @@ begin
 
 procedure TfMovCliSacaria.btEntradaClick(Sender: TObject);
 begin
+  fPrincipal.zConn.StartTransaction;
   Botao:='Entrada';
   EditarTrue;
 end;
 
 procedure TfMovCliSacaria.btSaidaClick(Sender: TObject);
 begin
+  fPrincipal.zConn.StartTransaction;
   Botao:='Saida';
   EditarTrue;
 end;
 
 procedure TfMovCliSacaria.btCancelarClick(Sender: TObject);
 begin
+  fPrincipal.zConn.Rollback;
   EditarFalse;
 end;
 
@@ -163,7 +168,6 @@ begin
   try
   ztMovLoteSacaria.Active:=True;
   zqNovoIDMovLoteSacaria.Active:=True;
-  fPrincipal.zConn.StartTransaction;
   zqNovoIDMovLoteSacaria.Refresh;
   ztMovLoteSacaria.Append;
   ztMovLoteSacariaIDMovLoteSacaria.Value:=zqNovoIDMovLoteSacariaID.Value+1;
@@ -313,9 +317,22 @@ begin
   pnBotaoEditar.Enabled:=True;
 end;
 
+procedure TfMovCliSacaria.edtQuantidadeChange(Sender: TObject);
+begin
+  AceitaInteiro(edtQuantidade);
+end;
+
+procedure TfMovCliSacaria.edtQuantidadeExit(Sender: TObject);
+begin
+  if edtQuantidade.Text='' then
+     edtQuantidade.Text:='0';
+end;
+
 procedure TfMovCliSacaria.FormClose(Sender: TObject;
   var CloseAction: TCloseAction);
 begin
+  if ztMovLoteSacaria.State in [dsinsert,dsedit] then
+     fPrincipal.zConn.Rollback;;
   FormCadastroSomenteLeitura:=False;
 end;
 

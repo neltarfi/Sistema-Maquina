@@ -76,11 +76,14 @@ type
     procedure btSalvarClick(Sender: TObject);
     procedure btSaidaClick(Sender: TObject);
     procedure dbcDoLoteSacariaChange(Sender: TObject);
+    procedure edtQuantidadeChange(Sender: TObject);
+    procedure edtQuantidadeExit(Sender: TObject);
     procedure FormClose(Sender: TObject; var CloseAction: TCloseAction);
     procedure FormCreate(Sender: TObject);
     procedure AplicaFiltro();
     procedure EditarTrue();
     procedure editarFalse();
+    procedure FormShow(Sender: TObject);
     function SalvarTrue:boolean;
   private
 
@@ -116,25 +119,26 @@ begin
 
 procedure TfMovLoteSacaria.btEntradaClick(Sender: TObject);
 begin
+  fPrincipal.zConn.StartTransaction;
   Botao:='Entrada';
   EditarTrue;
 end;
 
 procedure TfMovLoteSacaria.btSaidaClick(Sender: TObject);
 begin
+  fPrincipal.zConn.StartTransaction;
   Botao:='Saida';
   EditarTrue;
 end;
 
 procedure TfMovLoteSacaria.btCancelarClick(Sender: TObject);
 begin
+  fPrincipal.zConn.Rollback;
   EditarFalse;
 end;
 
 procedure TfMovLoteSacaria.btSairClick(Sender: TObject);
 begin
-  zqDoLoteSacaria.Active:=False;
-  zqMovLoteSacaria.Active:=False;
   Close;
 end;
 
@@ -144,9 +148,6 @@ begin
      [mbYes, mbNO], 0) = mrYes) then  Exit;
   if not(SalvarTrue) then Exit;
   try
-  ztMovLoteSacaria.Active:=True;
-  zqNovoIDMovLoteSacaria.Active:=True;
-  fPrincipal.zConn.StartTransaction;
   zqNovoIDMovLoteSacaria.Refresh;
   ztMovLoteSacaria.Append;
   ztMovLoteSacariaIDMovLoteSacaria.Value:=zqNovoIDMovLoteSacariaID.Value+1;
@@ -180,9 +181,6 @@ begin
   end;
   EditarFalse;
   AplicaFiltro;
-  ztMovLoteSacaria.Active:=False;
-  zqNovoIDMovLoteSacaria.Active:=False;
-  ztLoteSacaria.Active:=False;
 end;
 
 function TfMovLoteSacaria.SalvarTrue:boolean;
@@ -231,6 +229,15 @@ begin
   lbOperacao.Caption:='';
 end;
 
+procedure TfMovLoteSacaria.FormShow(Sender: TObject);
+begin
+  ztMovLoteSacaria.Active:=True;
+  zqNovoIDMovLoteSacaria.Active:=True;
+  ztLoteSacaria.Active:=True;
+  zqDoLoteSacaria.Active:=True;
+  zqMovLoteSacaria.Active:=True;
+end;
+
 procedure TfMovLoteSacaria.AplicaFiltro();
 var temp:integer;
 begin
@@ -261,10 +268,28 @@ begin
   AplicaFiltro;
 end;
 
+procedure TfMovLoteSacaria.edtQuantidadeChange(Sender: TObject);
+begin
+  AceitaInteiro(edtQuantidade);
+end;
+
+procedure TfMovLoteSacaria.edtQuantidadeExit(Sender: TObject);
+begin
+  if edtQuantidade.Text='' then
+     edtQuantidade.Text:='0';
+end;
+
 procedure TfMovLoteSacaria.FormClose(Sender: TObject;
   var CloseAction: TCloseAction);
 begin
-  FormCadastroSomenteLeitura:=False;
+  if ztMovLoteSacaria.State in [dsInsert, dsEdit] then
+     fPrincipal.zConn.Rollback;
+  ztMovLoteSacaria.Active:=False;
+  zqNovoIDMovLoteSacaria.Active:=False;
+  ztLoteSacaria.Active:=False;
+  zqDoLoteSacaria.Active:=False;
+  zqMovLoteSacaria.Active:=False;
+    FormCadastroSomenteLeitura:=False;
 end;
 
 end.

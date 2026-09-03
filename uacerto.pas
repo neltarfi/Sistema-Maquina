@@ -119,6 +119,10 @@ type
     procedure btTransAcertoClick(Sender: TObject);
     procedure btTransCCClick(Sender: TObject);
     procedure dbcClienteChange(Sender: TObject);
+    procedure dbeEntradaChange(Sender: TObject);
+    procedure dbeEntradaExit(Sender: TObject);
+    procedure dbeSaidaChange(Sender: TObject);
+    procedure dbeSaidaExit(Sender: TObject);
     procedure FormClose(Sender: TObject; var CloseAction: TCloseAction);
     procedure FormShow(Sender: TObject);
     procedure rgFiltroAcertoClick(Sender: TObject);
@@ -534,6 +538,28 @@ begin
     ztClienteSaldo.Locate('IDCliente',dbcCliente.KeyValue,[]);
     AplicaFiltroGrid;
     StatusBotoesAcertoAberto;
+end;
+
+procedure TfAcerto.dbeEntradaChange(Sender: TObject);
+begin
+  DBAceitaDecimal(dbeEntrada);
+end;
+
+procedure TfAcerto.dbeEntradaExit(Sender: TObject);
+begin
+  if zqCCEntrada.Text='' then
+     zqCCEntrada.Text:='0';
+end;
+
+procedure TfAcerto.dbeSaidaChange(Sender: TObject);
+begin
+  DBAceitaDecimal(dbeSaida);
+end;
+
+procedure TfAcerto.dbeSaidaExit(Sender: TObject);
+begin
+  if zqCCSaida.Text='' then
+     zqCCSaida.Text:='0';
 end;
 
 procedure TfAcerto.AplicaFiltroClienteBox;

@@ -12,6 +12,7 @@ object fMovLoteSacaria: TfMovLoteSacaria
   LCLVersion = '4.8.0.0'
   OnClose = FormClose
   OnCreate = FormCreate
+  OnShow = FormShow
   object pnBotao: TPanel
     Left = 0
     Height = 76
@@ -974,6 +975,8 @@ object fMovLoteSacaria: TfMovLoteSacaria
       Width = 84
       Alignment = taRightJustify
       TabOrder = 2
+      OnChange = edtQuantidadeChange
+      OnExit = edtQuantidadeExit
     end
     object Label6: TLabel
       Left = 64
@@ -1150,7 +1153,7 @@ object fMovLoteSacaria: TfMovLoteSacaria
       'order by MOVLOTESACARIA."DATA"'
     )
     Params = <>
-    Left = 488
+    Left = 472
     Top = 208
     object zqMovLoteSacariaNOME: TZRawStringField
       FieldKind = fkData

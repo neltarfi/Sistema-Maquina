@@ -1643,9 +1643,9 @@ object fCadCliente: TfCadCliente
       MinValue = 0
       Size = 3
     end
-    object zqClienteSADOCONTACORRENTE: TZBCDField
+    object zqClienteSALDOCONTACORRENTE: TZBCDField
       FieldKind = fkData
-      FieldName = 'SADOCONTACORRENTE'
+      FieldName = 'SALDOCONTACORRENTE'
       Index = 19
       LookupCache = False
       ProviderFlags = [pfInUpdate, pfInWhere]

@@ -257,6 +257,8 @@ object fAcerto: TfAcerto
             Alignment = taRightJustify
             MaxLength = 0
             TabOrder = 2
+            OnChange = dbeEntradaChange
+            OnExit = dbeEntradaExit
           end
           object dbeSaida: TDBEdit
             Left = 103
@@ -268,6 +270,8 @@ object fAcerto: TfAcerto
             Alignment = taRightJustify
             MaxLength = 0
             TabOrder = 3
+            OnChange = dbeSaidaChange
+            OnExit = dbeSaidaExit
           end
           object Label4: TLabel
             Left = 2

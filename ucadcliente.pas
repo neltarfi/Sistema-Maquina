@@ -39,8 +39,8 @@ type
     zqClienteINSESTADUAL: TZRawStringField;
     zqClienteOBS: TZBlobField;
     zqClienteRAZAO: TZRawStringField;
-    zqClienteSADOCONTACORRENTE: TZBCDField;
     zqClienteSALDOCAFEEMPRESTADO: TZBCDField;
+    zqClienteSALDOCONTACORRENTE: TZBCDField;
     zqClienteSALDOSACARIAJUTA: TZRawStringField;
     zqClienteSALDOSACARIAPLASTICO: TZIntegerField;
     zqClienteSERIE: TZRawStringField;

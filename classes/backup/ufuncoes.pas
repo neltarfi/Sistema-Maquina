@@ -13,8 +13,7 @@ procedure AceitaDecimal(var Edit:TEdit);
 procedure DBAceitaInteiro(var Edit:TDBEdit);
 procedure DBAceitaDecimal(var Edit:TDBEdit);
 function Decimal(Valor:double; CasasDecimais:integer):double;
-Procedure edtDecimal(var Edit:TEdit; CasasDecimais:integer);
-function dbeDecimal(Valor:string; CasasDecimais:integer):string;
+
 implementation
 uses SysUtils, Dialogs;
 
@@ -250,11 +249,11 @@ begin
       Filtrada := Filtrada + C;
     end
 
-     // Se for sinal de menos, permite apenas um no inicio da string
+   {  // Se for sinal de menos, permite apenas um no inicio da string
     else if (C[1] = '-') and (Pos('-', Filtrada) = 0) then
     begin
       Filtrada := C + Filtrada;
-    end
+    end }
      // Se for virgula, permite apenas um no inicio da string
     else if (C[1] = ',') and (Pos(',', Filtrada) = 0) then
     begin
@@ -321,30 +320,6 @@ begin
       Potencia:= Potencia*10;
   Valor:=trunc(valor*Potencia);
   result:= Valor/Potencia;
-end;
-
-Procedure edtDecimal(var Edit:TEdit; CasasDecimais:integer);
-var Potencia, i:integer;
-    valor:double;
-begin
-  Potencia:=1;
-  valor:=strToFloat(Edit.Text);
-  For i:=1 to (CasasDecimais) do
-      Potencia:= Potencia*10;
-  Valor:=trunc(valor*Potencia);
-  Edit.Text:= floatTostr(Valor/Potencia);
-end;
- 
-function dbeDecimal(Valor:string; CasasDecimais:integer):string;
-var Potencia, i:integer;
-begin
-  Potencia:=1;
-  For i:=1 to (CasasDecimais) do
-  begin
-      Potencia:= Potencia*10;
-  end;
-  Valor:=floattoStr(trunc(strTofloat(valor)*Potencia));
-  result:= floatTostr(strToFloat(Valor)/Potencia);
 end;
 
 end.

@@ -249,11 +249,11 @@ begin
       Filtrada := Filtrada + C;
     end
 
-     // Se for sinal de menos, permite apenas um no inicio da string
+   {  // Se for sinal de menos, permite apenas um no inicio da string
     else if (C[1] = '-') and (Pos('-', Filtrada) = 0) then
     begin
       Filtrada := C + Filtrada;
-    end
+    end }
      // Se for virgula, permite apenas um no inicio da string
     else if (C[1] = ',') and (Pos(',', Filtrada) = 0) then
     begin
@@ -291,11 +291,12 @@ begin
       Filtrada := Filtrada + C;
     end
 
-     // Se for sinal de menos, permite apenas um no inicio da string
+    { // Se for sinal de menos, permite apenas um no inicio da string
     else if (C[1] = '-') and (Pos('-', Filtrada) = 0) then
     begin
       Filtrada := C + Filtrada;
-    end
+    end }
+
      // Se for virgula, permite apenas um no inicio da string
     else if (C[1] = ',') and (Pos(',', Filtrada) = 0) then
     begin
