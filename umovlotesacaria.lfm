@@ -9,7 +9,7 @@ object fMovLoteSacaria: TfMovLoteSacaria
   ClientWidth = 1038
   Color = clGradientInactiveCaption
   Position = poScreenCenter
-  LCLVersion = '4.6.0.0'
+  LCLVersion = '4.8.0.0'
   OnClose = FormClose
   OnCreate = FormCreate
   object pnBotao: TPanel
@@ -920,20 +920,22 @@ object fMovLoteSacaria: TfMovLoteSacaria
         end      
         item
           Title.Caption = 'Nome Cliente'
+          Width = 300
           FieldName = 'Nome'
         end      
         item
           Title.Caption = 'Historico'
+          Width = 300
           FieldName = 'Historico'
         end      
         item
           Title.Caption = 'QuanEntrada'
-          Width = 64
+          Width = 70
           FieldName = 'QuanEntrada'
         end      
         item
           Title.Caption = 'QuanSaida'
-          Width = 64
+          Width = 70
           FieldName = 'QuanSaida'
         end      
         item
@@ -1063,6 +1065,7 @@ object fMovLoteSacaria: TfMovLoteSacaria
       Width = 80
       DataField = 'Saldo'
       DataSource = dsLoteSacaria
+      Alignment = taRightJustify
       MaxLength = 0
       TabOrder = 3
       TabStop = False
@@ -1082,47 +1085,46 @@ object fMovLoteSacaria: TfMovLoteSacaria
     Connection = fPrincipal.zConn
     SQL.Strings = (
       'select  '
-      '   "IDLoteSacaria", '
-      '    cast("IDLoteSacaria" as varchar(10)) || '' '' || "Nome" as NomeDoLoteSacaria,'
-      '   "Saldo",'
-      '   "Status"'
-      ' from LoteSacaria '
+      '   "IDLOTESACARIA", '
+      '    cast("IDLOTESACARIA" as varchar(10)) || '' '' || "NOME" as NomeDoLoteSacaria,'
+      '   "SALDO",'
+      '   "STATUS"'
+      ' from LOTESACARIA '
     )
     Params = <>
     Left = 496
     Top = 88
-    object zqDoLoteSacariaIDLoteSacaria: TZInt64Field
+    object zqDoLoteSacariaIDLOTESACARIA: TZIntegerField
       FieldKind = fkData
-      FieldName = 'IDLoteSacaria'
+      FieldName = 'IDLOTESACARIA'
       Index = 0
       LookupCache = False
       ProviderFlags = [pfInUpdate, pfInWhere]
       ReadOnly = False
       Required = True
     end
-    object zqDoLoteSacariaNomeDoLoteSacaria: TZRawStringField
+    object zqDoLoteSacariaNOMEDOLOTESACARIA: TZRawStringField
       FieldKind = fkData
-      FieldName = 'NomeDoLoteSacaria'
+      FieldName = 'NOMEDOLOTESACARIA'
       Index = 1
       LookupCache = False
       ProviderFlags = [pfInUpdate, pfInWhere]
-      ReadOnly = False
-      Required = True
-      Size = 30
+      ReadOnly = True
+      Required = False
+      Size = 41
     end
-    object zqDoLoteSacariaSaldo: TZDoubleField
+    object zqDoLoteSacariaSALDO: TZIntegerField
       FieldKind = fkData
-      FieldName = 'Saldo'
+      FieldName = 'SALDO'
       Index = 2
       LookupCache = False
       ProviderFlags = [pfInUpdate, pfInWhere]
       ReadOnly = False
-      Required = True
-      Precision = 10
+      Required = False
     end
-    object zqDoLoteSacariaStatus: TZRawStringField
+    object zqDoLoteSacariaSTATUS: TZRawStringField
       FieldKind = fkData
-      FieldName = 'Status'
+      FieldName = 'STATUS'
       Index = 3
       LookupCache = False
       ProviderFlags = [pfInUpdate, pfInWhere]
@@ -1135,174 +1137,174 @@ object fMovLoteSacaria: TfMovLoteSacaria
     Connection = fPrincipal.zConn
     SQL.Strings = (
       'SELECT'
-      '         Cliente."Razao" || '', '' || Cliente."Endereco" as Nome,'
-      '         MovLoteSacaria."IDMovLoteSacaria",'
-      '         MovLoteSacaria."IDLoteSacaria",'
-      '         MovLoteSacaria."Data",'
-      '         MovLoteSacaria."Historico",'
-      '         MovLoteSacaria."QuanEntrada",'
-      '         MovLoteSacaria."QuanSaida",'
-      '         MovLoteSacaria."Status"'
+      '         CLIENTE."RAZAO" || '', '' || CLIENTE."ENDERECO" as Nome,'
+      '         MOVLOTESACARIA."IDMOVLOTESACARIA",'
+      '         MOVLOTESACARIA."IDLOTESACARIA",'
+      '         MOVLOTESACARIA."DATA",'
+      '         MOVLOTESACARIA."HISTORICO",'
+      '         MOVLOTESACARIA."QUANENTRADA",'
+      '         MOVLOTESACARIA."QUANSAIDA",'
+      '         MOVLOTESACARIA."STATUS"'
       'FROM     Cliente '
-      'INNER JOIN MovLoteSacaria  ON Cliente."IDCliente" = MovLoteSacaria."IDCliente" '
-      'order by MovLoteSacaria."Data"'
+      'INNER JOIN MOVLOTESACARIA  ON CLIENTE."IDCLIENTE" = MOVLOTESACARIA."IDCLIENTE" '
+      'order by MOVLOTESACARIA."DATA"'
     )
     Params = <>
     Left = 488
     Top = 208
-    object zqMovLoteSacariaData: TZDateField
+    object zqMovLoteSacariaNOME: TZRawStringField
       FieldKind = fkData
-      FieldName = 'Data'
+      FieldName = 'NOME'
       Index = 0
       LookupCache = False
       ProviderFlags = [pfInUpdate, pfInWhere]
-      ReadOnly = False
-      Required = True
+      ReadOnly = True
+      Required = False
+      Size = 82
     end
-    object zqMovLoteSacariaIDMovLoteSacaria: TZInt64Field
+    object zqMovLoteSacariaIDMOVLOTESACARIA: TZIntegerField
       FieldKind = fkData
-      FieldName = 'IDMovLoteSacaria'
+      FieldName = 'IDMOVLOTESACARIA'
       Index = 1
       LookupCache = False
       ProviderFlags = [pfInUpdate, pfInWhere]
       ReadOnly = False
       Required = True
     end
-    object zqMovLoteSacariaIDLoteSacaria: TZInt64Field
+    object zqMovLoteSacariaIDLOTESACARIA: TZIntegerField
       FieldKind = fkData
-      FieldName = 'IDLoteSacaria'
+      FieldName = 'IDLOTESACARIA'
       Index = 2
       LookupCache = False
       ProviderFlags = [pfInUpdate, pfInWhere]
       ReadOnly = False
-      Required = True
+      Required = False
     end
-    object zqMovLoteSacariaNome: TZRawStringField
+    object zqMovLoteSacariaDATA: TZDateField
       FieldKind = fkData
-      FieldName = 'Nome'
+      FieldName = 'DATA'
       Index = 3
       LookupCache = False
       ProviderFlags = [pfInUpdate, pfInWhere]
       ReadOnly = False
       Required = False
-      Size = 40
     end
-    object zqMovLoteSacariaHistorico: TZRawStringField
+    object zqMovLoteSacariaHISTORICO: TZRawStringField
       FieldKind = fkData
-      FieldName = 'Historico'
+      FieldName = 'HISTORICO'
       Index = 4
       LookupCache = False
       ProviderFlags = [pfInUpdate, pfInWhere]
       ReadOnly = False
-      Required = True
+      Required = False
       Size = 30
     end
-    object zqMovLoteSacariaQuanEntrada: TZInt64Field
+    object zqMovLoteSacariaQUANENTRADA: TZIntegerField
       FieldKind = fkData
-      FieldName = 'QuanEntrada'
+      FieldName = 'QUANENTRADA'
       Index = 5
       LookupCache = False
       ProviderFlags = [pfInUpdate, pfInWhere]
       ReadOnly = False
       Required = False
     end
-    object zqMovLoteSacariaQuanSaida: TZInt64Field
+    object zqMovLoteSacariaQUANSAIDA: TZIntegerField
       FieldKind = fkData
-      FieldName = 'QuanSaida'
+      FieldName = 'QUANSAIDA'
       Index = 6
       LookupCache = False
       ProviderFlags = [pfInUpdate, pfInWhere]
       ReadOnly = False
       Required = False
     end
-    object zqMovLoteSacariaStatus: TZRawStringField
+    object zqMovLoteSacariaSTATUS: TZRawStringField
       FieldKind = fkData
-      FieldName = 'Status'
+      FieldName = 'STATUS'
       Index = 7
       LookupCache = False
       ProviderFlags = [pfInUpdate, pfInWhere]
       ReadOnly = False
-      Required = True
+      Required = False
       Size = 9
     end
   end
   object ztMovLoteSacaria: TZTable
     Connection = fPrincipal.zConn
-    TableName = 'MovLoteSacaria'
+    TableName = 'MOVLOTESACARIA'
     Left = 176
     Top = 104
-    object ztMovLoteSacariaIDMovLoteSacaria: TZInt64Field
+    object ztMovLoteSacariaIDMOVLOTESACARIA: TZIntegerField
       FieldKind = fkData
-      FieldName = 'IDMovLoteSacaria'
+      FieldName = 'IDMOVLOTESACARIA'
       Index = 0
       LookupCache = False
       ProviderFlags = [pfInUpdate, pfInWhere]
       ReadOnly = False
       Required = True
     end
-    object ztMovLoteSacariaIDLoteSacaria: TZInt64Field
+    object ztMovLoteSacariaIDLOTESACARIA: TZIntegerField
       FieldKind = fkData
-      FieldName = 'IDLoteSacaria'
+      FieldName = 'IDLOTESACARIA'
       Index = 1
       LookupCache = False
       ProviderFlags = [pfInUpdate, pfInWhere]
       ReadOnly = False
-      Required = True
+      Required = False
     end
-    object ztMovLoteSacariaIDCliente: TZInt64Field
+    object ztMovLoteSacariaIDCLIENTE: TZIntegerField
       FieldKind = fkData
-      FieldName = 'IDCliente'
+      FieldName = 'IDCLIENTE'
       Index = 2
       LookupCache = False
       ProviderFlags = [pfInUpdate, pfInWhere]
       ReadOnly = False
-      Required = True
+      Required = False
     end
-    object ztMovLoteSacariaData: TZDateField
+    object ztMovLoteSacariaDATA: TZDateField
       FieldKind = fkData
-      FieldName = 'Data'
+      FieldName = 'DATA'
       Index = 3
       LookupCache = False
       ProviderFlags = [pfInUpdate, pfInWhere]
       ReadOnly = False
-      Required = True
+      Required = False
     end
-    object ztMovLoteSacariaHistorico: TZRawStringField
+    object ztMovLoteSacariaHISTORICO: TZRawStringField
       FieldKind = fkData
-      FieldName = 'Historico'
+      FieldName = 'HISTORICO'
       Index = 4
       LookupCache = False
       ProviderFlags = [pfInUpdate, pfInWhere]
       ReadOnly = False
-      Required = True
+      Required = False
       Size = 30
     end
-    object ztMovLoteSacariaQuanEntrada: TZInt64Field
+    object ztMovLoteSacariaQUANENTRADA: TZIntegerField
       FieldKind = fkData
-      FieldName = 'QuanEntrada'
+      FieldName = 'QUANENTRADA'
       Index = 5
       LookupCache = False
       ProviderFlags = [pfInUpdate, pfInWhere]
       ReadOnly = False
       Required = False
     end
-    object ztMovLoteSacariaQuanSaida: TZInt64Field
+    object ztMovLoteSacariaQUANSAIDA: TZIntegerField
       FieldKind = fkData
-      FieldName = 'QuanSaida'
+      FieldName = 'QUANSAIDA'
       Index = 6
       LookupCache = False
       ProviderFlags = [pfInUpdate, pfInWhere]
       ReadOnly = False
       Required = False
     end
-    object ztMovLoteSacariaStatus: TZRawStringField
+    object ztMovLoteSacariaSTATUS: TZRawStringField
       FieldKind = fkData
-      FieldName = 'Status'
+      FieldName = 'STATUS'
       Index = 7
       LookupCache = False
       ProviderFlags = [pfInUpdate, pfInWhere]
       ReadOnly = False
-      Required = True
+      Required = False
       Size = 9
     end
   end
@@ -1310,8 +1312,8 @@ object fMovLoteSacaria: TfMovLoteSacaria
     Connection = fPrincipal.zConn
     SQL.Strings = (
       'select'
-      '  max("IDMovLoteSacaria") as ID'
-      'from MovLoteSacaria'
+      '  max("IDMOVLOTESACARIA") as ID'
+      'from MOVLOTESACARIA'
     )
     Params = <>
     Left = 176
@@ -1328,41 +1330,40 @@ object fMovLoteSacaria: TfMovLoteSacaria
   end
   object ztLoteSacaria: TZTable
     Connection = fPrincipal.zConn
-    TableName = 'LoteSacaria'
+    TableName = 'LOTESACARIA'
     Left = 696
     Top = 208
-    object ztLoteSacariaIDLoteSacaria: TZInt64Field
+    object ztLoteSacariaIDLOTESACARIA: TZIntegerField
       FieldKind = fkData
-      FieldName = 'IDLoteSacaria'
+      FieldName = 'IDLOTESACARIA'
       Index = 0
       LookupCache = False
       ProviderFlags = [pfInUpdate, pfInWhere]
       ReadOnly = False
       Required = True
     end
-    object ztLoteSacariaNome: TZRawStringField
+    object ztLoteSacariaNOME: TZRawStringField
       FieldKind = fkData
-      FieldName = 'Nome'
+      FieldName = 'NOME'
       Index = 1
       LookupCache = False
       ProviderFlags = [pfInUpdate, pfInWhere]
       ReadOnly = False
-      Required = True
+      Required = False
       Size = 30
     end
-    object ztLoteSacariaSaldo: TZDoubleField
+    object ztLoteSacariaSALDO: TZIntegerField
       FieldKind = fkData
-      FieldName = 'Saldo'
+      FieldName = 'SALDO'
       Index = 2
       LookupCache = False
       ProviderFlags = [pfInUpdate, pfInWhere]
       ReadOnly = False
-      Required = True
-      Precision = 10
+      Required = False
     end
-    object ztLoteSacariaStatus: TZRawStringField
+    object ztLoteSacariaSTATUS: TZRawStringField
       FieldKind = fkData
-      FieldName = 'Status'
+      FieldName = 'STATUS'
       Index = 3
       LookupCache = False
       ProviderFlags = [pfInUpdate, pfInWhere]

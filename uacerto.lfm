@@ -9,7 +9,7 @@ object fAcerto: TfAcerto
   ClientWidth = 928
   Color = clGradientInactiveCaption
   Position = poScreenCenter
-  LCLVersion = '4.6.0.0'
+  LCLVersion = '4.8.0.0'
   OnClose = FormClose
   OnShow = FormShow
   object pnTela: TPanel
@@ -71,40 +71,40 @@ object fAcerto: TfAcerto
             item
               Title.Caption = 'IDContaCorrente'
               Visible = False
-              FieldName = 'IDContaCorrente'
+              FieldName = 'IDCONTACORRENTE'
             end          
             item
               Title.Caption = 'IDAcerto'
               Visible = False
-              FieldName = 'IDAcerto'
+              FieldName = 'IDACERTO'
             end          
             item
               Title.Caption = 'IDCliente'
               Visible = False
-              FieldName = 'IDCliente'
+              FieldName = 'IDCLIENTE'
             end          
             item
               Title.Caption = 'Data'
-              FieldName = 'Data'
+              FieldName = 'DATA'
             end          
             item
               Title.Caption = 'Historico'
-              FieldName = 'Historico'
+              FieldName = 'HISTORICO'
             end          
             item
               Title.Caption = 'Entrada'
               Width = 50
-              FieldName = 'Entrada'
+              FieldName = 'ENTRADA'
             end          
             item
               Title.Caption = 'Saida'
               Width = 50
-              FieldName = 'Saida'
+              FieldName = 'SAIDA'
             end          
             item
               Title.Caption = 'Status'
               Visible = False
-              FieldName = 'Status'
+              FieldName = 'STATUS'
             end>
           DataSource = dsCC
           ReadOnly = True
@@ -138,7 +138,7 @@ object fAcerto: TfAcerto
             DataSource = dsClienteSaldo
             ReadOnly = True
             Alignment = taRightJustify
-            MaxLength = 10
+            MaxLength = 0
             TabOrder = 0
           end
           object Label8: TLabel
@@ -678,40 +678,40 @@ object fAcerto: TfAcerto
             item
               Title.Caption = 'IDContaCorrente'
               Visible = False
-              FieldName = 'IDContaCorrente'
+              FieldName = 'IDCONTACORRENTE'
             end          
             item
               Title.Caption = 'IDAcerto'
               Visible = False
-              FieldName = 'IDAcerto'
+              FieldName = 'IDACERTO'
             end          
             item
               Title.Caption = 'IDCliente'
               Visible = False
-              FieldName = 'IDCliente'
+              FieldName = 'IDCLIENTE'
             end          
             item
               Title.Caption = 'Data'
-              FieldName = 'Data'
+              FieldName = 'DATA'
             end          
             item
               Title.Caption = 'Historico'
-              FieldName = 'Historico'
+              FieldName = 'HISTORICO'
             end          
             item
               Title.Caption = 'Entrada'
               Width = 50
-              FieldName = 'Entrada'
+              FieldName = 'ENTRADA'
             end          
             item
               Title.Caption = 'Saida'
               Width = 50
-              FieldName = 'Saida'
+              FieldName = 'SAIDA'
             end          
             item
               Title.Caption = 'Status'
               Visible = False
-              FieldName = 'Status'
+              FieldName = 'STATUS'
             end>
           DataSource = dsCCAcerto
           ReadOnly = True
@@ -1190,80 +1190,88 @@ object fAcerto: TfAcerto
     SQL.Strings = (
       'select'
       ' *'
-      'from ContaCorrente'
-      'order by "Data"'
+      'from CONTACORRENTE'
+      'order by "DATA"'
     )
     Params = <>
     Left = 304
     Top = 200
-    object zqCCIDContaCorrente: TZInt64Field
+    object zqCCIDCONTACORRENTE: TZIntegerField
       FieldKind = fkData
-      FieldName = 'IDContaCorrente'
+      FieldName = 'IDCONTACORRENTE'
       Index = 0
       LookupCache = False
       ProviderFlags = [pfInUpdate, pfInWhere]
       ReadOnly = False
-      Required = False
+      Required = True
     end
-    object zqCCIDAcerto: TZInt64Field
+    object zqCCIDACERTO: TZIntegerField
       FieldKind = fkData
-      FieldName = 'IDAcerto'
+      FieldName = 'IDACERTO'
       Index = 1
       LookupCache = False
       ProviderFlags = [pfInUpdate, pfInWhere]
       ReadOnly = False
       Required = False
     end
-    object zqCCIDCliente: TZInt64Field
+    object zqCCIDCLIENTE: TZIntegerField
       FieldKind = fkData
-      FieldName = 'IDCliente'
+      FieldName = 'IDCLIENTE'
       Index = 2
       LookupCache = False
       ProviderFlags = [pfInUpdate, pfInWhere]
       ReadOnly = False
-      Required = True
+      Required = False
     end
-    object zqCCData: TZDateField
+    object zqCCDATA: TZDateField
       FieldKind = fkData
-      FieldName = 'Data'
+      FieldName = 'DATA'
       Index = 3
       LookupCache = False
       ProviderFlags = [pfInUpdate, pfInWhere]
       ReadOnly = False
-      Required = True
+      Required = False
     end
-    object zqCCHistorico: TZRawStringField
+    object zqCCHISTORICO: TZRawStringField
       FieldKind = fkData
-      FieldName = 'Historico'
+      FieldName = 'HISTORICO'
       Index = 4
       LookupCache = False
       ProviderFlags = [pfInUpdate, pfInWhere]
       ReadOnly = False
       Required = False
     end
-    object zqCCEntrada: TZDoubleField
+    object zqCCENTRADA: TZBCDField
       FieldKind = fkData
-      FieldName = 'Entrada'
+      FieldName = 'ENTRADA'
       Index = 5
       LookupCache = False
       ProviderFlags = [pfInUpdate, pfInWhere]
       ReadOnly = False
       Required = False
       Precision = 10
+      Currency = False
+      MaxValue = 0
+      MinValue = 0
+      Size = 2
     end
-    object zqCCSaida: TZDoubleField
+    object zqCCSAIDA: TZBCDField
       FieldKind = fkData
-      FieldName = 'Saida'
+      FieldName = 'SAIDA'
       Index = 6
       LookupCache = False
       ProviderFlags = [pfInUpdate, pfInWhere]
       ReadOnly = False
       Required = False
       Precision = 10
+      Currency = False
+      MaxValue = 0
+      MinValue = 0
+      Size = 2
     end
-    object zqCCStatus: TZRawStringField
+    object zqCCSTATUS: TZRawStringField
       FieldKind = fkData
-      FieldName = 'Status'
+      FieldName = 'STATUS'
       Index = 7
       LookupCache = False
       ProviderFlags = [pfInUpdate, pfInWhere]
@@ -1281,7 +1289,7 @@ object fAcerto: TfAcerto
     Connection = fPrincipal.zConn
     SQL.Strings = (
       'select'
-      '   max("IDContaCorrente") as ID'
+      '   max("IDCONTACORRENTE") as ID'
       'from CONTACORRENTE'
     )
     Params = <>
@@ -1311,80 +1319,88 @@ object fAcerto: TfAcerto
     SQL.Strings = (
       'select '
       '   * '
-      'from ContaCorrente'
-      'order by "Data"'
+      'from CONTACORRENTE'
+      'order by "DATA"'
     )
     Params = <>
     Left = 568
     Top = 320
-    object zqCCAcertoIDContaCorrente: TZInt64Field
+    object zqCCAcertoIDCONTACORRENTE: TZIntegerField
       FieldKind = fkData
-      FieldName = 'IDContaCorrente'
+      FieldName = 'IDCONTACORRENTE'
       Index = 0
       LookupCache = False
       ProviderFlags = [pfInUpdate, pfInWhere]
       ReadOnly = False
-      Required = False
+      Required = True
     end
-    object zqCCAcertoIDAcerto: TZInt64Field
+    object zqCCAcertoIDACERTO: TZIntegerField
       FieldKind = fkData
-      FieldName = 'IDAcerto'
+      FieldName = 'IDACERTO'
       Index = 1
       LookupCache = False
       ProviderFlags = [pfInUpdate, pfInWhere]
       ReadOnly = False
       Required = False
     end
-    object zqCCAcertoIDCliente: TZInt64Field
+    object zqCCAcertoIDCLIENTE: TZIntegerField
       FieldKind = fkData
-      FieldName = 'IDCliente'
+      FieldName = 'IDCLIENTE'
       Index = 2
       LookupCache = False
       ProviderFlags = [pfInUpdate, pfInWhere]
       ReadOnly = False
-      Required = True
+      Required = False
     end
-    object zqCCAcertoData: TZDateField
+    object zqCCAcertoDATA: TZDateField
       FieldKind = fkData
-      FieldName = 'Data'
+      FieldName = 'DATA'
       Index = 3
       LookupCache = False
       ProviderFlags = [pfInUpdate, pfInWhere]
       ReadOnly = False
-      Required = True
+      Required = False
     end
-    object zqCCAcertoHistorico: TZRawStringField
+    object zqCCAcertoHISTORICO: TZRawStringField
       FieldKind = fkData
-      FieldName = 'Historico'
+      FieldName = 'HISTORICO'
       Index = 4
       LookupCache = False
       ProviderFlags = [pfInUpdate, pfInWhere]
       ReadOnly = False
       Required = False
     end
-    object zqCCAcertoEntrada: TZDoubleField
+    object zqCCAcertoENTRADA: TZBCDField
       FieldKind = fkData
-      FieldName = 'Entrada'
+      FieldName = 'ENTRADA'
       Index = 5
       LookupCache = False
       ProviderFlags = [pfInUpdate, pfInWhere]
       ReadOnly = False
       Required = False
       Precision = 10
+      Currency = False
+      MaxValue = 0
+      MinValue = 0
+      Size = 2
     end
-    object zqCCAcertoSaida: TZDoubleField
+    object zqCCAcertoSAIDA: TZBCDField
       FieldKind = fkData
-      FieldName = 'Saida'
+      FieldName = 'SAIDA'
       Index = 6
       LookupCache = False
       ProviderFlags = [pfInUpdate, pfInWhere]
       ReadOnly = False
       Required = False
       Precision = 10
+      Currency = False
+      MaxValue = 0
+      MinValue = 0
+      Size = 2
     end
-    object zqCCAcertoStatus: TZRawStringField
+    object zqCCAcertoSTATUS: TZRawStringField
       FieldKind = fkData
-      FieldName = 'Status'
+      FieldName = 'STATUS'
       Index = 7
       LookupCache = False
       ProviderFlags = [pfInUpdate, pfInWhere]
@@ -1402,7 +1418,7 @@ object fAcerto: TfAcerto
     Connection = fPrincipal.zConn
     SQL.Strings = (
       'select'
-      '   max("IDAcerto") as ID'
+      '   max("IDACERTO") as ID'
       'from ACERTO'
     )
     Params = <>
@@ -1428,52 +1444,56 @@ object fAcerto: TfAcerto
     TableName = 'CLIENTE'
     Left = 304
     Top = 272
-    object ztClienteSaldoIDCliente: TLongintField
+    object ztClienteSaldoIDCLIENTE: TZIntegerField
       FieldKind = fkData
-      FieldName = 'IDCliente'
+      FieldName = 'IDCLIENTE'
       Index = 0
       LookupCache = False
       ProviderFlags = [pfInUpdate, pfInWhere]
       ReadOnly = False
       Required = True
     end
-    object ztClienteSaldoSaldoContaCorrente: TFloatField
+    object ztClienteSaldoSALDOCONTACORRENTE: TZBCDField
       FieldKind = fkData
-      FieldName = 'SaldoContaCorrente'
+      FieldName = 'SALDOCONTACORRENTE'
       Index = 1
       LookupCache = False
       ProviderFlags = [pfInUpdate, pfInWhere]
       ReadOnly = False
       Required = False
       Precision = 10
+      Currency = False
+      MaxValue = 0
+      MinValue = 0
+      Size = 2
     end
   end
   object zqClienteBox: TZQuery
     Connection = fPrincipal.zConn
     SQL.Strings = (
       'select'
-      '  "IDPrincipal",'
-      '  "Razao",'
-      '  max("SaldoContaCorrente") as SaldoCC'
-      'from Cliente'
-      'group by "IDPrincipal", "Razao"'
-      'order by "Razao"'
+      '  "IDPRINCIPAL",'
+      '  "RAZAO",'
+      '  max("SALDOCONTACORRENTE") as SaldoCC'
+      'from CLIENTE'
+      'group by "IDPRINCIPAL", "RAZAO"'
+      'order by "RAZAO"'
     )
     Params = <>
     Left = 208
     Top = 8
-    object zqClienteBoxIDPrincipal: TZIntegerField
+    object zqClienteBoxIDPRINCIPAL: TZIntegerField
       FieldKind = fkData
-      FieldName = 'IDPrincipal'
+      FieldName = 'IDPRINCIPAL'
       Index = 0
       LookupCache = False
       ProviderFlags = [pfInUpdate, pfInWhere]
       ReadOnly = False
       Required = False
     end
-    object zqClienteBoxRazao: TZRawStringField
+    object zqClienteBoxRAZAO: TZRawStringField
       FieldKind = fkData
-      FieldName = 'Razao'
+      FieldName = 'RAZAO'
       Index = 1
       LookupCache = False
       ProviderFlags = [pfInUpdate, pfInWhere]
@@ -1481,7 +1501,7 @@ object fAcerto: TfAcerto
       Required = False
       Size = 40
     end
-    object zqClienteBoxSALDOCC: TZDoubleField
+    object zqClienteBoxSALDOCC: TZFMTBCDField
       FieldKind = fkData
       FieldName = 'SALDOCC'
       Index = 2
@@ -1489,7 +1509,10 @@ object fAcerto: TfAcerto
       ProviderFlags = [pfInUpdate, pfInWhere]
       ReadOnly = True
       Required = False
-      Precision = 2
+      Currency = False
+      MaxValue = '0'
+      MinValue = '0'
+      Size = 2
     end
   end
   object zqAcertoSaldo: TZQuery
@@ -1498,42 +1521,46 @@ object fAcerto: TfAcerto
     SQL.Strings = (
       'select'
       '   *'
-      'From Acerto'
+      'From ACERTO'
     )
     Params = <>
     Left = 568
     Top = 257
-    object zqAcertoSaldoIDAcerto: TZIntegerField
+    object zqAcertoSaldoIDACERTO: TZIntegerField
       FieldKind = fkData
-      FieldName = 'IDAcerto'
+      FieldName = 'IDACERTO'
       Index = 0
       LookupCache = False
       ProviderFlags = [pfInUpdate, pfInWhere]
       ReadOnly = False
       Required = True
     end
-    object zqAcertoSaldoIDCliente: TZIntegerField
+    object zqAcertoSaldoIDCLIENTE: TZIntegerField
       FieldKind = fkData
-      FieldName = 'IDCliente'
+      FieldName = 'IDCLIENTE'
       Index = 1
       LookupCache = False
       ProviderFlags = [pfInUpdate, pfInWhere]
       ReadOnly = False
-      Required = True
+      Required = False
     end
-    object zqAcertoSaldoSaldoAcerto: TZDoubleField
+    object zqAcertoSaldoSALDOACERTO: TZBCDField
       FieldKind = fkData
-      FieldName = 'SaldoAcerto'
+      FieldName = 'SALDOACERTO'
       Index = 2
       LookupCache = False
       ProviderFlags = [pfInUpdate, pfInWhere]
       ReadOnly = False
       Required = False
       Precision = 10
+      Currency = False
+      MaxValue = 0
+      MinValue = 0
+      Size = 2
     end
-    object zqAcertoSaldoStatus: TZRawStringField
+    object zqAcertoSaldoSTATUS: TZRawStringField
       FieldKind = fkData
-      FieldName = 'Status'
+      FieldName = 'STATUS'
       Index = 3
       LookupCache = False
       ProviderFlags = [pfInUpdate, pfInWhere]
