@@ -119,14 +119,12 @@ begin
 
 procedure TfMovLoteSacaria.btEntradaClick(Sender: TObject);
 begin
-  fPrincipal.zConn.StartTransaction;
   Botao:='Entrada';
   EditarTrue;
 end;
 
 procedure TfMovLoteSacaria.btSaidaClick(Sender: TObject);
 begin
-  fPrincipal.zConn.StartTransaction;
   Botao:='Saida';
   EditarTrue;
 end;
@@ -149,6 +147,7 @@ begin
   if not(SalvarTrue) then Exit;
   try
   zqNovoIDMovLoteSacaria.Refresh;
+  fPrincipal.zConn.StartTransaction;
   ztMovLoteSacaria.Append;
   ztMovLoteSacariaIDMovLoteSacaria.Value:=zqNovoIDMovLoteSacariaID.Value+1;
   ztMovLoteSacariaIDLoteSacaria.Value:=dbcDoLoteSacaria.KeyValue;
@@ -282,8 +281,6 @@ end;
 procedure TfMovLoteSacaria.FormClose(Sender: TObject;
   var CloseAction: TCloseAction);
 begin
-  if ztMovLoteSacaria.State in [dsInsert, dsEdit] then
-     fPrincipal.zConn.Rollback;
   ztMovLoteSacaria.Active:=False;
   zqNovoIDMovLoteSacaria.Active:=False;
   ztLoteSacaria.Active:=False;

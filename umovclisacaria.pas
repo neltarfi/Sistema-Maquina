@@ -134,14 +134,12 @@ begin
 
 procedure TfMovCliSacaria.btEntradaClick(Sender: TObject);
 begin
-  fPrincipal.zConn.StartTransaction;
   Botao:='Entrada';
   EditarTrue;
 end;
 
 procedure TfMovCliSacaria.btSaidaClick(Sender: TObject);
 begin
-  fPrincipal.zConn.StartTransaction;
   Botao:='Saida';
   EditarTrue;
 end;
@@ -169,6 +167,7 @@ begin
   ztMovLoteSacaria.Active:=True;
   zqNovoIDMovLoteSacaria.Active:=True;
   zqNovoIDMovLoteSacaria.Refresh;
+  fPrincipal.zConn.StartTransaction;
   ztMovLoteSacaria.Append;
   ztMovLoteSacariaIDMovLoteSacaria.Value:=zqNovoIDMovLoteSacariaID.Value+1;
   ztMovLoteSacariaIDLoteSacaria.Value:=dbcParaLoteSacaria.KeyValue;
@@ -331,8 +330,6 @@ end;
 procedure TfMovCliSacaria.FormClose(Sender: TObject;
   var CloseAction: TCloseAction);
 begin
-  if ztMovLoteSacaria.State in [dsinsert,dsedit] then
-     fPrincipal.zConn.Rollback;;
   FormCadastroSomenteLeitura:=False;
 end;
 

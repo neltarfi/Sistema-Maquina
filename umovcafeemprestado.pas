@@ -156,9 +156,6 @@ end;
 
 procedure TfMovCafeEmprestado.btSairClick(Sender: TObject);
 begin
-  zqCliente.Active:=False;
-  zqParaLoteLimpo.Active:=False;
-  zqMovCafeEmprestado.Active:=False;
   Close;
 end;
 
@@ -361,6 +358,9 @@ end;
 procedure TfMovCafeEmprestado.FormClose(Sender: TObject;
   var CloseAction: TCloseAction);
 begin
+  zqCliente.Active:=False;
+  zqParaLoteLimpo.Active:=False;
+  zqMovCafeEmprestado.Active:=False;
   FormCadastroSomenteLeitura:=False;
 end;
 
