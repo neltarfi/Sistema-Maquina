@@ -70,7 +70,6 @@ begin
         SistemaIni.WriteString('ConexaoBD', 'Servidor', 'localhost');
         SistemaIni.WriteString('ConexaoBD', 'LinuxPath', '');
         SistemaIni.WriteString('ConexaoBD', 'WindowsPath', Caminho);
-        SistemaIni.WriteInteger('Variaveis', 'AliquotaFundoRural', 0);
         SistemaIni.Free;
   end;
   if not((Copy(GetCurrentDir,2,1)=':')or (Copy(GetCurrentDir,2,1)='\'))and
@@ -87,11 +86,11 @@ begin
   zConn.Disconnect;
   if ((Copy(GetCurrentDir,2,1)=':')or (Copy(GetCurrentDir,2,1)='\')) then begin
      SistemaIni := TIniFile.Create(GetCurrentDir+'\BaseDeDados\Sistema.ini');
-     zConn.Database:=SistemaIni.ReadString('ConexaoDB','WindowsPath','');
+     zConn.Database:=SistemaIni.ReadString('ConexaoBD','WindowsPath','');
   end
   else begin
      SistemaIni := TIniFile.Create(GetCurrentDir+'/BaseDeDados/Sistema.ini');
-     zConn.Database:=SistemaIni.ReadString('ConexaoDB','LinuxPath','');
+     zConn.Database:=SistemaIni.ReadString('ConexaoBD','LinuxPath','');
   end;
   zConn.HostName:= SistemaIni.ReadString('ConexaoBD', 'Servidor', '');
   zConn.Connect;

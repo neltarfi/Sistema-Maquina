@@ -7,7 +7,7 @@
       <Unit>
         <Filename Value="SistemaMaquina.lpr"/>
         <IsPartOfProject Value="True"/>
-        <UsageCount Value="178"/>
+        <UsageCount Value="181"/>
       </Unit>
       <Unit>
         <Filename Value="uprincipal.pas"/>
@@ -17,9 +17,9 @@
         <ResourceBaseClass Value="Form"/>
         <UnitName Value="uPrincipal"/>
         <IsVisibleTab Value="True"/>
-        <TopLine Value="80"/>
-        <CursorPos X="58" Y="93"/>
-        <UsageCount Value="178"/>
+        <TopLine Value="79"/>
+        <CursorPos X="71" Y="82"/>
+        <UsageCount Value="181"/>
         <Loaded Value="True"/>
         <LoadedDesigner Value="True"/>
       </Unit>
@@ -30,7 +30,7 @@
         <EditorIndex Value="-1"/>
         <TopLine Value="284"/>
         <CursorPos X="5" Y="299"/>
-        <UsageCount Value="178"/>
+        <UsageCount Value="181"/>
       </Unit>
       <Unit>
         <Filename Value="ucadcliente.pas"/>
@@ -42,7 +42,7 @@
         <EditorIndex Value="-1"/>
         <TopLine Value="88"/>
         <CursorPos X="22" Y="88"/>
-        <UsageCount Value="178"/>
+        <UsageCount Value="181"/>
       </Unit>
       <Unit>
         <Filename Value="ueditacliente.pas"/>
@@ -54,7 +54,7 @@
         <EditorIndex Value="-1"/>
         <TopLine Value="178"/>
         <CursorPos X="17" Y="191"/>
-        <UsageCount Value="178"/>
+        <UsageCount Value="181"/>
       </Unit>
       <Unit>
         <Filename Value="ucadlotelimpo.pas"/>
@@ -66,7 +66,7 @@
         <EditorIndex Value="-1"/>
         <TopLine Value="70"/>
         <CursorPos X="18" Y="87"/>
-        <UsageCount Value="178"/>
+        <UsageCount Value="181"/>
       </Unit>
       <Unit>
         <Filename Value="ucadlotecoco.pas"/>
@@ -78,7 +78,7 @@
         <EditorIndex Value="4"/>
         <TopLine Value="311"/>
         <CursorPos X="42" Y="311"/>
-        <UsageCount Value="178"/>
+        <UsageCount Value="181"/>
         <Loaded Value="True"/>
         <LoadedDesigner Value="True"/>
       </Unit>
@@ -92,7 +92,7 @@
         <EditorIndex Value="3"/>
         <TopLine Value="572"/>
         <CursorPos X="3" Y="589"/>
-        <UsageCount Value="178"/>
+        <UsageCount Value="181"/>
         <Loaded Value="True"/>
         <LoadedDesigner Value="True"/>
       </Unit>
@@ -106,7 +106,7 @@
         <EditorIndex Value="-1"/>
         <TopLine Value="126"/>
         <CursorPos X="3" Y="330"/>
-        <UsageCount Value="178"/>
+        <UsageCount Value="181"/>
       </Unit>
       <Unit>
         <Filename Value="umovcafeemprestado.pas"/>
@@ -118,7 +118,7 @@
         <EditorIndex Value="-1"/>
         <TopLine Value="128"/>
         <CursorPos X="3" Y="130"/>
-        <UsageCount Value="178"/>
+        <UsageCount Value="181"/>
       </Unit>
       <Unit>
         <Filename Value="uromentcoco.pas"/>
@@ -130,7 +130,7 @@
         <EditorIndex Value="-1"/>
         <TopLine Value="564"/>
         <CursorPos X="28" Y="576"/>
-        <UsageCount Value="178"/>
+        <UsageCount Value="181"/>
       </Unit>
       <Unit>
         <Filename Value="umovlotesacaria.pas"/>
@@ -142,7 +142,7 @@
         <EditorIndex Value="-1"/>
         <TopLine Value="141"/>
         <CursorPos X="37" Y="150"/>
-        <UsageCount Value="178"/>
+        <UsageCount Value="181"/>
       </Unit>
       <Unit>
         <Filename Value="umovclisacaria.pas"/>
@@ -154,7 +154,7 @@
         <EditorIndex Value="-1"/>
         <TopLine Value="161"/>
         <CursorPos X="37" Y="170"/>
-        <UsageCount Value="178"/>
+        <UsageCount Value="181"/>
       </Unit>
       <Unit>
         <Filename Value="umovcoco.pas"/>
@@ -164,9 +164,9 @@
         <ResourceBaseClass Value="Form"/>
         <UnitName Value="uMovCoco"/>
         <EditorIndex Value="1"/>
-        <TopLine Value="83"/>
+        <TopLine Value="73"/>
         <CursorPos X="6" Y="81"/>
-        <UsageCount Value="102"/>
+        <UsageCount Value="105"/>
         <Loaded Value="True"/>
         <LoadedDesigner Value="True"/>
       </Unit>
@@ -180,7 +180,7 @@
         <EditorIndex Value="2"/>
         <TopLine Value="275"/>
         <CursorPos X="94" Y="300"/>
-        <UsageCount Value="80"/>
+        <UsageCount Value="83"/>
         <Loaded Value="True"/>
         <LoadedDesigner Value="True"/>
       </Unit>
@@ -415,13 +415,13 @@
       <Unit>
         <Filename Value="/home/nelson/.lazarus/onlinepackagemanager/packages/zeosdbo/src/dbc/ZDbcFirebirdInterbase.pas"/>
         <EditorIndex Value="-1"/>
-        <TopLine Value="2037"/>
+        <TopLine Value="2038"/>
         <CursorPos Y="2042"/>
         <UsageCount Value="10"/>
         <DefaultSyntaxHighlighter Value="Delphi"/>
       </Unit>
     </Units>
-    <JumpHistory HistoryIndex="21">
+    <JumpHistory HistoryIndex="25">
       <Position>
         <Filename Value="umovcoco.pas"/>
         <Caret Line="44" Column="46" TopLine="42"/>
@@ -509,6 +509,22 @@
       <Position>
         <Filename Value="uprincipal.pas"/>
         <Caret Line="64" Column="49" TopLine="58"/>
+      </Position>
+      <Position>
+        <Filename Value="uprincipal.pas"/>
+        <Caret Line="87" TopLine="80"/>
+      </Position>
+      <Position>
+        <Filename Value="uprincipal.pas"/>
+        <Caret Line="88" Column="12" TopLine="79"/>
+      </Position>
+      <Position>
+        <Filename Value="uprincipal.pas"/>
+        <Caret Line="74" Column="9" TopLine="63"/>
+      </Position>
+      <Position>
+        <Filename Value="uprincipal.pas"/>
+        <Caret Line="84" Column="61" TopLine="82"/>
       </Position>
     </JumpHistory>
     <RunParams>
