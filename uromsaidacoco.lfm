@@ -239,7 +239,7 @@ object fRomSaidaCoco: TfRomSaidaCoco
         ChildSizing.ShrinkVertical = crsScaleChilds
         ChildSizing.Layout = cclLeftToRightThenTopToBottom
         ChildSizing.ControlsPerLine = 2
-        ClientHeight = 23
+        ClientHeight = 8
         ClientWidth = 164
         Columns = 2
         Font.Style = [fsBold]
@@ -401,7 +401,7 @@ object fRomSaidaCoco: TfRomSaidaCoco
           Title.Caption = 'ValorTotal'
           FieldName = 'ValorTotal'
         end>
-      DataSource = dsmItensLoteCoco
+      DataSource = dsmLoteCocoItens
       ReadOnly = True
       TabOrder = 4
     end
@@ -419,7 +419,7 @@ object fRomSaidaCoco: TfRomSaidaCoco
       ChildSizing.ControlsPerLine = 100
       ClientHeight = 25
       ClientWidth = 241
-      DataSource = dsmItensLoteCoco
+      DataSource = dsmLoteCocoItens
       Options = []
       TabOrder = 5
       VisibleButtons = [nbFirst, nbPrior, nbNext, nbLast]
@@ -637,12 +637,12 @@ object fRomSaidaCoco: TfRomSaidaCoco
     Left = 24
     Top = 424
   end
-  object dsmItensLoteCoco: TDataSource
-    DataSet = mItensLoteCoco
+  object dsmLoteCocoItens: TDataSource
+    DataSet = mLoteCocoItens
     Left = 344
     Top = 511
   end
-  object mItensLoteCoco: TMemDataset
+  object mLoteCocoItens: TMemDataset
     FieldDefs = <    
       item
         Name = 'IDLoteCoco'
@@ -674,7 +674,7 @@ object fRomSaidaCoco: TfRomSaidaCoco
       end>
     Left = 206
     Top = 511
-    object mItensLoteCocoIDLoteCoco: TLongintField
+    object mLoteCocoItensIDLoteCoco: TLongintField
       FieldKind = fkData
       FieldName = 'IDLoteCoco'
       Index = 0
@@ -683,7 +683,7 @@ object fRomSaidaCoco: TfRomSaidaCoco
       ReadOnly = False
       Required = False
     end
-    object mItensLoteCocoPesoSemValor: TLongintField
+    object mLoteCocoItensPesoSemValor: TLongintField
       FieldKind = fkData
       FieldName = 'PesoSemValor'
       Index = 1
@@ -692,7 +692,7 @@ object fRomSaidaCoco: TfRomSaidaCoco
       ReadOnly = False
       Required = False
     end
-    object mItensLoteCocoPesoComValor: TLongintField
+    object mLoteCocoItensPesoComValor: TLongintField
       FieldKind = fkData
       FieldName = 'PesoComValor'
       Index = 2
@@ -701,7 +701,7 @@ object fRomSaidaCoco: TfRomSaidaCoco
       ReadOnly = False
       Required = False
     end
-    object mItensLoteCocoRenda: TLongintField
+    object mLoteCocoItensRenda: TLongintField
       FieldKind = fkData
       FieldName = 'Renda'
       Index = 3
@@ -710,7 +710,7 @@ object fRomSaidaCoco: TfRomSaidaCoco
       ReadOnly = False
       Required = False
     end
-    object mItensLoteCocoSacoKg: TStringField
+    object mLoteCocoItensSacoKg: TStringField
       FieldKind = fkData
       FieldName = 'SacoKg'
       Index = 4
@@ -720,7 +720,7 @@ object fRomSaidaCoco: TfRomSaidaCoco
       Required = False
       Size = 0
     end
-    object mItensLoteCocoPreco: TCurrencyField
+    object mLoteCocoItensPreco: TCurrencyField
       FieldKind = fkData
       FieldName = 'Preco'
       Index = 5
@@ -730,7 +730,7 @@ object fRomSaidaCoco: TfRomSaidaCoco
       Required = False
       Precision = 2
     end
-    object mItensLoteCocoValorTotal: TCurrencyField
+    object mLoteCocoItensValorTotal: TCurrencyField
       FieldKind = fkData
       FieldName = 'ValorTotal'
       Index = 6

@@ -26,7 +26,7 @@ type
     edtPesoComValor: TEdit;
     edtPesoSemValor: TEdit;
     edtRenda: TEdit;
-    dsmItensLoteCoco: TDataSource;
+    dsmLoteCocoItens: TDataSource;
     dbcCliente: TDBLookupComboBox;
     DBDateEdit1: TDBDateEdit;
     DBEdit1: TDBEdit;
@@ -49,14 +49,14 @@ type
     Label8: TLabel;
     Label9: TLabel;
     edtValorTotal: TMaskEdit;
-    mItensLoteCoco: TMemDataset;
-    mItensLoteCocoIDLoteCoco: TLongintField;
-    mItensLoteCocoPesoComValor: TLongintField;
-    mItensLoteCocoPesoSemValor: TLongintField;
-    mItensLoteCocoPreco: TCurrencyField;
-    mItensLoteCocoRenda: TLongintField;
-    mItensLoteCocoSacoKg: TStringField;
-    mItensLoteCocoValorTotal: TCurrencyField;
+    mLoteCocoItens: TMemDataset;
+    mLoteCocoItensIDLoteCoco: TLongintField;
+    mLoteCocoItensPesoComValor: TLongintField;
+    mLoteCocoItensPesoSemValor: TLongintField;
+    mLoteCocoItensPreco: TCurrencyField;
+    mLoteCocoItensRenda: TLongintField;
+    mLoteCocoItensSacoKg: TStringField;
+    mLoteCocoItensValorTotal: TCurrencyField;
     Panel1: TPanel;
     PanelAdicionaItens: TPanel;
     Panel3: TPanel;
@@ -204,10 +204,10 @@ begin
   Panel1.Enabled:=True;
   btTransfereSaldo.Enabled:=True;
   AtualizaStatusBotao;
-  mItensLoteCoco.Append;
-  mItensLoteCocoIDLoteCoco.Value:=ztLoteCocoIDLoteCoco.Value;
+  mLoteCocoItens.Append;
+  mLoteCocoItensIDLoteCoco.Value:=ztLoteCocoIDLoteCoco.Value;
 
-  mItensLoteCoco.Post;
+  mLoteCocoItens.Post;
   AtualizaStatusBotao;
   PanelAdicionaItens.Enabled:=False;
   LimpaItens;
@@ -230,7 +230,7 @@ begin
       ztCliente.Close;
       ztLoteCoco.Close;
       ztRomSaidaCoco.Close;
-      mItensLoteCoco.Close;
+      mLoteCocoItens.Close;
 end;
 
 procedure TfRomSaidaCoco.FormShow(Sender: TObject);
@@ -238,7 +238,7 @@ begin
   ztCliente.Open;
   ztLoteCoco.Open;
   ztRomSaidaCoco.Open;
-  mItensLoteCoco.Open;
+  mLoteCocoItens.Open;
   case FormOperacao of
        'InserirRegistro': begin
                                AtualizaStatusBotao;

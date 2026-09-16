@@ -5,7 +5,7 @@ unit uPrincipal;
 interface
 
 uses
-  Classes, SysUtils, Forms, Controls, Graphics, Dialogs, Menus, ZConnection;
+  Classes, SysUtils, Forms, Controls, Graphics, Dialogs, Menus, ZConnection, IniFiles;
 
 type
 
@@ -46,6 +46,8 @@ type
   end;
 
 var
+  SistemaIni: TIniFile;
+  Caminho: String;
   fPrincipal: TfPrincipal;
   CaminhoDB:string;
   FormCadastroSomenteLeitura:Boolean;//não deixa editar o segundo formulario aberto
@@ -61,14 +63,40 @@ uses uCadCliente, uCadLoteLimpo, uCadLoteCoco, uMovLoteLimpo, uMovCoco,
 
 procedure TfPrincipal.FormShow(Sender: TObject);
 begin
-  if ((Copy(GetCurrentDir,2,1)=':')or (Copy(GetCurrentDir,2,1)='\')) then
-     CaminhoDB:=GetCurrentDir+'\Base De Dados\DBSistemaMaquina.fdb'
-  else
-     CaminhoDB:=GetCurrentDir+'/Base De Dados/DBSistemaMaquina.fdb';
-     zConn.Disconnect;
-     zConn.Database:=CaminhoDB;
-     zConn.Connect;
-     FormCadastroSomenteLeitura:=False;
+  if ((Copy(GetCurrentDir,2,1)=':')or (Copy(GetCurrentDir,2,1)='\'))and
+     not(FileExists(GetCurrentDir+'\BaseDeDados\Sistema.ini')) then begin
+        SistemaIni := TIniFile.Create(GetCurrentDir+'\BaseDeDados\Sistema.ini');
+        Caminho :=GetCurrentDir+'\BaseDeDados\DBSistemaMaquina.fdb';
+        SistemaIni.WriteString('ConexaoBD', 'Servidor', 'localhost');
+        SistemaIni.WriteString('ConexaoBD', 'LinuxPath', '');
+        SistemaIni.WriteString('ConexaoBD', 'WindowsPath', Caminho);
+        SistemaIni.WriteInteger('Variaveis', 'AliquotaFundoRural', 0);
+        SistemaIni.Free;
+  end;
+  if not((Copy(GetCurrentDir,2,1)=':')or (Copy(GetCurrentDir,2,1)='\'))and
+     not(FileExists(GetCurrentDir+'/BaseDeDados/Sistema.ini')) then begin
+        SistemaIni := TIniFile.Create(GetCurrentDir+'/BaseDeDados/Sistema.ini');
+        Caminho :=GetCurrentDir+'/BaseDeDados/DBSistemaMaquina.fdb';
+        SistemaIni.WriteString('ConexaoBD', 'Servidor', 'localhost');
+        SistemaIni.WriteString('ConexaoBD', 'LinuxPath', Caminho);
+        SistemaIni.WriteString('ConexaoBD', 'WindowsPath', '');
+        SistemaIni.WriteInteger('Variaveis', 'AliquotaFundoRural', 0);
+        SistemaIni.Free;
+   end;
+
+  zConn.Disconnect;
+  if ((Copy(GetCurrentDir,2,1)=':')or (Copy(GetCurrentDir,2,1)='\')) then begin
+     SistemaIni := TIniFile.Create(GetCurrentDir+'\BaseDeDados\Sistema.ini');
+     zConn.Database:=SistemaIni.ReadString('ConexaoDB','WindowsPath','');
+  end
+  else begin
+     SistemaIni := TIniFile.Create(GetCurrentDir+'/BaseDeDados/Sistema.ini');
+     zConn.Database:=SistemaIni.ReadString('ConexaoDB','LinuxPath','');
+  end;
+  zConn.HostName:= SistemaIni.ReadString('ConexaoBD', 'Servidor', '');
+  zConn.Connect;
+  SistemaIni.Free;
+  FormCadastroSomenteLeitura:=False;
 end;
 
 procedure TfPrincipal.mnMovCocoClick(Sender: TObject);

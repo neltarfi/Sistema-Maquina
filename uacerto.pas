@@ -216,7 +216,8 @@ begin
        pnFiltroCliente.Enabled:=True;
        zqAcertoSaldo.Filter:='(IDCliente = '+QuotedStr(intTostr(dbcCliente.KeyValue))+')';
        zqAcertoSaldo.Filtered:=True;
-   end else begin
+   end
+   else begin
        pnFiltroCliente.Enabled:=False;
        rgFiltroCliente.ItemIndex:=1;
        zqAcertoSaldo.Filter:='IDCliente > 0';
@@ -516,18 +517,20 @@ procedure TfAcerto.dbcClienteChange(Sender: TObject);
 begin
     if (dbcCliente.KeyValue<1) then begin
        zqAcertoSaldo.Filtered:=False;
-       zqAcertoSaldo.Filter:='(IDCliente = 0)';  // Se cliente for zero, fica
-       zqAcertoSaldo.Filtered:=True;             //somente o acerto zero .
+       zqAcertoSaldo.Filter:='(IDCliente >= 0)';  // Se cliente for zero
+       zqAcertoSaldo.Filtered:=True;
        EditarFalseCC;
        pnCCBotaoEditar.Enabled:=False;
        pnAcertoBotao.Enabled:=False;
-    end else begin
+    end
+    else begin
        zqAcertoSaldo.Filtered:=False;
        if (rgFiltroAcerto.ItemIndex=1)then begin
            rgFiltroCliente.ItemIndex:=1;         // Não filtra, fica todos os
            zqAcertoSaldo.Filter:='(IDCliente > 0)';   //acertos menos o zero.
            zqAcertoSaldo.Filtered:=True;
-       end else begin
+       end
+       else begin
            zqAcertoSaldo.Filter:='(IDCliente = '+QuotedStr(intToStr(dbcCliente.KeyValue))+')';
            zqAcertoSaldo.Filtered:=True     // Fica apenas os acertos do cliente celecionado.
        end;
@@ -582,7 +585,8 @@ begin
   if (dbcCliente.KeyValue < 1)then begin
        zqCC.Filter:='(IDCliente = 0)';
        zqCCAcerto.Filter:='(IDCliente = 0)';
-  end else begin
+  end
+  else begin
        zqCC.Filter:='((IDAcerto = 0) and (Status <> '+QuotedStr('Cancelado')+
           ') and (IDCliente = '+QuotedStr(intTostr(dbcCliente.KeyValue))+'))';
        zqCCAcerto.Filter:='(IDAcerto <> 0) and ((IDAcerto = '+ QuotedStr(intToStr(zqAcertoSaldoIDAcerto.Value)) +

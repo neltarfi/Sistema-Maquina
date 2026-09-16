@@ -73,8 +73,7 @@ object fPrincipal: TfPrincipal
     )
     TransactIsolationLevel = tiReadCommitted
     DisableSavepoints = False
-    HostName = 'localhost'
-    Port = 0
+    Port = 3050
     User = 'SYSDBA'
     Password = '123'
     Protocol = 'firebird'

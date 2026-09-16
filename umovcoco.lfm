@@ -9,7 +9,7 @@ object fMovCoco: TfMovCoco
   ClientWidth = 695
   Color = clGradientActiveCaption
   Position = poScreenCenter
-  LCLVersion = '4.6.0.0'
+  LCLVersion = '4.8.0.0'
   OnClose = FormClose
   OnShow = FormShow
   object DBGrid1: TDBGrid

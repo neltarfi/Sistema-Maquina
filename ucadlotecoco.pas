@@ -27,11 +27,11 @@ type
     dbeBica: TDBEdit;
     dbeCafeBom: TDBEdit;
     dbeEscolha: TDBEdit;
+    dbmObs: TDBMemo;
     dsLoteLimpo: TDataSource;
     dbcTulha: TDBComboBox;
     dbeID: TDBEdit;
     dbeNome: TDBEdit;
-    dbeObs: TDBEdit;
     dbeSafra: TDBEdit;
     dsLoteCoco: TDataSource;
     dbgLoteCoco: TDBGrid;

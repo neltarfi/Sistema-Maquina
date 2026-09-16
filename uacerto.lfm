@@ -202,9 +202,9 @@ object fAcerto: TfAcerto
           TabOrder = 0
           object dbDataCC: TDBDateTimePicker
             Left = 3
-            Height = 22
+            Height = 24
             Top = 15
-            Width = 97
+            Width = 99
             DataField = 'Data'
             DataSource = dsCC
             ReadOnly = False
@@ -316,8 +316,8 @@ object fAcerto: TfAcerto
           Height = 34
           Top = 96
           Width = 166
-          ClientHeight = 34
-          ClientWidth = 166
+          ClientHeight = 30
+          ClientWidth = 162
           ParentBackground = False
           TabOrder = 1
           object btNovoCC: TBitBtn
@@ -463,8 +463,8 @@ object fAcerto: TfAcerto
           Height = 34
           Top = 96
           Width = 184
-          ClientHeight = 34
-          ClientWidth = 184
+          ClientHeight = 30
+          ClientWidth = 180
           ParentBackground = False
           TabOrder = 2
           object btCancelarCC: TBitBtn
@@ -786,20 +786,20 @@ object fAcerto: TfAcerto
         Top = 497
         Width = 433
         Anchors = []
-        ClientHeight = 134
-        ClientWidth = 433
+        ClientHeight = 130
+        ClientWidth = 429
         Color = clGradientActiveCaption
         ParentBackground = False
         ParentColor = False
         TabOrder = 1
         object pnAcertoBotao: TPanel
-          Left = 23
+          Left = 21
           Height = 73
-          Top = 11
+          Top = 10
           Width = 282
           Anchors = []
-          ClientHeight = 73
-          ClientWidth = 282
+          ClientHeight = 69
+          ClientWidth = 278
           ParentBackground = False
           TabOrder = 0
           object btFecharAcerto: TBitBtn
@@ -913,9 +913,9 @@ object fAcerto: TfAcerto
           end
         end
         object btSair: TBitBtn
-          Left = 322
+          Left = 319
           Height = 30
-          Top = 51
+          Top = 49
           Width = 73
           Anchors = []
           Caption = 'Sair'
@@ -1044,15 +1044,15 @@ object fAcerto: TfAcerto
       Top = 41
       Width = 42
       Anchors = []
-      ClientHeight = 594
-      ClientWidth = 42
+      ClientHeight = 590
+      ClientWidth = 38
       ParentBackground = False
       TabOrder = 2
       object btTransAcerto: TBitBtn
-        Left = 7
+        Left = 5
         Height = 30
         Hint = 'Adiciona registro ao aceto'
-        Top = 119
+        Top = 118
         Width = 30
         Anchors = []
         Caption = '-->'
