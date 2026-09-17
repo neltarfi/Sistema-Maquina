@@ -17,6 +17,8 @@ type
     CadCliente: TMenuItem;
     CadLoteLimpo: TMenuItem;
     CadLoteCoco: TMenuItem;
+    Configuracoes: TMenuItem;
+    mnVariaveis: TMenuItem;
     mnMovCoco: TMenuItem;
     mnAcerto: TMenuItem;
     mnFinanceiro: TMenuItem;
@@ -35,6 +37,7 @@ type
     procedure mnMovCocoClick(Sender: TObject);
     procedure mnAcertoClick(Sender: TObject);
     procedure mnCafeEmprestadoClick(Sender: TObject);
+    procedure mnVariaveisClick(Sender: TObject);
     procedure MovCliSacariaClick(Sender: TObject);
     procedure MovSacaLoteClick(Sender: TObject);
     procedure SairClick(Sender: TObject);
@@ -55,7 +58,8 @@ var
 implementation
 
 uses uCadCliente, uCadLoteLimpo, uCadLoteCoco, uMovLoteLimpo, uMovCoco,
-  uMovLoteSacaria, uMovCliSacaria, uMovCafeEmprestado, uAcerto, uRomEntCoco;
+  uMovLoteSacaria, uMovCliSacaria, uMovCafeEmprestado, uAcerto, uRomEntCoco,
+  uSistema;
 
 {$R *.lfm}
 
@@ -69,7 +73,7 @@ begin
         Caminho :=GetCurrentDir+'\BaseDeDados\DBSistemaMaquina.fdb';
         SistemaIni.WriteString('ConexaoBD', 'Servidor', 'localhost');
         SistemaIni.WriteString('ConexaoBD', 'Path', Caminho);
-        SistemaIni.WriteInteger('Variaveis', 'AliquotaFundoRural', 0);
+        SistemaIni.WriteFloat('Variaveis', 'AliquotaFundoRural', 0);
         SistemaIni.Free;
   end;
   if not((Copy(GetCurrentDir,2,1)=':')or (Copy(GetCurrentDir,2,1)='\'))and
@@ -78,7 +82,7 @@ begin
         Caminho :=GetCurrentDir+'/BaseDeDados/DBSistemaMaquina.fdb';
         SistemaIni.WriteString('ConexaoBD', 'Servidor', 'localhost');
         SistemaIni.WriteString('ConexaoBD', 'Path', Caminho);
-        SistemaIni.WriteInteger('Variaveis', 'AliquotaFundoRural', 0);
+        SistemaIni.WriteFloat('Variaveis', 'AliquotaFundoRural', 0);
         SistemaIni.Free;
    end;
 
@@ -135,6 +139,13 @@ begin
   fMovCafeEmprestado:=TfMovCafeEmprestado.Create(Self);
   fMovCafeEmprestado.ShowModal;
   fMovCafeEmprestado.Destroy;
+end;
+
+procedure TfPrincipal.mnVariaveisClick(Sender: TObject);
+begin
+  fSistema:=TfSistema.Create(Self);
+  fSistema.ShowModal;
+  fSistema.Destroy;
 end;
 
 procedure TfPrincipal.MovCliSacariaClick(Sender: TObject);

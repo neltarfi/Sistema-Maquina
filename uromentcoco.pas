@@ -7,7 +7,7 @@ interface
 uses
   Classes, SysUtils, DB, Forms, Controls, Graphics, Dialogs, ExtCtrls, DBCtrls,
   StdCtrls, Buttons, DBExtCtrls, MaskEdit, ZDataset, ZAbstractRODataset,
-  ZConnection, LCLType;
+  ZConnection, LCLType, IniFiles;
 
 type
 
@@ -282,6 +282,7 @@ type
 
 
 var
+  SistemaIni: TIniFile;
   fRomEntCoco: TfRomEntCoco;
   EntradaCocoModoEdicao:boolean;
   CompraCocoModoEdicao:boolean;
@@ -305,11 +306,16 @@ uses uCadCliente, uPrincipal, uFuncoes, uMovCoco;
 
 procedure TfRomEntCoco.FormShow(Sender: TObject);
 begin
-     EntradaCocoEditarFalse;
+     if ((Copy(GetCurrentDir,2,1)=':')or (Copy(GetCurrentDir,2,1)='\')) then
+     SistemaIni := TIniFile.Create(GetCurrentDir+'\BaseDeDados\Sistema.ini')
+     else
+     SistemaIni := TIniFile.Create(GetCurrentDir+'/BaseDeDados/Sistema.ini');
+     AliquotaFundoRural:=SistemaIni.ReadFloat('Variaveis', 'AliquotaFundoRural', 0);
+    SistemaIni.Free;
+    EntradaCocoEditarFalse;
     CompraCocoEditarFalse;
     edtPesoComprado.Text:='0';
     edtDesconto.Text:='20';
-    AliquotaFundoRural:=1.5;
     zqCliente.Open;
     dbcCliente.KeyValue:=0;
     LocalizaEndereco;

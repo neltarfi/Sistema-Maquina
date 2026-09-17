@@ -7,7 +7,7 @@
       <Unit>
         <Filename Value="SistemaMaquina.lpr"/>
         <IsPartOfProject Value="True"/>
-        <UsageCount Value="181"/>
+        <UsageCount Value="184"/>
       </Unit>
       <Unit>
         <Filename Value="uprincipal.pas"/>
@@ -16,10 +16,9 @@
         <HasResources Value="True"/>
         <ResourceBaseClass Value="Form"/>
         <UnitName Value="uPrincipal"/>
-        <IsVisibleTab Value="True"/>
-        <TopLine Value="62"/>
-        <CursorPos X="71" Y="72"/>
-        <UsageCount Value="181"/>
+        <TopLine Value="64"/>
+        <CursorPos X="3" Y="98"/>
+        <UsageCount Value="184"/>
         <Loaded Value="True"/>
         <LoadedDesigner Value="True"/>
       </Unit>
@@ -30,7 +29,7 @@
         <EditorIndex Value="-1"/>
         <TopLine Value="284"/>
         <CursorPos X="5" Y="299"/>
-        <UsageCount Value="181"/>
+        <UsageCount Value="184"/>
       </Unit>
       <Unit>
         <Filename Value="ucadcliente.pas"/>
@@ -42,7 +41,7 @@
         <EditorIndex Value="-1"/>
         <TopLine Value="88"/>
         <CursorPos X="22" Y="88"/>
-        <UsageCount Value="181"/>
+        <UsageCount Value="184"/>
       </Unit>
       <Unit>
         <Filename Value="ueditacliente.pas"/>
@@ -54,7 +53,7 @@
         <EditorIndex Value="-1"/>
         <TopLine Value="178"/>
         <CursorPos X="17" Y="191"/>
-        <UsageCount Value="181"/>
+        <UsageCount Value="184"/>
       </Unit>
       <Unit>
         <Filename Value="ucadlotelimpo.pas"/>
@@ -66,7 +65,7 @@
         <EditorIndex Value="-1"/>
         <TopLine Value="70"/>
         <CursorPos X="18" Y="87"/>
-        <UsageCount Value="181"/>
+        <UsageCount Value="184"/>
       </Unit>
       <Unit>
         <Filename Value="ucadlotecoco.pas"/>
@@ -75,12 +74,10 @@
         <HasResources Value="True"/>
         <ResourceBaseClass Value="Form"/>
         <UnitName Value="uCadLoteCoco"/>
-        <EditorIndex Value="4"/>
+        <EditorIndex Value="-1"/>
         <TopLine Value="311"/>
         <CursorPos X="42" Y="311"/>
-        <UsageCount Value="181"/>
-        <Loaded Value="True"/>
-        <LoadedDesigner Value="True"/>
+        <UsageCount Value="184"/>
       </Unit>
       <Unit>
         <Filename Value="uacerto.pas"/>
@@ -89,12 +86,10 @@
         <HasResources Value="True"/>
         <ResourceBaseClass Value="Form"/>
         <UnitName Value="uAcerto"/>
-        <EditorIndex Value="3"/>
+        <EditorIndex Value="-1"/>
         <TopLine Value="572"/>
         <CursorPos X="3" Y="589"/>
-        <UsageCount Value="181"/>
-        <Loaded Value="True"/>
-        <LoadedDesigner Value="True"/>
+        <UsageCount Value="184"/>
       </Unit>
       <Unit>
         <Filename Value="umovlotelimpo.pas"/>
@@ -106,7 +101,7 @@
         <EditorIndex Value="-1"/>
         <TopLine Value="126"/>
         <CursorPos X="3" Y="330"/>
-        <UsageCount Value="181"/>
+        <UsageCount Value="184"/>
       </Unit>
       <Unit>
         <Filename Value="umovcafeemprestado.pas"/>
@@ -118,7 +113,7 @@
         <EditorIndex Value="-1"/>
         <TopLine Value="128"/>
         <CursorPos X="3" Y="130"/>
-        <UsageCount Value="181"/>
+        <UsageCount Value="184"/>
       </Unit>
       <Unit>
         <Filename Value="uromentcoco.pas"/>
@@ -128,9 +123,9 @@
         <ResourceBaseClass Value="Form"/>
         <UnitName Value="uRomEntCoco"/>
         <EditorIndex Value="-1"/>
-        <TopLine Value="564"/>
-        <CursorPos X="28" Y="576"/>
-        <UsageCount Value="181"/>
+        <TopLine Value="300"/>
+        <CursorPos Y="313"/>
+        <UsageCount Value="184"/>
       </Unit>
       <Unit>
         <Filename Value="umovlotesacaria.pas"/>
@@ -142,7 +137,7 @@
         <EditorIndex Value="-1"/>
         <TopLine Value="141"/>
         <CursorPos X="37" Y="150"/>
-        <UsageCount Value="181"/>
+        <UsageCount Value="184"/>
       </Unit>
       <Unit>
         <Filename Value="umovclisacaria.pas"/>
@@ -154,7 +149,7 @@
         <EditorIndex Value="-1"/>
         <TopLine Value="161"/>
         <CursorPos X="37" Y="170"/>
-        <UsageCount Value="181"/>
+        <UsageCount Value="184"/>
       </Unit>
       <Unit>
         <Filename Value="umovcoco.pas"/>
@@ -163,12 +158,10 @@
         <HasResources Value="True"/>
         <ResourceBaseClass Value="Form"/>
         <UnitName Value="uMovCoco"/>
-        <EditorIndex Value="1"/>
+        <EditorIndex Value="-1"/>
         <TopLine Value="73"/>
         <CursorPos X="6" Y="81"/>
-        <UsageCount Value="105"/>
-        <Loaded Value="True"/>
-        <LoadedDesigner Value="True"/>
+        <UsageCount Value="108"/>
       </Unit>
       <Unit>
         <Filename Value="uromsaidacoco.pas"/>
@@ -177,10 +170,23 @@
         <HasResources Value="True"/>
         <ResourceBaseClass Value="Form"/>
         <UnitName Value="uRomSaidaCoco"/>
-        <EditorIndex Value="2"/>
+        <EditorIndex Value="-1"/>
         <TopLine Value="275"/>
         <CursorPos X="94" Y="300"/>
-        <UsageCount Value="83"/>
+        <UsageCount Value="86"/>
+      </Unit>
+      <Unit>
+        <Filename Value="usistema.pas"/>
+        <IsPartOfProject Value="True"/>
+        <ComponentName Value="fSistema"/>
+        <HasResources Value="True"/>
+        <ResourceBaseClass Value="Form"/>
+        <UnitName Value="uSistema"/>
+        <IsVisibleTab Value="True"/>
+        <EditorIndex Value="1"/>
+        <TopLine Value="70"/>
+        <CursorPos X="79" Y="84"/>
+        <UsageCount Value="22"/>
         <Loaded Value="True"/>
         <LoadedDesigner Value="True"/>
       </Unit>
@@ -421,71 +427,7 @@
         <DefaultSyntaxHighlighter Value="Delphi"/>
       </Unit>
     </Units>
-    <JumpHistory HistoryIndex="26">
-      <Position>
-        <Filename Value="umovcoco.pas"/>
-        <Caret Line="44" Column="46" TopLine="42"/>
-      </Position>
-      <Position>
-        <Filename Value="uacerto.pas"/>
-        <Caret Line="562" Column="15" TopLine="543"/>
-      </Position>
-      <Position>
-        <Filename Value="uacerto.pas"/>
-        <Caret Line="220" Column="4" TopLine="212"/>
-      </Position>
-      <Position>
-        <Filename Value="ucadlotecoco.pas"/>
-        <Caret Line="310" Column="42" TopLine="310"/>
-      </Position>
-      <Position>
-        <Filename Value="uprincipal.pas"/>
-        <Caret Line="107" Column="23" TopLine="85"/>
-      </Position>
-      <Position>
-        <Filename Value="uprincipal.pas"/>
-        <Caret Line="79" Column="16" TopLine="62"/>
-      </Position>
-      <Position>
-        <Filename Value="uprincipal.pas"/>
-        <Caret Line="96" Column="77" TopLine="87"/>
-      </Position>
-      <Position>
-        <Filename Value="uprincipal.pas"/>
-        <Caret Line="92" Column="78" TopLine="87"/>
-      </Position>
-      <Position>
-        <Filename Value="uprincipal.pas"/>
-        <Caret Line="106" Column="74" TopLine="87"/>
-      </Position>
-      <Position>
-        <Filename Value="uprincipal.pas"/>
-        <Caret Line="93" Column="8" TopLine="90"/>
-      </Position>
-      <Position>
-        <Filename Value="uprincipal.pas"/>
-        <Caret Line="102" Column="76" TopLine="90"/>
-      </Position>
-      <Position>
-        <Filename Value="umovcoco.pas"/>
-        <Caret Line="81" Column="6" TopLine="81"/>
-      </Position>
-      <Position>
-        <Filename Value="uprincipal.pas"/>
-        <Caret Line="92" Column="3" TopLine="84"/>
-      </Position>
-      <Position>
-        <Filename Value="umovcoco.pas"/>
-        <Caret Line="81" Column="6" TopLine="81"/>
-      </Position>
-      <Position>
-        <Filename Value="uromsaidacoco.pas"/>
-        <Caret Line="300" Column="94" TopLine="275"/>
-      </Position>
-      <Position>
-        <Filename Value="uprincipal.pas"/>
-        <Caret Line="92" Column="3" TopLine="84"/>
-      </Position>
+    <JumpHistory HistoryIndex="29">
       <Position>
         <Filename Value="uprincipal.pas"/>
         <Caret Line="94" Column="49" TopLine="75"/>
@@ -529,6 +471,81 @@
       <Position>
         <Filename Value="uprincipal.pas"/>
         <Caret Line="71" Column="46" TopLine="64"/>
+      </Position>
+      <Position>
+        <Filename Value="usistema.pas"/>
+      </Position>
+      <Position>
+        <Filename Value="usistema.pas"/>
+        <Caret Line="39" Column="3" TopLine="18"/>
+      </Position>
+      <Position>
+        <Filename Value="usistema.pas"/>
+        <Caret Line="40" Column="3" TopLine="19"/>
+      </Position>
+      <Position>
+        <Filename Value="usistema.pas"/>
+        <Caret Line="41" Column="3" TopLine="20"/>
+      </Position>
+      <Position>
+        <Filename Value="usistema.pas"/>
+        <Caret Line="46" Column="11" TopLine="21"/>
+      </Position>
+      <Position>
+        <Filename Value="usistema.pas"/>
+        <Caret Line="56" Column="26" TopLine="31"/>
+      </Position>
+      <Position>
+        <Filename Value="uprincipal.pas"/>
+        <Caret Line="59" Column="11" TopLine="52"/>
+      </Position>
+      <Position>
+        <Filename Value="uprincipal.pas"/>
+        <Caret Line="61" Column="11" TopLine="54"/>
+      </Position>
+      <Position>
+        <Filename Value="uprincipal.pas"/>
+        <Caret Line="60" Column="11" TopLine="60"/>
+      </Position>
+      <Position>
+        <Filename Value="uprincipal.pas"/>
+        <Caret Line="62" Column="11" TopLine="62"/>
+      </Position>
+      <Position>
+        <Filename Value="usistema.pas"/>
+        <Caret Line="71" Column="25" TopLine="46"/>
+      </Position>
+      <Position>
+        <Filename Value="usistema.pas"/>
+        <Caret Line="8" Column="76"/>
+      </Position>
+      <Position>
+        <Filename Value="usistema.pas"/>
+        <Caret Line="89" Column="19" TopLine="72"/>
+      </Position>
+      <Position>
+        <Filename Value="usistema.pas"/>
+        <Caret Line="98" Column="3" TopLine="73"/>
+      </Position>
+      <Position>
+        <Filename Value="usistema.pas"/>
+        <Caret Line="100" Column="3" TopLine="75"/>
+      </Position>
+      <Position>
+        <Filename Value="usistema.pas"/>
+        <Caret Line="105" Column="15" TopLine="84"/>
+      </Position>
+      <Position>
+        <Filename Value="usistema.pas"/>
+        <Caret Line="28" Column="46" TopLine="31"/>
+      </Position>
+      <Position>
+        <Filename Value="usistema.pas"/>
+        <Caret Line="27" Column="46" TopLine="27"/>
+      </Position>
+      <Position>
+        <Filename Value="usistema.pas"/>
+        <Caret Line="26" Column="46" TopLine="26"/>
       </Position>
     </JumpHistory>
     <RunParams>

@@ -61,6 +61,13 @@ object fPrincipal: TfPrincipal
         OnClick = mnAcertoClick
       end
     end
+    object Configuracoes: TMenuItem
+      Caption = 'Confi&gurações'
+      object mnVariaveis: TMenuItem
+        Caption = 'Variaveis de Sistema'
+        OnClick = mnVariaveisClick
+      end
+    end
     object Sair: TMenuItem
       Caption = '&Sair'
       OnClick = SairClick
@@ -77,7 +84,7 @@ object fPrincipal: TfPrincipal
     User = 'SYSDBA'
     Password = '123'
     Protocol = 'firebird'
-    Left = 172
-    Top = 33
+    Left = 168
+    Top = 32
   end
 end
