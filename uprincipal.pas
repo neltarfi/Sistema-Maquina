@@ -68,8 +68,8 @@ begin
         SistemaIni := TIniFile.Create(GetCurrentDir+'\BaseDeDados\Sistema.ini');
         Caminho :=GetCurrentDir+'\BaseDeDados\DBSistemaMaquina.fdb';
         SistemaIni.WriteString('ConexaoBD', 'Servidor', 'localhost');
-        SistemaIni.WriteString('ConexaoBD', 'LinuxPath', '');
-        SistemaIni.WriteString('ConexaoBD', 'WindowsPath', Caminho);
+        SistemaIni.WriteString('ConexaoBD', 'Path', Caminho);
+        SistemaIni.WriteInteger('Variaveis', 'AliquotaFundoRural', 0);
         SistemaIni.Free;
   end;
   if not((Copy(GetCurrentDir,2,1)=':')or (Copy(GetCurrentDir,2,1)='\'))and
@@ -77,21 +77,18 @@ begin
         SistemaIni := TIniFile.Create(GetCurrentDir+'/BaseDeDados/Sistema.ini');
         Caminho :=GetCurrentDir+'/BaseDeDados/DBSistemaMaquina.fdb';
         SistemaIni.WriteString('ConexaoBD', 'Servidor', 'localhost');
-        SistemaIni.WriteString('ConexaoBD', 'LinuxPath', Caminho);
-        SistemaIni.WriteString('ConexaoBD', 'WindowsPath', '');
+        SistemaIni.WriteString('ConexaoBD', 'Path', Caminho);
         SistemaIni.WriteInteger('Variaveis', 'AliquotaFundoRural', 0);
         SistemaIni.Free;
    end;
 
   zConn.Disconnect;
-  if ((Copy(GetCurrentDir,2,1)=':')or (Copy(GetCurrentDir,2,1)='\')) then begin
-     SistemaIni := TIniFile.Create(GetCurrentDir+'\BaseDeDados\Sistema.ini');
-     zConn.Database:=SistemaIni.ReadString('ConexaoBD','WindowsPath','');
-  end
-  else begin
+  if ((Copy(GetCurrentDir,2,1)=':')or (Copy(GetCurrentDir,2,1)='\')) then
+     SistemaIni := TIniFile.Create(GetCurrentDir+'\BaseDeDados\Sistema.ini')
+  else
      SistemaIni := TIniFile.Create(GetCurrentDir+'/BaseDeDados/Sistema.ini');
-     zConn.Database:=SistemaIni.ReadString('ConexaoBD','LinuxPath','');
-  end;
+
+  zConn.Database:=SistemaIni.ReadString('ConexaoBD','Path','');
   zConn.HostName:= SistemaIni.ReadString('ConexaoBD', 'Servidor', '');
   zConn.Connect;
   SistemaIni.Free;
