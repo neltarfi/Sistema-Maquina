@@ -98,9 +98,9 @@ begin
 
   zConn.Database:=SistemaIni.ReadString('ConexaoBD','Path','');
   zConn.HostName:=SistemaIni.ReadString('ConexaoBD', 'Servidor', '');
-  zConn.Port    :=SistemaIni.ReadInteger('ConexaoBD', 'Porta', 3050);
-  zConn.User    :=SistemaIni.ReadString('ConexaoBD', 'Usuario', 'SYSDBA');
-  zConn.Password:=SistemaIni.ReadString('ConexaoBD', 'Senha', 'masterkey');
+  zConn.Port    :=SistemaIni.ReadInteger('ConexaoBD', 'Porta', 0);
+  zConn.User    :=SistemaIni.ReadString('ConexaoBD', 'Usuario', '');
+  zConn.Password:=SistemaIni.ReadString('ConexaoBD', 'Senha', '');
   zConn.Connect;
   SistemaIni.Free;
   FormCadastroSomenteLeitura:=False;

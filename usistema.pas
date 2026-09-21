@@ -52,6 +52,8 @@ var
 
 implementation
 
+uses uPrincipal;
+
 {$R *.lfm}
 
 { TfSistema }
@@ -121,6 +123,13 @@ begin
   SistemaIni.WriteString('ConexaoBD', 'Senha', edtSenha.Text);
   SistemaIni.WriteString('Variaveis', 'Safra', edtSafra.Text);
   SistemaIni.WriteString('Variaveis', 'AliquotaFundoRural', edtAliquota.Text);
+  fPrincipal.zConn.Disconnect;
+  fPrincipal.zConn.Database:=SistemaIni.ReadString('ConexaoBD','Path','');
+  fPrincipal.zConn.HostName:=SistemaIni.ReadString('ConexaoBD', 'Servidor', '');
+  fPrincipal.zConn.Port    :=SistemaIni.ReadInteger('ConexaoBD', 'Porta', 0);
+  fPrincipal.zConn.User    :=SistemaIni.ReadString('ConexaoBD', 'Usuario', '');
+  fPrincipal.zConn.Password:=SistemaIni.ReadString('ConexaoBD', 'Senha', '');
+  fPrincipal.zConn.Connect;
   SistemaIni.Free;
   edtServidor.Enabled:=False;
   edtPath.Enabled:=False;
