@@ -82,6 +82,10 @@ begin
         Caminho :=GetCurrentDir+'/BaseDeDados/DBSistemaMaquina.fdb';
         SistemaIni.WriteString('ConexaoBD', 'Servidor', 'localhost');
         SistemaIni.WriteString('ConexaoBD', 'Path', Caminho);
+        SistemaIni.WriteString('ConexaoBD', 'Porta', '3050');
+        SistemaIni.WriteString('ConexaoBD', 'Usuario', 'SYSDBA');
+        SistemaIni.WriteString('ConexaoBD', 'Senha', 'masterkey');
+        SistemaIni.WriteInteger('Variaveis', 'Safra', 2026);
         SistemaIni.WriteFloat('Variaveis', 'AliquotaFundoRural', 0);
         SistemaIni.Free;
    end;
@@ -93,7 +97,10 @@ begin
      SistemaIni := TIniFile.Create(GetCurrentDir+'/BaseDeDados/Sistema.ini');
 
   zConn.Database:=SistemaIni.ReadString('ConexaoBD','Path','');
-  zConn.HostName:= SistemaIni.ReadString('ConexaoBD', 'Servidor', '');
+  zConn.HostName:=SistemaIni.ReadString('ConexaoBD', 'Servidor', '');
+  zConn.Port    :=SistemaIni.ReadInteger('ConexaoBD', 'Porta', 3050);
+  zConn.User    :=SistemaIni.ReadString('ConexaoBD', 'Usuario', 'SYSDBA');
+  zConn.Password:=SistemaIni.ReadString('ConexaoBD', 'Senha', 'masterkey');
   zConn.Connect;
   SistemaIni.Free;
   FormCadastroSomenteLeitura:=False;

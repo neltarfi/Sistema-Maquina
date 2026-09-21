@@ -1,82 +1,170 @@
 object fSistema: TfSistema
   Left = 225
-  Height = 276
+  Height = 283
   Top = 250
   Width = 789
   BorderIcons = []
   Caption = 'Sistema'
-  ClientHeight = 276
+  ClientHeight = 283
   ClientWidth = 789
   Color = clGradientActiveCaption
   LCLVersion = '4.8.0.0'
   OnShow = FormShow
-  object Label1: TLabel
-    Left = 95
-    Height = 16
-    Top = 24
-    Width = 50
-    Caption = 'Servidor'
-  end
-  object Label2: TLabel
-    Left = 56
-    Height = 16
-    Top = 80
-    Width = 87
-    Caption = 'DataBase Path'
-  end
-  object Label3: TLabel
-    Left = 24
-    Height = 16
-    Top = 136
-    Width = 121
-    Caption = 'AliquotaFundoRural'
-  end
-  object edtServidor: TEdit
-    Left = 152
-    Height = 26
-    Top = 24
-    Width = 144
-    TabOrder = 0
-  end
-  object edtPath: TEdit
-    Left = 152
-    Height = 26
-    Top = 80
-    Width = 632
-    TabOrder = 1
-  end
-  object edtAliquota: TEdit
-    Left = 152
-    Height = 26
-    Top = 136
-    Width = 56
-    TabOrder = 2
-  end
   object btEditar: TButton
-    Left = 184
+    Left = 160
     Height = 25
-    Top = 216
+    Top = 224
     Width = 75
     Caption = 'Editar'
-    TabOrder = 3
+    TabOrder = 0
     OnClick = btEditarClick
   end
   object btSalvar: TButton
-    Left = 336
+    Left = 312
     Height = 25
-    Top = 216
+    Top = 224
     Width = 75
     Caption = 'Salvar'
-    TabOrder = 4
+    TabOrder = 1
     OnClick = btSalvarClick
   end
   object btSair: TButton
-    Left = 608
+    Left = 584
     Height = 25
-    Top = 216
+    Top = 224
     Width = 75
     Caption = 'Sair'
-    TabOrder = 5
+    TabOrder = 2
     OnClick = btSairClick
+  end
+  object PageControl1: TPageControl
+    Left = 40
+    Height = 200
+    Top = 8
+    Width = 744
+    ActivePage = Firebird
+    TabIndex = 0
+    TabOrder = 3
+    object Firebird: TTabSheet
+      Caption = 'Firebird'
+      ClientHeight = 166
+      ClientWidth = 738
+      object Label1: TLabel
+        Left = 64
+        Height = 16
+        Top = 8
+        Width = 50
+        Caption = 'Servidor'
+      end
+      object Label2: TLabel
+        Left = 40
+        Height = 16
+        Top = 40
+        Width = 87
+        Caption = 'DataBase Path'
+      end
+      object edtServidor: TEdit
+        Left = 144
+        Height = 26
+        Top = 8
+        Width = 144
+        TabOrder = 0
+      end
+      object edtPath: TEdit
+        Left = 144
+        Height = 26
+        Top = 40
+        Width = 448
+        TabOrder = 1
+      end
+      object Label4: TLabel
+        Left = 81
+        Height = 16
+        Top = 104
+        Width = 46
+        Caption = 'Usuário'
+      end
+      object Label5: TLabel
+        Left = 91
+        Height = 16
+        Top = 136
+        Width = 37
+        Caption = 'Senha'
+      end
+      object Label6: TLabel
+        Left = 94
+        Height = 16
+        Top = 72
+        Width = 33
+        Caption = 'Porta'
+      end
+      object edtPorta: TEdit
+        Left = 144
+        Height = 26
+        Top = 72
+        Width = 80
+        TabOrder = 2
+      end
+      object edtUsuario: TEdit
+        Left = 144
+        Height = 26
+        Top = 104
+        Width = 80
+        TabOrder = 3
+      end
+      object edtSenha: TEdit
+        Left = 144
+        Height = 26
+        Top = 136
+        Width = 80
+        TabOrder = 4
+      end
+      object btPath: TButton
+        Left = 600
+        Height = 25
+        Top = 41
+        Width = 32
+        Caption = 'Path'
+        TabOrder = 5
+        OnClick = btPathClick
+      end
+    end
+    object Sistema: TTabSheet
+      Caption = 'Sistema'
+      ClientHeight = 166
+      ClientWidth = 738
+      object edtAliquota: TEdit
+        Left = 144
+        Height = 26
+        Top = 88
+        Width = 56
+        TabOrder = 0
+      end
+      object Label3: TLabel
+        Left = 14
+        Height = 16
+        Top = 88
+        Width = 121
+        Caption = 'AliquotaFundoRural'
+      end
+      object Label7: TLabel
+        Left = 104
+        Height = 16
+        Top = 47
+        Width = 31
+        Caption = 'Safra'
+      end
+      object edtSafra: TEdit
+        Left = 144
+        Height = 26
+        Top = 47
+        Width = 80
+        TabOrder = 1
+      end
+    end
+  end
+  object odPath: TOpenDialog
+    Left = 608
+    Top = 136
   end
 end

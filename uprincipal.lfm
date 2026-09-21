@@ -80,9 +80,7 @@ object fPrincipal: TfPrincipal
     )
     TransactIsolationLevel = tiReadCommitted
     DisableSavepoints = False
-    Port = 3050
-    User = 'SYSDBA'
-    Password = '123'
+    Port = 0
     Protocol = 'firebird'
     Left = 168
     Top = 32
