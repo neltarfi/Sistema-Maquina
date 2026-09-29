@@ -239,7 +239,7 @@ object fRomSaidaCoco: TfRomSaidaCoco
         ChildSizing.ShrinkVertical = crsScaleChilds
         ChildSizing.Layout = cclLeftToRightThenTopToBottom
         ChildSizing.ControlsPerLine = 2
-        ClientHeight = 8
+        ClientHeight = 23
         ClientWidth = 164
         Columns = 2
         Font.Style = [fsBold]
@@ -289,12 +289,11 @@ object fRomSaidaCoco: TfRomSaidaCoco
       OnExit = edtPesoComValorExit
     end
   end
-  object Panel3: TPanel
+  object PanelRomSaidaCoco: TPanel
     Left = 80
     Height = 353
     Top = 288
     Width = 744
-    Caption = 'Panel3'
     ClientHeight = 353
     ClientWidth = 744
     ParentBackground = False
@@ -320,7 +319,7 @@ object fRomSaidaCoco: TfRomSaidaCoco
       Left = 72
       Height = 26
       Top = 24
-      Width = 103
+      Width = 120
       CalendarDisplaySettings = [dsShowHeadings, dsShowDayNames]
       DateOrder = doNone
       ButtonWidth = 23
@@ -431,6 +430,7 @@ object fRomSaidaCoco: TfRomSaidaCoco
       Width = 97
       Caption = 'Escluir registro'
       TabOrder = 6
+      OnClick = btEscluirClick
     end
   end
   object btSair: TButton
@@ -449,6 +449,7 @@ object fRomSaidaCoco: TfRomSaidaCoco
     Width = 75
     Caption = 'Salvar'
     TabOrder = 5
+    OnClick = btSalvarClick
   end
   object btCancelarReg: TButton
     Left = 528
@@ -457,12 +458,13 @@ object fRomSaidaCoco: TfRomSaidaCoco
     Width = 120
     Caption = 'Cancelar Registros'
     TabOrder = 6
+    OnClick = btCancelarRegClick
   end
   object ztCliente: TZTable
     Connection = fPrincipal.zConn
     TableName = 'Cliente'
     Left = 320
-    Top = 360
+    Top = 312
     object ztClienteIDCliente: TZInt64Field
       FieldKind = fkData
       FieldName = 'IDCliente'
@@ -553,8 +555,8 @@ object fRomSaidaCoco: TfRomSaidaCoco
   object ztRomSaidaCoco: TZTable
     Connection = fPrincipal.zConn
     TableName = 'RomSaidaCoco'
-    Left = 24
-    Top = 352
+    Left = 256
+    Top = 384
     object ztRomSaidaCocoIDRomSaidaCoco: TZInt64Field
       FieldKind = fkData
       FieldName = 'IDRomSaidaCoco'
@@ -629,18 +631,18 @@ object fRomSaidaCoco: TfRomSaidaCoco
   end
   object dsCliente: TDataSource
     DataSet = ztCliente
-    Left = 400
-    Top = 360
+    Left = 392
+    Top = 320
   end
   object dsRomSaidaCoco: TDataSource
     DataSet = ztRomSaidaCoco
-    Left = 24
-    Top = 424
+    Left = 256
+    Top = 448
   end
   object dsmLoteCocoItens: TDataSource
     DataSet = mLoteCocoItens
-    Left = 344
-    Top = 511
+    Left = 672
+    Top = 376
   end
   object mLoteCocoItens: TMemDataset
     FieldDefs = <    
@@ -663,6 +665,7 @@ object fRomSaidaCoco: TfRomSaidaCoco
       item
         Name = 'SacoKg'
         DataType = ftString
+        Size = 4
       end    
       item
         Name = 'Preco'
@@ -672,8 +675,8 @@ object fRomSaidaCoco: TfRomSaidaCoco
         Name = 'ValorTotal'
         DataType = ftCurrency
       end>
-    Left = 206
-    Top = 511
+    Left = 568
+    Top = 376
     object mLoteCocoItensIDLoteCoco: TLongintField
       FieldKind = fkData
       FieldName = 'IDLoteCoco'
@@ -718,7 +721,7 @@ object fRomSaidaCoco: TfRomSaidaCoco
       ProviderFlags = [pfInUpdate, pfInWhere]
       ReadOnly = False
       Required = False
-      Size = 0
+      Size = 4
     end
     object mLoteCocoItensPreco: TCurrencyField
       FieldKind = fkData
@@ -739,6 +742,203 @@ object fRomSaidaCoco: TfRomSaidaCoco
       ReadOnly = False
       Required = False
       Precision = 2
+    end
+  end
+  object zqNovoIDRomSaidaCoco: TZQuery
+    Connection = fPrincipal.zConn
+    SQL.Strings = (
+      'Select max(IDROMSAIDACOCO) as ID '
+      'From ROMSAIDACOCO'
+    )
+    Params = <>
+    Left = 256
+    Top = 504
+    object zqNovoIDRomSaidaCocoID: TZIntegerField
+      FieldKind = fkData
+      FieldName = 'ID'
+      Index = 0
+      LookupCache = False
+      ProviderFlags = [pfInUpdate, pfInWhere]
+      ReadOnly = False
+      Required = True
+    end
+  end
+  object ztRomSaidaCocoItens: TZTable
+    Connection = fPrincipal.zConn
+    TableName = 'ROMSAIDACOCOITENS'
+    Left = 672
+    Top = 440
+    object ztRomSaidaCocoItensIDROMSAIDACOCOITENS: TZIntegerField
+      FieldKind = fkData
+      FieldName = 'IDROMSAIDACOCOITENS'
+      Index = 0
+      LookupCache = False
+      ProviderFlags = [pfInUpdate, pfInWhere]
+      ReadOnly = False
+      Required = True
+    end
+    object ztRomSaidaCocoItensIDROMSAIDACOCO: TZIntegerField
+      FieldKind = fkData
+      FieldName = 'IDROMSAIDACOCO'
+      Index = 1
+      LookupCache = False
+      ProviderFlags = [pfInUpdate, pfInWhere]
+      ReadOnly = False
+      Required = False
+    end
+    object ztRomSaidaCocoItensPESOSEMVALOR: TZIntegerField
+      FieldKind = fkData
+      FieldName = 'PESOSEMVALOR'
+      Index = 2
+      LookupCache = False
+      ProviderFlags = [pfInUpdate, pfInWhere]
+      ReadOnly = False
+      Required = False
+    end
+    object ztRomSaidaCocoItensPESOCOMVALOR: TZIntegerField
+      FieldKind = fkData
+      FieldName = 'PESOCOMVALOR'
+      Index = 3
+      LookupCache = False
+      ProviderFlags = [pfInUpdate, pfInWhere]
+      ReadOnly = False
+      Required = False
+    end
+    object ztRomSaidaCocoItensRENDA: TZIntegerField
+      FieldKind = fkData
+      FieldName = 'RENDA'
+      Index = 4
+      LookupCache = False
+      ProviderFlags = [pfInUpdate, pfInWhere]
+      ReadOnly = False
+      Required = False
+    end
+    object ztRomSaidaCocoItensSACOKG: TZRawStringField
+      FieldKind = fkData
+      FieldName = 'SACOKG'
+      Index = 5
+      LookupCache = False
+      ProviderFlags = [pfInUpdate, pfInWhere]
+      ReadOnly = False
+      Required = False
+      Size = 4
+    end
+    object ztRomSaidaCocoItensPRECO: TZBCDField
+      FieldKind = fkData
+      FieldName = 'PRECO'
+      Index = 6
+      LookupCache = False
+      ProviderFlags = [pfInUpdate, pfInWhere]
+      ReadOnly = False
+      Required = False
+      Precision = 10
+      Currency = False
+      MaxValue = 0
+      MinValue = 0
+      Size = 2
+    end
+    object ztRomSaidaCocoItensVALORTOTAL: TZBCDField
+      FieldKind = fkData
+      FieldName = 'VALORTOTAL'
+      Index = 7
+      LookupCache = False
+      ProviderFlags = [pfInUpdate, pfInWhere]
+      ReadOnly = False
+      Required = False
+      Precision = 10
+      Currency = False
+      MaxValue = 0
+      MinValue = 0
+      Size = 2
+    end
+  end
+  object zqNovoIDRomSaidaCocoItens: TZQuery
+    Connection = fPrincipal.zConn
+    SQL.Strings = (
+      'select max(IDROMSAIDACOCOITENS) AS ID'
+      'from ROMSAIDACOCOITENS'
+    )
+    Params = <>
+    Left = 512
+    Top = 440
+    object zqNovoIDRomSaidaCocoItensID: TZIntegerField
+      FieldKind = fkData
+      FieldName = 'ID'
+      Index = 0
+      LookupCache = False
+      ProviderFlags = [pfInUpdate, pfInWhere]
+      ReadOnly = False
+      Required = True
+    end
+  end
+  object zqNovoIDMovCoco: TZQuery
+    Connection = fPrincipal.zConn
+    SQL.Strings = (
+      'select max(IDMOVCOCO) AS ID'
+      'from MOVCOCO'
+    )
+    Params = <>
+    Left = 92
+    Top = 401
+    object zqNovoIDMovCocoID: TZIntegerField
+      FieldKind = fkData
+      FieldName = 'ID'
+      Index = 0
+      LookupCache = False
+      ProviderFlags = [pfInUpdate, pfInWhere]
+      ReadOnly = False
+      Required = True
+    end
+  end
+  object ztMovCoco: TZTable
+    Connection = fPrincipal.zConn
+    TableName = 'MOVCOCO'
+    Left = 92
+    Top = 488
+    object ztMovCocoIDMOVCOCO: TZIntegerField
+      FieldKind = fkData
+      FieldName = 'IDMOVCOCO'
+      Index = 0
+      LookupCache = False
+      ProviderFlags = [pfInUpdate, pfInWhere]
+      ReadOnly = False
+      Required = True
+    end
+    object ztMovCocoDATA: TZDateField
+      FieldKind = fkData
+      FieldName = 'DATA'
+      Index = 1
+      LookupCache = False
+      ProviderFlags = [pfInUpdate, pfInWhere]
+      ReadOnly = False
+      Required = False
+    end
+    object ztMovCocoIDCLIENTE: TZIntegerField
+      FieldKind = fkData
+      FieldName = 'IDCLIENTE'
+      Index = 2
+      LookupCache = False
+      ProviderFlags = [pfInUpdate, pfInWhere]
+      ReadOnly = False
+      Required = False
+    end
+    object ztMovCocoIDROMENTRADACOCO: TZIntegerField
+      FieldKind = fkData
+      FieldName = 'IDROMENTRADACOCO'
+      Index = 3
+      LookupCache = False
+      ProviderFlags = [pfInUpdate, pfInWhere]
+      ReadOnly = False
+      Required = False
+    end
+    object ztMovCocoIDROMSAIDACOCO: TZIntegerField
+      FieldKind = fkData
+      FieldName = 'IDROMSAIDACOCO'
+      Index = 4
+      LookupCache = False
+      ProviderFlags = [pfInUpdate, pfInWhere]
+      ReadOnly = False
+      Required = False
     end
   end
 end

@@ -73,7 +73,11 @@ begin
         Caminho :=GetCurrentDir+'\BaseDeDados\DBSistemaMaquina.fdb';
         SistemaIni.WriteString('ConexaoBD', 'Servidor', 'localhost');
         SistemaIni.WriteString('ConexaoBD', 'Path', Caminho);
-        SistemaIni.WriteFloat('Variaveis', 'AliquotaFundoRural', 0);
+        SistemaIni.WriteString('ConexaoBD', 'Porta', '3050');
+        SistemaIni.WriteString('ConexaoBD', 'Usuario', 'SYSDBA');
+        SistemaIni.WriteString('ConexaoBD', 'Senha', 'masterkey');
+        SistemaIni.WriteInteger('Variaveis', 'Safra', 2026);
+        SistemaIni.Writestring('Variaveis', 'AliquotaFundoRural', '1,63');
         SistemaIni.Free;
   end;
   if not((Copy(GetCurrentDir,2,1)=':')or (Copy(GetCurrentDir,2,1)='\'))and
@@ -86,7 +90,7 @@ begin
         SistemaIni.WriteString('ConexaoBD', 'Usuario', 'SYSDBA');
         SistemaIni.WriteString('ConexaoBD', 'Senha', 'masterkey');
         SistemaIni.WriteInteger('Variaveis', 'Safra', 2026);
-        SistemaIni.WriteFloat('Variaveis', 'AliquotaFundoRural', 0);
+        SistemaIni.WriteString('Variaveis', 'AliquotaFundoRural', '1,63');
         SistemaIni.Free;
    end;
 

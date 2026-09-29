@@ -38,7 +38,7 @@ object fSistema: TfSistema
     OnClick = btSairClick
   end
   object PageControl1: TPageControl
-    Left = 40
+    Left = 24
     Height = 200
     Top = 8
     Width = 744
@@ -123,8 +123,8 @@ object fSistema: TfSistema
         Left = 600
         Height = 25
         Top = 41
-        Width = 32
-        Caption = 'Path'
+        Width = 24
+        Caption = '...'
         TabOrder = 5
         OnClick = btPathClick
       end
@@ -138,7 +138,7 @@ object fSistema: TfSistema
         Height = 26
         Top = 88
         Width = 56
-        TabOrder = 0
+        TabOrder = 1
       end
       object Label3: TLabel
         Left = 14
@@ -159,7 +159,7 @@ object fSistema: TfSistema
         Height = 26
         Top = 47
         Width = 80
-        TabOrder = 1
+        TabOrder = 0
       end
     end
   end

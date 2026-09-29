@@ -59,9 +59,22 @@ type
     mLoteCocoItensValorTotal: TCurrencyField;
     Panel1: TPanel;
     PanelAdicionaItens: TPanel;
-    Panel3: TPanel;
+    PanelRomSaidaCoco: TPanel;
     PanelAdicionaValor: TPanel;
     rgSacoKg: TRadioGroup;
+    zqNovoIDMovCocoID: TZIntegerField;
+    zqNovoIDRomSaidaCoco: TZQuery;
+    zqNovoIDRomSaidaCocoID: TZIntegerField;
+    zqNovoIDRomSaidaCocoItens: TZQuery;
+    zqNovoIDRomSaidaCocoItensID: TZIntegerField;
+    zqNovoIDMovCoco: TZQuery;
+    ztMovCoco: TZTable;
+    ztMovCocoDATA: TZDateField;
+    ztMovCocoIDCLIENTE: TZIntegerField;
+    ztMovCocoIDMOVCOCO: TZIntegerField;
+    ztMovCocoIDROMENTRADACOCO: TZIntegerField;
+    ztMovCocoIDROMSAIDACOCO: TZIntegerField;
+    ztRomSaidaCocoItens: TZTable;
     ztCliente: TZTable;
     ztLoteCoco: TZTable;
     ztClienteIDCliente: TZInt64Field;
@@ -76,6 +89,14 @@ type
     ztRomSaidaCocoData: TZDateField;
     ztRomSaidaCocoIDCliente: TZInt64Field;
     ztRomSaidaCocoIDRomSaidaCoco: TZInt64Field;
+    ztRomSaidaCocoItensIDROMSAIDACOCO: TZIntegerField;
+    ztRomSaidaCocoItensIDROMSAIDACOCOITENS: TZIntegerField;
+    ztRomSaidaCocoItensPESOCOMVALOR: TZIntegerField;
+    ztRomSaidaCocoItensPESOSEMVALOR: TZIntegerField;
+    ztRomSaidaCocoItensPRECO: TZBCDField;
+    ztRomSaidaCocoItensRENDA: TZIntegerField;
+    ztRomSaidaCocoItensSACOKG: TZRawStringField;
+    ztRomSaidaCocoItensVALORTOTAL: TZBCDField;
     ztRomSaidaCocoObs: TZRawCLobField;
     ztRomSaidaCocoPesoComValor: TZInt64Field;
     ztRomSaidaCocoPesoSemValor: TZInt64Field;
@@ -83,7 +104,10 @@ type
     procedure btAdicionarClick(Sender: TObject);
     procedure btBuscaNomeClick(Sender: TObject);
     procedure btCancelarClick(Sender: TObject);
+    procedure btCancelarRegClick(Sender: TObject);
+    procedure btEscluirClick(Sender: TObject);
     procedure btSairClick(Sender: TObject);
+    procedure btSalvarClick(Sender: TObject);
     procedure btTransfereSaldoClick(Sender: TObject);
     procedure edtPesoComValorChange(Sender: TObject);
     procedure edtPesoComValorExit(Sender: TObject);
@@ -121,9 +145,117 @@ uses uPrincipal, uCadCliente, uMovCoco, uFuncoes;
 
 { TfRomSaidaCoco }
 
+procedure TfRomSaidaCoco.FormShow(Sender: TObject);
+begin
+  ztCliente.Open;
+  ztLoteCoco.Open;
+  ztRomSaidaCoco.Open;
+  ztRomSaidaCocoItens.Open;
+  ztMovCoco.Open;
+  zqNovoIDMovCoco.Open;
+  zqNovoIDRomSaidaCoco.Open;
+  zqNovoIDRomSaidaCocoItens.Open;
+  zqNovoIDRomSaidaCocoItens.Open;
+  mLoteCocoItens.Open;
+  case FormOperacao of
+       'InserirRegistro': begin
+                               AtualizaStatusBotao;
+                               PanelAdicionaItens.Enabled:=False;
+                               PanelRomSaidaCoco.Enabled:=False;
+                               LimpaItens;
+                               PanelAdicionaValor.Enabled:=False;
+                               fPrincipal.zConn.StartTransaction;
+
+                               //EditarTrue;
+                          end;
+
+       'VisualizarRegistro': begin
+                                   ztRomSaidaCoco.Locate('IDRomSaidaCoco',
+                                   fMovCoco.ztMovCocoIDRomSaidaCoco.Value,[]);
+                                   EditarFalse;
+                               end;
+
+  end;
+end;
+
+procedure TfRomSaidaCoco.FormClose(Sender: TObject;
+var CloseAction: TCloseAction);
+begin
+      ztCliente.Close;
+      ztLoteCoco.Close;
+      ztRomSaidaCoco.Close;
+      ztRomSaidaCocoItens.Close;
+      ztMovCoco.Close;
+      zqNovoIDMovCoco.Close;
+      zqNovoIDRomSaidaCoco.Close;
+      zqNovoIDRomSaidaCocoItens.Close;
+      zqNovoIDRomSaidaCocoItens.Close;
+      mLoteCocoItens.Close;
+end;
+
 procedure TfRomSaidaCoco.btSairClick(Sender: TObject);
 begin
   Close;
+end;
+
+procedure TfRomSaidaCoco.btSalvarClick(Sender: TObject);
+var Erro:string;
+begin
+  if not(MessageDlg('Você deseja realmente salvar?', mtConfirmation,
+        [mbYes, mbNO], 0) = mrYes) then Exit;
+  Erro:='';
+  if ztRomSaidaCocoData.Text='' then
+     Erro:='-O campo data não pode ficar vazio' + chr(13);
+  if dbcCliente.KeyValue<1 then
+     Erro:= Erro+'-O campo Cliente não pode ficar vazio'+chr(13);
+  if not (Erro ='') then begin
+     showMessage(Erro);
+     Exit;
+  end;
+  try
+  //RomSaidaCocoItens
+  mLoteCocoItens.First;
+  while Not(mLoteCocoItens.EOF) do begin
+     zqNovoIDRomSaidaCocoItens.Refresh;
+     ztRomSaidaCocoItens.Append;
+     ztRomSaidaCocoItensIDRomSaidaCocoItens.Value:=zqNovoIDRomSaidaCocoItensID.Value+1;
+     ztRomSaidaCocoItensIDRomSaidaCoco.Value:=ztRomSaidaCocoIDRomSaidaCoco.Value;
+     ztRomSaidaCocoItensPesoSemValor.Value:=mLoteCocoItensPesoSemValor.Value;
+     ztRomSaidaCocoItensPesoComValor.Value:=mLoteCocoItensPesoComValor.Value;
+     ztRomSaidaCocoItensRenda.Value:=mLoteCocoItensRenda.Value;
+     ztRomSaidaCocoItensSacoKg.Value:=mLoteCocoItensSacoKg.Value;
+     ztRomSaidaCocoItensPreco.Value:=mLoteCocoItensPreco.Value;
+     ztRomSaidaCocoItensValorTotal.Value:=mLoteCocoItensValorTotal.Value;
+     ztRomSaidaCocoItens.Post;
+     mLoteCocoItens.Next;
+  end;
+
+  //RomSaidaCoco
+  ztRomSaidaCocoIDCliente.Value:=dbcCliente.KeyValue;
+  ztRomSaidaCoco.Post;
+
+  //MovCoco
+  zqNovoIdMovCoco.Refresh;
+  ztMovCoco.Append;
+  ztMovCocoIDMovCoco.Value :=zqNovoIdMovCocoID.Value+1;
+  ztMovCocoData.Value:=ztRomSaidaCocoData.Value;
+  ztMovCocoIDCliente.Value:=dbcCliente.KeyValue;
+  ztMovCocoIDRomEntradaCoco.Value:=0;
+  ztMovCocoIDRomSaidaCoco.Value:=ztRomSaidaCocoIDRomSaidaCoco.Value;
+  ztMovCoco.Post;
+
+  fPrincipal.zConn.Commit;
+  except
+  fPrincipal.zConn.Rollback;
+  ShowMessage('Algo deu errado com o banco de dados');
+  end;
+  fPrincipal.zConn.StartTransaction;
+  mLoteCocoItens.First;
+  while Not(mLoteCocoItens.EOF) do
+     mLoteCocoItens.Delete;
+  mLoteCocoItens.Refresh;
+  ztLoteCoco.Refresh;
+  AtualizaStatusBotao;
 end;
 
 procedure TfRomSaidaCoco.btTransfereSaldoClick(Sender: TObject);
@@ -204,10 +336,31 @@ begin
   Panel1.Enabled:=True;
   btTransfereSaldo.Enabled:=True;
   AtualizaStatusBotao;
+
+  if mLoteCocoItens.RecordCount=0 then begin
+     ztRomSaidaCoco.Append;
+     zqNovoIDRomSaidaCoco.Refresh;
+     ztRomSaidaCocoIDRomSaidaCoco.Value:=zqNovoIDRomSaidaCocoID.Value+1;
+     ztRomSaidaCoco.FieldByName('Data').Value:=DATE;
+  end;
+
   mLoteCocoItens.Append;
   mLoteCocoItensIDLoteCoco.Value:=ztLoteCocoIDLoteCoco.Value;
-
+  mLoteCocoItensPesoSemValor.Value:=strToInt(edtPesoSemValor.Text);
+  mLoteCocoItensPesoComValor.Value:=strToInt(edtPesoComValor.Text);
+  mLoteCocoItensRenda.Value:=strToInt(edtRenda.Text);
+  if rgSacoKg.ItemIndex=0 then
+     mLoteCocoItensSacoKg.Text:='Saco'
+  else
+     mLoteCocoItensSacoKg.Text:='Kg';
+  mLoteCocoItensPreco.Value:=strToFloat(edtPreco.Text);
+  mLoteCocoItensValorTotal.Value:=strToFloat(edtValorTotal.Text);
+  ztLoteCoco.Edit;
+  ztLoteCocoSaldoCoco.Value:=ztLoteCocoSaldoCoco.Value-strToInt(edtPesoSemValor.Text)-
+                             strToInt(edtPesoComValor.Text);
   mLoteCocoItens.Post;
+  ztLoteCoco.Post;
+  ztLoteCoco.Refresh;
   AtualizaStatusBotao;
   PanelAdicionaItens.Enabled:=False;
   LimpaItens;
@@ -224,39 +377,39 @@ begin
   edtPesoCoco.Text:='0';
 end;
 
-procedure TfRomSaidaCoco.FormClose(Sender: TObject;
-var CloseAction: TCloseAction);
+procedure TfRomSaidaCoco.btCancelarRegClick(Sender: TObject);
 begin
-      ztCliente.Close;
-      ztLoteCoco.Close;
-      ztRomSaidaCoco.Close;
-      mLoteCocoItens.Close;
+  ztRomSaidaCoco.Cancel;
+  fPrincipal.zConn.Rollback;
+  fPrincipal.zConn.StartTransaction;
+  ztLoteCoco.Refresh;
+
+  while not(mLoteCocoItens.EOF) do
+  begin
+       mLoteCocoItens.Delete;
+  end;
+  AtualizaStatusBotao;
 end;
 
-procedure TfRomSaidaCoco.FormShow(Sender: TObject);
+procedure TfRomSaidaCoco.btEscluirClick(Sender: TObject);
 begin
-  ztCliente.Open;
-  ztLoteCoco.Open;
-  ztRomSaidaCoco.Open;
-  mLoteCocoItens.Open;
-  case FormOperacao of
-       'InserirRegistro': begin
-                               AtualizaStatusBotao;
-                               PanelAdicionaItens.Enabled:=False;
-                               LimpaItens;
-                               PanelAdicionaValor.Enabled:=False;
-                               //fPrincipal.zConn.StartTransaction;
-                               //ztRomSaidaCoco.Append;
-                               EditarTrue;
-                          end;
-
-       'VisualizarRegistro': begin
-                                   ztRomSaidaCoco.Locate('IDRomSaidaCoco',
-                                   fMovCoco.ztMovCocoIDRomSaidaCoco.Value,[]);
-                                   EditarFalse;
-                               end;
-
+  if mLoteCocoItens.RecordCount>0 then begin
+      ztLoteCoco.Filtered:=False;
+      ztLoteCoco.Filter:='(Status = '+QuotedStr('Ativo')+')';
+      ztLoteCoco.Filtered:=True;
+      ztLoteCoco.Locate('IDLoteCoco',mLoteCocoItensIDLoteCoco.Value,[]);
+      ztLoteCoco.Edit;
+      ztLoteCocoSaldoCoco.Value:=ztLoteCocoSaldoCoco.Value+mLoteCocoItensPesoSemValor.Value+
+                                 mLoteCocoItensPesoComValor.Value;
+      ztLoteCoco.Post;
+      ztLoteCoco.Filtered:=False;
+      ztLoteCoco.Filter:='(Status='+QuotedStr('Ativo')+' and SaldoCoco>0)';
+      ztLoteCoco.Filtered:=True;
+      mLoteCocoItens.Delete;
+      AtualizaStatusBotao;
   end;
+  if mLoteCocoItens.RecordCount=0 then
+     ztRomSaidaCoco.Cancel;
 end;
 
 procedure TfRomSaidaCoco.EditarTrue;
@@ -276,6 +429,17 @@ begin
      btTransfereSaldo.Enabled:=True
   else
      btTransfereSaldo.Enabled:=False;
+
+  if mLoteCocoItens.RecordCount>0 then begin
+     PanelRomSaidaCoco.Enabled:=True;
+     btSalvar.Enabled:=True;
+     btCancelarReg.Enabled:=True;
+  end
+  else begin
+     PanelRomSaidaCoco.Enabled:=False;
+     btSalvar.Enabled:=False;
+     btCancelarReg.Enabled:=False;
+  end;
 end;
 
 procedure TfRomSaidaCoco.CalculaItens;

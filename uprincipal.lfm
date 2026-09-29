@@ -79,8 +79,13 @@ object fPrincipal: TfPrincipal
       'RawStringEncoding=DB_CP'
     )
     TransactIsolationLevel = tiReadCommitted
+    Connected = True
     DisableSavepoints = False
-    Port = 0
+    HostName = 'localhost'
+    Port = 3050
+    Database = '/mnt/Arquivo/ProjetosLazarus/Linux/Sistema-Maquina/BaseDeDados/DBSistemaMaquina.fdb'
+    User = 'SYSDBA'
+    Password = 'masterkey'
     Protocol = 'firebird'
     Left = 168
     Top = 32
