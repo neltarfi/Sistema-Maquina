@@ -42,6 +42,7 @@ object fMovCoco: TfMovCoco
         FieldName = 'IDRomSaidaCoco'
       end>
     DataSource = dsMovCoco
+    ReadOnly = True
     TabOrder = 0
     OnDblClick = DBGrid1DblClick
   end
@@ -64,7 +65,7 @@ object fMovCoco: TfMovCoco
     OnClick = btSaidaClick
   end
   object btSair: TButton
-    Left = 456
+    Left = 609
     Height = 25
     Top = 440
     Width = 75
@@ -163,6 +164,15 @@ object fMovCoco: TfMovCoco
     Options = []
     TabOrder = 8
     VisibleButtons = [nbFirst, nbPrior, nbNext, nbLast]
+  end
+  object btRelatorio: TButton
+    Left = 512
+    Height = 25
+    Top = 401
+    Width = 75
+    Caption = 'Relatório'
+    TabOrder = 9
+    OnClick = btRelatorioClick
   end
   object dsMovCoco: TDataSource
     DataSet = ztMovCoco

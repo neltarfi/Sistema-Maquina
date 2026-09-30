@@ -17,6 +17,7 @@ type
     btSaida: TButton;
     btSair: TButton;
     BuscaNome: TButton;
+    btRelatorio: TButton;
     DBNavigator1: TDBNavigator;
     dsCliente: TDataSource;
     DBlcbNome: TDBLookupComboBox;
@@ -36,6 +37,7 @@ type
     ztMovCocoIDRomSaidaCoco: TZInt64Field;
     ztMovCocoRazao:TStringField;
     procedure btEntradaClick(Sender: TObject);
+    procedure btRelatorioClick(Sender: TObject);
     procedure btSaidaClick(Sender: TObject);
     procedure btSairClick(Sender: TObject);
     procedure BuscaNomeClick(Sender: TObject);
@@ -58,7 +60,7 @@ var
 
 implementation
 
-uses uRomEntCoco, uPrincipal, uCadCliente, uRomSaidaCoco;
+uses uRomEntCoco, uPrincipal, uCadCliente, uRomSaidaCoco, uMovLoteCocoRel;
 
 {$R *.lfm}
 
@@ -73,6 +75,13 @@ begin
   fRomEntCoco.Destroy;
   ztMovCoco.Refresh;
   ztMovCoco.Locate('IDMovCoco',temp,[]);
+end;
+
+procedure TfMovCoco.btRelatorioClick(Sender: TObject);
+begin
+  fMovLoteCocoRel:=TfMovLoteCocoRel.Create(self);
+  fMovLoteCocoRel.ShowModal;
+  fMovLoteCocoRel.Destroy;
 end;
 
 procedure TfMovCoco.btSaidaClick(Sender: TObject);
@@ -102,19 +111,24 @@ begin
 end;
 
 procedure TfMovCoco.DBGrid1DblClick(Sender: TObject);
+var temp:integer;
 begin
   FormOperacao:='VisualizarRegistro';
   if (ztMovCoco.RecordCount>0) then begin             //verifica se tem registros
                                                       //na tabela MovCoco.
      if (ztMovCocoIDRomEntradaCoco.Value)>0 then begin // verifica se é entrada
-        fRomEntCoco:=TfRomEntCoco.Create(self);        //ou saída.
-        fRomEntCoco.ShowModal;
-        fRomEntCoco.Destroy;
+        fRomEntCoco:=TfRomEntCoco.Create(self);
+         temp:=fRomEntCoco.ShowModal;
+         fRomEntCoco.Destroy;
+         ztMovCoco.Refresh;
+     ztMovCoco.Locate('IDMovCoco',temp,[]);
      end
      else begin
         fRomSaidaCoco:=TfRomSaidaCoco.Create(self);
-        fRomSaidaCoco.ShowModal;
+        temp:=fRomSaidaCoco.ShowModal;
         fRomSaidaCoco.Destroy;
+        ztMovCoco.Refresh;
+         ztMovCoco.Locate('IDMovCoco',temp,[]);
      end;
 
   end;

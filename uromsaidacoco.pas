@@ -22,6 +22,7 @@ type
     btEscluir: TButton;
     btSalvar: TButton;
     btTransfereSaldo: TButton;
+    dsRomSaidaCocoItens: TDataSource;
     edtPreco: TEdit;
     edtPesoComValor: TEdit;
     edtPesoSemValor: TEdit;
@@ -29,7 +30,7 @@ type
     dsmLoteCocoItens: TDataSource;
     dbcCliente: TDBLookupComboBox;
     DBDateEdit1: TDBDateEdit;
-    DBEdit1: TDBEdit;
+    dbeIDRomSaidaCoco: TDBEdit;
     DBGrid2: TDBGrid;
     DBNavigator2: TDBNavigator;
     dsLoteCoco: TDataSource;
@@ -57,23 +58,36 @@ type
     mLoteCocoItensRenda: TLongintField;
     mLoteCocoItensSacoKg: TStringField;
     mLoteCocoItensValorTotal: TCurrencyField;
-    Panel1: TPanel;
+    PanelLoteCoco: TPanel;
     PanelAdicionaItens: TPanel;
     PanelRomSaidaCoco: TPanel;
     PanelAdicionaValor: TPanel;
     rgSacoKg: TRadioGroup;
     zqNovoIDMovCocoID: TZIntegerField;
+    zqNovoIDMovLoteCocoID: TZIntegerField;
     zqNovoIDRomSaidaCoco: TZQuery;
     zqNovoIDRomSaidaCocoID: TZIntegerField;
     zqNovoIDRomSaidaCocoItens: TZQuery;
     zqNovoIDRomSaidaCocoItensID: TZIntegerField;
     zqNovoIDMovCoco: TZQuery;
+    zqNovoIDMovLoteCoco: TZQuery;
+    ztMovLoteCoco: TZTable;
     ztMovCoco: TZTable;
     ztMovCocoDATA: TZDateField;
     ztMovCocoIDCLIENTE: TZIntegerField;
     ztMovCocoIDMOVCOCO: TZIntegerField;
     ztMovCocoIDROMENTRADACOCO: TZIntegerField;
     ztMovCocoIDROMSAIDACOCO: TZIntegerField;
+    ztMovLoteCocoDATA: TZDateField;
+    ztMovLoteCocoHISTORICO: TZRawStringField;
+    ztMovLoteCocoIDCLIENTE: TZIntegerField;
+    ztMovLoteCocoIDLOTECOCO: TZIntegerField;
+    ztMovLoteCocoIDMOVLOTECOCO: TZIntegerField;
+    ztMovLoteCocoIDROMENTRADACOCO: TZIntegerField;
+    ztMovLoteCocoIDROMSAIDACOCO: TZIntegerField;
+    ztMovLoteCocoPESOCOCOENTRADA: TZIntegerField;
+    ztMovLoteCocoPESOCOCOSAIDA: TZIntegerField;
+    ztMovLoteCocoSTATUS: TZRawStringField;
     ztRomSaidaCocoItens: TZTable;
     ztCliente: TZTable;
     ztLoteCoco: TZTable;
@@ -148,31 +162,42 @@ uses uPrincipal, uCadCliente, uMovCoco, uFuncoes;
 procedure TfRomSaidaCoco.FormShow(Sender: TObject);
 begin
   ztCliente.Open;
-  ztLoteCoco.Open;
   ztRomSaidaCoco.Open;
   ztRomSaidaCocoItens.Open;
-  ztMovCoco.Open;
-  zqNovoIDMovCoco.Open;
-  zqNovoIDRomSaidaCoco.Open;
-  zqNovoIDRomSaidaCocoItens.Open;
-  zqNovoIDRomSaidaCocoItens.Open;
-  mLoteCocoItens.Open;
   case FormOperacao of
        'InserirRegistro': begin
+                               ztLoteCoco.Open;
+                               ztMovLoteCoco.Open;
+                               ztMovCoco.Open;
+                               zqNovoIDMovCoco.Open;
+                               zqNovoIDMovLoteCoco.Open;
+                               zqNovoIDRomSaidaCoco.Open;
+                               zqNovoIDRomSaidaCocoItens.Open;
+                               zqNovoIDRomSaidaCocoItens.Open;
+                               mLoteCocoItens.Open;
                                AtualizaStatusBotao;
                                PanelAdicionaItens.Enabled:=False;
                                PanelRomSaidaCoco.Enabled:=False;
                                LimpaItens;
                                PanelAdicionaValor.Enabled:=False;
                                fPrincipal.zConn.StartTransaction;
-
-                               //EditarTrue;
                           end;
 
        'VisualizarRegistro': begin
-                                   ztRomSaidaCoco.Locate('IDRomSaidaCoco',
-                                   fMovCoco.ztMovCocoIDRomSaidaCoco.Value,[]);
-                                   EditarFalse;
+                                  PanelRomSaidaCoco.Enabled:=False;
+                                  PanelLoteCoco.Enabled:=False;
+                                  PanelAdicionaItens.Enabled:=False;
+                                  btCancelarReg.Enabled:=False;
+                                  btSalvar.Enabled:=False;
+                                  ztRomSaidaCoco.Locate('IDRomSaidaCoco',
+                                  fMovCoco.ztMovCocoIDRomSaidaCoco.Value,[]);
+                                  dbcCliente.KeyValue:=ztRomSaidaCocoIDCliente.Value;
+                                  ztRomSaidaCocoItens.Close;
+                                  DBGrid2.DataSource:=dsRomSaidaCocoItens;
+                                  ztRomSaidaCocoItens.Open;
+                                  ztRomSaidaCocoItens.Filtered:=False;
+                                  ztRomSaidaCocoItens.Filter:='(IDRomSaidaCoco='+dbeIDRomSaidaCoco.Text+')';
+                                  ztRomSaidaCocoItens.Filtered:=True;
                                end;
 
   end;
@@ -187,6 +212,8 @@ begin
       ztRomSaidaCocoItens.Close;
       ztMovCoco.Close;
       zqNovoIDMovCoco.Close;
+      zqNovoIDMovLoteCoco.Close;
+      ztMovLoteCoco.Close;
       zqNovoIDRomSaidaCoco.Close;
       zqNovoIDRomSaidaCocoItens.Close;
       zqNovoIDRomSaidaCocoItens.Close;
@@ -227,7 +254,24 @@ begin
      ztRomSaidaCocoItensPreco.Value:=mLoteCocoItensPreco.Value;
      ztRomSaidaCocoItensValorTotal.Value:=mLoteCocoItensValorTotal.Value;
      ztRomSaidaCocoItens.Post;
-     mLoteCocoItens.Next;
+
+    //MovLoteCoco
+    zqNovoIDMovLoteCoco.Refresh;
+    ztMovLoteCoco.Append;
+    ztMovLoteCocoIDMovLoteCoco.Value:=zqNovoIDMovLoteCocoID.Value+1;
+    ztMovLoteCocoIDLoteCoco.Value:=mLoteCocoItensIDLoteCoco.Value;
+    ztMovLoteCocoIDRomEntradaCoco.Value:=0;
+    ztMovLoteCocoIDRomSaidaCoco.Value:=ztRomSaidaCocoIDRomSaidaCoco.Value;
+    ztMovLoteCocoIDCliente.Value:=dbcCliente.KeyValue;
+    ztMovLoteCocoData.Value:=ztRomSaidaCocoData.Value;
+    ztMovLoteCocoHistorico.Value:='Romaneio saída em coco '+IntToStr(ztRomSaidaCocoIDRomSaidaCoco.Value);
+    ztMovLoteCocoPesoCocoEntrada.Value:=0;
+    ztMovLoteCocoPesoCocoSaida.Value:=ztRomSaidaCocoItensPesoSemValor.Value+
+                                      ztRomSaidaCocoItensPesoComValor.Value;
+    ztMovLoteCocoStatus.Value:='Ativo';
+    ztMovLoteCoco.Post;
+
+    mLoteCocoItens.Next;
   end;
 
   //RomSaidaCoco
@@ -263,7 +307,7 @@ begin
   PanelAdicionaItens.Enabled:=True;
   PesoCoco:=strToInt(ztLoteCocoSaldoCoco.Text);
   edtPesoCoco.Text:=floatToStr(PesoCoco);
-  Panel1.Enabled:=False;
+  PanelLoteCoco.Enabled:=False;
   btTransfereSaldo.Enabled:=False;
   LimpaValor;
 
@@ -333,7 +377,7 @@ begin
      showMessage(Erro);
      Exit;
   end;
-  Panel1.Enabled:=True;
+  PanelLoteCoco.Enabled:=True;
   btTransfereSaldo.Enabled:=True;
   AtualizaStatusBotao;
 
@@ -369,7 +413,7 @@ end;
 
 procedure TfRomSaidaCoco.btCancelarClick(Sender: TObject);
 begin
-  Panel1.Enabled:=True;
+  PanelLoteCoco.Enabled:=True;
   PanelAdicionaItens.Enabled:=False;
   btTransfereSaldo.Enabled:=True;
   AtualizaStatusBotao;
