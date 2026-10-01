@@ -171,6 +171,7 @@ type
     ztMovLoteCocoPESOCOCOENTRADA: TZIntegerField;
     ztMovLoteCocoPESOCOCOSAIDA: TZIntegerField;
     ztMovLoteCocoSTATUS: TZRawStringField;
+    ztMovLoteCocoVALOR: TZBCDField;
     ztMovLoteLimpo: TZTable;
     ztEstoqueDepositoCoco: TZTable;
     ztMovLoteCoco: TZTable;
@@ -1050,6 +1051,7 @@ begin
         ztMovLoteCocoHistorico.Value:='Romaneio entrada em coco '+intToStr(IDRomEntradaCoco) ;
         ztMovLoteCocoPesoCocoEntrada.Value:=PesoCoco;
         ztMovLoteCocoPesoCocoSaida.Value:=0;
+        ztMovLoteCocoValor.Value:=(-1)*ztRomCompraCocoValorBruto.Value;
         ztMovLoteCocoStatus.Value:='Ativo';
         ztMovLoteCoco.Post;
 end;

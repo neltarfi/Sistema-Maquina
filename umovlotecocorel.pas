@@ -6,7 +6,7 @@ interface
 
 uses
   Classes, SysUtils, DB, Forms, Controls, Graphics, Dialogs, DBGrids, Buttons,
-  ZDataset, ZAbstractRODataset;
+  ExtCtrls, StdCtrls, DateTimePicker, ZDataset, ZAbstractRODataset;
 
 type
 
@@ -14,8 +14,13 @@ type
 
   TfMovLoteCocoRel = class(TForm)
     btSair: TBitBtn;
+    dtpFim: TDateTimePicker;
+    dtpInicio: TDateTimePicker;
     dsMovLoteCoco: TDataSource;
     DBGrid1: TDBGrid;
+    Label1: TLabel;
+    Label2: TLabel;
+    rgFiltro: TRadioGroup;
     ztMovLoteCoco: TZTable;
     ztMovLoteCocoDATA: TZDateField;
     ztMovLoteCocoHISTORICO: TZRawStringField;
@@ -27,9 +32,11 @@ type
     ztMovLoteCocoPESOCOCOENTRADA: TZIntegerField;
     ztMovLoteCocoPESOCOCOSAIDA: TZIntegerField;
     ztMovLoteCocoSTATUS: TZRawStringField;
+    ztMovLoteCocoVALOR: TZBCDField;
     procedure btSairClick(Sender: TObject);
     procedure FormClose(Sender: TObject; var CloseAction: TCloseAction);
     procedure FormShow(Sender: TObject);
+    procedure rgFiltroClick(Sender: TObject);
   private
 
   public
@@ -48,6 +55,18 @@ implementation
 procedure TfMovLoteCocoRel.FormShow(Sender: TObject);
 begin
   ztMovLoteCoco.Open;
+  rgFiltro.ItemIndex:=0;
+end;
+
+procedure TfMovLoteCocoRel.rgFiltroClick(Sender: TObject);
+begin
+  ztMovLoteCoco.Filtered:=False;
+  if rgFiltro.ItemIndex=0 then
+     ztMovLoteCoco.Filter:=''
+  else
+      ztMovLoteCoco.Filter:='(Data>='+QuotedStr(dateToStr(dtpInicio.Date))+'and Data<='+
+                             QuotedStr(dateToStr(dtpFim.Date))+')';
+  ztMovLoteCoco.Filtered:=True;
 end;
 
 procedure TfMovLoteCocoRel.FormClose(Sender: TObject;

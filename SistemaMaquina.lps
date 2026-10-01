@@ -122,10 +122,13 @@
         <HasResources Value="True"/>
         <ResourceBaseClass Value="Form"/>
         <UnitName Value="uRomEntCoco"/>
-        <EditorIndex Value="-1"/>
-        <TopLine Value="883"/>
-        <CursorPos X="6" Y="899"/>
+        <IsVisibleTab Value="True"/>
+        <EditorIndex Value="3"/>
+        <TopLine Value="1031"/>
+        <CursorPos X="40" Y="1054"/>
         <UsageCount Value="200"/>
+        <Loaded Value="True"/>
+        <LoadedDesigner Value="True"/>
       </Unit>
       <Unit>
         <Filename Value="umovlotesacaria.pas"/>
@@ -158,11 +161,10 @@
         <HasResources Value="True"/>
         <ResourceBaseClass Value="Form"/>
         <UnitName Value="uMovCoco"/>
-        <IsVisibleTab Value="True"/>
-        <EditorIndex Value="3"/>
-        <TopLine Value="101"/>
-        <CursorPos X="17" Y="122"/>
-        <UsageCount Value="125"/>
+        <EditorIndex Value="4"/>
+        <TopLine Value="80"/>
+        <CursorPos X="28" Y="83"/>
+        <UsageCount Value="127"/>
         <Loaded Value="True"/>
         <LoadedDesigner Value="True"/>
       </Unit>
@@ -174,9 +176,9 @@
         <ResourceBaseClass Value="Form"/>
         <UnitName Value="uRomSaidaCoco"/>
         <EditorIndex Value="1"/>
-        <TopLine Value="204"/>
-        <CursorPos X="6" Y="203"/>
-        <UsageCount Value="103"/>
+        <TopLine Value="255"/>
+        <CursorPos X="31" Y="271"/>
+        <UsageCount Value="105"/>
         <Loaded Value="True"/>
         <LoadedDesigner Value="True"/>
       </Unit>
@@ -190,7 +192,7 @@
         <EditorIndex Value="-1"/>
         <TopLine Value="111"/>
         <CursorPos X="14" Y="132"/>
-        <UsageCount Value="39"/>
+        <UsageCount Value="41"/>
       </Unit>
       <Unit>
         <Filename Value="umovlotecocorel.pas"/>
@@ -200,9 +202,9 @@
         <ResourceBaseClass Value="Form"/>
         <UnitName Value="uMovLoteCocoRel"/>
         <EditorIndex Value="2"/>
-        <TopLine Value="38"/>
-        <CursorPos X="9" Y="61"/>
-        <UsageCount Value="23"/>
+        <TopLine Value="29"/>
+        <CursorPos X="24" Y="58"/>
+        <UsageCount Value="25"/>
         <Loaded Value="True"/>
         <LoadedDesigner Value="True"/>
       </Unit>
@@ -453,77 +455,6 @@
     </Units>
     <JumpHistory HistoryIndex="29">
       <Position>
-        <Filename Value="uromsaidacoco.pas"/>
-        <Caret Line="258" Column="24" TopLine="240"/>
-      </Position>
-      <Position>
-        <Filename Value="uromsaidacoco.pas"/>
-        <Caret Line="231" TopLine="226"/>
-      </Position>
-      <Position>
-        <Filename Value="uromsaidacoco.pas"/>
-        <Caret Line="232" TopLine="226"/>
-      </Position>
-      <Position>
-        <Filename Value="uromsaidacoco.pas"/>
-        <Caret Line="233" TopLine="226"/>
-      </Position>
-      <Position>
-        <Filename Value="uromsaidacoco.pas"/>
-        <Caret Line="234" TopLine="226"/>
-      </Position>
-      <Position>
-        <Filename Value="uromsaidacoco.pas"/>
-        <Caret Line="235" TopLine="226"/>
-      </Position>
-      <Position>
-        <Filename Value="uromsaidacoco.pas"/>
-        <Caret Line="236" TopLine="226"/>
-      </Position>
-      <Position>
-        <Filename Value="uromsaidacoco.pas"/>
-        <Caret Line="237" TopLine="226"/>
-      </Position>
-      <Position>
-        <Filename Value="uromsaidacoco.pas"/>
-        <Caret Line="238" TopLine="226"/>
-      </Position>
-      <Position>
-        <Filename Value="uromsaidacoco.pas"/>
-        <Caret Line="239" TopLine="226"/>
-      </Position>
-      <Position>
-        <Filename Value="uromsaidacoco.pas"/>
-        <Caret Line="240" TopLine="226"/>
-      </Position>
-      <Position>
-        <Filename Value="uromsaidacoco.pas"/>
-        <Caret Line="241" TopLine="226"/>
-      </Position>
-      <Position>
-        <Filename Value="uromsaidacoco.pas"/>
-        <Caret Line="242" TopLine="226"/>
-      </Position>
-      <Position>
-        <Filename Value="umovlotecocorel.pas"/>
-      </Position>
-      <Position>
-        <Filename Value="umovcoco.pas"/>
-        <Caret Line="81" Column="6" TopLine="73"/>
-      </Position>
-      <Position>
-        <Filename Value="umovcoco.pas"/>
-        <Caret Line="88" Column="6" TopLine="75"/>
-      </Position>
-      <Position>
-        <Filename Value="umovcoco.pas"/>
-        <Caret Line="73" Column="3" TopLine="66"/>
-      </Position>
-      <Position>
-        <Filename Value="umovcoco.pas"/>
-        <Caret Line="84" Column="15" TopLine="69"/>
-      </Position>
-      <Position>
         <Filename Value="umovlotecocorel.pas"/>
       </Position>
       <Position>
@@ -569,6 +500,78 @@
       <Position>
         <Filename Value="umovcoco.pas"/>
         <Caret Line="122" Column="21" TopLine="110"/>
+      </Position>
+      <Position>
+        <Filename Value="uromsaidacoco.pas"/>
+        <Caret Line="194" Column="86" TopLine="183"/>
+      </Position>
+      <Position>
+        <Filename Value="umovlotecocorel.pas"/>
+        <Caret Line="61" Column="9" TopLine="38"/>
+      </Position>
+      <Position>
+        <Filename Value="umovlotecocorel.pas"/>
+        <Caret Line="62" Column="9" TopLine="39"/>
+      </Position>
+      <Position>
+        <Filename Value="umovlotecocorel.pas"/>
+        <Caret Line="63" Column="9" TopLine="40"/>
+      </Position>
+      <Position>
+        <Filename Value="umovlotecocorel.pas"/>
+        <Caret Line="64" Column="9" TopLine="41"/>
+      </Position>
+      <Position>
+        <Filename Value="umovlotecocorel.pas"/>
+        <Caret Line="63" Column="9" TopLine="40"/>
+      </Position>
+      <Position>
+        <Filename Value="umovlotecocorel.pas"/>
+        <Caret Line="64" Column="9" TopLine="41"/>
+      </Position>
+      <Position>
+        <Filename Value="umovlotecocorel.pas"/>
+        <Caret Line="65" Column="9" TopLine="42"/>
+      </Position>
+      <Position>
+        <Filename Value="umovlotecocorel.pas"/>
+        <Caret Line="64" Column="9" TopLine="41"/>
+      </Position>
+      <Position>
+        <Filename Value="umovlotecocorel.pas"/>
+        <Caret Line="65" Column="9" TopLine="42"/>
+      </Position>
+      <Position>
+        <Filename Value="umovlotecocorel.pas"/>
+        <Caret Line="72" Column="9" TopLine="47"/>
+      </Position>
+      <Position>
+        <Filename Value="umovlotecocorel.pas"/>
+        <Caret Line="67" Column="31" TopLine="47"/>
+      </Position>
+      <Position>
+        <Filename Value="umovlotecocorel.pas"/>
+        <Caret Line="63" Column="30" TopLine="51"/>
+      </Position>
+      <Position>
+        <Filename Value="umovlotecocorel.pas"/>
+        <Caret Line="66" Column="54" TopLine="52"/>
+      </Position>
+      <Position>
+        <Filename Value="umovcoco.pas"/>
+        <Caret Line="122" Column="17" TopLine="101"/>
+      </Position>
+      <Position>
+        <Filename Value="uromsaidacoco.pas"/>
+        <Caret Line="192" Column="66" TopLine="184"/>
+      </Position>
+      <Position>
+        <Filename Value="umovlotecocorel.pas"/>
+        <Caret Line="57" Column="24" TopLine="52"/>
+      </Position>
+      <Position>
+        <Filename Value="uromentcoco.pas"/>
+        <Caret Line="1052" Column="4" TopLine="1030"/>
       </Position>
     </JumpHistory>
     <RunParams>

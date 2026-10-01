@@ -239,7 +239,7 @@ object fRomSaidaCoco: TfRomSaidaCoco
         ChildSizing.ShrinkVertical = crsScaleChilds
         ChildSizing.Layout = cclLeftToRightThenTopToBottom
         ChildSizing.ControlsPerLine = 2
-        ClientHeight = 23
+        ClientHeight = 8
         ClientWidth = 164
         Columns = 2
         Font.Style = [fsBold]
@@ -1048,10 +1048,24 @@ object fRomSaidaCoco: TfRomSaidaCoco
       ReadOnly = False
       Required = False
     end
+    object ztMovLoteCocoVALOR: TZBCDField
+      FieldKind = fkData
+      FieldName = 'VALOR'
+      Index = 9
+      LookupCache = False
+      ProviderFlags = [pfInUpdate, pfInWhere]
+      ReadOnly = False
+      Required = False
+      Precision = 10
+      Currency = False
+      MaxValue = 0
+      MinValue = 0
+      Size = 2
+    end
     object ztMovLoteCocoSTATUS: TZRawStringField
       FieldKind = fkData
       FieldName = 'STATUS'
-      Index = 9
+      Index = 10
       LookupCache = False
       ProviderFlags = [pfInUpdate, pfInWhere]
       ReadOnly = False

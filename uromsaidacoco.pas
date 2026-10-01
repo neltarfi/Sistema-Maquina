@@ -88,6 +88,7 @@ type
     ztMovLoteCocoPESOCOCOENTRADA: TZIntegerField;
     ztMovLoteCocoPESOCOCOSAIDA: TZIntegerField;
     ztMovLoteCocoSTATUS: TZRawStringField;
+    ztMovLoteCocoVALOR: TZBCDField;
     ztRomSaidaCocoItens: TZTable;
     ztCliente: TZTable;
     ztLoteCoco: TZTable;
@@ -189,12 +190,11 @@ begin
                                   PanelAdicionaItens.Enabled:=False;
                                   btCancelarReg.Enabled:=False;
                                   btSalvar.Enabled:=False;
+                                  btTransfereSaldo.Enabled:=False;
                                   ztRomSaidaCoco.Locate('IDRomSaidaCoco',
                                   fMovCoco.ztMovCocoIDRomSaidaCoco.Value,[]);
                                   dbcCliente.KeyValue:=ztRomSaidaCocoIDCliente.Value;
-                                  ztRomSaidaCocoItens.Close;
                                   DBGrid2.DataSource:=dsRomSaidaCocoItens;
-                                  ztRomSaidaCocoItens.Open;
                                   ztRomSaidaCocoItens.Filtered:=False;
                                   ztRomSaidaCocoItens.Filter:='(IDRomSaidaCoco='+dbeIDRomSaidaCoco.Text+')';
                                   ztRomSaidaCocoItens.Filtered:=True;
@@ -268,6 +268,7 @@ begin
     ztMovLoteCocoPesoCocoEntrada.Value:=0;
     ztMovLoteCocoPesoCocoSaida.Value:=ztRomSaidaCocoItensPesoSemValor.Value+
                                       ztRomSaidaCocoItensPesoComValor.Value;
+    ztMovLoteCocoValor.Value:=mLoteCocoItensValorTotal.Value;
     ztMovLoteCocoStatus.Value:='Ativo';
     ztMovLoteCoco.Post;
 
