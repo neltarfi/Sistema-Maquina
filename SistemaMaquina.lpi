@@ -146,12 +146,11 @@
         <UnitName Value="uMovCliSacaria"/>
       </Unit>
       <Unit>
-        <Filename Value="umovcoco.pas"/>
+        <Filename Value="umovlotecoco.pas"/>
         <IsPartOfProject Value="True"/>
-        <ComponentName Value="fMovCoco"/>
+        <ComponentName Value="fMovLoteCoco"/>
         <HasResources Value="True"/>
         <ResourceBaseClass Value="Form"/>
-        <UnitName Value="uMovCoco"/>
       </Unit>
       <Unit>
         <Filename Value="uromsaidacoco.pas"/>

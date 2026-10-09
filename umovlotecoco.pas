@@ -1,4 +1,4 @@
-unit uMovCoco;
+unit umovlotecoco;
 
 {$mode ObjFPC}{$H+}
 
@@ -10,9 +10,9 @@ uses
 
 type
 
-  { TfMovCoco }
+  { TfMovLoteCoco }
 
-  TfMovCoco = class(TForm)
+  TfMovLoteCoco = class(TForm)
     btEntrada: TButton;
     btSaida: TButton;
     btSair: TButton;
@@ -21,7 +21,7 @@ type
     DBNavigator1: TDBNavigator;
     dsCliente: TDataSource;
     DBlcbNome: TDBLookupComboBox;
-    dsMovCoco: TDataSource;
+    dsMovLoteCoco: TDataSource;
     DBGrid1: TDBGrid;
     rgFiltroOperacao: TRadioGroup;
     rgFiltroNome: TRadioGroup;
@@ -29,13 +29,18 @@ type
     zqClienteIDCliente: TZInt64Field;
     zqClienteIDPrincipal: TZInt64Field;
     zqClienteRazao: TZRawStringField;
-    ztMovCoco: TZTable;
-    ztMovCocoData: TZDateField;
-    ztMovCocoIDCliente: TZInt64Field;
-    ztMovCocoIDMovCoco: TZInt64Field;
-    ztMovCocoIDRomEntradaCoco: TZInt64Field;
-    ztMovCocoIDRomSaidaCoco: TZInt64Field;
-    ztMovCocoRazao:TStringField;
+    ztMovLoteCoco: TZTable;
+    ztMovLoteCocoDATA: TZDateField;
+    ztMovLoteCocoHISTORICO: TZRawStringField;
+    ztMovLoteCocoIDCLIENTE: TZIntegerField;
+    ztMovLoteCocoIDLOTECOCO: TZIntegerField;
+    ztMovLoteCocoIDMOVLOTECOCO: TZIntegerField;
+    ztMovLoteCocoIDROMENTRADACOCO: TZIntegerField;
+    ztMovLoteCocoIDROMSAIDACOCO: TZIntegerField;
+    ztMovLoteCocoPESOCOCOENTRADA: TZIntegerField;
+    ztMovLoteCocoPESOCOCOSAIDA: TZIntegerField;
+    ztMovLoteCocoSTATUS: TZRawStringField;
+    ztMovLoteCocoVALOR: TZBCDField;
     procedure btEntradaClick(Sender: TObject);
     procedure btRelatorioClick(Sender: TObject);
     procedure btSaidaClick(Sender: TObject);
@@ -55,7 +60,7 @@ type
   end;
 
 var
-  fMovCoco: TfMovCoco;
+  fMovLoteCoco: TfMovLoteCoco;
   FormOperacao:string;
 
 implementation
@@ -64,43 +69,43 @@ uses uRomEntCoco, uPrincipal, uCadCliente, uRomSaidaCoco, uMovLoteCocoRel;
 
 {$R *.lfm}
 
-{ TfMovCoco }
+{ TfMovLoteCoco }
 
-procedure TfMovCoco.btEntradaClick(Sender: TObject);
+procedure TfMovLoteCoco.btEntradaClick(Sender: TObject);
 var temp:integer;
 begin
   FormOperacao:='InserirRegistro';
   fRomEntCoco:=TfRomEntCoco.Create(self);
   temp:=fRomEntCoco.ShowModal;
   fRomEntCoco.Destroy;
-  ztMovCoco.Refresh;
-  ztMovCoco.Locate('IDMovCoco',temp,[]);
+  ztMovLoteCoco.Refresh;
+  ztMovLoteCoco.Locate('IDMovLoteCoco',temp,[]);
 end;
 
-procedure TfMovCoco.btRelatorioClick(Sender: TObject);
+procedure TfMovLoteCoco.btRelatorioClick(Sender: TObject);
 begin
   fMovLoteCocoRel:=TfMovLoteCocoRel.Create(self);
   fMovLoteCocoRel.ShowModal;
   fMovLoteCocoRel.Destroy;
 end;
 
-procedure TfMovCoco.btSaidaClick(Sender: TObject);
+procedure TfMovLoteCoco.btSaidaClick(Sender: TObject);
 var temp:integer;
 begin
      FormOperacao:='InserirRegistro';
      fRomSaidaCoco:=TfRomSaidaCoco.Create(self);
      temp:=fRomSaidaCoco.ShowModal;
      fRomSaidaCoco.Destroy;
-     ztMovCoco.Refresh;
-     ztMovCoco.Locate('IDMovCoco',temp,[]);
+     ztMovLoteCoco.Refresh;
+     ztMovLoteCoco.Locate('IDMovLoteCoco',temp,[]);
 end;
 
-procedure TfMovCoco.btSairClick(Sender: TObject);
+procedure TfMovLoteCoco.btSairClick(Sender: TObject);
 begin
   Close;
 end;
 
-procedure TfMovCoco.BuscaNomeClick(Sender: TObject);
+procedure TfMovLoteCoco.BuscaNomeClick(Sender: TObject);
 var temp:integer;
 begin
     fCadCliente:=TfCadCliente.Create(Self);
@@ -110,48 +115,48 @@ begin
     AplicaFiltro;
 end;
 
-procedure TfMovCoco.DBGrid1DblClick(Sender: TObject);
+procedure TfMovLoteCoco.DBGrid1DblClick(Sender: TObject);
 var temp:integer;
 begin
   FormOperacao:='VisualizarRegistro';
-  if (ztMovCoco.RecordCount>0) then begin             //verifica se tem registros
+  if (ztMovLoteCoco.RecordCount>0) then begin             //verifica se tem registros
                                                       //na tabela MovCoco.
-     if (ztMovCocoIDRomEntradaCoco.Value)>0 then begin // verifica se é entrada
+     if (ztMovLoteCocoIDRomEntradaCoco.Value)>0 then begin // verifica se é entrada
         fRomEntCoco:=TfRomEntCoco.Create(self);
          temp:=fRomEntCoco.ShowModal;
          fRomEntCoco.Destroy;
-         ztMovCoco.Refresh;
-     ztMovCoco.Locate('IDMovCoco',temp,[]);
+         ztMovLoteCoco.Refresh;
+     ztMovLoteCoco.Locate('IDMovLoteCoco',temp,[]);
      end
      else begin
         fRomSaidaCoco:=TfRomSaidaCoco.Create(self);
         temp:=fRomSaidaCoco.ShowModal;
         fRomSaidaCoco.Destroy;
-        ztMovCoco.Refresh;
-         ztMovCoco.Locate('IDMovCoco',temp,[]);
+        ztMovLoteCoco.Refresh;
+         ztMovLoteCoco.Locate('IDMovLoteCoco',temp,[]);
      end;
 
   end;
 end;
 
-procedure TfMovCoco.FormClose(Sender: TObject; var CloseAction: TCloseAction);
+procedure TfMovLoteCoco.FormClose(Sender: TObject; var CloseAction: TCloseAction);
 begin
   FormCadastroSomenteLeitura:=False;
-  ztMovCoco.Close;
+  ztMovLoteCoco.Close;
   zqCliente.Close;
 end;
 
-procedure TfMovCoco.FormShow(Sender: TObject);
+procedure TfMovLoteCoco.FormShow(Sender: TObject);
 begin
-  ztMovCoco.Open;
+  ztMovLoteCoco.Open;
   zqCliente.Open;
   dblcbNome.KeyValue:=0;
   rgFiltroOperacao.ItemIndex:=0;
   rgFiltroNome.ItemIndex:=0;
   FormCadastroSomenteLeitura:=True;//desabilita botoes de edição do seguendo Form Aberto
-  ztMovCoco.Last;
+  ztMovLoteCoco.Last;
 end;
-procedure TfMovCoco.AplicaFiltro;
+procedure TfMovLoteCoco.AplicaFiltro;
 var NomeInicio, NomeFim, OpEntrada, OpSaida:integer;
 begin
      case rgFiltroNome.ItemIndex of
@@ -178,23 +183,23 @@ begin
                 OPSaida:=0;   //mostra registros de saida
            end;
      end;
-     ztMovCoco.Filtered:=False;
-     ztMovCoco.Filter:='IDCliente >=' +intToStr(NomeInicio)+'and IDCliente <='+IntToStr(NomeFim)+
+     ztMovLoteCoco.Filtered:=False;
+     ztMovLoteCoco.Filter:='IDCliente >=' +intToStr(NomeInicio)+'and IDCliente <='+IntToStr(NomeFim)+
      'and IDRomEntradaCoco <>'+IntToStr(OpEntrada)+'and IDRomSaidaCoco <>'+IntToStr(OpSaida);
-     ztMovCoco.Filtered:=True;
+     ztMovLoteCoco.Filtered:=True;
 end;
 
-procedure TfMovCoco.rgFiltroNomeClick(Sender: TObject);
+procedure TfMovLoteCoco.rgFiltroNomeClick(Sender: TObject);
 begin
   AplicaFiltro;
 end;
 
-procedure TfMovCoco.rgFiltroOperacaoClick(Sender: TObject);
+procedure TfMovLoteCoco.rgFiltroOperacaoClick(Sender: TObject);
 begin
   AplicaFiltro;
 end;
 
-procedure TfMovCoco.DBlcbNomeChange(Sender: TObject);
+procedure TfMovLoteCoco.DBlcbNomeChange(Sender: TObject);
 begin
    AplicaFiltro;
 end;

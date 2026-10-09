@@ -239,7 +239,7 @@ object fRomSaidaCoco: TfRomSaidaCoco
         ChildSizing.ShrinkVertical = crsScaleChilds
         ChildSizing.Layout = cclLeftToRightThenTopToBottom
         ChildSizing.ControlsPerLine = 2
-        ClientHeight = 8
+        ClientHeight = 23
         ClientWidth = 164
         Columns = 2
         Font.Style = [fsBold]
@@ -870,76 +870,6 @@ object fRomSaidaCoco: TfRomSaidaCoco
       ProviderFlags = [pfInUpdate, pfInWhere]
       ReadOnly = False
       Required = True
-    end
-  end
-  object zqNovoIDMovCoco: TZQuery
-    Connection = fPrincipal.zConn
-    SQL.Strings = (
-      'select max(IDMOVCOCO) AS ID'
-      'from MOVCOCO'
-    )
-    Params = <>
-    Left = 208
-    Top = 384
-    object zqNovoIDMovCocoID: TZIntegerField
-      FieldKind = fkData
-      FieldName = 'ID'
-      Index = 0
-      LookupCache = False
-      ProviderFlags = [pfInUpdate, pfInWhere]
-      ReadOnly = False
-      Required = True
-    end
-  end
-  object ztMovCoco: TZTable
-    Connection = fPrincipal.zConn
-    TableName = 'MOVCOCO'
-    Left = 208
-    Top = 456
-    object ztMovCocoIDMOVCOCO: TZIntegerField
-      FieldKind = fkData
-      FieldName = 'IDMOVCOCO'
-      Index = 0
-      LookupCache = False
-      ProviderFlags = [pfInUpdate, pfInWhere]
-      ReadOnly = False
-      Required = True
-    end
-    object ztMovCocoDATA: TZDateField
-      FieldKind = fkData
-      FieldName = 'DATA'
-      Index = 1
-      LookupCache = False
-      ProviderFlags = [pfInUpdate, pfInWhere]
-      ReadOnly = False
-      Required = False
-    end
-    object ztMovCocoIDCLIENTE: TZIntegerField
-      FieldKind = fkData
-      FieldName = 'IDCLIENTE'
-      Index = 2
-      LookupCache = False
-      ProviderFlags = [pfInUpdate, pfInWhere]
-      ReadOnly = False
-      Required = False
-    end
-    object ztMovCocoIDROMENTRADACOCO: TZIntegerField
-      FieldKind = fkData
-      FieldName = 'IDROMENTRADACOCO'
-      Index = 3
-      LookupCache = False
-      ProviderFlags = [pfInUpdate, pfInWhere]
-      ReadOnly = False
-      Required = False
-    end
-    object ztMovCocoIDROMSAIDACOCO: TZIntegerField
-      FieldKind = fkData
-      FieldName = 'IDROMSAIDACOCO'
-      Index = 4
-      LookupCache = False
-      ProviderFlags = [pfInUpdate, pfInWhere]
-      ReadOnly = False
-      Required = False
     end
   end
   object zqNovoIDMovLoteCoco: TZQuery

@@ -63,21 +63,13 @@ type
     PanelRomSaidaCoco: TPanel;
     PanelAdicionaValor: TPanel;
     rgSacoKg: TRadioGroup;
-    zqNovoIDMovCocoID: TZIntegerField;
     zqNovoIDMovLoteCocoID: TZIntegerField;
     zqNovoIDRomSaidaCoco: TZQuery;
     zqNovoIDRomSaidaCocoID: TZIntegerField;
     zqNovoIDRomSaidaCocoItens: TZQuery;
     zqNovoIDRomSaidaCocoItensID: TZIntegerField;
-    zqNovoIDMovCoco: TZQuery;
     zqNovoIDMovLoteCoco: TZQuery;
     ztMovLoteCoco: TZTable;
-    ztMovCoco: TZTable;
-    ztMovCocoDATA: TZDateField;
-    ztMovCocoIDCLIENTE: TZIntegerField;
-    ztMovCocoIDMOVCOCO: TZIntegerField;
-    ztMovCocoIDROMENTRADACOCO: TZIntegerField;
-    ztMovCocoIDROMSAIDACOCO: TZIntegerField;
     ztMovLoteCocoDATA: TZDateField;
     ztMovLoteCocoHISTORICO: TZRawStringField;
     ztMovLoteCocoIDCLIENTE: TZIntegerField;
@@ -154,7 +146,7 @@ var
 
 implementation
 
-uses uPrincipal, uCadCliente, uMovCoco, uFuncoes;
+uses uPrincipal, uCadCliente, umovlotecoco, uFuncoes;
 
 {$R *.lfm}
 
@@ -169,8 +161,6 @@ begin
        'InserirRegistro': begin
                                ztLoteCoco.Open;
                                ztMovLoteCoco.Open;
-                               ztMovCoco.Open;
-                               zqNovoIDMovCoco.Open;
                                zqNovoIDMovLoteCoco.Open;
                                zqNovoIDRomSaidaCoco.Open;
                                zqNovoIDRomSaidaCocoItens.Open;
@@ -192,7 +182,7 @@ begin
                                   btSalvar.Enabled:=False;
                                   btTransfereSaldo.Enabled:=False;
                                   ztRomSaidaCoco.Locate('IDRomSaidaCoco',
-                                  fMovCoco.ztMovCocoIDRomSaidaCoco.Value,[]);
+                                  fMovLoteCoco.ztMovLoteCocoIDRomSaidaCoco.Value,[]);
                                   dbcCliente.KeyValue:=ztRomSaidaCocoIDCliente.Value;
                                   DBGrid2.DataSource:=dsRomSaidaCocoItens;
                                   ztRomSaidaCocoItens.Filtered:=False;
@@ -210,8 +200,6 @@ begin
       ztLoteCoco.Close;
       ztRomSaidaCoco.Close;
       ztRomSaidaCocoItens.Close;
-      ztMovCoco.Close;
-      zqNovoIDMovCoco.Close;
       zqNovoIDMovLoteCoco.Close;
       ztMovLoteCoco.Close;
       zqNovoIDRomSaidaCoco.Close;
@@ -278,16 +266,6 @@ begin
   //RomSaidaCoco
   ztRomSaidaCocoIDCliente.Value:=dbcCliente.KeyValue;
   ztRomSaidaCoco.Post;
-
-  //MovCoco
-  zqNovoIdMovCoco.Refresh;
-  ztMovCoco.Append;
-  ztMovCocoIDMovCoco.Value :=zqNovoIdMovCocoID.Value+1;
-  ztMovCocoData.Value:=ztRomSaidaCocoData.Value;
-  ztMovCocoIDCliente.Value:=dbcCliente.KeyValue;
-  ztMovCocoIDRomEntradaCoco.Value:=0;
-  ztMovCocoIDRomSaidaCoco.Value:=ztRomSaidaCocoIDRomSaidaCoco.Value;
-  ztMovCoco.Post;
 
   fPrincipal.zConn.Commit;
   except

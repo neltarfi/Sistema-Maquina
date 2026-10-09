@@ -122,7 +122,6 @@ type
     zqLoteCocoSTATUS: TZRawStringField;
     zqNovoIDContaCorrenteID: TZInt64Field;
     zqNovoIDEstDepCocoID: TZInt64Field;
-    zqNovoIDMovCocoID: TZInt64Field;
     zqNovoIDMovLoteCocoID: TZInt64Field;
     zqNovoIDMovLoteLimpoID: TZInt64Field;
     zqNovoIDRomaneioCoco: TZQuery;
@@ -134,7 +133,6 @@ type
     zqNovoIDEstDepCoco: TZQuery;
     zqNovoIDMovLoteLimpo: TZQuery;
     zqNovoIDContaCorrente: TZQuery;
-    zqNovoIDMovCoco: TZQuery;
     ztContaCorrenteDATA: TZDateField;
     ztContaCorrenteENTRADA: TZBCDField;
     ztContaCorrenteHISTORICO: TZRawStringField;
@@ -153,14 +151,8 @@ type
     ztLoteLimpoNOME: TZRawStringField;
     ztLoteLimpoSALDO: TZBCDField;
     ztLoteLimpoSTATUS: TZRawStringField;
-    ztMovCoco: TZTable;
     ztContaCorrente: TZTable;
     ztLoteLimpo: TZTable;
-    ztMovCocoDATA: TZDateField;
-    ztMovCocoIDCLIENTE: TZIntegerField;
-    ztMovCocoIDMOVCOCO: TZIntegerField;
-    ztMovCocoIDROMENTRADACOCO: TZIntegerField;
-    ztMovCocoIDROMSAIDACOCO: TZIntegerField;
     ztMovLoteCocoDATA: TZDateField;
     ztMovLoteCocoHISTORICO: TZRawStringField;
     ztMovLoteCocoIDCLIENTE: TZIntegerField;
@@ -300,7 +292,7 @@ var
 
 implementation
 
-uses uCadCliente, uPrincipal, uFuncoes, uMovCoco;
+uses uCadCliente, uPrincipal, uFuncoes, umovlotecoco;
 {$R *.lfm}
 
 { TfRomEntCoco }
@@ -339,12 +331,10 @@ begin
     ztEstoqueDepositoCoco.Open;
     zqNovoIDContaCorrente.Open;
     ztContaCorrente.Open;
-    ztMovCoco.Open;
-    zqNovoIDMovCoco.Open;
     Case FormOperacao of
          'VisualizarRegistro': begin
                                    ztRomEntradaCoco.Locate('IDRomEntradaCoco',
-                                   fMovCoco.ztMovCocoIDRomEntradaCoco.Value,[]);
+                                   fMovLoteCoco.ztMovLoteCocoIDRomEntradaCoco.Value,[]);
                                end;
          'InserirRegistro':    begin
                                     fPrincipal.zConn.StartTransaction;
@@ -360,8 +350,8 @@ end;
 
 procedure TfRomEntCoco.FormClose(Sender: TObject; var CloseAction: TCloseAction);
 begin
-    if ztMovCocoIDMovCoco.Value > 0 then
-       fRomEntCoco.ModalResult:=ztMovCocoIDMovCoco.Value;
+    if ztMovLoteCocoIDMovLoteCoco.Value > 0 then
+       fRomEntCoco.ModalResult:=ztMovLoteCocoIDMovLoteCoco.Value;
     if EntradaCocoModoEdicao then begin
        if CompraCocoModoEdicao then
           ztRomCompraCoco.Cancel;
@@ -384,9 +374,6 @@ begin
     ztEstoqueDepositoCoco.Close;
     zqNovoIDContaCorrente.Close;
     ztContaCorrente.Close;
-    ztMovCoco.Close;
-    zqNovoIDMovCoco.Close;
-
 end;
 
 procedure TfRomEntCoco.btBuscarClick(Sender: TObject);
@@ -919,16 +906,6 @@ begin
      end;
      ztRomEntradaCocoStatus.Value:='Ativo';
      ztRomEntradaCoco.Post;
-
-                    //MovCoco
-     ztMovCoco.Append;
-     zqNovoIDMovCoco.Refresh;
-     ztMovCocoIDMovCoco.Value:=zqNovoIDMovCocoID.Value+1;
-     ztMovCocoIDRomEntradaCoco.Value:=IDRomEntradaCoco;
-     ztMovCocoData.Value:=ztRomEntradaCocoData.Value;
-     ztMovCocoIDRomSaidaCoco.Value:=0;
-     ztMovCocoIDCliente.Value:=IDCliente;
-     ztMovCoco.Post;
 
                    //café para beber
      if BeberLimpo>0 then SalvaCafeBeber;

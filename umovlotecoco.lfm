@@ -1,12 +1,12 @@
-object fMovCoco: TfMovCoco
+object fMovLoteCoco: TfMovLoteCoco
   Left = 194
   Height = 493
   Top = 250
-  Width = 695
+  Width = 771
   BorderIcons = []
   Caption = 'Movimento de café Coco'
   ClientHeight = 493
-  ClientWidth = 695
+  ClientWidth = 771
   Color = clGradientActiveCaption
   Position = poScreenCenter
   LCLVersion = '4.8.0.0'
@@ -16,32 +16,54 @@ object fMovCoco: TfMovCoco
     Left = 8
     Height = 248
     Top = 136
-    Width = 676
+    Width = 737
     Color = clWindow
     Columns = <    
       item
-        Title.Caption = 'Data'
-        FieldName = 'Data'
+        Title.Caption = 'IDMOVLOTECOCO'
+        FieldName = 'IDMOVLOTECOCO'
       end    
       item
-        PickList.Strings = (
-          'Nelson'
-          'Nenhum'
-        )
-        Title.Caption = 'Razao'
-        FieldName = 'Razao'
+        Title.Caption = 'IDLOTECOCO'
+        FieldName = 'IDLOTECOCO'
       end    
       item
-        Title.Caption = 'Rom Ent'
-        Width = 60
-        FieldName = 'IDRomEntradaCoco'
+        Title.Caption = 'IDROMENTRADACOCO'
+        FieldName = 'IDROMENTRADACOCO'
       end    
       item
-        Title.Caption = 'Rom Saida'
-        Width = 68
-        FieldName = 'IDRomSaidaCoco'
+        Title.Caption = 'IDROMSAIDACOCO'
+        FieldName = 'IDROMSAIDACOCO'
+      end    
+      item
+        Title.Caption = 'IDCLIENTE'
+        FieldName = 'IDCLIENTE'
+      end    
+      item
+        Title.Caption = 'DATA'
+        FieldName = 'DATA'
+      end    
+      item
+        Title.Caption = 'HISTORICO'
+        FieldName = 'HISTORICO'
+      end    
+      item
+        Title.Caption = 'PESOCOCOENTRADA'
+        FieldName = 'PESOCOCOENTRADA'
+      end    
+      item
+        Title.Caption = 'PESOCOCOSAIDA'
+        FieldName = 'PESOCOCOSAIDA'
+      end    
+      item
+        Title.Caption = 'VALOR'
+        FieldName = 'VALOR'
+      end    
+      item
+        Title.Caption = 'STATUS'
+        FieldName = 'STATUS'
       end>
-    DataSource = dsMovCoco
+    DataSource = dsMovLoteCoco
     ReadOnly = True
     TabOrder = 0
     OnDblClick = DBGrid1DblClick
@@ -160,7 +182,7 @@ object fMovCoco: TfMovCoco
     ChildSizing.ControlsPerLine = 100
     ClientHeight = 25
     ClientWidth = 241
-    DataSource = dsMovCoco
+    DataSource = dsMovLoteCoco
     Options = []
     TabOrder = 8
     VisibleButtons = [nbFirst, nbPrior, nbNext, nbLast]
@@ -174,10 +196,10 @@ object fMovCoco: TfMovCoco
     TabOrder = 9
     OnClick = btRelatorioClick
   end
-  object dsMovCoco: TDataSource
-    DataSet = ztMovCoco
+  object dsMovLoteCoco: TDataSource
+    DataSet = ztMovLoteCoco
     Left = 160
-    Top = 240
+    Top = 186
   end
   object dsCliente: TDataSource
     DataSet = zqCliente
@@ -224,69 +246,116 @@ object fMovCoco: TfMovCoco
       Required = False
     end
   end
-  object ztMovCoco: TZTable
+  object ztMovLoteCoco: TZTable
     Connection = fPrincipal.zConn
-    TableName = 'MovCoco'
-    Left = 64
-    Top = 248
-    object ztMovCocoIDMovCoco: TZInt64Field
+    TableName = 'MOVLOTECOCO'
+    Left = 65
+    Top = 186
+    object ztMovLoteCocoIDMOVLOTECOCO: TZIntegerField
       FieldKind = fkData
-      FieldName = 'IDMovCoco'
+      FieldName = 'IDMOVLOTECOCO'
       Index = 0
       LookupCache = False
       ProviderFlags = [pfInUpdate, pfInWhere]
       ReadOnly = False
-      Required = False
+      Required = True
     end
-    object ztMovCocoData: TZDateField
+    object ztMovLoteCocoIDLOTECOCO: TZIntegerField
       FieldKind = fkData
-      FieldName = 'Data'
+      FieldName = 'IDLOTECOCO'
       Index = 1
       LookupCache = False
       ProviderFlags = [pfInUpdate, pfInWhere]
       ReadOnly = False
       Required = False
     end
-    object ztMovCocoIDRomEntradaCoco: TZInt64Field
+    object ztMovLoteCocoIDROMENTRADACOCO: TZIntegerField
       FieldKind = fkData
-      FieldName = 'IDRomEntradaCoco'
+      FieldName = 'IDROMENTRADACOCO'
       Index = 2
       LookupCache = False
       ProviderFlags = [pfInUpdate, pfInWhere]
       ReadOnly = False
       Required = False
     end
-    object ztMovCocoIDRomSaidaCoco: TZInt64Field
+    object ztMovLoteCocoIDROMSAIDACOCO: TZIntegerField
       FieldKind = fkData
-      FieldName = 'IDRomSaidaCoco'
+      FieldName = 'IDROMSAIDACOCO'
       Index = 3
       LookupCache = False
       ProviderFlags = [pfInUpdate, pfInWhere]
       ReadOnly = False
       Required = False
     end
-    object ztMovCocoRazao: TStringField
-      FieldKind = fkLookup
-      FieldName = 'Razao'
+    object ztMovLoteCocoIDCLIENTE: TZIntegerField
+      FieldKind = fkData
+      FieldName = 'IDCLIENTE'
       Index = 4
-      KeyFields = 'IDCliente'
       LookupCache = False
-      LookupDataSet = zqCliente
-      LookupKeyFields = 'IDCliente'
-      LookupResultField = 'Razao'
       ProviderFlags = [pfInUpdate, pfInWhere]
       ReadOnly = False
       Required = False
-      Size = 40
     end
-    object ztMovCocoIDCliente: TZInt64Field
+    object ztMovLoteCocoDATA: TZDateField
       FieldKind = fkData
-      FieldName = 'IDCliente'
+      FieldName = 'DATA'
       Index = 5
       LookupCache = False
       ProviderFlags = [pfInUpdate, pfInWhere]
       ReadOnly = False
       Required = False
+    end
+    object ztMovLoteCocoHISTORICO: TZRawStringField
+      FieldKind = fkData
+      FieldName = 'HISTORICO'
+      Index = 6
+      LookupCache = False
+      ProviderFlags = [pfInUpdate, pfInWhere]
+      ReadOnly = False
+      Required = False
+      Size = 40
+    end
+    object ztMovLoteCocoPESOCOCOENTRADA: TZIntegerField
+      FieldKind = fkData
+      FieldName = 'PESOCOCOENTRADA'
+      Index = 7
+      LookupCache = False
+      ProviderFlags = [pfInUpdate, pfInWhere]
+      ReadOnly = False
+      Required = False
+    end
+    object ztMovLoteCocoPESOCOCOSAIDA: TZIntegerField
+      FieldKind = fkData
+      FieldName = 'PESOCOCOSAIDA'
+      Index = 8
+      LookupCache = False
+      ProviderFlags = [pfInUpdate, pfInWhere]
+      ReadOnly = False
+      Required = False
+    end
+    object ztMovLoteCocoVALOR: TZBCDField
+      FieldKind = fkData
+      FieldName = 'VALOR'
+      Index = 9
+      LookupCache = False
+      ProviderFlags = [pfInUpdate, pfInWhere]
+      ReadOnly = False
+      Required = False
+      Precision = 10
+      Currency = False
+      MaxValue = 0
+      MinValue = 0
+      Size = 2
+    end
+    object ztMovLoteCocoSTATUS: TZRawStringField
+      FieldKind = fkData
+      FieldName = 'STATUS'
+      Index = 10
+      LookupCache = False
+      ProviderFlags = [pfInUpdate, pfInWhere]
+      ReadOnly = False
+      Required = False
+      Size = 9
     end
   end
 end

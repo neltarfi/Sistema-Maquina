@@ -57,7 +57,7 @@ var
 
 implementation
 
-uses uCadCliente, uCadLoteLimpo, uCadLoteCoco, uMovLoteLimpo, uMovCoco,
+uses uCadCliente, uCadLoteLimpo, uCadLoteCoco, uMovLoteLimpo, umovlotecoco,
   uMovLoteSacaria, uMovCliSacaria, uMovCafeEmprestado, uAcerto, uRomEntCoco,
   uSistema;
 
@@ -112,9 +112,9 @@ end;
 
 procedure TfPrincipal.mnMovCocoClick(Sender: TObject);
 begin
-    fMovCoco:=TfMovCoco.Create(Self);
-    fMovCoco.ShowModal;
-    fMovCoco.Destroy;
+    fMovLoteCoco:=TfMovLoteCoco.Create(Self);
+    fMovLoteCoco.ShowModal;
+    fMovLoteCoco.Destroy;
 end;
 
 procedure TfPrincipal.CadClienteClick(Sender: TObject);

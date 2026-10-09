@@ -64,8 +64,9 @@ begin
   if rgFiltro.ItemIndex=0 then
      ztMovLoteCoco.Filter:=''
   else
-      ztMovLoteCoco.Filter:='(Data>='+QuotedStr(dateToStr(dtpInicio.Date))+'and Data<='+
-                             QuotedStr(dateToStr(dtpFim.Date))+')';
+      ztMovLoteCoco.Filter:='(Status='+QuotedStr('Ativo')+'and Data>='+
+                             QuotedStr(dateToStr(dtpInicio.Date))+
+                             'and Data<='+QuotedStr(dateToStr(dtpFim.Date))+')';
   ztMovLoteCoco.Filtered:=True;
 end;
 
