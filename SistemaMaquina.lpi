@@ -168,14 +168,6 @@
         <ResourceBaseClass Value="Form"/>
         <UnitName Value="uSistema"/>
       </Unit>
-      <Unit>
-        <Filename Value="umovlotecocorel.pas"/>
-        <IsPartOfProject Value="True"/>
-        <ComponentName Value="fMovLoteCocoRel"/>
-        <HasResources Value="True"/>
-        <ResourceBaseClass Value="Form"/>
-        <UnitName Value="uMovLoteCocoRel"/>
-      </Unit>
     </Units>
   </ProjectOptions>
   <CompilerOptions>

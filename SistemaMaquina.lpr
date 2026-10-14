@@ -13,7 +13,7 @@ uses
   Forms, datetimectrls, memdslaz, zcomponent, ucadCliente, ueditaCliente,
   uPrincipal, uCadLoteLimpo, uCadLoteCoco, uAcerto, uMovLoteLimpo, uRomEntCoco,
   uMovCafeEmprestado, uMovCliSacaria, uMovLoteSacaria, uFuncoes, umovlotecoco,
-  uRomSaidaCoco, uSistema, uMovLoteCocoRel;
+  uRomSaidaCoco, uSistema;
 
 {$R *.res}
 
@@ -25,7 +25,6 @@ begin
   Application.CreateForm(TfMovLoteCoco, fMovLoteCoco);
   Application.CreateForm(TfRomSaidaCoco, fRomSaidaCoco);
   Application.CreateForm(TfSistema, fSistema);
-  Application.CreateForm(TfMovLoteCocoRel, fMovLoteCocoRel);
   Application.Run;
 end.
 

@@ -190,15 +190,6 @@ object fMovLoteCoco: TfMovLoteCoco
     VisibleButtons = [nbFirst, nbPrior, nbNext, nbLast]
     OnClick = DBNavigator1Click
   end
-  object btRelatorio: TButton
-    Left = 496
-    Height = 25
-    Top = 497
-    Width = 75
-    Caption = 'Relatório'
-    TabOrder = 8
-    OnClick = btRelatorioClick
-  end
   object rgFiltroPeriodo: TRadioGroup
     Left = 8
     Height = 62
@@ -220,7 +211,7 @@ object fMovLoteCoco: TfMovLoteCoco
       'Periodo'
     )
     ParentBackground = False
-    TabOrder = 9
+    TabOrder = 8
     OnClick = rgFiltroPeriodoClick
   end
   object dtpInicio: TDateTimePicker
@@ -231,7 +222,7 @@ object fMovLoteCoco: TfMovLoteCoco
     CenturyFrom = 1941
     MaxDate = 2958465
     MinDate = -53780
-    TabOrder = 10
+    TabOrder = 9
     TrailingSeparator = False
     TextForNullDate = 'NULL'
     LeadingZeros = True
@@ -253,7 +244,7 @@ object fMovLoteCoco: TfMovLoteCoco
     CenturyFrom = 1941
     MaxDate = 2958465
     MinDate = -53780
-    TabOrder = 11
+    TabOrder = 10
     TrailingSeparator = False
     TextForNullDate = 'NULL'
     LeadingZeros = True
@@ -293,7 +284,7 @@ object fMovLoteCoco: TfMovLoteCoco
     Height = 26
     Top = 495
     Width = 80
-    TabOrder = 12
+    TabOrder = 11
     OnChange = edtPosicaoChange
     OnExit = edtPosicaoExit
   end
@@ -362,7 +353,7 @@ object fMovLoteCoco: TfMovLoteCoco
       9B9B9B9B51525252525249A4FFFFFFFFFFFFFFFF0000FF27669A9A9B9B9B9B9B
       51525252525249F7FFFFFFFFFFFFFFFF0000
     }
-    TabOrder = 13
+    TabOrder = 12
     OnClick = btSairClick
   end
   object btAtualiza: TBitBtn
@@ -439,7 +430,7 @@ object fMovLoteCoco: TfMovLoteCoco
     }
     ParentShowHint = False
     ShowHint = True
-    TabOrder = 14
+    TabOrder = 13
     OnClick = btAtualizaClick
   end
   object dbeCliente: TDBEdit
@@ -450,7 +441,7 @@ object fMovLoteCoco: TfMovLoteCoco
     DataField = 'RAZAO'
     DataSource = dsMovLoteCoco
     MaxLength = 0
-    TabOrder = 15
+    TabOrder = 14
   end
   object dbeIDCliente: TDBEdit
     Left = 16
@@ -459,8 +450,9 @@ object fMovLoteCoco: TfMovLoteCoco
     Width = 80
     DataField = 'IDCLIENTE'
     DataSource = dsMovLoteCoco
+    Alignment = taRightJustify
     MaxLength = 0
-    TabOrder = 16
+    TabOrder = 15
   end
   object dsMovLoteCoco: TDataSource
     DataSet = ztMovLoteCoco
@@ -623,7 +615,7 @@ object fMovLoteCoco: TfMovLoteCoco
       Required = False
       Size = 9
     end
-    object TStringField
+    object ztMovLoteCocoRazao: TStringField
       FieldKind = fkLookup
       FieldName = 'RAZAO'
       Index = 11
@@ -636,118 +628,6 @@ object fMovLoteCoco: TfMovLoteCoco
       ReadOnly = False
       Required = False
       Size = 40
-    end
-  end
-  object ztMovLoteCocoAux: TZTable
-    Connection = fPrincipal.zConn
-    TableName = 'MOVLOTECOCO'
-    Left = 309
-    Top = 500
-    object ztMovLoteCocoAuxIDMOVLOTECOCO: TZIntegerField
-      FieldKind = fkData
-      FieldName = 'IDMOVLOTECOCO'
-      Index = 0
-      LookupCache = False
-      ProviderFlags = [pfInUpdate, pfInWhere]
-      ReadOnly = False
-      Required = True
-    end
-    object ztMovLoteCocoAuxIDLOTECOCO: TZIntegerField
-      FieldKind = fkData
-      FieldName = 'IDLOTECOCO'
-      Index = 1
-      LookupCache = False
-      ProviderFlags = [pfInUpdate, pfInWhere]
-      ReadOnly = False
-      Required = False
-    end
-    object ztMovLoteCocoAuxIDROMENTRADACOCO: TZIntegerField
-      FieldKind = fkData
-      FieldName = 'IDROMENTRADACOCO'
-      Index = 2
-      LookupCache = False
-      ProviderFlags = [pfInUpdate, pfInWhere]
-      ReadOnly = False
-      Required = False
-    end
-    object ztMovLoteCocoAuxIDROMSAIDACOCO: TZIntegerField
-      FieldKind = fkData
-      FieldName = 'IDROMSAIDACOCO'
-      Index = 3
-      LookupCache = False
-      ProviderFlags = [pfInUpdate, pfInWhere]
-      ReadOnly = False
-      Required = False
-    end
-    object ztMovLoteCocoAuxIDCLIENTE: TZIntegerField
-      FieldKind = fkData
-      FieldName = 'IDCLIENTE'
-      Index = 4
-      LookupCache = False
-      ProviderFlags = [pfInUpdate, pfInWhere]
-      ReadOnly = False
-      Required = False
-    end
-    object ztMovLoteCocoAuxDATA: TDateField
-      FieldKind = fkData
-      FieldName = 'DATA'
-      Index = 5
-      LookupCache = False
-      ProviderFlags = [pfInUpdate, pfInWhere]
-      ReadOnly = False
-      Required = False
-    end
-    object ztMovLoteCocoAuxHISTORICO: TStringField
-      FieldKind = fkData
-      FieldName = 'HISTORICO'
-      Index = 6
-      LookupCache = False
-      ProviderFlags = [pfInUpdate, pfInWhere]
-      ReadOnly = False
-      Required = False
-      Size = 40
-    end
-    object ztMovLoteCocoAuxPESOCOCOENTRADA: TLongintField
-      FieldKind = fkData
-      FieldName = 'PESOCOCOENTRADA'
-      Index = 7
-      LookupCache = False
-      ProviderFlags = [pfInUpdate, pfInWhere]
-      ReadOnly = False
-      Required = False
-    end
-    object ztMovLoteCocoAuxPESOCOCOSAIDA: TLongintField
-      FieldKind = fkData
-      FieldName = 'PESOCOCOSAIDA'
-      Index = 8
-      LookupCache = False
-      ProviderFlags = [pfInUpdate, pfInWhere]
-      ReadOnly = False
-      Required = False
-    end
-    object ztMovLoteCocoAuxVALOR: TBCDField
-      FieldKind = fkData
-      FieldName = 'VALOR'
-      Index = 9
-      LookupCache = False
-      ProviderFlags = [pfInUpdate, pfInWhere]
-      ReadOnly = False
-      Required = False
-      Precision = 10
-      Currency = False
-      MaxValue = 0
-      MinValue = 0
-      Size = 2
-    end
-    object ztMovLoteCocoAuxSTATUS: TStringField
-      FieldKind = fkData
-      FieldName = 'STATUS'
-      Index = 10
-      LookupCache = False
-      ProviderFlags = [pfInUpdate, pfInWhere]
-      ReadOnly = False
-      Required = False
-      Size = 9
     end
   end
 end

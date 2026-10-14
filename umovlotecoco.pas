@@ -18,7 +18,6 @@ type
     btSaida: TButton;
     btSair: TBitBtn;
     BuscaNome: TButton;
-    btRelatorio: TButton;
     dbeCliente: TDBEdit;
     dbeIDCliente: TDBEdit;
     DBNavigator1: TDBNavigator;
@@ -39,19 +38,7 @@ type
     zqClienteIDCliente: TZInt64Field;
     zqClienteIDPrincipal: TZInt64Field;
     zqClienteRazao: TZRawStringField;
-    ztMovLoteCocoAux: TZTable;
     ztMovLoteCoco: TZTable;
-    ztMovLoteCocoAuxDATA: TDateField;
-    ztMovLoteCocoAuxHISTORICO: TStringField;
-    ztMovLoteCocoAuxIDCLIENTE: TZIntegerField;
-    ztMovLoteCocoAuxIDLOTECOCO: TZIntegerField;
-    ztMovLoteCocoAuxIDMOVLOTECOCO: TZIntegerField;
-    ztMovLoteCocoAuxIDROMENTRADACOCO: TZIntegerField;
-    ztMovLoteCocoAuxIDROMSAIDACOCO: TZIntegerField;
-    ztMovLoteCocoAuxPESOCOCOENTRADA: TLongintField;
-    ztMovLoteCocoAuxPESOCOCOSAIDA: TLongintField;
-    ztMovLoteCocoAuxSTATUS: TStringField;
-    ztMovLoteCocoAuxVALOR: TBCDField;
     ztMovLoteCocoDATA: TZDateField;
     ztMovLoteCocoHISTORICO: TZRawStringField;
     ztMovLoteCocoIDCLIENTE: TZIntegerField;
@@ -63,9 +50,9 @@ type
     ztMovLoteCocoPESOCOCOSAIDA: TZIntegerField;
     ztMovLoteCocoSTATUS: TZRawStringField;
     ztMovLoteCocoVALOR: TZBCDField;
+    ztMovLoteCocoRAZAO: TStringField;
     procedure btAtualizaClick(Sender: TObject);
     procedure btEntradaClick(Sender: TObject);
-    procedure btRelatorioClick(Sender: TObject);
     procedure btSaidaClick(Sender: TObject);
     procedure btSairClick(Sender: TObject);
     procedure BuscaNomeClick(Sender: TObject);
@@ -92,7 +79,7 @@ var
 
 implementation
 
-uses uRomEntCoco, uPrincipal, uCadCliente, uRomSaidaCoco, uMovLoteCocoRel, uFuncoes;
+uses uRomEntCoco, uPrincipal, uCadCliente, uRomSaidaCoco, uFuncoes;
 
 {$R *.lfm}
 
@@ -112,13 +99,6 @@ end;
 procedure TfMovLoteCoco.btAtualizaClick(Sender: TObject);
 begin
   AplicaFiltro('Navigator');
-end;
-
-procedure TfMovLoteCoco.btRelatorioClick(Sender: TObject);
-begin
-  fMovLoteCocoRel:=TfMovLoteCocoRel.Create(self);
-  fMovLoteCocoRel.ShowModal;
-  fMovLoteCocoRel.Destroy;
 end;
 
 procedure TfMovLoteCoco.btSaidaClick(Sender: TObject);
@@ -175,14 +155,12 @@ procedure TfMovLoteCoco.FormClose(Sender: TObject; var CloseAction: TCloseAction
 begin
   FormCadastroSomenteLeitura:=False;
   ztMovLoteCoco.Close;
-  ztMovLoteCocoAux.Close;
   zqCliente.Close;
 end;
 
 procedure TfMovLoteCoco.FormShow(Sender: TObject);
 begin
   ztMovLoteCoco.Open;
-  ztMovLoteCocoAux.Open;
   zqCliente.Open;
   dblcbNome.KeyValue:=0;
   rgFiltroOperacao.ItemIndex:=0;
@@ -190,6 +168,7 @@ begin
   rgFiltroPeriodo.ItemIndex:=0;
   FormCadastroSomenteLeitura:=True;//desabilita botoes de edição do seguendo Form Aberto
   ztMovLoteCoco.Last;
+  edtPosicao.Text:=intToStr(ztMovLoteCoco.RecNo);
 end;
 procedure TfMovLoteCoco.AplicaFiltro(Evento:string);
 var NomeInicio, NomeFim, OpEntrada, OpSaida:integer;
@@ -237,42 +216,21 @@ begin
      'and Data >= '+QuotedStr(DataInicio)+' and Data <= '+QuotedStr(DataFim);
      ztMovLoteCoco.Filtered:=True;
 
-     ztMovLoteCocoAux.Filtered:=False;
-     ztMovLoteCocoAux.Filter:='IDCliente >=' +intToStr(NomeInicio)+'and IDCliente <='+IntToStr(NomeFim)+
-     'and IDRomEntradaCoco <>'+IntToStr(OpEntrada)+'and IDRomSaidaCoco <>'+IntToStr(OpSaida)+
-     'and Data >= '+QuotedStr(DataInicio)+' and Data <= '+QuotedStr(DataFim);
-     ztMovLoteCocoAux.Filtered:=True;
-
-     lblRegistros.Caption:=IntToStr(ztMovLoteCocoAux.RecordCount);
-     ztMovLoteCocoAux.First;
-     Ponteiro:=0;
+     lblRegistros.Caption:=IntToStr(ztMovLoteCoco.RecordCount);
      case Evento of
-
             //Coloca a posição do registro atual no edtPosicao
-           'Navigator':repeat
-                          Ponteiro:=Ponteiro+1;
-                          edtPosicao.Text:=intToStr(Ponteiro);
-                          if Ponteiro <> 1 then
-                             ztMovLoteCocoAux.Next;
-                        until ztMovLoteCocoAuxIDMovLoteCoco.Value=ztMovLoteCocoIDMovLoteCoco.Value;
+           'Navigator':edtPosicao.Text:=intToStr(ztMovLoteCoco.RecNo);
 
            //Encontra o registro em ztmovLoteCoco equivalente ao edtPosicao
            'ExitEdit':begin
-                      if (strToInt(edtPosicao.Text) > ztMovLoteCocoAux.RecordCount) or
+                      if (strToInt(edtPosicao.Text) > ztMovLoteCoco.RecordCount) or
                          (strToInt(edtPosicao.Text) = 0) then begin
                          edtPosicao.Text:='';
                          Exit;
                       end;
-                      while Ponteiro <= strToInt(edtPosicao.Text) do begin
-                            Ponteiro:=Ponteiro+1;
-                            if Ponteiro <> 1 then
-                               ztMovLoteCocoAux.Next;
-                            if Ponteiro=strToInt(edtPosicao.Text) then begin
-                               ztMovLoteCoco.Locate('IDMovLoteCoco', ztMovLoteCocoAuxIDMovLoteCoco.Value,[]);
-                               ztMovLoteCoco.Refresh;
-                            end;
+                      ztMovLoteCoco.RecNo:=strToInt(edtPosicao.Text);
+                      ztMovLoteCoco.Refresh;
                       end;
-           end;
      end;
 end;
 
