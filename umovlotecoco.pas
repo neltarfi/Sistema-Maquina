@@ -6,30 +6,52 @@ interface
 
 uses
   Classes, SysUtils, DB, Forms, Controls, Graphics, Dialogs, DBGrids, StdCtrls,
-  ExtCtrls, DBCtrls, ZDataset, ZAbstractRODataset;
+  ExtCtrls, DBCtrls, Buttons, DateTimePicker, ZDataset, ZAbstractRODataset;
 
 type
 
   { TfMovLoteCoco }
 
   TfMovLoteCoco = class(TForm)
+    btAtualiza: TBitBtn;
     btEntrada: TButton;
     btSaida: TButton;
-    btSair: TButton;
+    btSair: TBitBtn;
     BuscaNome: TButton;
     btRelatorio: TButton;
+    dbeCliente: TDBEdit;
+    dbeIDCliente: TDBEdit;
     DBNavigator1: TDBNavigator;
     dsCliente: TDataSource;
     DBlcbNome: TDBLookupComboBox;
     dsMovLoteCoco: TDataSource;
     DBGrid1: TDBGrid;
+    dtpFim: TDateTimePicker;
+    dtpInicio: TDateTimePicker;
+    edtPosicao: TEdit;
+    Label1: TLabel;
+    Label2: TLabel;
+    lblRegistros: TLabel;
+    rgFiltroPeriodo: TRadioGroup;
     rgFiltroOperacao: TRadioGroup;
     rgFiltroNome: TRadioGroup;
     zqCliente: TZQuery;
     zqClienteIDCliente: TZInt64Field;
     zqClienteIDPrincipal: TZInt64Field;
     zqClienteRazao: TZRawStringField;
+    ztMovLoteCocoAux: TZTable;
     ztMovLoteCoco: TZTable;
+    ztMovLoteCocoAuxDATA: TDateField;
+    ztMovLoteCocoAuxHISTORICO: TStringField;
+    ztMovLoteCocoAuxIDCLIENTE: TZIntegerField;
+    ztMovLoteCocoAuxIDLOTECOCO: TZIntegerField;
+    ztMovLoteCocoAuxIDMOVLOTECOCO: TZIntegerField;
+    ztMovLoteCocoAuxIDROMENTRADACOCO: TZIntegerField;
+    ztMovLoteCocoAuxIDROMSAIDACOCO: TZIntegerField;
+    ztMovLoteCocoAuxPESOCOCOENTRADA: TLongintField;
+    ztMovLoteCocoAuxPESOCOCOSAIDA: TLongintField;
+    ztMovLoteCocoAuxSTATUS: TStringField;
+    ztMovLoteCocoAuxVALOR: TBCDField;
     ztMovLoteCocoDATA: TZDateField;
     ztMovLoteCocoHISTORICO: TZRawStringField;
     ztMovLoteCocoIDCLIENTE: TZIntegerField;
@@ -41,6 +63,7 @@ type
     ztMovLoteCocoPESOCOCOSAIDA: TZIntegerField;
     ztMovLoteCocoSTATUS: TZRawStringField;
     ztMovLoteCocoVALOR: TZBCDField;
+    procedure btAtualizaClick(Sender: TObject);
     procedure btEntradaClick(Sender: TObject);
     procedure btRelatorioClick(Sender: TObject);
     procedure btSaidaClick(Sender: TObject);
@@ -48,11 +71,15 @@ type
     procedure BuscaNomeClick(Sender: TObject);
     procedure DBGrid1DblClick(Sender: TObject);
     procedure DBlcbNomeChange(Sender: TObject);
+    procedure DBNavigator1Click(Sender: TObject; Button: TDBNavButtonType);
+    procedure edtPosicaoChange(Sender: TObject);
+    procedure edtPosicaoExit(Sender: TObject);
     procedure FormClose(Sender: TObject; var CloseAction: TCloseAction);
     procedure FormShow(Sender: TObject);
-    procedure AplicaFiltro;
+    procedure AplicaFiltro(Evento:string);
     procedure rgFiltroNomeClick(Sender: TObject);
     procedure rgFiltroOperacaoClick(Sender: TObject);
+    procedure rgFiltroPeriodoClick(Sender: TObject);
   private
 
   public
@@ -65,7 +92,7 @@ var
 
 implementation
 
-uses uRomEntCoco, uPrincipal, uCadCliente, uRomSaidaCoco, uMovLoteCocoRel;
+uses uRomEntCoco, uPrincipal, uCadCliente, uRomSaidaCoco, uMovLoteCocoRel, uFuncoes;
 
 {$R *.lfm}
 
@@ -80,6 +107,11 @@ begin
   fRomEntCoco.Destroy;
   ztMovLoteCoco.Refresh;
   ztMovLoteCoco.Locate('IDMovLoteCoco',temp,[]);
+end;
+
+procedure TfMovLoteCoco.btAtualizaClick(Sender: TObject);
+begin
+  AplicaFiltro('Navigator');
 end;
 
 procedure TfMovLoteCoco.btRelatorioClick(Sender: TObject);
@@ -112,7 +144,7 @@ begin
     temp:=fCadCliente.ShowModal;
     fCadCliente.Destroy;
     DBlcbNome.KeyValue:=temp;
-    AplicaFiltro;
+    AplicaFiltro('Navigator');
 end;
 
 procedure TfMovLoteCoco.DBGrid1DblClick(Sender: TObject);
@@ -143,21 +175,26 @@ procedure TfMovLoteCoco.FormClose(Sender: TObject; var CloseAction: TCloseAction
 begin
   FormCadastroSomenteLeitura:=False;
   ztMovLoteCoco.Close;
+  ztMovLoteCocoAux.Close;
   zqCliente.Close;
 end;
 
 procedure TfMovLoteCoco.FormShow(Sender: TObject);
 begin
   ztMovLoteCoco.Open;
+  ztMovLoteCocoAux.Open;
   zqCliente.Open;
   dblcbNome.KeyValue:=0;
   rgFiltroOperacao.ItemIndex:=0;
   rgFiltroNome.ItemIndex:=0;
+  rgFiltroPeriodo.ItemIndex:=0;
   FormCadastroSomenteLeitura:=True;//desabilita botoes de edição do seguendo Form Aberto
   ztMovLoteCoco.Last;
 end;
-procedure TfMovLoteCoco.AplicaFiltro;
+procedure TfMovLoteCoco.AplicaFiltro(Evento:string);
 var NomeInicio, NomeFim, OpEntrada, OpSaida:integer;
+    DataInicio, DataFim:string;
+    Ponteiro:integer;
 begin
      case rgFiltroNome.ItemIndex of
         0: begin
@@ -183,25 +220,96 @@ begin
                 OPSaida:=0;   //mostra registros de saida
            end;
      end;
+     case rgFiltroPeriodo.ItemIndex of
+        0:begin
+              DataInicio:='01/01/0000';
+              DataFim:='31/12/9999';     //mostra todos os registros
+          end;
+        1:begin
+              DataInicio:=dateToStr(dtpInicio.Date);
+              DataFim:=dateToStr(dtpFim.DATE);   //mostra os registros do periodo
+          end;
+
+     end;
      ztMovLoteCoco.Filtered:=False;
      ztMovLoteCoco.Filter:='IDCliente >=' +intToStr(NomeInicio)+'and IDCliente <='+IntToStr(NomeFim)+
-     'and IDRomEntradaCoco <>'+IntToStr(OpEntrada)+'and IDRomSaidaCoco <>'+IntToStr(OpSaida);
+     'and IDRomEntradaCoco <>'+IntToStr(OpEntrada)+'and IDRomSaidaCoco <>'+IntToStr(OpSaida)+
+     'and Data >= '+QuotedStr(DataInicio)+' and Data <= '+QuotedStr(DataFim);
      ztMovLoteCoco.Filtered:=True;
+
+     ztMovLoteCocoAux.Filtered:=False;
+     ztMovLoteCocoAux.Filter:='IDCliente >=' +intToStr(NomeInicio)+'and IDCliente <='+IntToStr(NomeFim)+
+     'and IDRomEntradaCoco <>'+IntToStr(OpEntrada)+'and IDRomSaidaCoco <>'+IntToStr(OpSaida)+
+     'and Data >= '+QuotedStr(DataInicio)+' and Data <= '+QuotedStr(DataFim);
+     ztMovLoteCocoAux.Filtered:=True;
+
+     lblRegistros.Caption:=IntToStr(ztMovLoteCocoAux.RecordCount);
+     ztMovLoteCocoAux.First;
+     Ponteiro:=0;
+     case Evento of
+
+            //Coloca a posição do registro atual no edtPosicao
+           'Navigator':repeat
+                          Ponteiro:=Ponteiro+1;
+                          edtPosicao.Text:=intToStr(Ponteiro);
+                          if Ponteiro <> 1 then
+                             ztMovLoteCocoAux.Next;
+                        until ztMovLoteCocoAuxIDMovLoteCoco.Value=ztMovLoteCocoIDMovLoteCoco.Value;
+
+           //Encontra o registro em ztmovLoteCoco equivalente ao edtPosicao
+           'ExitEdit':begin
+                      if (strToInt(edtPosicao.Text) > ztMovLoteCocoAux.RecordCount) or
+                         (strToInt(edtPosicao.Text) = 0) then begin
+                         edtPosicao.Text:='';
+                         Exit;
+                      end;
+                      while Ponteiro <= strToInt(edtPosicao.Text) do begin
+                            Ponteiro:=Ponteiro+1;
+                            if Ponteiro <> 1 then
+                               ztMovLoteCocoAux.Next;
+                            if Ponteiro=strToInt(edtPosicao.Text) then begin
+                               ztMovLoteCoco.Locate('IDMovLoteCoco', ztMovLoteCocoAuxIDMovLoteCoco.Value,[]);
+                               ztMovLoteCoco.Refresh;
+                            end;
+                      end;
+           end;
+     end;
 end;
 
 procedure TfMovLoteCoco.rgFiltroNomeClick(Sender: TObject);
 begin
-  AplicaFiltro;
+  AplicaFiltro('Navigator');
 end;
 
 procedure TfMovLoteCoco.rgFiltroOperacaoClick(Sender: TObject);
 begin
-  AplicaFiltro;
+  AplicaFiltro('Navigator');
+end;
+
+procedure TfMovLoteCoco.rgFiltroPeriodoClick(Sender: TObject);
+begin
+  AplicaFiltro('Navigator');
 end;
 
 procedure TfMovLoteCoco.DBlcbNomeChange(Sender: TObject);
 begin
-   AplicaFiltro;
+   AplicaFiltro('Navigator');
+end;
+
+procedure TfMovLoteCoco.DBNavigator1Click(Sender: TObject;
+  Button: TDBNavButtonType);
+begin
+    AplicaFiltro('Navigator');
+end;
+
+procedure TfMovLoteCoco.edtPosicaoChange(Sender: TObject);
+begin
+  AceitaInteiro(edtPosicao);
+end;
+
+procedure TfMovLoteCoco.edtPosicaoExit(Sender: TObject);
+begin
+  AplicaFiltro('ExitEdit');
 end;
 
 end.
