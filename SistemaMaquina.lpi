@@ -168,6 +168,14 @@
         <ResourceBaseClass Value="Form"/>
         <UnitName Value="uSistema"/>
       </Unit>
+      <Unit>
+        <Filename Value="umovcafedepositado.pas"/>
+        <IsPartOfProject Value="True"/>
+        <ComponentName Value="fMovCafeDepositado"/>
+        <HasResources Value="True"/>
+        <ResourceBaseClass Value="Form"/>
+        <UnitName Value="uMovCafeDepositado"/>
+      </Unit>
     </Units>
   </ProjectOptions>
   <CompilerOptions>
@@ -186,6 +194,7 @@
     </CodeGeneration>
     <Linking>
       <Debugging>
+        <GenerateDebugInfo Value="False"/>
         <DebugInfoType Value="dsDwarf3"/>
       </Debugging>
       <Options>

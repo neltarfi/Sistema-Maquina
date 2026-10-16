@@ -440,6 +440,7 @@ object fMovLoteCoco: TfMovLoteCoco
     Width = 624
     DataField = 'RAZAO'
     DataSource = dsMovLoteCoco
+    ReadOnly = True
     MaxLength = 0
     TabOrder = 14
   end
@@ -450,6 +451,7 @@ object fMovLoteCoco: TfMovLoteCoco
     Width = 80
     DataField = 'IDCLIENTE'
     DataSource = dsMovLoteCoco
+    ReadOnly = True
     Alignment = taRightJustify
     MaxLength = 0
     TabOrder = 15

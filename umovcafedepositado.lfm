@@ -1,0 +1,571 @@
+object fMovCafeDepositado: TfMovCafeDepositado
+  Left = 238
+  Height = 563
+  Top = 250
+  Width = 889
+  BorderIcons = []
+  Caption = 'Movimento de café depositado'
+  ClientHeight = 563
+  ClientWidth = 889
+  Color = clGradientActiveCaption
+  Position = poScreenCenter
+  LCLVersion = '4.8.0.0'
+  OnClose = FormClose
+  OnShow = FormShow
+  object rgFiltroNome: TRadioGroup
+    Left = 8
+    Height = 48
+    Top = 24
+    Width = 138
+    AutoFill = True
+    Caption = 'Filtro de Nome'
+    ChildSizing.LeftRightSpacing = 6
+    ChildSizing.EnlargeHorizontal = crsHomogenousChildResize
+    ChildSizing.EnlargeVertical = crsHomogenousChildResize
+    ChildSizing.ShrinkHorizontal = crsScaleChilds
+    ChildSizing.ShrinkVertical = crsScaleChilds
+    ChildSizing.Layout = cclLeftToRightThenTopToBottom
+    ChildSizing.ControlsPerLine = 2
+    ClientHeight = 31
+    ClientWidth = 136
+    Columns = 2
+    Items.Strings = (
+      'Todos'
+      'Nome'
+    )
+    ParentBackground = False
+    TabOrder = 0
+    OnClick = rgFiltroNomeClick
+  end
+  object DBlcbNome: TDBLookupComboBox
+    Left = 208
+    Height = 28
+    Top = 44
+    Width = 392
+    KeyField = 'IDCliente'
+    ListField = 'Razao'
+    ListFieldIndex = 0
+    ListSource = dsCliente
+    LookupCache = False
+    TabOrder = 1
+  end
+  object BuscaNome: TButton
+    Left = 608
+    Height = 28
+    Top = 44
+    Width = 75
+    Caption = 'Busca'
+    TabOrder = 2
+  end
+  object rgFiltroPeriodo: TRadioGroup
+    Left = 8
+    Height = 62
+    Top = 88
+    Width = 88
+    AutoFill = True
+    Caption = 'Filtro Período'
+    ChildSizing.LeftRightSpacing = 6
+    ChildSizing.EnlargeHorizontal = crsHomogenousChildResize
+    ChildSizing.EnlargeVertical = crsHomogenousChildResize
+    ChildSizing.ShrinkHorizontal = crsScaleChilds
+    ChildSizing.ShrinkVertical = crsScaleChilds
+    ChildSizing.Layout = cclLeftToRightThenTopToBottom
+    ChildSizing.ControlsPerLine = 1
+    ClientHeight = 45
+    ClientWidth = 86
+    Items.Strings = (
+      'Todos'
+      'Periodo'
+    )
+    ParentBackground = False
+    TabOrder = 3
+    OnClick = rgFiltroPeriodoClick
+  end
+  object dtpInicio: TDateTimePicker
+    Left = 144
+    Height = 22
+    Top = 128
+    Width = 97
+    CenturyFrom = 1941
+    MaxDate = 2958465
+    MinDate = -53780
+    TabOrder = 4
+    TrailingSeparator = False
+    TextForNullDate = 'NULL'
+    LeadingZeros = True
+    Kind = dtkDate
+    TimeFormat = tf24
+    TimeDisplay = tdHMS
+    DateMode = dmComboBox
+    Date = 46296
+    Time = 0.65715377315064
+    UseDefaultSeparators = True
+    HideDateTimeParts = []
+    MonthNames = 'Long'
+  end
+  object dtpFim: TDateTimePicker
+    Left = 282
+    Height = 22
+    Top = 128
+    Width = 97
+    CenturyFrom = 1941
+    MaxDate = 2958465
+    MinDate = -53780
+    TabOrder = 5
+    TrailingSeparator = False
+    TextForNullDate = 'NULL'
+    LeadingZeros = True
+    Kind = dtkDate
+    TimeFormat = tf24
+    TimeDisplay = tdHMS
+    DateMode = dmComboBox
+    Date = 46296
+    Time = 0.657389791667811
+    UseDefaultSeparators = True
+    HideDateTimeParts = []
+    MonthNames = 'Long'
+  end
+  object Label1: TLabel
+    Left = 112
+    Height = 16
+    Top = 132
+    Width = 34
+    Caption = 'Inicio:'
+  end
+  object Label2: TLabel
+    Left = 256
+    Height = 16
+    Top = 132
+    Width = 25
+    Caption = 'Fim:'
+  end
+  object btAtualiza: TBitBtn
+    Left = 384
+    Height = 39
+    Hint = 'Atualiza'
+    Top = 120
+    Width = 40
+    Glyph.Data = {
+      EE070000424DEE070000000000003600000028000000190000001A0000000100
+      180000000000B8070000C40E0000C40E00000000000000000000FFFFFFFFFFFF
+      FFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFF
+      FFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFF
+      FFFFFFFFFF00FFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFF
+      FFFFFFFFA19784000000000000000000000000000000000000FFFFFFFFFFFFFF
+      FFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFF00FFFFFFFFFFFFFFFFFFFFFFFFFFFF
+      FFFFFFFFFFFFFFFFFFFF00000000000000000000000000000000000000000000
+      0000000000000000000000FFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFF00FFFF
+      FFFFFFFFFFFFFF000000070502FFFFFF020100020100000000FFBE3AFFBE3AFF
+      BE3AFFBE3AFFBE3AFFBE3AFFBE3AFFBE3AFFBE3A000000000000000000FFFFFF
+      FFFFFFFFFFFFFFFFFF00FFFFFFFFFFFFFFFFFF000000000000FFFFFF00000000
+      000041300FFFBE3AFFBE3AFFBE3AFFBE3AFFBE3AFFBE3AFFBE3AFFBE3AFFBE3A
+      FFBE3A000000000000000000FFFFFFFFFFFFFFFFFF00FFFFFFFFFFFFFFFFFF00
+      0000000000000000000000000000FFBE3AFFBE3AFFBE3A000000000000000000
+      000000000000000000FFBE3AFFBE3AFFBE3A000000000000FFFFFFFFFFFFFFFF
+      FF00FFFFFFFFFFFFFFFFFF000000FFBE3A000000000000000000FFBE3A3B2C0D
+      000000000000000000000000000000000000000000000000FFBE3AFFBE3AFFBE
+      3A000000000000FFFFFFFFFFFF00FFFFFFFFFFFFFFFFFF000000FFBE3AFFBE3A
+      FFBE3AFFBE3AFFBE3A000000000000FFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFF
+      FF000000000000FFBE3AFFBE3AFFBE3A000000FFFFFFFFFFFF00FFFFFFFFFFFF
+      FFFFFF000000FFBE3AFFBE3AFFBE3AFFBE3A000000000000FFFFFFFFFFFFFFFF
+      FFFFFFFFFFFFFFFFFFFFFFFFFF000000000000FFBE3AFFBE3AFFBE3A000000FF
+      FFFFFFFFFF00FFFFFFFFFFFFFFFFFF000000FFBE3AFFBE3AFFBE3AFFBE3A0000
+      00000000FFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFF00000000
+      0000FFBE3AFFBE3A000000000000FFFFFF00FFFFFFFFFFFFFFFFFF0000000000
+      00000000000000000000000000000000000000FFFFFFFFFFFFFFFFFFFFFFFFFF
+      FFFFFFFFFFFFFFFF000000000000000000000000000000000000FFFFFF00FFFF
+      FFFFFFFFFFFFFF000000000000000000000000000000000000000000000000FF
+      FFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFF000000000000000000000000
+      000000000000FFFFFF00FFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFF
+      FFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFF
+      FFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFF00FFFFFFFFFFFFFFFFFF00
+      0000000000000000000000000000FFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFF
+      FFFFFF000000000000000000000000000000000000000000000000000000FFFF
+      FF00FFFFFFFFFFFFFFFFFF000000000000000000000000000000FFFFFFFFFFFF
+      FFFFFFFFFFFFFFFFFFFFFFFFFFFFFF0000000000000000000000000000000000
+      00000000000000000000FFFFFF00FFFFFFFFFFFFFFFFFF000000FFBE3AFFBE3A
+      FFBE3AFFBE3AFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFF
+      FF000000F0B337FFBE3AFFBE3AFFBE3A000000000000FFFFFF00FFFFFFFFFFFF
+      FFFFFF000000000000FFBE3AFFBE3AFFBE3A000000FFFFFFFFFFFFFFFFFFFFFF
+      FFFFFFFFFFFFFFFFFFFFFFFFFF000000000000FFBE3AFFBE3AFFBE3A00000000
+      0000FFFFFF00FFFFFFFFFFFFFFFFFF000000000000FFBE3AFFBE3AFFBE3A0000
+      00000000FFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFF000000FFBE3AFF
+      BE3AFFBE3AFFBE3A000000000000FFFFFF00FFFFFFFFFFFFFFFFFFFFFFFF0000
+      00000000FFBE3AFFBE3AFFBE3A00000000000000000000000000000000000000
+      0000000000FFBE3AFFBE3AFFBE3A000000000000000000000000FFFFFF00FFFF
+      FFFFFFFFFFFFFFFFFFFF000000000000FFBE3AFFBE3AFFBE3A00000000000000
+      0000000000000000000000000000000000FFBE3AFFBE3AA27925000000000000
+      000000000000FFFFFF00FFFFFFFFFFFFFFFFFFFFFFFFFFFFFF00000000000000
+      0000FFBE3AFFBE3AFFBE3AFFBE3AFFBE3A000000FFBE3AFFBE3AFFBE3AFFBE3A
+      B28528000000000000FFFFFF000000000000FFFFFF00FFFFFFFFFFFFFFFFFFFF
+      FFFFFFFFFFFFFFFF000000000000AF8228FFBE3AFFBE3AFFBE3AFFBE3AFFBE3A
+      FFBE3AFFBE3AFFBE3A000000000000000000FFFFFFFFFFFF000000000000FFFF
+      FF00FFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFF000000000000
+      000000FFBE3AFFBE3AFFBE3AFFBE3A000000000000000000000000FFFFFFFFFF
+      FFFFFFFFFFFFFFFFFFFFFFFFFF00FFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFF
+      FFFFFFFFFFFF0000000000000000000000000000000000000000000000000000
+      00000000FFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFF00FFFFFFFFFFFF
+      FFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFF
+      FFC1B59DFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFF
+      FFFFFFFFFF00FFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFF
+      FFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFF
+      FFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFF00
+    }
+    ParentShowHint = False
+    ShowHint = True
+    TabOrder = 6
+    OnClick = btAtualizaClick
+  end
+  object edtPosicao: TEdit
+    Left = 40
+    Height = 26
+    Top = 495
+    Width = 80
+    TabOrder = 7
+  end
+  object DBNavigator1: TDBNavigator
+    Left = 169
+    Height = 25
+    Top = 496
+    Width = 241
+    BevelOuter = bvNone
+    ChildSizing.EnlargeHorizontal = crsScaleChilds
+    ChildSizing.EnlargeVertical = crsScaleChilds
+    ChildSizing.ShrinkHorizontal = crsScaleChilds
+    ChildSizing.ShrinkVertical = crsScaleChilds
+    ChildSizing.Layout = cclLeftToRightThenTopToBottom
+    ChildSizing.ControlsPerLine = 100
+    ClientHeight = 25
+    ClientWidth = 241
+    DataSource = dsRomCompraCoco
+    Options = []
+    TabOrder = 8
+    VisibleButtons = [nbFirst, nbPrior, nbNext, nbLast]
+  end
+  object btSair: TBitBtn
+    Left = 728
+    Height = 30
+    Top = 520
+    Width = 75
+    Caption = 'Sair'
+    Glyph.Data = {
+      0E070000424D0E0700000000000036040000280000001A0000001A0000000100
+      080000000000D8020000C40E0000C40E00000000000000000000000000000000
+      80000080000000808000800000008000800080800000C0C0C000C0DCC000F0CA
+      A6000020400000206000002080000020A0000020C0000020E000004000000040
+      20000040400000406000004080000040A0000040C0000040E000006000000060
+      20000060400000606000006080000060A0000060C0000060E000008000000080
+      20000080400000806000008080000080A0000080C0000080E00000A0000000A0
+      200000A0400000A0600000A0800000A0A00000A0C00000A0E00000C0000000C0
+      200000C0400000C0600000C0800000C0A00000C0C00000C0E00000E0000000E0
+      200000E0400000E0600000E0800000E0A00000E0C00000E0E000400000004000
+      20004000400040006000400080004000A0004000C0004000E000402000004020
+      20004020400040206000402080004020A0004020C0004020E000404000004040
+      20004040400040406000404080004040A0004040C0004040E000406000004060
+      20004060400040606000406080004060A0004060C0004060E000408000004080
+      20004080400040806000408080004080A0004080C0004080E00040A0000040A0
+      200040A0400040A0600040A0800040A0A00040A0C00040A0E00040C0000040C0
+      200040C0400040C0600040C0800040C0A00040C0C00040C0E00040E0000040E0
+      200040E0400040E0600040E0800040E0A00040E0C00040E0E000800000008000
+      20008000400080006000800080008000A0008000C0008000E000802000008020
+      20008020400080206000802080008020A0008020C0008020E000804000008040
+      20008040400080406000804080008040A0008040C0008040E000806000008060
+      20008060400080606000806080008060A0008060C0008060E000808000008080
+      20008080400080806000808080008080A0008080C0008080E00080A0000080A0
+      200080A0400080A0600080A0800080A0A00080A0C00080A0E00080C0000080C0
+      200080C0400080C0600080C0800080C0A00080C0C00080C0E00080E0000080E0
+      200080E0400080E0600080E0800080E0A00080E0C00080E0E000C0000000C000
+      2000C0004000C0006000C0008000C000A000C000C000C000E000C0200000C020
+      2000C0204000C0206000C0208000C020A000C020C000C020E000C0400000C040
+      2000C0404000C0406000C0408000C040A000C040C000C040E000C0600000C060
+      2000C0604000C0606000C0608000C060A000C060C000C060E000C0800000C080
+      2000C0804000C0806000C0808000C080A000C080C000C080E000C0A00000C0A0
+      2000C0A04000C0A06000C0A08000C0A0A000C0A0C000C0A0E000C0C00000C0C0
+      2000C0C04000C0C06000C0C08000C0C0A000F0FBFF00A4A0A000808080000000
+      FF0000FF000000FFFF00FF000000FF00FF00FFFF0000FFFFFF00FFFFFFFFFFFF
+      FFFF772FFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFF0000FFFFFFFFFFFFB7272727
+      FFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFF0000FFFFFFFFF62F272F2F27FFFFFFFF
+      FFFFFFFFFFFFFFFFFFFFFFFF0000FFFFFF6F27272F2F2F27FFFFFFFFFFFFFFFF
+      FFFFFFFFFFFFFFFF0000FFB727272F2F2F2F2F27F5F7F7F7F7F7F7F6FFFFFFFF
+      FFFFFFFF0000F6272F2F2F2F2F2F2F2F48494949494949A3FFFFFFFFFFFFFFFF
+      0000F6272F2F2F2F2F2F2F2F49525252525249A4FFFFFFFFFFFFFFFF0000F627
+      2F2F2F2F2F2F2F2F49525252525249A4FFFFFFFFFFFFFFFF0000F6272F2F2F2F
+      2F2F2F2F49525252525249A4FFFFFFFFFFFFFFFF0000F6272F2F2F2F2F2F2F2F
+      49525252525249A4FFFFFFFFFFFFFFFF0000F6272F2F2F2F272F2F2F49525252
+      525249A4FFFFFFFFFFFFFFFF0000F6272F2F2F65992F2F2F49525252525249A4
+      FFFFFFFFFFFFFFFF0000F6272F2F2F2F272F2F2F49525252525249A4FFFFF634
+      F6FFFFFF0000F6272F2F2F2F2F2F2F2F495252525A5252A4F6F6BE3333BEFFFF
+      0000F6272F2F2F2F2F2F2F2F495249333333333333333333333274FF0000F627
+      2F2F2F2F2F2F2F2F4952493D3D3D3D3D3C3C3C3C3C3C34F60000F6272F2F2F2F
+      2F2F2F2F495249343535343D7D7D3D3D3D3DF6FF0000F6272F2F2F2F2F2F2F2F
+      49525249494949A4FFFF083C7DFFFFFF0000F6272F2F2F2F2F2F2F2F49525252
+      525249A4FFFFFF08FFFFFFFF0000F6272F2F2F2F2F2F2F2F49525252525249A4
+      FFFFFFFFFFFFFFFF0000F6272F2F2F2F2F2F2F2F49525252525249A4FFFFFFFF
+      FFFFFFFF0000F6272F2F2F2F2F2F2F6551525252525249A4FFFFFFFFFFFFFFFF
+      0000F6272F2F2F2F2F669A9B51525252525249A4FFFFFFFFFFFFFFFF0000F627
+      2F2F2F275B9A9B9B51525252525249A4FFFFFFFFFFFFFFFF0000F6272F2F659A
+      9B9B9B9B51525252525249A4FFFFFFFFFFFFFFFF0000FF27669A9A9B9B9B9B9B
+      51525252525249F7FFFFFFFFFFFFFFFF0000
+    }
+    TabOrder = 9
+    OnClick = btSairClick
+  end
+  object lblRegistros: TLabel
+    Left = 128
+    Height = 1
+    Top = 504
+    Width = 1
+    Alignment = taRightJustify
+  end
+  object DBGrid1: TDBGrid
+    Left = 8
+    Height = 328
+    Top = 160
+    Width = 872
+    Color = clWindow
+    Columns = <    
+      item
+        Title.Caption = 'IDCLIENTE'
+        FieldName = 'IDCLIENTE'
+      end    
+      item
+        Title.Caption = 'IDROMCOMPRACOCO'
+        FieldName = 'IDROMCOMPRACOCO'
+      end    
+      item
+        Title.Caption = 'IDROMENTRADACOCO'
+        FieldName = 'IDROMENTRADACOCO'
+      end    
+      item
+        Title.Caption = 'DATA'
+        FieldName = 'DATA'
+      end    
+      item
+        Title.Caption = 'HISTORICO'
+        FieldName = 'HISTORICO'
+      end    
+      item
+        Title.Caption = 'PESOCOCO'
+        FieldName = 'PESOCOCO'
+      end    
+      item
+        Title.Caption = 'SACOKG'
+        FieldName = 'SACOKG'
+      end    
+      item
+        Title.Caption = 'PORCFUNDORURAL'
+        FieldName = 'PORCFUNDORURAL'
+      end    
+      item
+        Title.Caption = 'ALIQUOTA'
+        FieldName = 'ALIQUOTA'
+      end    
+      item
+        Title.Caption = 'VALOR'
+        FieldName = 'VALOR'
+      end    
+      item
+        Title.Caption = 'IDCONTACORRENTE'
+        FieldName = 'IDCONTACORRENTE'
+      end    
+      item
+        Title.Caption = 'STATUS'
+        FieldName = 'STATUS'
+      end>
+    DataSource = dsRomCompraCoco
+    TabOrder = 10
+  end
+  object dsCliente: TDataSource
+    DataSet = zqCliente
+    Left = 355
+    Top = 60
+  end
+  object zqCliente: TZQuery
+    Connection = fPrincipal.zConn
+    SQL.Strings = (
+      'select IDCliente, Razao, IDPrincipal'
+      'from Cliente'
+      'order by Razao'
+      ''
+    )
+    Params = <>
+    Left = 263
+    Top = 60
+    object zqClienteIDCLIENTE: TZIntegerField
+      FieldKind = fkData
+      FieldName = 'IDCLIENTE'
+      Index = 0
+      LookupCache = False
+      ProviderFlags = [pfInUpdate, pfInWhere]
+      ReadOnly = False
+      Required = True
+    end
+    object zqClienteRAZAO: TZRawStringField
+      FieldKind = fkData
+      FieldName = 'RAZAO'
+      Index = 1
+      LookupCache = False
+      ProviderFlags = [pfInUpdate, pfInWhere]
+      ReadOnly = False
+      Required = False
+      Size = 40
+    end
+    object zqClienteIDPRINCIPAL: TZIntegerField
+      FieldKind = fkData
+      FieldName = 'IDPRINCIPAL'
+      Index = 2
+      LookupCache = False
+      ProviderFlags = [pfInUpdate, pfInWhere]
+      ReadOnly = False
+      Required = False
+    end
+  end
+  object dsRomCompraCoco: TDataSource
+    DataSet = zqRomCompraCoco
+    Left = 243
+    Top = 226
+  end
+  object zqRomCompraCoco: TZQuery
+    Connection = fPrincipal.zConn
+    Active = True
+    SQL.Strings = (
+      'select E.IDCLIENTE as IDCLIENTE,'
+      '            R.IDROMCOMPRACOCO,'
+      '            R.IDROMENTRADACOCO,'
+      '            R.DATA,'
+      '            R.HISTORICO,'
+      '            R.PESOCOCO,'
+      '            R.SACOKG,'
+      '            R.PORCFUNDORURAL,'
+      '            R.ALIQUOTA,'
+      '            R.VALOR,'
+      '            R.IDCONTACORRENTE,'
+      '            R.STATUS'
+      'From ROMCOMPRACOCO as R'
+      'inner join ROMENTRADACOCO as E ON R.IDROMENTRADACOCO = E.IDROMENTRADACOCO'
+    )
+    Params = <>
+    Left = 89
+    Top = 226
+    object zqRomCompraCocoIDCLIENTE: TZIntegerField
+      FieldKind = fkData
+      FieldName = 'IDCLIENTE'
+      Index = 0
+      LookupCache = False
+      ProviderFlags = [pfInUpdate, pfInWhere]
+      ReadOnly = False
+      Required = False
+    end
+    object zqRomCompraCocoIDROMCOMPRACOCO: TZIntegerField
+      FieldKind = fkData
+      FieldName = 'IDROMCOMPRACOCO'
+      Index = 1
+      LookupCache = False
+      ProviderFlags = [pfInUpdate, pfInWhere]
+      ReadOnly = False
+      Required = True
+    end
+    object zqRomCompraCocoIDROMENTRADACOCO: TZIntegerField
+      FieldKind = fkData
+      FieldName = 'IDROMENTRADACOCO'
+      Index = 2
+      LookupCache = False
+      ProviderFlags = [pfInUpdate, pfInWhere]
+      ReadOnly = False
+      Required = False
+    end
+    object zqRomCompraCocoDATA: TZDateField
+      FieldKind = fkData
+      FieldName = 'DATA'
+      Index = 3
+      LookupCache = False
+      ProviderFlags = [pfInUpdate, pfInWhere]
+      ReadOnly = False
+      Required = False
+    end
+    object zqRomCompraCocoHISTORICO: TZRawStringField
+      FieldKind = fkData
+      FieldName = 'HISTORICO'
+      Index = 4
+      LookupCache = False
+      ProviderFlags = [pfInUpdate, pfInWhere]
+      ReadOnly = False
+      Required = False
+    end
+    object zqRomCompraCocoPESOCOCO: TZIntegerField
+      FieldKind = fkData
+      FieldName = 'PESOCOCO'
+      Index = 5
+      LookupCache = False
+      ProviderFlags = [pfInUpdate, pfInWhere]
+      ReadOnly = False
+      Required = False
+    end
+    object zqRomCompraCocoSACOKG: TZRawStringField
+      FieldKind = fkData
+      FieldName = 'SACOKG'
+      Index = 6
+      LookupCache = False
+      ProviderFlags = [pfInUpdate, pfInWhere]
+      ReadOnly = False
+      Required = False
+      Size = 4
+    end
+    object zqRomCompraCocoPORCFUNDORURAL: TZIntegerField
+      FieldKind = fkData
+      FieldName = 'PORCFUNDORURAL'
+      Index = 7
+      LookupCache = False
+      ProviderFlags = [pfInUpdate, pfInWhere]
+      ReadOnly = False
+      Required = False
+    end
+    object zqRomCompraCocoALIQUOTA: TZBCDField
+      FieldKind = fkData
+      FieldName = 'ALIQUOTA'
+      Index = 8
+      LookupCache = False
+      ProviderFlags = [pfInUpdate, pfInWhere]
+      ReadOnly = False
+      Required = False
+      Precision = 4
+      Currency = False
+      MaxValue = 0
+      MinValue = 0
+      Size = 2
+    end
+    object zqRomCompraCocoVALOR: TZBCDField
+      FieldKind = fkData
+      FieldName = 'VALOR'
+      Index = 9
+      LookupCache = False
+      ProviderFlags = [pfInUpdate, pfInWhere]
+      ReadOnly = False
+      Required = False
+      Precision = 10
+      Currency = False
+      MaxValue = 0
+      MinValue = 0
+      Size = 2
+    end
+    object zqRomCompraCocoIDCONTACORRENTE: TZIntegerField
+      FieldKind = fkData
+      FieldName = 'IDCONTACORRENTE'
+      Index = 10
+      LookupCache = False
+      ProviderFlags = [pfInUpdate, pfInWhere]
+      ReadOnly = False
+      Required = False
+    end
+    object zqRomCompraCocoSTATUS: TZRawStringField
+      FieldKind = fkData
+      FieldName = 'STATUS'
+      Index = 11
+      LookupCache = False
+      ProviderFlags = [pfInUpdate, pfInWhere]
+      ReadOnly = False
+      Required = False
+      Size = 9
+    end
+  end
+end

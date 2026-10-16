@@ -38,6 +38,10 @@ object fPrincipal: TfPrincipal
         Caption = 'Ca&fé em coco'
         OnClick = mnMovCocoClick
       end
+      object muMovCafeDepositado: TMenuItem
+        Caption = 'Café Depositado'
+        OnClick = muMovCafeDepositadoClick
+      end
       object mnCafeEmprestado: TMenuItem
         Caption = 'Café &Ememprestado ao Cliente'
         OnClick = mnCafeEmprestadoClick

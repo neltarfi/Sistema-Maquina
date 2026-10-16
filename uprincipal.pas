@@ -18,6 +18,7 @@ type
     CadLoteLimpo: TMenuItem;
     CadLoteCoco: TMenuItem;
     Configuracoes: TMenuItem;
+    muMovCafeDepositado: TMenuItem;
     mnVariaveis: TMenuItem;
     mnMovCoco: TMenuItem;
     mnAcerto: TMenuItem;
@@ -40,6 +41,7 @@ type
     procedure mnVariaveisClick(Sender: TObject);
     procedure MovCliSacariaClick(Sender: TObject);
     procedure MovSacaLoteClick(Sender: TObject);
+    procedure muMovCafeDepositadoClick(Sender: TObject);
     procedure SairClick(Sender: TObject);
     procedure MovLoteLimpoClick(Sender: TObject);
   private
@@ -59,7 +61,7 @@ implementation
 
 uses uCadCliente, uCadLoteLimpo, uCadLoteCoco, uMovLoteLimpo, umovlotecoco,
   uMovLoteSacaria, uMovCliSacaria, uMovCafeEmprestado, uAcerto, uRomEntCoco,
-  uSistema;
+  uMovCafeDepositado, uSistema;
 
 {$R *.lfm}
 
@@ -171,6 +173,13 @@ begin
   fMovLoteSacaria:=TfMovLoteSacaria.Create(Self);
   fMovLoteSacaria.ShowModal;
   fMovLoteSacaria.Destroy;
+end;
+
+procedure TfPrincipal.muMovCafeDepositadoClick(Sender: TObject);
+begin
+  fMovCafeDepositado:=TfMovCafeDepositado.Create(Self);
+  fMovCafeDepositado.ShowModal;
+  fMovCafeDepositado.Destroy;
 end;
 
 procedure TfPrincipal.SairClick(Sender: TObject);
