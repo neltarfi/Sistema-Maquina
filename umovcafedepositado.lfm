@@ -48,6 +48,7 @@ object fMovCafeDepositado: TfMovCafeDepositado
     ListSource = dsCliente
     LookupCache = False
     TabOrder = 1
+    OnChange = DBlcbNomeChange
   end
   object BuscaNome: TButton
     Left = 608
@@ -56,6 +57,7 @@ object fMovCafeDepositado: TfMovCafeDepositado
     Width = 75
     Caption = 'Busca'
     TabOrder = 2
+    OnClick = BuscaNomeClick
   end
   object rgFiltroPeriodo: TRadioGroup
     Left = 8
@@ -221,7 +223,9 @@ object fMovCafeDepositado: TfMovCafeDepositado
     Height = 26
     Top = 495
     Width = 80
-    TabOrder = 7
+    TabOrder = 10
+    OnChange = edtPosicaoChange
+    OnExit = edtPosicaoExit
   end
   object DBNavigator1: TDBNavigator
     Left = 169
@@ -239,8 +243,9 @@ object fMovCafeDepositado: TfMovCafeDepositado
     ClientWidth = 241
     DataSource = dsRomCompraCoco
     Options = []
-    TabOrder = 8
+    TabOrder = 11
     VisibleButtons = [nbFirst, nbPrior, nbNext, nbLast]
+    OnClick = DBNavigator1Click
   end
   object btSair: TBitBtn
     Left = 728
@@ -307,7 +312,7 @@ object fMovCafeDepositado: TfMovCafeDepositado
       9B9B9B9B51525252525249A4FFFFFFFFFFFFFFFF0000FF27669A9A9B9B9B9B9B
       51525252525249F7FFFFFFFFFFFFFFFF0000
     }
-    TabOrder = 9
+    TabOrder = 12
     OnClick = btSairClick
   end
   object lblRegistros: TLabel
@@ -319,61 +324,101 @@ object fMovCafeDepositado: TfMovCafeDepositado
   end
   object DBGrid1: TDBGrid
     Left = 8
-    Height = 328
-    Top = 160
+    Height = 304
+    Top = 184
     Width = 872
     Color = clWindow
     Columns = <    
       item
-        Title.Caption = 'IDCLIENTE'
-        FieldName = 'IDCLIENTE'
-      end    
-      item
-        Title.Caption = 'IDROMCOMPRACOCO'
+        Title.Caption = 'ID'
+        Visible = False
         FieldName = 'IDROMCOMPRACOCO'
       end    
       item
-        Title.Caption = 'IDROMENTRADACOCO'
+        Title.Caption = 'IDROMCOMPRADEPOSITO'
+        Width = 50
+        FieldName = 'IDROMCOMPRADEPOSITO'
+      end    
+      item
+        Title.Caption = 'Cliente'
+        Width = 50
+        FieldName = 'IDCLIENTE'
+      end    
+      item
+        Title.Caption = 'RomEnt'
+        Width = 50
         FieldName = 'IDROMENTRADACOCO'
       end    
       item
         Title.Caption = 'DATA'
+        Width = 70
         FieldName = 'DATA'
       end    
       item
         Title.Caption = 'HISTORICO'
+        Width = 200
         FieldName = 'HISTORICO'
       end    
       item
-        Title.Caption = 'PESOCOCO'
+        Title.Caption = 'Peso'
+        Width = 70
         FieldName = 'PESOCOCO'
       end    
       item
         Title.Caption = 'SACOKG'
+        Width = 50
         FieldName = 'SACOKG'
       end    
       item
         Title.Caption = 'PORCFUNDORURAL'
+        Width = 50
         FieldName = 'PORCFUNDORURAL'
       end    
       item
         Title.Caption = 'ALIQUOTA'
+        Width = 50
         FieldName = 'ALIQUOTA'
       end    
       item
         Title.Caption = 'VALOR'
+        Width = 80
         FieldName = 'VALOR'
       end    
       item
         Title.Caption = 'IDCONTACORRENTE'
+        Visible = False
         FieldName = 'IDCONTACORRENTE'
       end    
       item
         Title.Caption = 'STATUS'
+        Visible = False
         FieldName = 'STATUS'
       end>
     DataSource = dsRomCompraCoco
-    TabOrder = 10
+    ReadOnly = True
+    TabOrder = 9
+  end
+  object dbeIDCliente: TDBEdit
+    Left = 8
+    Height = 26
+    Top = 152
+    Width = 80
+    DataField = 'IDCLIENTE'
+    DataSource = dsRomCompraCoco
+    ReadOnly = True
+    MaxLength = 0
+    TabOrder = 7
+  end
+  object dbeRazao: TDBEdit
+    Left = 96
+    Height = 26
+    Top = 152
+    Width = 640
+    DataField = 'RAZAO'
+    DataSource = dsRomCompraCoco
+    ReadOnly = True
+    MaxLength = 0
+    TabOrder = 8
   end
   object dsCliente: TDataSource
     DataSet = zqCliente
@@ -427,10 +472,11 @@ object fMovCafeDepositado: TfMovCafeDepositado
   end
   object zqRomCompraCoco: TZQuery
     Connection = fPrincipal.zConn
-    Active = True
     SQL.Strings = (
       'select E.IDCLIENTE as IDCLIENTE,'
+      '            C.RAZAO,'
       '            R.IDROMCOMPRACOCO,'
+      '            R.IDROMCOMPRADEPOSITO,'
       '            R.IDROMENTRADACOCO,'
       '            R.DATA,'
       '            R.HISTORICO,'
@@ -443,6 +489,7 @@ object fMovCafeDepositado: TfMovCafeDepositado
       '            R.STATUS'
       'From ROMCOMPRACOCO as R'
       'inner join ROMENTRADACOCO as E ON R.IDROMENTRADACOCO = E.IDROMENTRADACOCO'
+      'inner join CLIENTE as C on C.IDCLIENTE = E.IDCLIENTE '
     )
     Params = <>
     Left = 89
@@ -456,19 +503,38 @@ object fMovCafeDepositado: TfMovCafeDepositado
       ReadOnly = False
       Required = False
     end
+    object zqRomCompraCocoRAZAO: TZRawStringField
+      FieldKind = fkData
+      FieldName = 'RAZAO'
+      Index = 1
+      LookupCache = False
+      ProviderFlags = [pfInUpdate, pfInWhere]
+      ReadOnly = False
+      Required = False
+      Size = 40
+    end
     object zqRomCompraCocoIDROMCOMPRACOCO: TZIntegerField
       FieldKind = fkData
       FieldName = 'IDROMCOMPRACOCO'
-      Index = 1
+      Index = 2
       LookupCache = False
       ProviderFlags = [pfInUpdate, pfInWhere]
       ReadOnly = False
       Required = True
     end
+    object zqRomCompraCocoIDROMCOMPRADEPOSITO: TZIntegerField
+      FieldKind = fkData
+      FieldName = 'IDROMCOMPRADEPOSITO'
+      Index = 3
+      LookupCache = False
+      ProviderFlags = [pfInUpdate, pfInWhere]
+      ReadOnly = False
+      Required = False
+    end
     object zqRomCompraCocoIDROMENTRADACOCO: TZIntegerField
       FieldKind = fkData
       FieldName = 'IDROMENTRADACOCO'
-      Index = 2
+      Index = 4
       LookupCache = False
       ProviderFlags = [pfInUpdate, pfInWhere]
       ReadOnly = False
@@ -477,7 +543,7 @@ object fMovCafeDepositado: TfMovCafeDepositado
     object zqRomCompraCocoDATA: TZDateField
       FieldKind = fkData
       FieldName = 'DATA'
-      Index = 3
+      Index = 5
       LookupCache = False
       ProviderFlags = [pfInUpdate, pfInWhere]
       ReadOnly = False
@@ -486,7 +552,7 @@ object fMovCafeDepositado: TfMovCafeDepositado
     object zqRomCompraCocoHISTORICO: TZRawStringField
       FieldKind = fkData
       FieldName = 'HISTORICO'
-      Index = 4
+      Index = 6
       LookupCache = False
       ProviderFlags = [pfInUpdate, pfInWhere]
       ReadOnly = False
@@ -495,7 +561,7 @@ object fMovCafeDepositado: TfMovCafeDepositado
     object zqRomCompraCocoPESOCOCO: TZIntegerField
       FieldKind = fkData
       FieldName = 'PESOCOCO'
-      Index = 5
+      Index = 7
       LookupCache = False
       ProviderFlags = [pfInUpdate, pfInWhere]
       ReadOnly = False
@@ -504,7 +570,7 @@ object fMovCafeDepositado: TfMovCafeDepositado
     object zqRomCompraCocoSACOKG: TZRawStringField
       FieldKind = fkData
       FieldName = 'SACOKG'
-      Index = 6
+      Index = 8
       LookupCache = False
       ProviderFlags = [pfInUpdate, pfInWhere]
       ReadOnly = False
@@ -514,7 +580,7 @@ object fMovCafeDepositado: TfMovCafeDepositado
     object zqRomCompraCocoPORCFUNDORURAL: TZIntegerField
       FieldKind = fkData
       FieldName = 'PORCFUNDORURAL'
-      Index = 7
+      Index = 9
       LookupCache = False
       ProviderFlags = [pfInUpdate, pfInWhere]
       ReadOnly = False
@@ -523,7 +589,7 @@ object fMovCafeDepositado: TfMovCafeDepositado
     object zqRomCompraCocoALIQUOTA: TZBCDField
       FieldKind = fkData
       FieldName = 'ALIQUOTA'
-      Index = 8
+      Index = 10
       LookupCache = False
       ProviderFlags = [pfInUpdate, pfInWhere]
       ReadOnly = False
@@ -537,7 +603,7 @@ object fMovCafeDepositado: TfMovCafeDepositado
     object zqRomCompraCocoVALOR: TZBCDField
       FieldKind = fkData
       FieldName = 'VALOR'
-      Index = 9
+      Index = 11
       LookupCache = False
       ProviderFlags = [pfInUpdate, pfInWhere]
       ReadOnly = False
@@ -551,7 +617,7 @@ object fMovCafeDepositado: TfMovCafeDepositado
     object zqRomCompraCocoIDCONTACORRENTE: TZIntegerField
       FieldKind = fkData
       FieldName = 'IDCONTACORRENTE'
-      Index = 10
+      Index = 12
       LookupCache = False
       ProviderFlags = [pfInUpdate, pfInWhere]
       ReadOnly = False
@@ -560,7 +626,7 @@ object fMovCafeDepositado: TfMovCafeDepositado
     object zqRomCompraCocoSTATUS: TZRawStringField
       FieldKind = fkData
       FieldName = 'STATUS'
-      Index = 11
+      Index = 13
       LookupCache = False
       ProviderFlags = [pfInUpdate, pfInWhere]
       ReadOnly = False

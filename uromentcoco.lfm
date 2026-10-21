@@ -1725,10 +1725,19 @@ object fRomEntCoco: TfRomEntCoco
       ReadOnly = False
       Required = True
     end
+    object ztRomCompraCocoIDROMCOMPRADEPOSITO: TZIntegerField
+      FieldKind = fkData
+      FieldName = 'IDROMCOMPRADEPOSITO'
+      Index = 1
+      LookupCache = False
+      ProviderFlags = [pfInUpdate, pfInWhere]
+      ReadOnly = False
+      Required = False
+    end
     object ztRomCompraCocoIDROMENTRADACOCO: TZIntegerField
       FieldKind = fkData
       FieldName = 'IDROMENTRADACOCO'
-      Index = 1
+      Index = 2
       LookupCache = False
       ProviderFlags = [pfInUpdate, pfInWhere]
       ReadOnly = False
@@ -1737,7 +1746,7 @@ object fRomEntCoco: TfRomEntCoco
     object ztRomCompraCocoDATA: TZDateField
       FieldKind = fkData
       FieldName = 'DATA'
-      Index = 2
+      Index = 3
       LookupCache = False
       ProviderFlags = [pfInUpdate, pfInWhere]
       ReadOnly = False
@@ -1746,7 +1755,7 @@ object fRomEntCoco: TfRomEntCoco
     object ztRomCompraCocoHISTORICO: TZRawStringField
       FieldKind = fkData
       FieldName = 'HISTORICO'
-      Index = 3
+      Index = 4
       LookupCache = False
       ProviderFlags = [pfInUpdate, pfInWhere]
       ReadOnly = False
@@ -1755,7 +1764,7 @@ object fRomEntCoco: TfRomEntCoco
     object ztRomCompraCocoPESOCOCO: TZIntegerField
       FieldKind = fkData
       FieldName = 'PESOCOCO'
-      Index = 4
+      Index = 5
       LookupCache = False
       ProviderFlags = [pfInUpdate, pfInWhere]
       ReadOnly = False
@@ -1764,7 +1773,7 @@ object fRomEntCoco: TfRomEntCoco
     object ztRomCompraCocoSACOKG: TZRawStringField
       FieldKind = fkData
       FieldName = 'SACOKG'
-      Index = 5
+      Index = 6
       LookupCache = False
       ProviderFlags = [pfInUpdate, pfInWhere]
       ReadOnly = False
@@ -1774,7 +1783,7 @@ object fRomEntCoco: TfRomEntCoco
     object ztRomCompraCocoPORCFUNDORURAL: TZIntegerField
       FieldKind = fkData
       FieldName = 'PORCFUNDORURAL'
-      Index = 6
+      Index = 7
       LookupCache = False
       ProviderFlags = [pfInUpdate, pfInWhere]
       ReadOnly = False
@@ -1783,7 +1792,7 @@ object fRomEntCoco: TfRomEntCoco
     object ztRomCompraCocoALIQUOTA: TZBCDField
       FieldKind = fkData
       FieldName = 'ALIQUOTA'
-      Index = 7
+      Index = 8
       LookupCache = False
       ProviderFlags = [pfInUpdate, pfInWhere]
       ReadOnly = False
@@ -1797,7 +1806,7 @@ object fRomEntCoco: TfRomEntCoco
     object ztRomCompraCocoVALOR: TZBCDField
       FieldKind = fkData
       FieldName = 'VALOR'
-      Index = 8
+      Index = 9
       LookupCache = False
       ProviderFlags = [pfInUpdate, pfInWhere]
       ReadOnly = False
@@ -1811,7 +1820,7 @@ object fRomEntCoco: TfRomEntCoco
     object ztRomCompraCocoVALORBRUTO: TCurrencyField
       FieldKind = fkCalculated
       FieldName = 'VALORBRUTO'
-      Index = 9
+      Index = 10
       LookupCache = False
       ProviderFlags = [pfInUpdate, pfInWhere]
       ReadOnly = False
@@ -1820,7 +1829,7 @@ object fRomEntCoco: TfRomEntCoco
     object ztRomCompraCocoVALORFUNDORURAL: TCurrencyField
       FieldKind = fkCalculated
       FieldName = 'VALORFUNDORURAL'
-      Index = 10
+      Index = 11
       LookupCache = False
       ProviderFlags = [pfInUpdate, pfInWhere]
       ReadOnly = False
@@ -1829,7 +1838,7 @@ object fRomEntCoco: TfRomEntCoco
     object ztRomCompraCocoVALORLIVRE: TCurrencyField
       FieldKind = fkCalculated
       FieldName = 'VALORLIVRE'
-      Index = 11
+      Index = 12
       LookupCache = False
       ProviderFlags = [pfInUpdate, pfInWhere]
       ReadOnly = False
@@ -1838,7 +1847,7 @@ object fRomEntCoco: TfRomEntCoco
     object ztRomCompraCocoIDCONTACORRENTE: TZIntegerField
       FieldKind = fkData
       FieldName = 'IDCONTACORRENTE'
-      Index = 12
+      Index = 13
       LookupCache = False
       ProviderFlags = [pfInUpdate, pfInWhere]
       ReadOnly = False
@@ -1847,7 +1856,7 @@ object fRomEntCoco: TfRomEntCoco
     object ztRomCompraCocoSTATUS: TZRawStringField
       FieldKind = fkData
       FieldName = 'STATUS'
-      Index = 13
+      Index = 14
       LookupCache = False
       ProviderFlags = [pfInUpdate, pfInWhere]
       ReadOnly = False

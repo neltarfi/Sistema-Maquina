@@ -181,6 +181,7 @@ type
     ztRomCompraCocoHISTORICO: TZRawStringField;
     ztRomCompraCocoIDCONTACORRENTE: TZIntegerField;
     ztRomCompraCocoIDROMCOMPRACOCO: TZIntegerField;
+    ztRomCompraCocoIDROMCOMPRADEPOSITO: TZIntegerField;
     ztRomCompraCocoIDROMENTRADACOCO: TZIntegerField;
     ztRomCompraCocoPESOCOCO: TZIntegerField;
     ztRomCompraCocoPORCFUNDORURAL: TZIntegerField;
@@ -928,6 +929,7 @@ begin
 
                    //Compra
      if (PesoComprado>0) then begin
+        ztRomCompraCocoIDRomCompraDeposito.Value:=0;
         ztRomCompraCocoIDRomEntradaCoco.Value:=IDRomEntradaCoco;
         ztRomCompraCoco.FieldByName('Data').Value:=DATE;
         ztRomCompraCocoHistorico.Value:='Compra do romaneio '+intToStr(IDRomEntradaCoco);

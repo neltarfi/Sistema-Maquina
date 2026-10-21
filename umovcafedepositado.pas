@@ -16,6 +16,8 @@ type
     btAtualiza: TBitBtn;
     btSair: TBitBtn;
     BuscaNome: TButton;
+    dbeIDCliente: TDBEdit;
+    dbeRazao: TDBEdit;
     DBGrid1: TDBGrid;
     dsRomCompraCoco: TDataSource;
     DBlcbNome: TDBLookupComboBox;
@@ -40,14 +42,21 @@ type
     zqRomCompraCocoIDCLIENTE: TZIntegerField;
     zqRomCompraCocoIDCONTACORRENTE: TZIntegerField;
     zqRomCompraCocoIDROMCOMPRACOCO: TZIntegerField;
+    zqRomCompraCocoIDROMCOMPRADEPOSITO: TZIntegerField;
     zqRomCompraCocoIDROMENTRADACOCO: TZIntegerField;
     zqRomCompraCocoPESOCOCO: TZIntegerField;
     zqRomCompraCocoPORCFUNDORURAL: TZIntegerField;
+    zqRomCompraCocoRAZAO: TZRawStringField;
     zqRomCompraCocoSACOKG: TZRawStringField;
     zqRomCompraCocoSTATUS: TZRawStringField;
     zqRomCompraCocoVALOR: TZBCDField;
     procedure btAtualizaClick(Sender: TObject);
     procedure btSairClick(Sender: TObject);
+    procedure BuscaNomeClick(Sender: TObject);
+    procedure DBlcbNomeChange(Sender: TObject);
+    procedure DBNavigator1Click(Sender: TObject; Button: TDBNavButtonType);
+    procedure edtPosicaoChange(Sender: TObject);
+    procedure edtPosicaoExit(Sender: TObject);
     procedure FormClose(Sender: TObject; var CloseAction: TCloseAction);
     procedure FormShow(Sender: TObject);
     procedure AplicaFiltro(Evento:string);
@@ -66,11 +75,44 @@ implementation
 
 {$R *.lfm}
 
+uses uFuncoes, uCadCliente, uPrincipal;
+
 { TfMovCafeDepositado }
 
 procedure TfMovCafeDepositado.btSairClick(Sender: TObject);
 begin
   Close;
+end;
+
+procedure TfMovCafeDepositado.BuscaNomeClick(Sender: TObject);
+var temp:integer;
+begin
+  fCadCliente:=TfCadCliente.Create(Self);
+    temp:=fCadCliente.ShowModal;
+    fCadCliente.Destroy;
+    DBlcbNome.KeyValue:=temp;
+    AplicaFiltro('Navigator');
+end;
+
+procedure TfMovCafeDepositado.DBlcbNomeChange(Sender: TObject);
+begin
+  AplicaFiltro('Navigator');
+end;
+
+procedure TfMovCafeDepositado.DBNavigator1Click(Sender: TObject;
+  Button: TDBNavButtonType);
+begin
+  AplicaFiltro('Navigator');
+end;
+
+procedure TfMovCafeDepositado.edtPosicaoChange(Sender: TObject);
+begin
+  AceitaInteiro(edtPosicao);
+end;
+
+procedure TfMovCafeDepositado.edtPosicaoExit(Sender: TObject);
+begin
+  AplicaFiltro('ExitEdit');
 end;
 
 procedure TfMovCafeDepositado.btAtualizaClick(Sender: TObject);
@@ -92,6 +134,7 @@ begin
   dblcbNome.KeyValue:=0;
   rgFiltroNome.ItemIndex:=0;
   rgFiltroPeriodo.ItemIndex:=0;
+  FormCadastroSomenteLeitura:=True;//desabilita botoes de edição do seguendo Form Aberto
   zqRomCompraCoco.Last;
   edtPosicao.Text:=intToStr(zqRomCompraCoco.RecNo);
 end;
