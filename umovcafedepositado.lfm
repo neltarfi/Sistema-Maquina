@@ -41,9 +41,9 @@ object fMovCafeDepositado: TfMovCafeDepositado
     Left = 208
     Height = 28
     Top = 44
-    Width = 392
+    Width = 592
     KeyField = 'IDCliente'
-    ListField = 'Razao'
+    ListField = 'RAZAO2'
     ListFieldIndex = 0
     ListSource = dsCliente
     LookupCache = False
@@ -51,7 +51,7 @@ object fMovCafeDepositado: TfMovCafeDepositado
     OnChange = DBlcbNomeChange
   end
   object BuscaNome: TButton
-    Left = 608
+    Left = 805
     Height = 28
     Top = 44
     Width = 75
@@ -250,7 +250,7 @@ object fMovCafeDepositado: TfMovCafeDepositado
   object btSair: TBitBtn
     Left = 728
     Height = 30
-    Top = 520
+    Top = 523
     Width = 75
     Caption = 'Sair'
     Glyph.Data = {
@@ -420,6 +420,15 @@ object fMovCafeDepositado: TfMovCafeDepositado
     MaxLength = 0
     TabOrder = 8
   end
+  object btNovaCompra: TButton
+    Left = 228
+    Height = 25
+    Top = 528
+    Width = 92
+    Caption = 'Nova Compra'
+    TabOrder = 13
+    OnClick = btNovaCompraClick
+  end
   object dsCliente: TDataSource
     DataSet = zqCliente
     Left = 355
@@ -428,9 +437,11 @@ object fMovCafeDepositado: TfMovCafeDepositado
   object zqCliente: TZQuery
     Connection = fPrincipal.zConn
     SQL.Strings = (
-      'select IDCliente, Razao, IDPrincipal'
-      'from Cliente'
-      'order by Razao'
+      'select IDCLIENTE, '
+      '            cast(IDCLIENTE as varchar(10)) || '' '' || RAZAO || '' '' || Endereco as RAZAO2,'
+      '            IDPRINCIPAL'
+      'from CLIENTE'
+      'order by RAZAO2'
       ''
     )
     Params = <>
@@ -445,15 +456,15 @@ object fMovCafeDepositado: TfMovCafeDepositado
       ReadOnly = False
       Required = True
     end
-    object zqClienteRAZAO: TZRawStringField
+    object zqClienteRAZAO2: TZRawStringField
       FieldKind = fkData
-      FieldName = 'RAZAO'
+      FieldName = 'RAZAO2'
       Index = 1
       LookupCache = False
       ProviderFlags = [pfInUpdate, pfInWhere]
-      ReadOnly = False
+      ReadOnly = True
       Required = False
-      Size = 40
+      Size = 51
     end
     object zqClienteIDPRINCIPAL: TZIntegerField
       FieldKind = fkData

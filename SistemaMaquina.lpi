@@ -176,6 +176,14 @@
         <ResourceBaseClass Value="Form"/>
         <UnitName Value="uMovCafeDepositado"/>
       </Unit>
+      <Unit>
+        <Filename Value="uromcompradepositado.pas"/>
+        <IsPartOfProject Value="True"/>
+        <ComponentName Value="fRomCompraDepositado"/>
+        <HasResources Value="True"/>
+        <ResourceBaseClass Value="Form"/>
+        <UnitName Value="uRomCompraDepositado"/>
+      </Unit>
     </Units>
   </ProjectOptions>
   <CompilerOptions>

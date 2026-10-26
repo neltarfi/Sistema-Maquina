@@ -343,7 +343,7 @@ object fRomSaidaCoco: TfRomSaidaCoco
       Top = 22
       Width = 384
       KeyField = 'IDCliente'
-      ListField = 'Razao'
+      ListField = 'RAZAO2'
       ListFieldIndex = 0
       ListSource = dsCliente
       LookupCache = False
@@ -459,31 +459,6 @@ object fRomSaidaCoco: TfRomSaidaCoco
     Caption = 'Cancelar Registros'
     TabOrder = 6
     OnClick = btCancelarRegClick
-  end
-  object ztCliente: TZTable
-    Connection = fPrincipal.zConn
-    TableName = 'Cliente'
-    Left = 320
-    Top = 312
-    object ztClienteIDCliente: TZInt64Field
-      FieldKind = fkData
-      FieldName = 'IDCliente'
-      Index = 0
-      LookupCache = False
-      ProviderFlags = [pfInUpdate, pfInWhere]
-      ReadOnly = False
-      Required = True
-    end
-    object ztClienteRazao: TZRawStringField
-      FieldKind = fkData
-      FieldName = 'Razao'
-      Index = 1
-      LookupCache = False
-      ProviderFlags = [pfInUpdate, pfInWhere]
-      ReadOnly = False
-      Required = False
-      Size = 40
-    end
   end
   object ztLoteCoco: TZTable
     Filter = 'Status=''Ativo'' and SaldoCoco>0'
@@ -631,9 +606,9 @@ object fRomSaidaCoco: TfRomSaidaCoco
     Top = 160
   end
   object dsCliente: TDataSource
-    DataSet = ztCliente
+    DataSet = zqCliente
     Left = 392
-    Top = 320
+    Top = 312
   end
   object dsRomSaidaCoco: TDataSource
     DataSet = ztRomSaidaCoco
@@ -1007,5 +982,37 @@ object fRomSaidaCoco: TfRomSaidaCoco
     DataSet = ztRomSaidaCocoItens
     Left = 816
     Top = 440
+  end
+  object zqCliente: TZQuery
+    Connection = fPrincipal.zConn
+    SQL.Strings = (
+      'select IDCLIENTE, '
+      '            RAZAO || '' '' || Endereco as RAZAO2'
+      'from CLIENTE'
+      'order by RAZAO2'
+      ''
+    )
+    Params = <>
+    Left = 304
+    Top = 312
+    object zqClienteIDCLIENTE: TZIntegerField
+      FieldKind = fkData
+      FieldName = 'IDCLIENTE'
+      Index = 0
+      LookupCache = False
+      ProviderFlags = [pfInUpdate, pfInWhere]
+      ReadOnly = False
+      Required = True
+    end
+    object zqClienteRAZAO2: TZRawStringField
+      FieldKind = fkData
+      FieldName = 'RAZAO2'
+      Index = 1
+      LookupCache = False
+      ProviderFlags = [pfInUpdate, pfInWhere]
+      ReadOnly = True
+      Required = False
+      Size = 51
+    end
   end
 end

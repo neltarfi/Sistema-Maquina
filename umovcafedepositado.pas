@@ -16,6 +16,7 @@ type
     btAtualiza: TBitBtn;
     btSair: TBitBtn;
     BuscaNome: TButton;
+    btNovaCompra: TButton;
     dbeIDCliente: TDBEdit;
     dbeRazao: TDBEdit;
     DBGrid1: TDBGrid;
@@ -34,7 +35,7 @@ type
     zqCliente: TZQuery;
     zqClienteIDCLIENTE: TZIntegerField;
     zqClienteIDPRINCIPAL: TZIntegerField;
-    zqClienteRAZAO: TZRawStringField;
+    zqClienteRAZAO2: TZRawStringField;
     zqRomCompraCoco: TZQuery;
     zqRomCompraCocoALIQUOTA: TZBCDField;
     zqRomCompraCocoDATA: TZDateField;
@@ -51,6 +52,7 @@ type
     zqRomCompraCocoSTATUS: TZRawStringField;
     zqRomCompraCocoVALOR: TZBCDField;
     procedure btAtualizaClick(Sender: TObject);
+    procedure btNovaCompraClick(Sender: TObject);
     procedure btSairClick(Sender: TObject);
     procedure BuscaNomeClick(Sender: TObject);
     procedure DBlcbNomeChange(Sender: TObject);
@@ -75,7 +77,7 @@ implementation
 
 {$R *.lfm}
 
-uses uFuncoes, uCadCliente, uPrincipal;
+uses uFuncoes, uCadCliente,uRomCompraDepositado, uPrincipal;
 
 { TfMovCafeDepositado }
 
@@ -120,11 +122,20 @@ begin
   AplicaFiltro('Navigator');
 end;
 
+procedure TfMovCafeDepositado.btNovaCompraClick(Sender: TObject);
+var temp:integer;
+begin
+  fRomCompraDepositado:=TfRomCompraDepositado.Create(Self);
+    temp:=fRomCompraDepositado.ShowModal;
+    fRomCompraDepositado.Destroy;
+end;
+
 procedure TfMovCafeDepositado.FormClose(Sender: TObject;
   var CloseAction: TCloseAction);
 begin
   zqCliente.Close;
   zqRomCompraCoco.Close;
+  FormCadastroSomenteLeitura:=False;//desabilita botoes de edição do seguendo Form Aberto
 end;
 
 procedure TfMovCafeDepositado.FormShow(Sender: TObject);

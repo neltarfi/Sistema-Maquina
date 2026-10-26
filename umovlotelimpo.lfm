@@ -1405,13 +1405,13 @@ object fMovLoteLimpo: TfMovLoteLimpo
   end
   object dsCliente: TDataSource
     DataSet = zqCliente
-    Left = 744
-    Top = 88
+    Left = 416
+    Top = 336
   end
   object dsDoLoteLimpo: TDataSource
     DataSet = zqDoLoteLimpo
-    Left = 536
-    Top = 88
+    Left = 528
+    Top = 16
   end
   object dsParaLoteLimpo: TDataSource
     DataSet = zqParaLoteLimpo
@@ -1434,8 +1434,8 @@ object fMovLoteLimpo: TfMovLoteLimpo
       ' from LOTELIMPO '
     )
     Params = <>
-    Left = 416
-    Top = 88
+    Left = 360
+    Top = 16
     object zqDoLoteLimpoIDLOTELIMPO: TZIntegerField
       FieldKind = fkData
       FieldName = 'IDLOTELIMPO'
@@ -1492,8 +1492,8 @@ object fMovLoteLimpo: TfMovLoteLimpo
       'order by "RAZAO"'
     )
     Params = <>
-    Left = 664
-    Top = 88
+    Left = 312
+    Top = 336
     object zqClienteIDCLIENTE: TZIntegerField
       FieldKind = fkData
       FieldName = 'IDCLIENTE'

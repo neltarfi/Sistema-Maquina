@@ -126,9 +126,9 @@ object fMovLoteCoco: TfMovLoteCoco
     Left = 208
     Height = 28
     Top = 20
-    Width = 392
+    Width = 584
     KeyField = 'IDCliente'
-    ListField = 'Razao'
+    ListField = 'RAZAO2'
     ListFieldIndex = 0
     ListSource = dsCliente
     LookupCache = False
@@ -136,7 +136,7 @@ object fMovLoteCoco: TfMovLoteCoco
     OnChange = DBlcbNomeChange
   end
   object BuscaNome: TButton
-    Left = 608
+    Left = 806
     Height = 28
     Top = 20
     Width = 75
@@ -469,9 +469,12 @@ object fMovLoteCoco: TfMovLoteCoco
   object zqCliente: TZQuery
     Connection = fPrincipal.zConn
     SQL.Strings = (
-      'select IDCliente, Razao, IDPrincipal'
+      'select IDCliente, '
+      '             cast(IDCLIENTE as varchar(10)) || '' '' || RAZAO || '' '' || Endereco as RAZAO2,'
+      '             RAZAO,'
+      '             IDPRINCIPAL'
       'from Cliente'
-      'order by Razao'
+      'order by Razao2'
       ''
     )
     Params = <>
@@ -486,15 +489,15 @@ object fMovLoteCoco: TfMovLoteCoco
       ReadOnly = False
       Required = True
     end
-    object zqClienteRazao: TZRawStringField
+    object zqClienteRAZAO2: TZRawStringField
       FieldKind = fkData
-      FieldName = 'Razao'
+      FieldName = 'RAZAO2'
       Index = 1
       LookupCache = False
       ProviderFlags = [pfInUpdate, pfInWhere]
-      ReadOnly = False
+      ReadOnly = True
       Required = False
-      Size = 40
+      Size = 51
     end
     object zqClienteIDPrincipal: TZInt64Field
       FieldKind = fkData
@@ -504,6 +507,16 @@ object fMovLoteCoco: TfMovLoteCoco
       ProviderFlags = [pfInUpdate, pfInWhere]
       ReadOnly = False
       Required = False
+    end
+    object zqClienteRAZAO: TZRawStringField
+      FieldKind = fkData
+      FieldName = 'RAZAO'
+      Index = 3
+      LookupCache = False
+      ProviderFlags = [pfInUpdate, pfInWhere]
+      ReadOnly = False
+      Required = False
+      Size = 40
     end
   end
   object ztMovLoteCoco: TZTable

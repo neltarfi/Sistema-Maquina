@@ -1109,8 +1109,8 @@ object fMovCafeEmprestado: TfMovCafeEmprestado
   end
   object dsCliente: TDataSource
     DataSet = zqCliente
-    Left = 800
-    Top = 152
+    Left = 272
+    Top = 16
   end
   object ztCafeEmprestado: TZTable
     Connection = fPrincipal.zConn
@@ -1444,8 +1444,8 @@ object fMovCafeEmprestado: TfMovCafeEmprestado
       'order by "RAZAO"'
     )
     Params = <>
-    Left = 712
-    Top = 152
+    Left = 168
+    Top = 16
   end
   object zqNovoIDMovLoteLimpo: TZQuery
     Connection = fPrincipal.zConn

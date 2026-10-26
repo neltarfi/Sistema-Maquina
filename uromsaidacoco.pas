@@ -63,6 +63,9 @@ type
     PanelRomSaidaCoco: TPanel;
     PanelAdicionaValor: TPanel;
     rgSacoKg: TRadioGroup;
+    zqCliente: TZQuery;
+    zqClienteIDCLIENTE: TZIntegerField;
+    zqClienteRAZAO2: TZRawStringField;
     zqNovoIDMovLoteCocoID: TZIntegerField;
     zqNovoIDRomSaidaCoco: TZQuery;
     zqNovoIDRomSaidaCocoID: TZIntegerField;
@@ -82,10 +85,7 @@ type
     ztMovLoteCocoSTATUS: TZRawStringField;
     ztMovLoteCocoVALOR: TZBCDField;
     ztRomSaidaCocoItens: TZTable;
-    ztCliente: TZTable;
     ztLoteCoco: TZTable;
-    ztClienteIDCliente: TZInt64Field;
-    ztClienteRazao: TZRawStringField;
     ztLoteCocoIDLoteCoco: TZInt64Field;
     ztLoteCocoNomeLoteCoco: TZRawStringField;
     ztLoteCocoSafra: TZRawStringField;
@@ -154,7 +154,7 @@ uses uPrincipal, uCadCliente, umovlotecoco, uFuncoes;
 
 procedure TfRomSaidaCoco.FormShow(Sender: TObject);
 begin
-  ztCliente.Open;
+  zqCliente.Open;
   ztRomSaidaCoco.Open;
   ztRomSaidaCocoItens.Open;
   case FormOperacao of
@@ -196,7 +196,7 @@ end;
 procedure TfRomSaidaCoco.FormClose(Sender: TObject;
 var CloseAction: TCloseAction);
 begin
-      ztCliente.Close;
+      zqCliente.Close;
       ztLoteCoco.Close;
       ztRomSaidaCoco.Close;
       ztRomSaidaCocoItens.Close;
@@ -338,7 +338,7 @@ begin
   fCadCliente:=TfCadCliente.Create(Self);
     temp:=fCadCliente.ShowModal;
     fCadCliente.Destroy;
-    ztCliente.Refresh;
+    zqCliente.Refresh;
     dbcCliente.KeyValue:=temp;
 end;
 

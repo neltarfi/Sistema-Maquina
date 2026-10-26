@@ -37,7 +37,8 @@ type
     zqCliente: TZQuery;
     zqClienteIDCliente: TZInt64Field;
     zqClienteIDPrincipal: TZInt64Field;
-    zqClienteRazao: TZRawStringField;
+    zqClienteRAZAO: TZRawStringField;
+    zqClienteRAZAO2: TZRawStringField;
     ztMovLoteCoco: TZTable;
     ztMovLoteCocoDATA: TZDateField;
     ztMovLoteCocoHISTORICO: TZRawStringField;
