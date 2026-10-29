@@ -982,7 +982,7 @@ object fMovCliSacaria: TfMovCliSacaria
       Top = 168
       Width = 84
       Alignment = taRightJustify
-      TabOrder = 3
+      TabOrder = 5
       OnChange = edtQuantidadeChange
       OnExit = edtQuantidadeExit
     end
@@ -1001,7 +1001,7 @@ object fMovCliSacaria: TfMovCliSacaria
       CenturyFrom = 1941
       MaxDate = 2958465
       MinDate = -53780
-      TabOrder = 1
+      TabOrder = 3
       TrailingSeparator = False
       TextForNullDate = ' '
       LeadingZeros = True
@@ -1028,7 +1028,7 @@ object fMovCliSacaria: TfMovCliSacaria
       Top = 127
       Width = 300
       Anchors = []
-      TabOrder = 2
+      TabOrder = 4
     end
     object Label5: TLabel
       Left = 155
@@ -1048,7 +1048,7 @@ object fMovCliSacaria: TfMovCliSacaria
       ListFieldIndex = 0
       ListSource = dsParaLoteSacaria
       LookupCache = False
-      TabOrder = 0
+      TabOrder = 2
     end
     object lbParaLoteSacaria: TLabel
       Left = 64
@@ -1090,7 +1090,7 @@ object fMovCliSacaria: TfMovCliSacaria
       DataSource = dsCliente
       Alignment = taRightJustify
       MaxLength = 0
-      TabOrder = 4
+      TabOrder = 0
       TabStop = False
     end
     object dbeSaldoJuta: TDBEdit
@@ -1102,7 +1102,7 @@ object fMovCliSacaria: TfMovCliSacaria
       DataSource = dsCliente
       Alignment = taRightJustify
       MaxLength = 0
-      TabOrder = 5
+      TabOrder = 1
       TabStop = False
     end
     object Label9: TLabel

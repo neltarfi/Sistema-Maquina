@@ -43,7 +43,7 @@ object fCadLoteCoco: TfCadLoteCoco
     DataSource = dsLoteCoco
     Options = [dgTitles, dgIndicator, dgColumnResize, dgColumnMove, dgColLines, dgRowLines, dgTabs, dgAlwaysShowSelection, dgConfirmDelete, dgCancelOnExit, dgRowHighlight]
     ReadOnly = True
-    TabOrder = 0
+    TabOrder = 1
     OnCellClick = dbgLoteCocoCellClick
     OnDblClick = dbgLoteCocoDblClick
     OnKeyUp = dbgLoteCocoKeyUp
@@ -59,7 +59,7 @@ object fCadLoteCoco: TfCadLoteCoco
     Color = clGradientActiveCaption
     ParentBackground = False
     ParentColor = False
-    TabOrder = 1
+    TabOrder = 0
     object Label1: TLabel
       Left = 172
       Height = 19
@@ -130,7 +130,7 @@ object fCadLoteCoco: TfCadLoteCoco
       Color = clGradientActiveCaption
       ParentBackground = False
       ParentColor = False
-      TabOrder = 1
+      TabOrder = 2
       object pnBotaoSalvar: TPanel
         Left = 336
         Height = 78
@@ -140,7 +140,7 @@ object fCadLoteCoco: TfCadLoteCoco
         ClientHeight = 76
         ClientWidth = 302
         ParentBackground = False
-        TabOrder = 0
+        TabOrder = 1
         object btCancelar: TBitBtn
           Left = 24
           Height = 62
@@ -685,7 +685,7 @@ object fCadLoteCoco: TfCadLoteCoco
         ClientHeight = 76
         ClientWidth = 233
         ParentBackground = False
-        TabOrder = 1
+        TabOrder = 0
         object btNovo: TBitBtn
           Left = 6
           Height = 62
@@ -1645,7 +1645,7 @@ object fCadLoteCoco: TfCadLoteCoco
       Color = clGradientInactiveCaption
       ParentBackground = False
       ParentColor = False
-      TabOrder = 2
+      TabOrder = 1
       object Label6: TLabel
         Left = 16
         Height = 16

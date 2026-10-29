@@ -175,7 +175,7 @@ begin
 
      end;
      zqRomCompraCoco.Filtered:=False;
-     zqRomCompraCoco.Filter:='IDCLIENTE >='+IntToStr(NomeInicio)+'and IDCLIENTE <='+intToStr(NomeFim)+
+     zqRomCompraCoco.Filter:='IDROMCOMPRADEPOSIT0 > 0 and IDCLIENTE >='+IntToStr(NomeInicio)+'and IDCLIENTE <='+intToStr(NomeFim)+
      'and DATA >= '+QuotedStr(DataInicio)+' and DATA <= '+QuotedStr(DataFim);
      zqRomCompraCoco.Filtered:=True;
 

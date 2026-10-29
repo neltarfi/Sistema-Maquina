@@ -312,7 +312,7 @@ object fMovCafeDepositado: TfMovCafeDepositado
       9B9B9B9B51525252525249A4FFFFFFFFFFFFFFFF0000FF27669A9A9B9B9B9B9B
       51525252525249F7FFFFFFFFFFFFFFFF0000
     }
-    TabOrder = 12
+    TabOrder = 13
     OnClick = btSairClick
   end
   object lblRegistros: TLabel
@@ -426,7 +426,7 @@ object fMovCafeDepositado: TfMovCafeDepositado
     Top = 528
     Width = 92
     Caption = 'Nova Compra'
-    TabOrder = 13
+    TabOrder = 12
     OnClick = btNovaCompraClick
   end
   object dsCliente: TDataSource
@@ -441,7 +441,7 @@ object fMovCafeDepositado: TfMovCafeDepositado
       '            cast(IDCLIENTE as varchar(10)) || '' '' || RAZAO || '' '' || Endereco as RAZAO2,'
       '            IDPRINCIPAL'
       'from CLIENTE'
-      'order by RAZAO2'
+      'order by RAZAO'
       ''
     )
     Params = <>

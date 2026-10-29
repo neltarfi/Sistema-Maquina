@@ -519,7 +519,7 @@ object fEditaCliente: TfEditaCliente
       FFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFF
       FFFFFFFFFFFFFFFFFFFF
     }
-    TabOrder = 14
+    TabOrder = 15
     OnClick = btSalvarClick
   end
   object btCancelar: TBitBtn
@@ -786,7 +786,7 @@ object fEditaCliente: TfEditaCliente
       FFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFF
       FFFFFFFFFFFFFFFFFFFF
     }
-    TabOrder = 15
+    TabOrder = 14
     OnClick = btCancelarClick
   end
   object zqCliente2: TZQuery

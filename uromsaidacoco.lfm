@@ -151,7 +151,7 @@ object fRomSaidaCoco: TfRomSaidaCoco
       Top = 232
       Width = 75
       Caption = 'Adicionar'
-      TabOrder = 1
+      TabOrder = 5
       OnClick = btAdicionarClick
     end
     object btCancelar: TButton
@@ -160,7 +160,7 @@ object fRomSaidaCoco: TfRomSaidaCoco
       Top = 232
       Width = 75
       Caption = 'Cancelar'
-      TabOrder = 2
+      TabOrder = 4
       OnClick = btCancelarClick
     end
     object edtPesoSemValor: TEdit
@@ -171,7 +171,7 @@ object fRomSaidaCoco: TfRomSaidaCoco
       Alignment = taRightJustify
       Font.Style = [fsBold]
       ParentFont = False
-      TabOrder = 3
+      TabOrder = 1
       OnChange = edtPesoSemValorChange
       OnExit = edtPesoSemValorExit
     end
@@ -183,7 +183,7 @@ object fRomSaidaCoco: TfRomSaidaCoco
       Alignment = taRightJustify
       Font.Style = [fsBold]
       ParentFont = False
-      TabOrder = 4
+      TabOrder = 2
       OnChange = edtRendaChange
       OnExit = edtRendaExit
     end
@@ -195,7 +195,7 @@ object fRomSaidaCoco: TfRomSaidaCoco
       ClientHeight = 72
       ClientWidth = 336
       ParentBackground = False
-      TabOrder = 5
+      TabOrder = 3
       object Label25: TLabel
         Left = 8
         Height = 16
@@ -439,7 +439,7 @@ object fRomSaidaCoco: TfRomSaidaCoco
     Top = 656
     Width = 75
     Caption = 'Sair'
-    TabOrder = 4
+    TabOrder = 6
     OnClick = btSairClick
   end
   object btSalvar: TButton
@@ -457,7 +457,7 @@ object fRomSaidaCoco: TfRomSaidaCoco
     Top = 656
     Width = 120
     Caption = 'Cancelar Registros'
-    TabOrder = 6
+    TabOrder = 4
     OnClick = btCancelarRegClick
   end
   object ztLoteCoco: TZTable

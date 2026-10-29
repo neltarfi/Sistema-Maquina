@@ -959,6 +959,7 @@ begin
         zqCliente.Edit;
         zqClienteSaldoContaCorrente.Value:=zqClienteSaldoContaCorrente.Value+Valor;
         zqCliente.Post;
+     end;
 
                     //incremente SaldoCoco na tabela LoteCoco
         zqLoteCoco.Locate('IDLoteCoco',dbcLoteCoco.KeyValue,[]);
@@ -966,7 +967,6 @@ begin
         zqLoteCocoSaldoCoco.Value:= zqLoteCocoSaldoCoco.Value+SaldoCoco-BeberCoco;
         zqLoteCoco.Post;
 
-     end;
      fPrincipal.zConn.Commit;
      if not(MessageDlg('Você deseja imprimir o Romaneio?', mtConfirmation,
         [mbYes, mbNO], 0) = mrYes) then begin
@@ -1022,7 +1022,7 @@ begin
         zqNovoIDMovLoteCoco.Refresh;
         ztMovLoteCoco.Append;
         ztMovLoteCocoIDMovLoteCoco.Value:=zqNovoIDMovLoteCocoID.Value+1;
-        ztMovLoteCocoIDLoteCoco.Value:=zqLoteCocoIDLoteCoco.Value;
+        ztMovLoteCocoIDLoteCoco.Value:=dbcLoteCoco.KeyValue;
         ztMovLoteCocoIDRomEntradaCoco.Value:=IDRomEntradaCoco;
         ztMovLoteCocoIDRomSaidaCoco.Value:=0;
         ztMovLoteCocoIDCliente.Value:=IDCliente;

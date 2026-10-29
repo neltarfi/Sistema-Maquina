@@ -34,7 +34,7 @@ object fRomEntCoco: TfRomEntCoco
       ListFieldIndex = 0
       ListSource = dsCliente
       LookupCache = False
-      TabOrder = 0
+      TabOrder = 1
       OnChange = dbcClienteChange
     end
     object btBuscar: TButton
@@ -43,7 +43,7 @@ object fRomEntCoco: TfRomEntCoco
       Top = 8
       Width = 75
       Caption = 'Buscar'
-      TabOrder = 1
+      TabOrder = 2
       OnClick = btBuscarClick
     end
     object edtPropriedade: TEdit
@@ -52,7 +52,7 @@ object fRomEntCoco: TfRomEntCoco
       Top = 32
       Width = 445
       ReadOnly = True
-      TabOrder = 2
+      TabOrder = 3
     end
     object edtCidade: TEdit
       Left = 312
@@ -60,7 +60,7 @@ object fRomEntCoco: TfRomEntCoco
       Top = 56
       Width = 445
       ReadOnly = True
-      TabOrder = 3
+      TabOrder = 5
     end
     object Label1: TLabel
       Left = 208
@@ -108,7 +108,7 @@ object fRomEntCoco: TfRomEntCoco
       ReadOnly = True
       Alignment = taRightJustify
       MaxLength = 0
-      TabOrder = 4
+      TabOrder = 0
     end
     object Label4: TLabel
       Left = 8
@@ -144,7 +144,7 @@ object fRomEntCoco: TfRomEntCoco
       ButtonWidth = 23
       NumGlyphs = 1
       MaxLength = 0
-      TabOrder = 5
+      TabOrder = 4
       OnExit = dbdDataExit
       DataField = 'Data'
       DataSource = dsRomEntradaCoco
@@ -1332,6 +1332,7 @@ object fRomEntCoco: TfRomEntCoco
       '   "CIDADE",'
       '   "SALDOCONTACORRENTE"'
       'from CLIENTE'
+      'order by RAZAO'
     )
     Params = <>
     Left = 604

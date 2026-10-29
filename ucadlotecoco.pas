@@ -191,6 +191,7 @@ begin
   ztLoteCoco.Append;
   zqNovoIDLoteCoco.Refresh;
   ztLoteCocoIDLoteCoco.Value:= zqNovoIDLoteCocoID.Value + 1;
+  ztLoteCocoSaldoCoco.Value:=0;
   rgStatus.ItemIndex:=0;
   dbeCafeBom.Text:='0';
   dbeBica.Text:='0';

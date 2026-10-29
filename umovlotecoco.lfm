@@ -76,7 +76,7 @@ object fMovLoteCoco: TfMovLoteCoco
       end>
     DataSource = dsMovLoteCoco
     ReadOnly = True
-    TabOrder = 0
+    TabOrder = 10
     OnDblClick = DBGrid1DblClick
   end
   object btEntrada: TButton
@@ -85,7 +85,7 @@ object fMovLoteCoco: TfMovLoteCoco
     Top = 536
     Width = 120
     Caption = 'Nova Entrada coco'
-    TabOrder = 1
+    TabOrder = 13
     OnClick = btEntradaClick
   end
   object btSaida: TButton
@@ -94,7 +94,7 @@ object fMovLoteCoco: TfMovLoteCoco
     Top = 536
     Width = 107
     Caption = 'Nova Saída coco'
-    TabOrder = 2
+    TabOrder = 14
     OnClick = btSaidaClick
   end
   object rgFiltroNome: TRadioGroup
@@ -119,7 +119,7 @@ object fMovLoteCoco: TfMovLoteCoco
       'Nome'
     )
     ParentBackground = False
-    TabOrder = 3
+    TabOrder = 0
     OnClick = rgFiltroNomeClick
   end
   object DBlcbNome: TDBLookupComboBox
@@ -132,7 +132,7 @@ object fMovLoteCoco: TfMovLoteCoco
     ListFieldIndex = 0
     ListSource = dsCliente
     LookupCache = False
-    TabOrder = 4
+    TabOrder = 1
     OnChange = DBlcbNomeChange
   end
   object BuscaNome: TButton
@@ -141,7 +141,7 @@ object fMovLoteCoco: TfMovLoteCoco
     Top = 20
     Width = 75
     Caption = 'Busca'
-    TabOrder = 5
+    TabOrder = 2
     OnClick = BuscaNomeClick
   end
   object rgFiltroOperacao: TRadioGroup
@@ -167,7 +167,7 @@ object fMovLoteCoco: TfMovLoteCoco
       'Saida'
     )
     ParentBackground = False
-    TabOrder = 6
+    TabOrder = 3
     OnClick = rgFiltroOperacaoClick
   end
   object DBNavigator1: TDBNavigator
@@ -186,7 +186,7 @@ object fMovLoteCoco: TfMovLoteCoco
     ClientWidth = 241
     DataSource = dsMovLoteCoco
     Options = []
-    TabOrder = 7
+    TabOrder = 12
     VisibleButtons = [nbFirst, nbPrior, nbNext, nbLast]
     OnClick = DBNavigator1Click
   end
@@ -211,7 +211,7 @@ object fMovLoteCoco: TfMovLoteCoco
       'Periodo'
     )
     ParentBackground = False
-    TabOrder = 8
+    TabOrder = 4
     OnClick = rgFiltroPeriodoClick
   end
   object dtpInicio: TDateTimePicker
@@ -222,7 +222,7 @@ object fMovLoteCoco: TfMovLoteCoco
     CenturyFrom = 1941
     MaxDate = 2958465
     MinDate = -53780
-    TabOrder = 9
+    TabOrder = 5
     TrailingSeparator = False
     TextForNullDate = 'NULL'
     LeadingZeros = True
@@ -244,7 +244,7 @@ object fMovLoteCoco: TfMovLoteCoco
     CenturyFrom = 1941
     MaxDate = 2958465
     MinDate = -53780
-    TabOrder = 10
+    TabOrder = 6
     TrailingSeparator = False
     TextForNullDate = 'NULL'
     LeadingZeros = True
@@ -353,7 +353,7 @@ object fMovLoteCoco: TfMovLoteCoco
       9B9B9B9B51525252525249A4FFFFFFFFFFFFFFFF0000FF27669A9A9B9B9B9B9B
       51525252525249F7FFFFFFFFFFFFFFFF0000
     }
-    TabOrder = 12
+    TabOrder = 15
     OnClick = btSairClick
   end
   object btAtualiza: TBitBtn
@@ -430,7 +430,7 @@ object fMovLoteCoco: TfMovLoteCoco
     }
     ParentShowHint = False
     ShowHint = True
-    TabOrder = 13
+    TabOrder = 7
     OnClick = btAtualizaClick
   end
   object dbeCliente: TDBEdit
@@ -442,7 +442,7 @@ object fMovLoteCoco: TfMovLoteCoco
     DataSource = dsMovLoteCoco
     ReadOnly = True
     MaxLength = 0
-    TabOrder = 14
+    TabOrder = 9
   end
   object dbeIDCliente: TDBEdit
     Left = 16
@@ -454,7 +454,7 @@ object fMovLoteCoco: TfMovLoteCoco
     ReadOnly = True
     Alignment = taRightJustify
     MaxLength = 0
-    TabOrder = 15
+    TabOrder = 8
   end
   object dsMovLoteCoco: TDataSource
     DataSet = ztMovLoteCoco
@@ -474,7 +474,7 @@ object fMovLoteCoco: TfMovLoteCoco
       '             RAZAO,'
       '             IDPRINCIPAL'
       'from Cliente'
-      'order by Razao2'
+      'order by Razao'
       ''
     )
     Params = <>
@@ -520,8 +520,10 @@ object fMovLoteCoco: TfMovLoteCoco
     end
   end
   object ztMovLoteCoco: TZTable
+    SortedFields = 'IDMovLoteCoco'
     Connection = fPrincipal.zConn
     TableName = 'MOVLOTECOCO'
+    IndexFieldNames = 'IDMovLoteCoco Asc'
     Left = 64
     Top = 304
     object ztMovLoteCocoIDMOVLOTECOCO: TZIntegerField

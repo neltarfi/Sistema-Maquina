@@ -47,7 +47,7 @@ object fRomCompraDepositado: TfRomCompraDepositado
       end>
     DataSource = dsEstoqueDepositoCoco
     ReadOnly = True
-    TabOrder = 0
+    TabOrder = 1
   end
   object btSair: TBitBtn
     Left = 728
@@ -114,7 +114,7 @@ object fRomCompraDepositado: TfRomCompraDepositado
       9B9B9B9B51525252525249A4FFFFFFFFFFFFFFFF0000FF27669A9A9B9B9B9B9B
       51525252525249F7FFFFFFFFFFFFFFFF0000
     }
-    TabOrder = 1
+    TabOrder = 2
     OnClick = btSairClick
   end
   object DBlcbNome: TDBLookupComboBox
@@ -127,7 +127,7 @@ object fRomCompraDepositado: TfRomCompraDepositado
     ListFieldIndex = 0
     ListSource = dsClienteSaldo
     LookupCache = False
-    TabOrder = 2
+    TabOrder = 0
     OnChange = DBlcbNomeChange
   end
   object dsEstoqueDepositoCoco: TDataSource
@@ -146,7 +146,7 @@ object fRomCompraDepositado: TfRomCompraDepositado
       'from ESTOQUEDEPOSITOCOCO as E'
       'inner join ROMENTRADACOCO AS R on E.IDROMENTRADACOCO = R.IDROMENTRADACOCO'
       'inner join CLIENTE as C on R.IDCLIENTE = C.IDCLIENTE'
-      'group by C.IDCLIENTE, C.RAZAO, C.ENDERECO;'
+      'group by C.IDCLIENTE, C.RAZAO, C.ENDERECO'
     )
     Params = <>
     Left = 143

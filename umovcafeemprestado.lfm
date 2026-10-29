@@ -976,7 +976,7 @@ object fMovCafeEmprestado: TfMovCafeEmprestado
       Top = 168
       Width = 84
       Alignment = taRightJustify
-      TabOrder = 3
+      TabOrder = 5
       OnChange = edtPesoChange
       OnExit = edtPesoExit
     end
@@ -995,7 +995,7 @@ object fMovCafeEmprestado: TfMovCafeEmprestado
       CenturyFrom = 1941
       MaxDate = 2958465
       MinDate = -53780
-      TabOrder = 1
+      TabOrder = 3
       TrailingSeparator = False
       TextForNullDate = ' '
       LeadingZeros = True
@@ -1022,7 +1022,7 @@ object fMovCafeEmprestado: TfMovCafeEmprestado
       Top = 127
       Width = 300
       Anchors = []
-      TabOrder = 2
+      TabOrder = 4
     end
     object Label5: TLabel
       Left = 155
@@ -1042,7 +1042,7 @@ object fMovCafeEmprestado: TfMovCafeEmprestado
       ListFieldIndex = 0
       ListSource = dsParaLoteLimpo
       LookupCache = False
-      TabOrder = 0
+      TabOrder = 1
     end
     object lbParaLoteSacaria: TLabel
       Left = 64
@@ -1084,7 +1084,7 @@ object fMovCafeEmprestado: TfMovCafeEmprestado
       DataSource = dsCliente
       Alignment = taRightJustify
       MaxLength = 0
-      TabOrder = 4
+      TabOrder = 0
       TabStop = False
     end
     object btBuscaLoteLimpo: TButton
@@ -1093,7 +1093,7 @@ object fMovCafeEmprestado: TfMovCafeEmprestado
       Top = 86
       Width = 75
       Caption = 'Busca'
-      TabOrder = 5
+      TabOrder = 2
       OnClick = btBuscaLoteLimpoClick
     end
   end
@@ -1446,6 +1446,38 @@ object fMovCafeEmprestado: TfMovCafeEmprestado
     Params = <>
     Left = 168
     Top = 16
+    object zqClienteIDPRINCIPAL: TZIntegerField
+      FieldKind = fkData
+      FieldName = 'IDPRINCIPAL'
+      Index = 0
+      LookupCache = False
+      ProviderFlags = [pfInUpdate, pfInWhere]
+      ReadOnly = False
+      Required = False
+    end
+    object zqClienteRAZAO: TZRawStringField
+      FieldKind = fkData
+      FieldName = 'RAZAO'
+      Index = 1
+      LookupCache = False
+      ProviderFlags = [pfInUpdate, pfInWhere]
+      ReadOnly = False
+      Required = False
+      Size = 40
+    end
+    object zqClienteSALDO: TZFMTBCDField
+      FieldKind = fkData
+      FieldName = 'SALDO'
+      Index = 2
+      LookupCache = False
+      ProviderFlags = [pfInUpdate, pfInWhere]
+      ReadOnly = True
+      Required = False
+      Currency = False
+      MaxValue = '0'
+      MinValue = '0'
+      Size = 3
+    end
   end
   object zqNovoIDMovLoteLimpo: TZQuery
     Connection = fPrincipal.zConn

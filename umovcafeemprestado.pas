@@ -45,6 +45,9 @@ type
     pnBotao: TPanel;
     pnEditar: TPanel;
     pnFiltrar: TPanel;
+    zqClienteIDPRINCIPAL: TZIntegerField;
+    zqClienteRAZAO: TZRawStringField;
+    zqClienteSALDO: TZFMTBCDField;
     zqClienteSaldoIDCliente: TZInt64Field;
     zqClienteSaldoSaldoCafeEmprestado: TZInt64Field;
     zqMovCafeEmprestadoDATA: TZDateField;

@@ -22,7 +22,7 @@ object fCadLoteLimpo: TfCadLoteLimpo
     Color = clGradientActiveCaption
     ParentBackground = False
     ParentColor = False
-    TabOrder = 0
+    TabOrder = 1
     object dbeID: TDBEdit
       Left = 82
       Height = 26
@@ -1451,7 +1451,7 @@ object fCadLoteLimpo: TfCadLoteLimpo
     Color = clGradientActiveCaption
     ParentBackground = False
     ParentColor = False
-    TabOrder = 1
+    TabOrder = 0
     object Label1: TLabel
       Left = 172
       Height = 19
@@ -1549,9 +1549,11 @@ object fCadLoteLimpo: TfCadLoteLimpo
     end
   end
   object ztLoteLimpo: TZTable
+    SortedFields = 'IDLoteLimpo'
     AfterScroll = ztLoteLimpoAfterScroll
     Connection = fPrincipal.zConn
     TableName = 'LOTELIMPO'
+    IndexFieldNames = 'IDLoteLimpo Asc'
     Left = 32
     Top = 256
     object ztLoteLimpoIDLOTELIMPO: TZIntegerField
