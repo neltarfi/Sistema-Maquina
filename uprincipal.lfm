@@ -82,6 +82,7 @@ object fPrincipal: TfPrincipal
     Properties.Strings = (
       'RawStringEncoding=DB_CP'
     )
+    AutoCommit = False
     TransactIsolationLevel = tiReadCommitted
     Connected = True
     DisableSavepoints = False

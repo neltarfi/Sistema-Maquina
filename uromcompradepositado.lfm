@@ -1,11 +1,11 @@
 object fRomCompraDepositado: TfRomCompraDepositado
   Cursor = crMultiDrag
   Left = 238
-  Height = 443
+  Height = 452
   Top = 250
   Width = 889
   Caption = 'fRomCompraDepositado'
-  ClientHeight = 443
+  ClientHeight = 452
   ClientWidth = 889
   Color = clGradientActiveCaption
   Position = poDesktopCenter
@@ -13,10 +13,10 @@ object fRomCompraDepositado: TfRomCompraDepositado
   OnClose = FormClose
   OnShow = FormShow
   object DBGrid1: TDBGrid
-    Left = 8
+    Left = 48
     Height = 180
     Top = 48
-    Width = 544
+    Width = 328
     Color = clWindow
     Columns = <    
       item
@@ -25,19 +25,23 @@ object fRomCompraDepositado: TfRomCompraDepositado
         FieldName = 'IDCLIENTE'
       end    
       item
-        Title.Caption = 'IDROMENTRADACOCO'
+        Title.Caption = 'Rom Entrada'
+        Width = 70
         FieldName = 'IDROMENTRADACOCO'
       end    
       item
-        Title.Caption = 'PESOENTRADA'
+        Title.Caption = 'Peso Entrada'
+        Width = 75
         FieldName = 'PESOENTRADA'
       end    
       item
-        Title.Caption = 'PESOSAIDA'
+        Title.Caption = 'Peso Saida'
+        Width = 75
         FieldName = 'PESOSAIDA'
       end    
       item
         Title.Caption = 'SALDO'
+        Width = 80
         FieldName = 'SALDO'
       end    
       item
@@ -50,9 +54,9 @@ object fRomCompraDepositado: TfRomCompraDepositado
     TabOrder = 1
   end
   object btSair: TBitBtn
-    Left = 728
+    Left = 784
     Height = 30
-    Top = 392
+    Top = 416
     Width = 75
     Caption = 'Sair'
     Glyph.Data = {
@@ -130,6 +134,476 @@ object fRomCompraDepositado: TfRomCompraDepositado
     TabOrder = 0
     OnChange = DBlcbNomeChange
   end
+  object btTrans: TButton
+    Left = 424
+    Height = 31
+    Top = 120
+    Width = 35
+    Caption = '-->'
+    Font.Style = [fsBold]
+    ParentFont = False
+    TabOrder = 3
+    OnClick = btTransClick
+  end
+  object Panel1: TPanel
+    Left = 504
+    Height = 280
+    Top = 48
+    Width = 376
+    ClientHeight = 280
+    ClientWidth = 376
+    ParentBackground = False
+    TabOrder = 4
+    object Label1: TLabel
+      Left = 16
+      Height = 16
+      Top = 72
+      Width = 260
+      Caption = 'Peso depositado....................................................'
+      Font.Style = [fsBold]
+      ParentFont = False
+    end
+    object edtPesoDepositado: TEdit
+      Left = 272
+      Height = 26
+      Top = 64
+      Width = 80
+      Font.Style = [fsBold]
+      ParentFont = False
+      TabOrder = 0
+    end
+    object Label3: TLabel
+      Left = 352
+      Height = 16
+      Top = 72
+      Width = 16
+      Caption = 'Kg'
+      Font.Style = [fsBold]
+      ParentFont = False
+    end
+    object Label2: TLabel
+      Left = 16
+      Height = 16
+      Top = 104
+      Width = 259
+      Caption = 'Peso comprado.......................................................'
+      Font.Style = [fsBold]
+      ParentFont = False
+    end
+    object dbePesoComprado: TDBEdit
+      Left = 272
+      Height = 26
+      Top = 96
+      Width = 80
+      DataField = 'PESOCOCO'
+      DataSource = dsRomCompraCoco
+      Font.Style = [fsBold]
+      MaxLength = 0
+      ParentFont = False
+      TabOrder = 1
+    end
+    object Label4: TLabel
+      Left = 352
+      Height = 16
+      Top = 104
+      Width = 16
+      Caption = 'Kg'
+      Font.Style = [fsBold]
+      ParentFont = False
+    end
+    object DBRadioGroup1: TDBRadioGroup
+      Left = 80
+      Height = 24
+      Top = 143
+      Width = 152
+      AutoFill = True
+      ChildSizing.LeftRightSpacing = 6
+      ChildSizing.EnlargeHorizontal = crsHomogenousChildResize
+      ChildSizing.EnlargeVertical = crsHomogenousChildResize
+      ChildSizing.ShrinkHorizontal = crsScaleChilds
+      ChildSizing.ShrinkVertical = crsScaleChilds
+      ChildSizing.Layout = cclLeftToRightThenTopToBottom
+      ChildSizing.ControlsPerLine = 2
+      Columns = 2
+      DataField = 'SACOKG'
+      DataSource = dsRomCompraCoco
+      Font.Style = [fsBold]
+      Items.Strings = (
+        'R$/Saco'
+        'R$/Kg'
+      )
+      ParentFont = False
+      TabOrder = 2
+      Values.Strings = (
+        'Saco'
+        'Kg'
+      )
+    end
+    object Label5: TLabel
+      Left = 16
+      Height = 16
+      Top = 151
+      Width = 68
+      Caption = 'Preço..........:'
+      Font.Style = [fsBold]
+      ParentFont = False
+    end
+    object dbePreco: TDBEdit
+      Left = 248
+      Height = 26
+      Top = 141
+      Width = 115
+      DataField = 'VALOR'
+      DataSource = dsRomCompraCoco
+      Font.Style = [fsBold]
+      MaxLength = 0
+      ParentFont = False
+      TabOrder = 3
+    end
+    object Label40: TLabel
+      Left = 16
+      Height = 16
+      Top = 193
+      Width = 161
+      Caption = 'Pocent. Fundo Rural............'
+      Font.Style = [fsBold]
+      ParentFont = False
+    end
+    object dbePorcFundoRural: TDBEdit
+      Left = 176
+      Height = 26
+      Top = 184
+      Width = 48
+      DataField = 'PorcFundoRural'
+      DataSource = dsRomCompraCoco
+      Alignment = taRightJustify
+      Font.Style = [fsBold]
+      MaxLength = 0
+      ParentFont = False
+      TabOrder = 4
+    end
+    object Label39: TLabel
+      Left = 224
+      Height = 16
+      Top = 193
+      Width = 12
+      Caption = '%'
+      Font.Style = [fsBold]
+      ParentFont = False
+    end
+    object Label41: TLabel
+      Left = 16
+      Height = 16
+      Top = 224
+      Width = 161
+      Caption = 'Alícota Fundo Rural.............'
+      Font.Style = [fsBold]
+      ParentFont = False
+    end
+    object dbeAliquota: TDBEdit
+      Left = 176
+      Height = 26
+      Top = 216
+      Width = 48
+      DataField = 'Aliquota'
+      DataSource = dsRomCompraCoco
+      ReadOnly = True
+      Alignment = taRightJustify
+      Font.Style = [fsBold]
+      MaxLength = 0
+      ParentFont = False
+      TabOrder = 5
+    end
+    object Label38: TLabel
+      Left = 224
+      Height = 16
+      Top = 224
+      Width = 12
+      Caption = '%'
+      Font.Style = [fsBold]
+      ParentFont = False
+    end
+    object dbeValorFunRural: TDBEdit
+      Left = 248
+      Height = 26
+      Top = 216
+      Width = 115
+      DataField = 'ValorFundoRural'
+      DataSource = dsRomCompraCoco
+      ReadOnly = True
+      Alignment = taRightJustify
+      Font.Style = [fsBold]
+      MaxLength = 0
+      ParentFont = False
+      TabOrder = 6
+    end
+    object Label42: TLabel
+      Left = 16
+      Height = 16
+      Top = 258
+      Width = 235
+      Caption = 'Valor Livre........................................................'
+      Font.Style = [fsBold]
+      ParentFont = False
+    end
+    object dbeValorLivre: TDBEdit
+      Left = 248
+      Height = 26
+      Top = 248
+      Width = 115
+      DataField = 'ValorLivre'
+      DataSource = dsRomCompraCoco
+      ReadOnly = True
+      Alignment = taRightJustify
+      Font.Style = [fsBold]
+      MaxLength = 0
+      ParentFont = False
+      TabOrder = 7
+    end
+    object dbeRomCompraDeosito: TDBEdit
+      Left = 144
+      Height = 26
+      Top = 6
+      Width = 80
+      DataField = 'IDROMCOMPRADEPOSITO'
+      DataSource = dsRomCompraCoco
+      Font.Style = [fsBold]
+      MaxLength = 0
+      ParentFont = False
+      TabOrder = 8
+    end
+    object Label6: TLabel
+      Left = 16
+      Height = 16
+      Top = 16
+      Width = 131
+      Caption = 'Código de Compra......'
+      Font.Style = [fsBold]
+      ParentFont = False
+    end
+  end
+  object Panel2: TPanel
+    Left = 504
+    Height = 79
+    Top = 336
+    Width = 376
+    ClientHeight = 79
+    ClientWidth = 376
+    ParentBackground = False
+    TabOrder = 5
+    object btCancelar: TBitBtn
+      Left = 48
+      Height = 30
+      Top = 8
+      Width = 96
+      Caption = 'Cancelar'
+      Glyph.Data = {
+        0E070000424D0E0700000000000036040000280000001A0000001A0000000100
+        080000000000D8020000C40E0000C40E00000000000000000000000000000000
+        80000080000000808000800000008000800080800000C0C0C000C0DCC000F0CA
+        A6000020400000206000002080000020A0000020C0000020E000004000000040
+        20000040400000406000004080000040A0000040C0000040E000006000000060
+        20000060400000606000006080000060A0000060C0000060E000008000000080
+        20000080400000806000008080000080A0000080C0000080E00000A0000000A0
+        200000A0400000A0600000A0800000A0A00000A0C00000A0E00000C0000000C0
+        200000C0400000C0600000C0800000C0A00000C0C00000C0E00000E0000000E0
+        200000E0400000E0600000E0800000E0A00000E0C00000E0E000400000004000
+        20004000400040006000400080004000A0004000C0004000E000402000004020
+        20004020400040206000402080004020A0004020C0004020E000404000004040
+        20004040400040406000404080004040A0004040C0004040E000406000004060
+        20004060400040606000406080004060A0004060C0004060E000408000004080
+        20004080400040806000408080004080A0004080C0004080E00040A0000040A0
+        200040A0400040A0600040A0800040A0A00040A0C00040A0E00040C0000040C0
+        200040C0400040C0600040C0800040C0A00040C0C00040C0E00040E0000040E0
+        200040E0400040E0600040E0800040E0A00040E0C00040E0E000800000008000
+        20008000400080006000800080008000A0008000C0008000E000802000008020
+        20008020400080206000802080008020A0008020C0008020E000804000008040
+        20008040400080406000804080008040A0008040C0008040E000806000008060
+        20008060400080606000806080008060A0008060C0008060E000808000008080
+        20008080400080806000808080008080A0008080C0008080E00080A0000080A0
+        200080A0400080A0600080A0800080A0A00080A0C00080A0E00080C0000080C0
+        200080C0400080C0600080C0800080C0A00080C0C00080C0E00080E0000080E0
+        200080E0400080E0600080E0800080E0A00080E0C00080E0E000C0000000C000
+        2000C0004000C0006000C0008000C000A000C000C000C000E000C0200000C020
+        2000C0204000C0206000C0208000C020A000C020C000C020E000C0400000C040
+        2000C0404000C0406000C0408000C040A000C040C000C040E000C0600000C060
+        2000C0604000C0606000C0608000C060A000C060C000C060E000C0800000C080
+        2000C0804000C0806000C0808000C080A000C080C000C080E000C0A00000C0A0
+        2000C0A04000C0A06000C0A08000C0A0A000C0A0C000C0A0E000C0C00000C0C0
+        2000C0C04000C0C06000C0C08000C0C0A000F0FBFF00A4A0A000808080000000
+        FF0000FF000000FFFF00FF000000FF00FF00FFFF0000FFFFFF00FFFFFFF6F6F6
+        F6F6F6F6F6F6F6F6F6F6F6F6F6F6F6F6F6FFFFFF0000FF080048484848484040
+        404040404040404040404040400008FF0000FF00EA915151EA91EAEAEAEAEAEA
+        EAEAEAEAEAEAEAEAEAE100FF0000F6489191E2E1EAE2EAEAEAEAEAEAEAEAEAEA
+        EAEAEAEAEAEA40F60000F64851E2EAEAEAEAEAEAEAEAEAEAEAEAEAEAEAEAEAEA
+        EAEA40F60000F64851E1EAEAEAEAEAEA994800004898E9EAEAEAEAEAEAEA40F6
+        0000F648EAEAEAEAEAEAE1005B07F6F6075B0098EAEAEAEAEAEA40F60000F648
+        EAEAEAEAEA9900F6FFF6F6F6F6FFF60090EAEAEAEAEA40F60000F648EAEAEAEA
+        E100FFF651F6F6F6FF5108FF0098EAEAEAEA40F60000F648EAEAEAEA00F6F600
+        1400F6FF00140008F600E9EAEAEA40F60000F648EAEAEA995BFF5114371D4848
+        1D371451FF5B98EAEAEA40F60000F648EAEAEA4807F6FF001D371D1D371D00FF
+        F60748EAEAEA40F60000F648EAEAEA00F6F6F6FF481D2F2F1D48FFF6F6F600EA
+        EAEA40F60000F648EAEAEA00F6F6F6FF481D2F2F1D48F6F6F6F600EAEAEA40F6
+        0000F648EAEAEA4807F6FF001D371D1D371D00F6F60748EAEAEA40F60000F648
+        EAEAEA995BFF5114371D48481D371451FF5B99EAEAEA40F60000F648EAEAEAEA
+        00F6F6001400FFFF001400F6F600EAEAEAEA40F60000F648EAEAEAEAE100FFF6
+        51FFF6F6FF51F6FF00E1EAEAEAEA40F60000F648EAEAEAEAEA9900F6FFF6F6F6
+        F6FFF60099EAEAEAEAEA40F60000F648EAEAEAEAEAEAE1005B07F6F6075B00E1
+        EAEAEAEAEAEA40F60000F648EAEAEAEAEAEAEAEA994800004899EAEAEAEAEAEA
+        E29948F60000F648EAEAEAEAEAEAEAEAEAEAEAEAEAEAEAEAEAEAEAEAE15148F6
+        0000F648EAEAEAEAEAEAEAEAEAEAEAEAEAEAEAEAE1EAE1E1919148F60000FF00
+        EAEAEAEAEAEAEAEAEAEAEAEAEAEAEAEA91EA515191EA00FF0000FF0800484848
+        48484848484848484848484848484848480008FF0000FFFFFFF6F6F6F6F6F6F6
+        F6F6F6F6F6F6F6F6F6F6F6F6F6FFFFFF0000
+      }
+      TabOrder = 0
+      OnClick = btCancelarClick
+    end
+    object btSalvar: TBitBtn
+      Left = 200
+      Height = 30
+      Top = 8
+      Width = 96
+      Caption = 'Salvar'
+      Glyph.Data = {
+        56080000424D560800000000000036000000280000001A0000001A0000000100
+        18000000000020080000C40E0000C40E00000000000000000000FFFFFFFFFFFF
+        FFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFF
+        FFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFF
+        FFFFFFFFFFFFFFFF0000FFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFF
+        FFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFF
+        FFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFF0000FFFFFFFFFFFF
+        FFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFF
+        FFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFF
+        FFFFFFFFFFFFFFFF0000FFFFFFFFFFFFFFFFFFFFFFFFF2C9ADF2C6A9F0CFB8E8
+        EDEFE9E8E7E9E8E7E9E8E7E9E8E7E9E8E7E9E8E7E9E8E7E9E8E7E9E8E7E9E8E7
+        E9EEF0F1D1BAF2C6A9F3CAAEFFFFFFFFFFFFFFFFFFFFFFFF0000FFFFFFFFFFFF
+        FFFFFFF6CDB0E46814E97628E68E52E7F4FBE7E6E4E7E7E5E7E7E5E7E7E5E7E7
+        E5E7E7E5E7E7E5E7E7E5E7E7E5E8E7E5E0EBF3DD864AEA7629DA620DF3CAAEFF
+        FFFFFFFFFFFFFFFF0000FFFFFFFFFFFFFFFFFFFED2B7ED772CD96923FBA56EF2
+        FFFFF3F2F1F3F3F2F3F3F2F3F3F2F3F3F2F3F3F2F3F3F2F3F3F2F3F3F2F4F4F3
+        E4F0F6F09B63DC6C26DC6C20F3C9ACFFFFFFFFFFFFFFFFFF0000FFFFFFFFFFFF
+        FFFFFFFDD2B7EC782CDE6E27F7A36CF1FEFFF2F1F0F2F2F1F2F2F1F2F2F1F2F2
+        F1F2F2F1F2F2F1F2F2F1F2F2F1F3F3F2E3F0F6EE9963E07029DF6E23F3C9ADFF
+        FFFFFFFFFFFFFFFF0000FFFFFFFFFFFFFFFFFFFCD1B6F78236F98B44F4A069F6
+        FFFFF1F1F0F2F2F1F2F2F1F2F2F1F2F2F1F2F2F1F2F2F1F2F2F1F2F2F1F3F3F2
+        E3F0F6EB975FFC8D46E6762BF2C8ACFFFFFFFFFFFFFFFFFF0000FFFFFFFFFFFF
+        FFFFFFFCD1B6F68135F78841F4A069F9FFFFF1F1F0F2F2F1F2F2F1F2F2F1F2F2
+        F1F2F2F1F2F2F1F2F2F1F2F2F1F3F3F2E3F0F6EB975FFA8B44E6752AF2C8ACFF
+        FFFFFFFFFFFFFFFF0000FFFFFFFFFFFFFFFFFFFCD1B6F68135F78841F4A069F9
+        FFFFF1F1F0F2F2F1F2F2F1F2F2F1F2F2F1F2F2F1F2F2F1F2F2F1F2F2F1F3F3F2
+        E3F0F6EB975FFA8B44E6752AF2C8ACFFFFFFFFFFFFFFFFFF0000FFFFFFFFFFFF
+        FFFFFFFCD1B6F68135F78841F4A069F9FFFFF1F1F0F2F2F1F2F2F1F2F2F1F2F2
+        F1F2F2F1F2F2F1F2F2F1F2F2F1F3F3F2E3F0F6EB975FFA8B44E6752AF2C8ACFF
+        FFFFFFFFFFFFFFFF0000FFFFFFFFFFFFFFFFFFFCD1B6F68135F78841F4A26CFA
+        FFFFF0F4F5F1F4F6F1F4F6F1F4F6F1F4F6F0F4F5F2F5F6F1F5F6F1F5F6F3F6F7
+        E3F2FBEA9863FA8B44E6752AF2C8ACFFFFFFFFFFFFFFFFFF0000FFFFFFFFFFFF
+        FFFFFFFCD1B6F68135F78A44F58F4EF6EBE1F7E2D4F7E3D4F7E3D4F7E3D4F8E3
+        D4F4E1D4F1DFD2F2DFD3F1DFD2F3E0D4E6DFDAF28D4BF98C46E6752AF2C8ACFF
+        FFFFFFFFFFFFFFFF0000FFFFFFFFFFFFFFFFFFFCD1B6F68135F78C47F78A44F7
+        7D30F77E30F77E30F77E30F77E30F67E30F77E30F77E30F77E30F77E30F77E30
+        F97F31F78B44F88D48E6752AF2C8ACFFFFFFFFFFFFFFFFFF0000FFFFFFFFFFFF
+        FFFFFFFCD1B6F68135F78C47F78C47F98E49F98E49F98C46F98840F98840F988
+        40F98840F98840F98840F98840F98840F98840F78B46F88D48E6752AF2C8ACFF
+        FFFFFFFFFFFFFFFF0000FFFFFFFFFFFFFFFFFFFCD1B6F68135F78C47F98E49E5
+        7A35E77A34E58344E3AB86E3A67DE3A67DE3A67DE3A67DE3A67DE3A881E3A881
+        E3AA85F8863CF88D48E6752AF2C8ACFFFFFFFFFFFFFFFFFF0000FFFFFFFFFFFF
+        FFFFFFFCD1B6F68135F88D48EE823CCB5E1ACE550ADFC3B2E8F3FAE7EEF2E7EE
+        F2E7EEF2E7EDF2E8F2F9E3E0E0E5DFDCDCF7FFEB9B67FA8B43E6752AF2C8ACFF
+        FFFFFFFFFFFFFFFF0000FFFFFFFFFFFFFFFFFFFCD1B6F68135F88D48EF843FCE
+        611DD1590EE0BDA7E9ECEEE8E7E6E8E7E6E8E7E6E8E6E5EAF9FFD94D00D24500
+        E2EEF6EB9862FA8B44E6752AF2C8ACFFFFFFFFFFFFFFFFFF0000FFFFFFFFFFFF
+        FFFFFFFCD1B6F68135F88D48EF843FCE611DD1590EE0BDA7E9ECEEE8E7E6E8E7
+        E6E8E7E6E8E6E5E8F7FFE26B17DB6010E1EFF8EB9862FA8B44E6752AF2C8ABFF
+        FFFFFFFFFFFFFFFF0000FFFFFFFFFFFFFFFFFFFCD1B6F68135F88D48EF843FCE
+        611DD1590EE0BDA7E9ECEEE8E7E6E8E7E6E8E7E6E8E6E5E8F7FFE26A16DA5F0F
+        E1EFF8EB9862FA8B44E57023F1C4A3FFFFFFFFFFFFFFFFFF0000FFFFFFFFFFFF
+        FFFFFFFCD1B5F68136F88D49EF843FCE611ED1590FE0BEA7E9ECEEE8E7E6E8E7
+        E6E8E7E6E8E6E5E8F7FFE06006D95600E0EDF5EB9962F98337EB8C4BFFFFFFFF
+        FFFFFFFFFFFFFFFF0000FFFFFFFFFFFFFFFFFFFBD2B7F57320F78237EE782DC9
+        530ACD4A00DDB79FE6EAECE5E4E3E5E4E3E5E4E3E5E4E3E6EEF3E3B28FE0A986
+        DEF1FCEA8A4CF89351FFFFFFFFFFFFFFFFFFFFFFFFFFFFFF0000FFFFFFFFFFFF
+        FFFFFFFFFFFFFCD2B7FCD0B5F8CEB2EBBFA2ECBB9DF3E3D8F5F5F4F4F3F1F4F3
+        F1F4F3F1F4F3F1F4F2F0F5F9FBF5F9FBF2F6F8F6D1B8FFFFFFFFFFFFFFFFFFFF
+        FFFFFFFFFFFFFFFF0000FFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFF
+        FFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFF
+        FFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFF0000FFFFFFFFFFFF
+        FFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFF
+        FFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFF
+        FFFFFFFFFFFFFFFF0000FFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFF
+        FFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFF
+        FFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFF0000
+      }
+      TabOrder = 1
+      OnClick = btSalvarClick
+    end
+    object btImprimir: TBitBtn
+      Left = 128
+      Height = 30
+      Top = 40
+      Width = 96
+      Caption = 'Imprimir'
+      Glyph.Data = {
+        F2060000424DF20600000000000036040000280000001B000000190000000100
+        080000000000BC020000C40E0000C40E00000001000000010000000000003300
+        00006600000099000000CC000000FF0000000033000033330000663300009933
+        0000CC330000FF33000000660000336600006666000099660000CC660000FF66
+        000000990000339900006699000099990000CC990000FF99000000CC000033CC
+        000066CC000099CC0000CCCC0000FFCC000000FF000033FF000066FF000099FF
+        0000CCFF0000FFFF000000003300330033006600330099003300CC003300FF00
+        330000333300333333006633330099333300CC333300FF333300006633003366
+        33006666330099663300CC663300FF6633000099330033993300669933009999
+        3300CC993300FF99330000CC330033CC330066CC330099CC3300CCCC3300FFCC
+        330000FF330033FF330066FF330099FF3300CCFF3300FFFF3300000066003300
+        66006600660099006600CC006600FF0066000033660033336600663366009933
+        6600CC336600FF33660000666600336666006666660099666600CC666600FF66
+        660000996600339966006699660099996600CC996600FF99660000CC660033CC
+        660066CC660099CC6600CCCC6600FFCC660000FF660033FF660066FF660099FF
+        6600CCFF6600FFFF660000009900330099006600990099009900CC009900FF00
+        990000339900333399006633990099339900CC339900FF339900006699003366
+        99006666990099669900CC669900FF6699000099990033999900669999009999
+        9900CC999900FF99990000CC990033CC990066CC990099CC9900CCCC9900FFCC
+        990000FF990033FF990066FF990099FF9900CCFF9900FFFF99000000CC003300
+        CC006600CC009900CC00CC00CC00FF00CC000033CC003333CC006633CC009933
+        CC00CC33CC00FF33CC000066CC003366CC006666CC009966CC00CC66CC00FF66
+        CC000099CC003399CC006699CC009999CC00CC99CC00FF99CC0000CCCC0033CC
+        CC0066CCCC0099CCCC00CCCCCC00FFCCCC0000FFCC0033FFCC0066FFCC0099FF
+        CC00CCFFCC00FFFFCC000000FF003300FF006600FF009900FF00CC00FF00FF00
+        FF000033FF003333FF006633FF009933FF00CC33FF00FF33FF000066FF003366
+        FF006666FF009966FF00CC66FF00FF66FF000099FF003399FF006699FF009999
+        FF00CC99FF00FF99FF0000CCFF0033CCFF0066CCFF0099CCFF00CCCCFF00FFCC
+        FF0000FFFF0033FFFF0066FFFF0099FFFF00CCFFFF00FFFFFF00000000000000
+        0000000000000000000000000000000000000000000000000000000000000000
+        0000000000000000000000000000000000000000000000000000000000000000
+        0000000000000000000000000000000000000000000000000000000000000000
+        0000000000000000000000000000000000000000000000000000000000000000
+        0000000000000000000000000000000000000000000000000000D7D7D7D7D7D7
+        00D7D7D7D7D7D7D7D7D7D7D7ADAD00D7D7D7D7D7D700D7D7D7D7D7D700D7D700
+        00000000000000002CAD00D7D7D7D7D7D700D7D7D7D7D7D700D7D7D7D7D7D7D7
+        D7D7D7D7ADAD00D7D7D7D7D7D700D7D7D7D7D7D700D7D7000000000000000000
+        82AD00D7D7D7D7D7D700D7000000000000D7D7D7D7D7D7D7D7D7D7D7ADAD0000
+        00000000D70000565656565600D7D700000000000000000082AD005656562C2C
+        000000565656565600D7D7D7D7D7D7D7D7D7D7D7ADAD005656562C2C00510056
+        5656562B0081818181818181818181818181002B56562C2C0000005656565656
+        5656565656565656565656565656565656562C2C005200565656565656565656
+        56565656565656565656565656562C2C00880056565656565656565656565656
+        565656565656565656562C2C0000005656565656565656565656565656565656
+        5656565656562C2C000000565656565656565656565656565656565656565656
+        56562C2C000000565656565656565656565656565656565656560056562B012C
+        000000565656565656565656565656565656565656009E005600002C00000056
+        56565656565656565656565656565656565600565600002C0000005656565656
+        5656565656565656565656565656565656562C2B0000D7D78181002B00818181
+        81818181818181818181002B008181D7D700D7D7D7D7005600D7D7D7D7D7D7D7
+        D7D7D7D7ADAD005601D7D7D7D75AD7D7D7D7005600D7D7D7D7D7D7D7D7D7D7D7
+        ADAD005601D7D7D7D700D7D7D7D7005600D7D7D7D7D7D7D7D7D7D7D7ADAD0056
+        01D7D7D7D752D7D7D7D7005600D7D7D7D7D7D7D7D7D7D7D7ADAD005601D7D7D7
+        D700D7D7D7D7562B00D7D7D7D7D7D7D7D7D7D7D7ADAD002B2BD7D7D7D752D7D7
+        D7D7D7D700D7D7D7D7D7D7D7D7D7D7D7ADAD00D7D7D7D7D7D700D7D7D7D7D7D7
+        00D7D7D7D7D7D7D7D7D7D7D7ADAD00D7D7D7D7D7D700
+      }
+      TabOrder = 2
+    end
+  end
   object dsEstoqueDepositoCoco: TDataSource
     DataSet = zqEstoqueDepositoCoco
     Left = 328
@@ -147,10 +621,10 @@ object fRomCompraDepositado: TfRomCompraDepositado
       'inner join ROMENTRADACOCO AS R on E.IDROMENTRADACOCO = R.IDROMENTRADACOCO'
       'inner join CLIENTE as C on R.IDCLIENTE = C.IDCLIENTE'
       'group by C.IDCLIENTE, C.RAZAO, C.ENDERECO'
+      'order by C.RAZAO'
     )
     Params = <>
-    Left = 143
-    Top = 11
+    Left = 136
     object zqClienteSaldoIDCLIENTE: TZIntegerField
       FieldKind = fkData
       FieldName = 'IDCLIENTE'
@@ -183,7 +657,6 @@ object fRomCompraDepositado: TfRomCompraDepositado
   object dsClienteSaldo: TDataSource
     DataSet = zqClienteSaldo
     Left = 256
-    Top = 11
   end
   object zqEstoqueDepositoCoco: TZQuery
     Connection = fPrincipal.zConn
@@ -255,6 +728,193 @@ object fRomCompraDepositado: TfRomCompraDepositado
       ReadOnly = False
       Required = False
       Size = 9
+    end
+  end
+  object ztRomCompraCoco: TZTable
+    Connection = fPrincipal.zConn
+    TableName = 'ROMCOMPRACOCO'
+    Left = 704
+    Top = 80
+    object ztRomCompraCocoIDROMCOMPRACOCO: TZIntegerField
+      FieldKind = fkData
+      FieldName = 'IDROMCOMPRACOCO'
+      Index = 0
+      LookupCache = False
+      ProviderFlags = [pfInUpdate, pfInWhere]
+      ReadOnly = False
+      Required = True
+    end
+    object ztRomCompraCocoIDROMCOMPRADEPOSITO: TZIntegerField
+      FieldKind = fkData
+      FieldName = 'IDROMCOMPRADEPOSITO'
+      Index = 1
+      LookupCache = False
+      ProviderFlags = [pfInUpdate, pfInWhere]
+      ReadOnly = False
+      Required = False
+    end
+    object ztRomCompraCocoIDROMENTRADACOCO: TZIntegerField
+      FieldKind = fkData
+      FieldName = 'IDROMENTRADACOCO'
+      Index = 2
+      LookupCache = False
+      ProviderFlags = [pfInUpdate, pfInWhere]
+      ReadOnly = False
+      Required = False
+    end
+    object ztRomCompraCocoDATA: TZDateField
+      FieldKind = fkData
+      FieldName = 'DATA'
+      Index = 3
+      LookupCache = False
+      ProviderFlags = [pfInUpdate, pfInWhere]
+      ReadOnly = False
+      Required = False
+    end
+    object ztRomCompraCocoHISTORICO: TZRawStringField
+      FieldKind = fkData
+      FieldName = 'HISTORICO'
+      Index = 4
+      LookupCache = False
+      ProviderFlags = [pfInUpdate, pfInWhere]
+      ReadOnly = False
+      Required = False
+    end
+    object ztRomCompraCocoPESOCOCO: TZIntegerField
+      FieldKind = fkData
+      FieldName = 'PESOCOCO'
+      Index = 5
+      LookupCache = False
+      ProviderFlags = [pfInUpdate, pfInWhere]
+      ReadOnly = False
+      Required = False
+    end
+    object ztRomCompraCocoSACOKG: TZRawStringField
+      FieldKind = fkData
+      FieldName = 'SACOKG'
+      Index = 6
+      LookupCache = False
+      ProviderFlags = [pfInUpdate, pfInWhere]
+      ReadOnly = False
+      Required = False
+      Size = 4
+    end
+    object ztRomCompraCocoVALOR: TZBCDField
+      FieldKind = fkData
+      FieldName = 'VALOR'
+      Index = 7
+      LookupCache = False
+      ProviderFlags = [pfInUpdate, pfInWhere]
+      ReadOnly = False
+      Required = False
+      Precision = 10
+      Currency = False
+      MaxValue = 0
+      MinValue = 0
+      Size = 2
+    end
+    object ztRomCompraCocoPORCFUNDORURAL: TZIntegerField
+      FieldKind = fkData
+      FieldName = 'PORCFUNDORURAL'
+      Index = 8
+      LookupCache = False
+      ProviderFlags = [pfInUpdate, pfInWhere]
+      ReadOnly = False
+      Required = False
+    end
+    object ztRomCompraCocoValorFundoRural: TCurrencyField
+      FieldKind = fkCalculated
+      FieldName = 'ValorFundoRural'
+      Index = 9
+      LookupCache = False
+      ProviderFlags = [pfInUpdate, pfInWhere]
+      ReadOnly = False
+      Required = False
+    end
+    object ztRomCompraCocoALIQUOTA: TZBCDField
+      FieldKind = fkData
+      FieldName = 'ALIQUOTA'
+      Index = 10
+      LookupCache = False
+      ProviderFlags = [pfInUpdate, pfInWhere]
+      ReadOnly = False
+      Required = False
+      Precision = 4
+      Currency = False
+      MaxValue = 0
+      MinValue = 0
+      Size = 2
+    end
+    object ztRomCompraCocoValorLivre: TCurrencyField
+      FieldKind = fkCalculated
+      FieldName = 'ValorLivre'
+      Index = 11
+      LookupCache = False
+      ProviderFlags = [pfInUpdate, pfInWhere]
+      ReadOnly = False
+      Required = False
+    end
+    object ztRomCompraCocoIDCONTACORRENTE: TZIntegerField
+      FieldKind = fkData
+      FieldName = 'IDCONTACORRENTE'
+      Index = 12
+      LookupCache = False
+      ProviderFlags = [pfInUpdate, pfInWhere]
+      ReadOnly = False
+      Required = False
+    end
+    object ztRomCompraCocoSTATUS: TZRawStringField
+      FieldKind = fkData
+      FieldName = 'STATUS'
+      Index = 13
+      LookupCache = False
+      ProviderFlags = [pfInUpdate, pfInWhere]
+      ReadOnly = False
+      Required = False
+      Size = 9
+    end
+  end
+  object dsRomCompraCoco: TDataSource
+    DataSet = ztRomCompraCoco
+    Left = 792
+    Top = 56
+  end
+  object zqNovoIDRomCompraDeposito: TZQuery
+    Connection = fPrincipal.zConn
+    SQL.Strings = (
+      'select max(IDRomCompraDeposito) as ID'
+      'from RomCompraCoco'
+    )
+    Params = <>
+    Left = 536
+    Top = 80
+    object zqNovoIDRomCompraDepositoID: TZIntegerField
+      FieldKind = fkData
+      FieldName = 'ID'
+      Index = 0
+      LookupCache = False
+      ProviderFlags = [pfInUpdate, pfInWhere]
+      ReadOnly = False
+      Required = False
+    end
+  end
+  object zqNovoIDRomCompraCoco: TZQuery
+    Connection = fPrincipal.zConn
+    SQL.Strings = (
+      'select max(IDRomCompraCoco) as ID'
+      'from RomCompraCoco'
+    )
+    Params = <>
+    Left = 748
+    Top = 16
+    object zqNovoIDRomCompraCocoID: TZIntegerField
+      FieldKind = fkData
+      FieldName = 'ID'
+      Index = 0
+      LookupCache = False
+      ProviderFlags = [pfInUpdate, pfInWhere]
+      ReadOnly = False
+      Required = True
     end
   end
 end

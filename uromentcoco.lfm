@@ -1161,7 +1161,9 @@ object fRomEntCoco: TfRomEntCoco
       DataSource = dsRomCompraCoco
       ReadOnly = True
       Alignment = taRightJustify
+      Font.Style = [fsBold]
       MaxLength = 0
+      ParentFont = False
       TabOrder = 6
     end
     object Label21: TLabel
@@ -1268,6 +1270,8 @@ object fRomEntCoco: TfRomEntCoco
       Top = 264
       Width = 161
       Caption = 'Alícota Fundo Rural.............'
+      Font.Style = [fsBold]
+      ParentFont = False
     end
     object Label42: TLabel
       Left = 8
