@@ -39,12 +39,12 @@ type
     zqRomCompraCoco: TZQuery;
     zqRomCompraCocoALIQUOTA: TZBCDField;
     zqRomCompraCocoDATA: TZDateField;
-    zqRomCompraCocoHISTORICO: TZRawStringField;
     zqRomCompraCocoIDCLIENTE: TZIntegerField;
     zqRomCompraCocoIDCONTACORRENTE: TZIntegerField;
     zqRomCompraCocoIDROMCOMPRACOCO: TZIntegerField;
     zqRomCompraCocoIDROMCOMPRADEPOSITO: TZIntegerField;
     zqRomCompraCocoIDROMENTRADACOCO: TZIntegerField;
+    zqRomCompraCocoOBS: TZRawStringField;
     zqRomCompraCocoPESOCOCO: TZIntegerField;
     zqRomCompraCocoPORCFUNDORURAL: TZIntegerField;
     zqRomCompraCocoRAZAO: TZRawStringField;
@@ -128,6 +128,7 @@ begin
   fRomCompraDepositado:=TfRomCompraDepositado.Create(Self);
     temp:=fRomCompraDepositado.ShowModal;
     fRomCompraDepositado.Destroy;
+    zqRomCompraCoco.Refresh;
 end;
 
 procedure TfMovCafeDepositado.FormClose(Sender: TObject;
@@ -175,7 +176,7 @@ begin
 
      end;
      zqRomCompraCoco.Filtered:=False;
-     zqRomCompraCoco.Filter:='IDROMCOMPRADEPOSIT0 > 0 and IDCLIENTE >='+IntToStr(NomeInicio)+'and IDCLIENTE <='+intToStr(NomeFim)+
+     zqRomCompraCoco.Filter:='IDROMCOMPRADEPOSITO > 0 and IDCLIENTE >='+IntToStr(NomeInicio)+'and IDCLIENTE <='+intToStr(NomeFim)+
      'and DATA >= '+QuotedStr(DataInicio)+' and DATA <= '+QuotedStr(DataFim);
      zqRomCompraCoco.Filtered:=True;
 

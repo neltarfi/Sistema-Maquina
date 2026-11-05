@@ -355,11 +355,6 @@ object fMovCafeDepositado: TfMovCafeDepositado
         FieldName = 'DATA'
       end    
       item
-        Title.Caption = 'HISTORICO'
-        Width = 200
-        FieldName = 'HISTORICO'
-      end    
-      item
         Title.Caption = 'Peso'
         Width = 70
         FieldName = 'PESOCOCO'
@@ -390,6 +385,10 @@ object fMovCafeDepositado: TfMovCafeDepositado
         FieldName = 'IDCONTACORRENTE'
       end    
       item
+        Title.Caption = 'OBS'
+        FieldName = 'OBS'
+      end    
+      item
         Title.Caption = 'STATUS'
         Visible = False
         FieldName = 'STATUS'
@@ -406,6 +405,7 @@ object fMovCafeDepositado: TfMovCafeDepositado
     DataField = 'IDCLIENTE'
     DataSource = dsRomCompraCoco
     ReadOnly = True
+    Alignment = taRightJustify
     MaxLength = 0
     TabOrder = 7
   end
@@ -490,7 +490,7 @@ object fMovCafeDepositado: TfMovCafeDepositado
       '            R.IDROMCOMPRADEPOSITO,'
       '            R.IDROMENTRADACOCO,'
       '            R.DATA,'
-      '            R.HISTORICO,'
+      '            R.OBS,'
       '            R.PESOCOCO,'
       '            R.SACOKG,'
       '            R.PORCFUNDORURAL,'
@@ -560,19 +560,10 @@ object fMovCafeDepositado: TfMovCafeDepositado
       ReadOnly = False
       Required = False
     end
-    object zqRomCompraCocoHISTORICO: TZRawStringField
-      FieldKind = fkData
-      FieldName = 'HISTORICO'
-      Index = 6
-      LookupCache = False
-      ProviderFlags = [pfInUpdate, pfInWhere]
-      ReadOnly = False
-      Required = False
-    end
     object zqRomCompraCocoPESOCOCO: TZIntegerField
       FieldKind = fkData
       FieldName = 'PESOCOCO'
-      Index = 7
+      Index = 6
       LookupCache = False
       ProviderFlags = [pfInUpdate, pfInWhere]
       ReadOnly = False
@@ -581,7 +572,7 @@ object fMovCafeDepositado: TfMovCafeDepositado
     object zqRomCompraCocoSACOKG: TZRawStringField
       FieldKind = fkData
       FieldName = 'SACOKG'
-      Index = 8
+      Index = 7
       LookupCache = False
       ProviderFlags = [pfInUpdate, pfInWhere]
       ReadOnly = False
@@ -591,7 +582,7 @@ object fMovCafeDepositado: TfMovCafeDepositado
     object zqRomCompraCocoPORCFUNDORURAL: TZIntegerField
       FieldKind = fkData
       FieldName = 'PORCFUNDORURAL'
-      Index = 9
+      Index = 8
       LookupCache = False
       ProviderFlags = [pfInUpdate, pfInWhere]
       ReadOnly = False
@@ -600,7 +591,7 @@ object fMovCafeDepositado: TfMovCafeDepositado
     object zqRomCompraCocoALIQUOTA: TZBCDField
       FieldKind = fkData
       FieldName = 'ALIQUOTA'
-      Index = 10
+      Index = 9
       LookupCache = False
       ProviderFlags = [pfInUpdate, pfInWhere]
       ReadOnly = False
@@ -614,7 +605,7 @@ object fMovCafeDepositado: TfMovCafeDepositado
     object zqRomCompraCocoVALOR: TZBCDField
       FieldKind = fkData
       FieldName = 'VALOR'
-      Index = 11
+      Index = 10
       LookupCache = False
       ProviderFlags = [pfInUpdate, pfInWhere]
       ReadOnly = False
@@ -628,11 +619,21 @@ object fMovCafeDepositado: TfMovCafeDepositado
     object zqRomCompraCocoIDCONTACORRENTE: TZIntegerField
       FieldKind = fkData
       FieldName = 'IDCONTACORRENTE'
+      Index = 11
+      LookupCache = False
+      ProviderFlags = [pfInUpdate, pfInWhere]
+      ReadOnly = False
+      Required = False
+    end
+    object zqRomCompraCocoOBS: TZRawStringField
+      FieldKind = fkData
+      FieldName = 'OBS'
       Index = 12
       LookupCache = False
       ProviderFlags = [pfInUpdate, pfInWhere]
       ReadOnly = False
       Required = False
+      Size = 100
     end
     object zqRomCompraCocoSTATUS: TZRawStringField
       FieldKind = fkData

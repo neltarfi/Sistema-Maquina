@@ -178,11 +178,11 @@ type
     ztRomCompraCoco: TZTable;
     ztRomCompraCocoALIQUOTA: TZBCDField;
     ztRomCompraCocoDATA: TZDateField;
-    ztRomCompraCocoHISTORICO: TZRawStringField;
     ztRomCompraCocoIDCONTACORRENTE: TZIntegerField;
     ztRomCompraCocoIDROMCOMPRACOCO: TZIntegerField;
     ztRomCompraCocoIDROMCOMPRADEPOSITO: TZIntegerField;
     ztRomCompraCocoIDROMENTRADACOCO: TZIntegerField;
+    ztRomCompraCocoOBS: TZRawStringField;
     ztRomCompraCocoPESOCOCO: TZIntegerField;
     ztRomCompraCocoPORCFUNDORURAL: TZIntegerField;
     ztRomCompraCocoSACOKG: TZRawStringField;
@@ -639,7 +639,6 @@ procedure TfRomEntCoco.NovoValorRegistro;
 begin
      zqNovoIDRomaneioCoco.Refresh;
      ztRomEntradaCocoIDRomEntradaCoco.Value:=zqNovoIDRomaneioCocoID.Value + 1;
-     ztRomEntradaCoco.FieldByName('Data').Value:=DATE;
      ztRomEntradaCocoRenda.Value:=0;
      ztRomEntradaCocoPesoBruto.Value:=0;
      ztRomEntradaCocoImpureza.Value:=0;
@@ -932,7 +931,7 @@ begin
         ztRomCompraCocoIDRomCompraDeposito.Value:=0;
         ztRomCompraCocoIDRomEntradaCoco.Value:=IDRomEntradaCoco;
         ztRomCompraCoco.FieldByName('Data').Value:=DATE;
-        ztRomCompraCocoHistorico.Value:='Compra do romaneio '+intToStr(IDRomEntradaCoco);
+        ztRomCompraCocoObs.Value:='Compra do romaneio '+intToStr(IDRomEntradaCoco);
         ztRomCompraCocoPesoCoco.Value:=PesoComprado;
         ztRomCompraCocoStatus.Text:='Ativo';
         zqNovoIDContaCorrente.Refresh;

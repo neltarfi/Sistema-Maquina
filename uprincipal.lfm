@@ -82,9 +82,6 @@ object fPrincipal: TfPrincipal
     Properties.Strings = (
       'RawStringEncoding=DB_CP'
     )
-    AutoCommit = False
-    TransactIsolationLevel = tiReadCommitted
-    Connected = True
     DisableSavepoints = False
     HostName = 'localhost'
     Port = 3050
@@ -92,7 +89,7 @@ object fPrincipal: TfPrincipal
     User = 'SYSDBA'
     Password = 'masterkey'
     Protocol = 'firebird'
-    Left = 168
+    Left = 160
     Top = 32
   end
 end
