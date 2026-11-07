@@ -1211,6 +1211,7 @@ object fRomEntCoco: TfRomEntCoco
         'Saco'
         'Kg'
       )
+      OnClick = dbrgSacoKgClick
     end
     object Label35: TLabel
       Left = 8

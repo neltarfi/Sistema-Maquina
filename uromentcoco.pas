@@ -246,6 +246,7 @@ type
     procedure dbeQuanPlasticoExit(Sender: TObject);
     procedure dbeRendaExit(Sender: TObject);
     procedure dbeValorExit(Sender: TObject);
+    procedure dbrgSacoKgClick(Sender: TObject);
     procedure edtPesoCompradoChange(Sender: TObject);
     procedure edtPesoCompradoExit(Sender: TObject);
     procedure FormClose(Sender: TObject; var CloseAction: TCloseAction);
@@ -560,6 +561,11 @@ begin
      ztRomCompraCocoCalcFields(ztRomCompraCoco); //dispara o método oncalcFields
 end;
 
+procedure TfRomEntCoco.dbrgSacoKgClick(Sender: TObject);
+begin
+  ztRomCompraCocoCalcFields(ztRomEntradaCoco); //dispara o método oncalcFields
+end;
+
 procedure TfRomEntCoco.edtPesoCompradoChange(Sender: TObject);
 begin
   AceitaInteiro(edtPesoComprado);
@@ -639,6 +645,7 @@ procedure TfRomEntCoco.NovoValorRegistro;
 begin
      zqNovoIDRomaneioCoco.Refresh;
      ztRomEntradaCocoIDRomEntradaCoco.Value:=zqNovoIDRomaneioCocoID.Value + 1;
+     ztRomEntradaCoco.FieldByName('Data').Value:=DATE;
      ztRomEntradaCocoRenda.Value:=0;
      ztRomEntradaCocoPesoBruto.Value:=0;
      ztRomEntradaCocoImpureza.Value:=0;
@@ -689,6 +696,9 @@ end;
 
 procedure TfRomEntCoco.ztRomCompraCocoCalcFields(DataSet: TDataSet);
 begin
+     if (ztRomCompraCoco.State=dsInsert)or
+     (FormOperacao='VisualizarRegistro') then begin
+
      if dbrgSacoKg.Value='Saco' then Begin
         ztRomCompraCocoValorBruto.Value:=
                ((strToInt(edtPesoComprado.Text)*
@@ -707,146 +717,149 @@ begin
                0.0001);
      ztRomCompraCocoValorLivre.Value:=
                ztRomCompraCocoValorBruto.Value-ztRomCompraCocoValorFundoRural.Value;
-
+   end;
 end;
 
 procedure TfRomEntCoco.ztRomEntradaCocoCalcFields(DataSet: TDataSet);
 var SubTotal:double;
 begin
+    if (ztRomEntradaCoco.State=dsinsert)or(FormOperacao='VisualizarRegistro') then begin;
                     //Data
-     if (dbdData.Text='') then
-        ztRomEntradaCoco.FieldByName('Data').Value:=DATE;
+       if (dbdData.Text='') then
+           ztRomEntradaCoco.FieldByName('Data').Value:=DATE;
 
                     //Renda
-     if (ztRomEntradaCocoRenda.Value<1) or
-        (ztRomEntradaCocoRenda.Text='') then
-        ztRomEntradaCocoRenda.Value:=0;
-     if Round(ztRomEntradaCocoRenda.Value)<>ztRomEntradaCocoRenda.Value then
-        ztRomEntradaCocoRenda.Value:=Round(ztRomEntradaCocoRenda.Value);
+       if (ztRomEntradaCocoRenda.Value<1) or
+          (ztRomEntradaCocoRenda.Text='') then
+          ztRomEntradaCocoRenda.Value:=0;
+       if Round(ztRomEntradaCocoRenda.Value)<>ztRomEntradaCocoRenda.Value then
+          ztRomEntradaCocoRenda.Value:=Round(ztRomEntradaCocoRenda.Value);
 
                     //PesoBruto
-     if (ztRomEntradaCocoPesoBruto.Value<1) or
-        (ztRomEntradaCocoPesoBruto.Text='') then
-        ztRomEntradaCocoPesoBruto.Value:=0;
-     if Round(ztRomEntradaCocoPesoBruto.Value)<>ztRomEntradaCocoPesoBruto.Value then
-        ztRomEntradaCocoPesoBruto.Value:=Round(ztRomEntradaCocoPesoBruto.Value);
+       if (ztRomEntradaCocoPesoBruto.Value<1) or
+          (ztRomEntradaCocoPesoBruto.Text='') then
+          ztRomEntradaCocoPesoBruto.Value:=0;
+       if Round(ztRomEntradaCocoPesoBruto.Value)<>ztRomEntradaCocoPesoBruto.Value then
+          ztRomEntradaCocoPesoBruto.Value:=Round(ztRomEntradaCocoPesoBruto.Value);
 
                     //Impureza
-     if (ztRomEntradaCocoImpureza.Text='') then
-        ztRomEntradaCocoImpureza.Value:=0;
-     if Round(ztRomEntradaCocoImpureza.Value)<>ztRomEntradaCocoImpureza.Value then
-        ztRomEntradaCocoImpureza.Value:=Round(ztRomEntradaCocoImpureza.Value);
-     if ztRomEntradaCocoImpureza.Value>0 then ztRomEntradaCocoImpureza.Value:=ztRomEntradaCocoImpureza.Value*(-1);
+       if (ztRomEntradaCocoImpureza.Text='') then
+          ztRomEntradaCocoImpureza.Value:=0;
+       if Round(ztRomEntradaCocoImpureza.Value)<>ztRomEntradaCocoImpureza.Value then
+          ztRomEntradaCocoImpureza.Value:=Round(ztRomEntradaCocoImpureza.Value);
+       if ztRomEntradaCocoImpureza.Value>0 then ztRomEntradaCocoImpureza.Value:=ztRomEntradaCocoImpureza.Value*(-1);
 
                     //Saco plastico
-     if (ztRomEntradaCocoQuanPlastico.Value<1) or
-        (ztRomEntradaCocoQuanPlastico.Text='') then
-        ztRomEntradaCocoQuanPlastico.Value:=0;
-     if Round(ztRomEntradaCocoQuanPlastico.Value)<>ztRomEntradaCocoQuanPlastico.Value then
-        ztRomEntradaCocoQuanPlastico.Value:=Round(ztRomEntradaCocoQuanPlastico.Value);
-     if (ztRomEntradaCocoPesoPlastico.Value<0) or
-        (ztRomEntradaCocoPesoPlastico.Text='') then
-        ztRomEntradaCocoPesoPlastico.Value:=0.1;
-     ztRomEntradaCocoTotalPlastico.Value:=Round(ztRomEntradaCocoQuanPlastico.Value*ztRomEntradaCocoPesoPlastico.Value);
-     if ztRomEntradaCocoTotalPlastico.Value>0 then ztRomEntradaCocoTotalPlastico.Value:=ztRomEntradaCocoTotalPlastico.Value*(-1);
+       if (ztRomEntradaCocoQuanPlastico.Value<1) or
+          (ztRomEntradaCocoQuanPlastico.Text='') then
+          ztRomEntradaCocoQuanPlastico.Value:=0;
+       if Round(ztRomEntradaCocoQuanPlastico.Value)<>ztRomEntradaCocoQuanPlastico.Value then
+          ztRomEntradaCocoQuanPlastico.Value:=Round(ztRomEntradaCocoQuanPlastico.Value);
+       if (ztRomEntradaCocoPesoPlastico.Value<0) or
+          (ztRomEntradaCocoPesoPlastico.Text='') then
+          ztRomEntradaCocoPesoPlastico.Value:=0.1;
+       ztRomEntradaCocoTotalPlastico.Value:=Round(ztRomEntradaCocoQuanPlastico.Value*ztRomEntradaCocoPesoPlastico.Value);
+       if ztRomEntradaCocoTotalPlastico.Value>0 then ztRomEntradaCocoTotalPlastico.Value:=ztRomEntradaCocoTotalPlastico.Value*(-1);
 
                     //Saco Juta
-     if (ztRomEntradaCocoQuanJuta.Value<1) or
-        (ztRomEntradaCocoQuanJuta.Text='') then
-        ztRomEntradaCocoQuanJuta.Value:=0;
-     if Round(ztRomEntradaCocoQuanJuta.Value)<>ztRomEntradaCocoQuanJuta.Value then
-        ztRomEntradaCocoQuanJuta.Value:=Round(ztRomEntradaCocoQuanJuta.Value);
-     if (ztRomEntradaCocoPesoJuta.Value<0) or
-        (ztRomEntradaCocoPesoJuta.Text='') then
-        ztRomEntradaCocoPesoJuta.Value:=0.5;
-     ztRomEntradaCocoTotalJuta.Value:=Round(ztRomEntradaCocoQuanJuta.Value*ztRomEntradaCocoPesoJuta.Value);
-     if ztRomEntradaCocoTotalJuta.Value>0 then ztRomEntradaCocoTotalJuta.Value:=ztRomEntradaCocoTotalJuta.Value*(-1);
+       if (ztRomEntradaCocoQuanJuta.Value<1) or
+          (ztRomEntradaCocoQuanJuta.Text='') then
+          ztRomEntradaCocoQuanJuta.Value:=0;
+       if Round(ztRomEntradaCocoQuanJuta.Value)<>ztRomEntradaCocoQuanJuta.Value then
+          ztRomEntradaCocoQuanJuta.Value:=Round(ztRomEntradaCocoQuanJuta.Value);
+       if (ztRomEntradaCocoPesoJuta.Value<0) or
+          (ztRomEntradaCocoPesoJuta.Text='') then
+          ztRomEntradaCocoPesoJuta.Value:=0.5;
+       ztRomEntradaCocoTotalJuta.Value:=Round(ztRomEntradaCocoQuanJuta.Value*ztRomEntradaCocoPesoJuta.Value);
+       if ztRomEntradaCocoTotalJuta.Value>0 then ztRomEntradaCocoTotalJuta.Value:=ztRomEntradaCocoTotalJuta.Value*(-1);
 
                    //Desconto1
-     if ztRomEntradaCocoDesconto1.Text='' then ztRomEntradaCocoDesconto1.Text:='0';
-     if Trunc(ztRomEntradaCocoDesconto1.Value)<>ztRomEntradaCocoDesconto1.Value then
-        ztRomEntradaCocoDesconto1.Value:=trunc(ztRomEntradaCocoDesconto1.Value);
-     if ztRomEntradaCocoDesconto1.Value>0 then ztRomEntradaCocoDesconto1.Value:=ztRomEntradaCocoDesconto1.Value*(-1);
+       if ztRomEntradaCocoDesconto1.Text='' then ztRomEntradaCocoDesconto1.Text:='0';
+       if Trunc(ztRomEntradaCocoDesconto1.Value)<>ztRomEntradaCocoDesconto1.Value then
+          ztRomEntradaCocoDesconto1.Value:=trunc(ztRomEntradaCocoDesconto1.Value);
+       if ztRomEntradaCocoDesconto1.Value>0 then ztRomEntradaCocoDesconto1.Value:=ztRomEntradaCocoDesconto1.Value*(-1);
 
-  SubTotal:= ztRomEntradaCocoPesoBruto.Value+
-             ztRomEntradaCocoImpureza.Value+
-             ztRomEntradaCocoTotalPlastico.Value+
-             ztRomEntradaCocoTotalJuta.Value+
-             ztRomEntradaCocoDesconto1.Value;
+       SubTotal:= ztRomEntradaCocoPesoBruto.Value+
+                  ztRomEntradaCocoImpureza.Value+
+                  ztRomEntradaCocoTotalPlastico.Value+
+                  ztRomEntradaCocoTotalJuta.Value+
+                  ztRomEntradaCocoDesconto1.Value;
 
                     //Porcentagem
-     if (ztRomEntradaCocoPorcentagem.Value<0) or
-        (ztRomEntradaCocoPorcentagem.Text='') then ztRomEntradaCocoPorcentagem.Value:=0;
-  if Trunc(ztRomEntradaCocoPorcentagem.Value)<>ztRomEntradaCocoPorcentagem.Value then
-        ztRomEntradaCocoPorcentagem.Value:=Round(ztRomEntradaCocoPorcentagem.Value);
-  ztRomEntradaCocoPesoPorcentagem.Value:=round(SubTotal*(0.01*ztRomEntradaCocoPorcentagem.Value));
-  if ztRomEntradaCocoPesoPorcentagem.Value>0 then ztRomEntradaCocoPesoPorcentagem.Value:=ztRomEntradaCocoPesoPorcentagem.Value*(-1);
+       if (ztRomEntradaCocoPorcentagem.Value<0) or
+          (ztRomEntradaCocoPorcentagem.Text='') then ztRomEntradaCocoPorcentagem.Value:=0;
+       if Trunc(ztRomEntradaCocoPorcentagem.Value)<>ztRomEntradaCocoPorcentagem.Value then
+          ztRomEntradaCocoPorcentagem.Value:=Round(ztRomEntradaCocoPorcentagem.Value);
+       ztRomEntradaCocoPesoPorcentagem.Value:=round(SubTotal*(0.01*ztRomEntradaCocoPorcentagem.Value));
+       if ztRomEntradaCocoPesoPorcentagem.Value>0 then ztRomEntradaCocoPesoPorcentagem.Value:=ztRomEntradaCocoPesoPorcentagem.Value*(-1);
 
                  //Beber Limpo
-  if (ztRomEntradaCocoBeberLimpo.Text='') then begin
-     ztRomEntradaCocoBeberLimpo.Value:=0;
-     ztRomEntradaCocoBeberCoco.Value:=0;
-  end;
-  if ztRomEntradaCocoBeberLimpo.Value<0 then
-     ztRomEntradaCocoBeberLimpo.Value:=ztRomEntradaCocoBeberLimpo.Value*(-1);
+       if (ztRomEntradaCocoBeberLimpo.Text='') then begin
+          ztRomEntradaCocoBeberLimpo.Value:=0;
+          ztRomEntradaCocoBeberCoco.Value:=0;
+       end;
+       if ztRomEntradaCocoBeberLimpo.Value<0 then
+          ztRomEntradaCocoBeberLimpo.Value:=ztRomEntradaCocoBeberLimpo.Value*(-1);
 
                  //Desconto Beber Limpo
-  if (edtDesconto.Text<>'') then
-     if (strToInt(edtDesconto.Text)<0) then edtDesconto.Text:='20';
-  if edtDesconto.Text='' then edtDesconto.Text:='20';
+       if (edtDesconto.Text<>'') then
+       if (strToInt(edtDesconto.Text)<0) then edtDesconto.Text:='20';
+       if edtDesconto.Text='' then edtDesconto.Text:='20';
 
                 //Beber Coco
-  if ztRomEntradaCocoBeberCoco.Text='' then ztRomEntradaCocoBeberCoco.Text:='0';
-  if ztRomEntradaCocoBeberCoco.Value>0 then ztRomEntradaCocoBeberCoco.Value:=Round(ztRomEntradaCocoBeberCoco.Value*(-1));
-  if Trunc(ztRomEntradaCocoBeberCoco.Value)<>ztRomEntradaCocoBeberCoco.Value then
-        ztRomEntradaCocoBeberCoco.Value:=Round(ztRomEntradaCocoBeberCoco.Value);
-  if ztRomEntradaCocoBeberCoco.Value>0 then
-     ztRomEntradaCocoBeberCoco.Value:=ztRomEntradaCocoBeberCoco.Value*(-1);
+       if ztRomEntradaCocoBeberCoco.Text='' then ztRomEntradaCocoBeberCoco.Text:='0';
+       if ztRomEntradaCocoBeberCoco.Value>0 then ztRomEntradaCocoBeberCoco.Value:=Round(ztRomEntradaCocoBeberCoco.Value*(-1));
+       if Trunc(ztRomEntradaCocoBeberCoco.Value)<>ztRomEntradaCocoBeberCoco.Value then
+          ztRomEntradaCocoBeberCoco.Value:=Round(ztRomEntradaCocoBeberCoco.Value);
+       if ztRomEntradaCocoBeberCoco.Value>0 then
+       ztRomEntradaCocoBeberCoco.Value:=ztRomEntradaCocoBeberCoco.Value*(-1);
 
                 //Desconto2
-  if ztRomEntradaCocoDesconto2.Text='' then ztRomEntradaCocoDesconto2.Text:='0';
-  if ztRomEntradaCocoDesconto2.Value>0 then ztRomEntradaCocoDesconto2.Value:=ztRomEntradaCocoDesconto2.Value*(-1);
-  if Trunc(ztRomEntradaCocoDesconto2.Value)<>ztRomEntradaCocoDesconto2.Value then
-        ztRomEntradaCocoDesconto2.Value:=Round(ztRomEntradaCocoDesconto2.Value);
-  ztRomEntradaCocoSaldoCoco.Value:=Round(SubTotal+
+       if ztRomEntradaCocoDesconto2.Text='' then ztRomEntradaCocoDesconto2.Text:='0';
+       if ztRomEntradaCocoDesconto2.Value>0 then ztRomEntradaCocoDesconto2.Value:=ztRomEntradaCocoDesconto2.Value*(-1);
+       if Trunc(ztRomEntradaCocoDesconto2.Value)<>ztRomEntradaCocoDesconto2.Value then
+          ztRomEntradaCocoDesconto2.Value:=Round(ztRomEntradaCocoDesconto2.Value);
+       ztRomEntradaCocoSaldoCoco.Value:=Round(SubTotal+
                             ztRomEntradaCocoPesoPorcentagem.Value+
                             ztRomEntradaCocoBeberCoco.Value+
                             ztRomEntradaCocoDesconto2.Value);
 
                           //Compra
-  if edtPesoComprado.Text = '' then
-     edtPesoComprado.Text:='0';
-  if strToInt(edtPesoComprado.Text) < 0 then
-     edtPesoComprado.Text:='0';
-  if ztRomEntradaCocoSaldoCoco.Value < strToInt(edtPesoComprado.Text) then
-        edtPesoComprado.Text:='0';
+       if edtPesoComprado.Text = '' then
+          edtPesoComprado.Text:='0';
+       if strToInt(edtPesoComprado.Text) < 0 then
+          edtPesoComprado.Text:='0';
+       if ztRomEntradaCocoSaldoCoco.Value < strToInt(edtPesoComprado.Text) then
+          edtPesoComprado.Text:='0';
 
-  dbePesoDepositado.Text:=intToStr(ztRomEntradaCocoSaldoCoco.Value -
+       dbePesoDepositado.Text:=intToStr(ztRomEntradaCocoSaldoCoco.Value -
                             StrToint(edtPesoComprado.Text));
-  edtPesoComprado.Text:=FloatToStr(PesoComprado);
+       edtPesoComprado.Text:=FloatToStr(PesoComprado);
 
-  if (Not EntradaCocoModoEdicao)then Exit;
-  if (PesoComprado>0) and
-        (Not CompraCocoModoEdicao)then begin
-         ztRomCompraCoco.AutoCalcFields:=False;
-         ztRomCompraCoco.Append;
-         CompraCocoEditarTrue;
-         zqNovoIDRomCompraCoco.Refresh;
-         ztRomCompraCocoIDRomCompraCoco.Value:=
+       if (Not EntradaCocoModoEdicao)then Exit;
+       if (PesoComprado>0) and
+          (Not CompraCocoModoEdicao)then begin
+          ztRomCompraCoco.AutoCalcFields:=False;
+          ztRomCompraCoco.Append;
+          CompraCocoEditarTrue;
+          zqNovoIDRomCompraCoco.Refresh;
+          ztRomCompraCocoIDRomCompraCoco.Value:=
                     zqNovoIDRomCompraCocoID.Value+1;
-         ztRomCompraCocoPesoCoco.Value:=0;
-         ztRomCompraCocoValor.Value:=0;
-         dbrgSacoKg.ItemIndex:=0;
-         ztRomCompraCocoPorcFundoRural.Value:=100;
-         ztRomCompraCocoAliquota.Value:=AliquotaFundoRural;
-         ztRomCompraCoco.AutoCalcFields:=True;
-         Exit;
-     end;
-     if (PesoComprado<1) and
-        CompraCocoModoEdicao then begin
-         ztRomCompraCoco.Cancel;
-         CompraCocoEditarFalse;
-     end;
+          ztRomCompraCocoPesoCoco.Value:=0;
+          ztRomCompraCocoValor.Value:=0;
+          dbrgSacoKg.ItemIndex:=0;
+          ztRomCompraCocoPorcFundoRural.Value:=100;
+          ztRomCompraCocoAliquota.Value:=AliquotaFundoRural;
+          ztRomCompraCoco.AutoCalcFields:=True;
+          Exit;
+       end;
+       if (PesoComprado<1) and
+          CompraCocoModoEdicao then begin
+          ztRomCompraCoco.Cancel;
+          CompraCocoEditarFalse;
+       end;
+
+    end;
 end;
 
 function TfRomEntCoco.SalvarTrue: boolean;

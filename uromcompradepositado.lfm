@@ -448,11 +448,11 @@ object fRomCompraDepositado: TfRomCompraDepositado
       Font.Style = [fsBold]
       ParentFont = False
     end
-    object rgSacoKg: TRadioGroup
-      Left = 88
-      Height = 24
-      Top = 143
-      Width = 149
+    object dbrgSacoKg: TDBRadioGroup
+      Left = 80
+      Height = 25
+      Top = 144
+      Width = 156
       AutoFill = True
       ChildSizing.LeftRightSpacing = 6
       ChildSizing.EnlargeHorizontal = crsHomogenousChildResize
@@ -461,17 +461,22 @@ object fRomCompraDepositado: TfRomCompraDepositado
       ChildSizing.ShrinkVertical = crsScaleChilds
       ChildSizing.Layout = cclLeftToRightThenTopToBottom
       ChildSizing.ControlsPerLine = 2
-      ClientHeight = 22
-      ClientWidth = 147
       Columns = 2
+      DataField = 'SACOKG'
+      DataSource = dsRomCompraCoco
+      Font.Name = 'rgSacoKg'
       Font.Style = [fsBold]
       Items.Strings = (
         'R$/Saco'
         'R$/Kg'
       )
-      ParentBackground = False
       ParentFont = False
       TabOrder = 11
+      Values.Strings = (
+        'Saco'
+        'Kg'
+      )
+      OnClick = dbrgSacoKgClick
     end
   end
   object Panel2: TPanel
