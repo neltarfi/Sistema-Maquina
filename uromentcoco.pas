@@ -214,7 +214,7 @@ type
     ztRomEntradaCocoQUANJUTA: TZIntegerField;
     ztRomEntradaCocoQUANPLASTICO: TZIntegerField;
     ztRomEntradaCocoRENDA: TZIntegerField;
-    ztRomEntradaCocoSALDOCOCO: TLongintField;
+    ztRomEntradaCocoSaldoCoco: TLongintField;
     ztRomEntradaCocoSTATUS: TZRawStringField;
     ztRomEntradaCocoTOTALJUTA: TLongintField;
     ztRomEntradaCocoTOTALPLASTICO: TLongintField;
@@ -223,7 +223,6 @@ type
     procedure btSairClick(Sender: TObject);
     procedure btSalvarClick(Sender: TObject);
     procedure dbcClienteChange(Sender: TObject);
-    procedure dbdDataExit(Sender: TObject);
     procedure dbeBeberCocoChange(Sender: TObject);
     procedure dbeBeberCocoExit(Sender: TObject);
     procedure dbeBeberLimpoChange(Sender: TObject);
@@ -263,7 +262,6 @@ type
     procedure ztRomEntradaCocoAfterScroll(DataSet: TDataSet);
     procedure LocalizaEndereco;
     procedure ztRomCompraCocoCalcFields(DataSet: TDataSet);
-    procedure ztRomCompraCocoSacoKgChange(Sender: TField);
     procedure ztRomEntradaCocoCalcFields(DataSet: TDataSet);
     function SalvarTrue:boolean;
     procedure SalvaCafeBeber;
@@ -280,7 +278,6 @@ var
   SistemaIni: TIniFile;
   fRomEntCoco: TfRomEntCoco;
   EntradaCocoModoEdicao:boolean;
-  CompraCocoModoEdicao:boolean;
   Renda,
   SaldoCoco,
   BeberCoco,
@@ -355,7 +352,7 @@ begin
     if ztMovLoteCocoIDMovLoteCoco.Value > 0 then
        fRomEntCoco.ModalResult:=ztMovLoteCocoIDMovLoteCoco.Value;
     if EntradaCocoModoEdicao then begin
-       if CompraCocoModoEdicao then
+       if ztRomCompraCoco.State=dsInsert then
           ztRomCompraCoco.Cancel;
        ztRomEntradaCoco.Cancel;
        fPrincipal.zConn.Rollback;
@@ -391,10 +388,8 @@ end;
 
 procedure TfRomEntCoco.btCancelarClick(Sender: TObject);
 begin
-    if CompraCocoModoEdicao then begin
+    if ztRomCompraCoco.State=dsInsert then
        ztRomCompraCoco.Cancel;
-       CompraCocoEditarFalse;
-    end;
   ztRomEntradaCoco.Cancel;
   fPrincipal.zConn.Rollback;
 
@@ -413,11 +408,6 @@ end;
 procedure TfRomEntCoco.dbcClienteChange(Sender: TObject);
 begin
      LocalizaEndereco;
-end;
-
-procedure TfRomEntCoco.dbdDataExit(Sender: TObject);
-begin
-     ztRomEntradaCocoCalcFields(ztRomEntradaCoco);  //dispara o método oncalcFields
 end;
 
 procedure TfRomEntCoco.dbeBeberCocoChange(Sender: TObject);
@@ -551,11 +541,6 @@ begin
    ztRomEntradaCocoCalcFields(ztRomEntradaCoco); //dispara o método oncalcFields
 end;
 
-procedure TfRomEntCoco.ztRomCompraCocoSacoKgChange(Sender: TField);
-begin
-     ztRomCompraCocoCalcFields(ztRomCompraCoco); //dispara o método oncalcFields
-end;
-
 procedure TfRomEntCoco.dbeValorExit(Sender: TObject);
 begin
      ztRomCompraCocoCalcFields(ztRomCompraCoco); //dispara o método oncalcFields
@@ -563,7 +548,8 @@ end;
 
 procedure TfRomEntCoco.dbrgSacoKgClick(Sender: TObject);
 begin
-  ztRomCompraCocoCalcFields(ztRomEntradaCoco); //dispara o método oncalcFields
+    if ztRomCompraCoco.State=dsInsert then
+       ztRomCompraCocoCalcFields(ztRomCompraCoco); //dispara o método oncalcFields
 end;
 
 procedure TfRomEntCoco.edtPesoCompradoChange(Sender: TObject);
@@ -602,7 +588,6 @@ end;
 
 procedure TfRomEntCoco.CompraCocoEditarTrue;
 Begin
-     CompraCocoModoEdicao:=True;
      dbrgSacoKg.Enabled:=True;
      dbeValor.Enabled:=True;
      dbeValorBruto.Enabled:=True;
@@ -613,7 +598,6 @@ Begin
 end;
 procedure TfRomEntCoco.CompraCocoEditarFalse;
 Begin
-     CompraCocoModoEdicao:=False;
      dbrgSacoKg.Enabled:=False;
      dbeValor.Enabled:=False;
      dbeValorBruto.Enabled:=False;
@@ -627,6 +611,7 @@ procedure TfRomEntCoco.Leitura;
 begin
      dbeCodRomaneio.Enabled:=False;
      dbdData.Enabled:=False;
+     Panel1.Enabled:=False;
      Panel3.Enabled:=False;
      dbmObs.Enabled:=False;
      dbePesoDepositado.Enabled:=False;
@@ -636,6 +621,7 @@ end;
 procedure TfRomEntCoco.Gravacao;
 begin
      dbdData.Enabled:=True;
+     Panel1.Enabled:=True;
      Panel3.Enabled:=True;
      dbmObs.Enabled:=True;
      edtPesoComprado.Enabled:=True;
@@ -666,6 +652,7 @@ begin
      ztRomEntradaCocoSaldoCoco.Value:=0;
      ztRomEntradaCocoIDRomCompraCoco.Value:=0;
      edtPesoComprado.Text:='0';
+     PesoComprado:=0;
 end;
 
 procedure TfRomEntCoco.ztRomEntradaCocoAfterScroll(DataSet: TDataSet);
@@ -705,7 +692,7 @@ begin
                ztRomCompraCocoValor.Value)/40);
      end
      else begin
-          if CompraCocoModoEdicao then Renda:=ztRomEntradaCocoRenda.Value;
+          if ztRomCompraCoco.State=dsInsert then Renda:=ztRomEntradaCocoRenda.Value;
           ztRomCompraCocoValorBruto.Value:=
                ((strToint(edtPesoComprado.Text)*
                ztRomCompraCocoValor.Value*
@@ -825,20 +812,24 @@ begin
                             ztRomEntradaCocoDesconto2.Value);
 
                           //Compra
-       if edtPesoComprado.Text = '' then
+       if (edtPesoComprado.Text = '')or
+          (strToInt(edtPesoComprado.Text) < 0)or
+          (ztRomEntradaCocoSaldoCoco.Value < strToInt(edtPesoComprado.Text)) then Begin
           edtPesoComprado.Text:='0';
-       if strToInt(edtPesoComprado.Text) < 0 then
-          edtPesoComprado.Text:='0';
-       if ztRomEntradaCocoSaldoCoco.Value < strToInt(edtPesoComprado.Text) then
-          edtPesoComprado.Text:='0';
-
+          PesoComprado:=0;
+       end;
        dbePesoDepositado.Text:=intToStr(ztRomEntradaCocoSaldoCoco.Value -
                             StrToint(edtPesoComprado.Text));
        edtPesoComprado.Text:=FloatToStr(PesoComprado);
 
-       if (Not EntradaCocoModoEdicao)then Exit;
-       if (PesoComprado>0) and
-          (Not CompraCocoModoEdicao)then begin
+       if (ztRomCompraCoco.State=dsInsert)then begin
+          if (PesoComprado<1) then begin
+             ztRomCompraCoco.Cancel;
+             CompraCocoEditarFalse;
+          end;
+          Exit;
+       end;
+       if (PesoComprado>0) then begin
           ztRomCompraCoco.AutoCalcFields:=False;
           ztRomCompraCoco.Append;
           CompraCocoEditarTrue;
@@ -851,14 +842,7 @@ begin
           ztRomCompraCocoPorcFundoRural.Value:=100;
           ztRomCompraCocoAliquota.Value:=AliquotaFundoRural;
           ztRomCompraCoco.AutoCalcFields:=True;
-          Exit;
        end;
-       if (PesoComprado<1) and
-          CompraCocoModoEdicao then begin
-          ztRomCompraCoco.Cancel;
-          CompraCocoEditarFalse;
-       end;
-
     end;
 end;
 
@@ -880,9 +864,9 @@ begin
          '  quando peso de café para beber limpo é maior que zero.'+ chr(13);
      if  (ztRomEntradaCocoSaldoCoco.Value<0) then
          Erro:=Erro+'-Campo Saldo em Coco não pode ser negativo.'+ chr(13);
-     if  CompraCocoModoEdicao and (ztRomCompraCocoValor.Value=0) then
+     if  (ztRomCompraCoco.State=dsInsert) and (ztRomCompraCocoValor.Value=0) then
          Erro:=Erro+'-Campo Preço não pode ser zero.'+ chr(13);
-          if  CompraCocoModoEdicao and (ztRomCompraCocoValorLivre.Value=0) then
+          if  (ztRomCompraCoco.State=dsInsert) and (ztRomCompraCocoValorLivre.Value=0) then
          Erro:=Erro+'-Campo Valor Livre não pode ser zero.'+ chr(13);
      if  (dbcLoteCoco.KeyValue<1) then
          Erro:=Erro+'-Campo Lote Coco não pode ficar Vazio.'+ chr(13);
@@ -902,6 +886,9 @@ begin
      if not(SalvarTrue) then Exit;
      try
                   //Romaneio de entrada em coco
+
+
+     SaldoCoco:=ztRomEntradaCocoSaldoCoco.Value;
      IDRomEntradaCoco:=ztRomEntradaCocoIDRomEntradaCoco.Value;
      IDCliente:=dbcCliente.KeyValue;
      ztRomEntradaCocoIDCliente.Value:=IDCliente;
@@ -909,7 +896,6 @@ begin
      ztRomEntradaCocoIDRomEntradaCoco.Value:=IDRomEntradaCoco;
      BeberCoco:=ztRomEntradaCocoBeberCoco.Value;
      BeberLimpo:=ztRomEntradaCocoBeberLimpo.Value;
-     SaldoCoco:=ztRomEntradaCocoSaldoCoco.Value;
      if (PesoComprado=0) then
         ztRomEntradaCocoIDRomCompraCoco.Value:=0
      else Begin

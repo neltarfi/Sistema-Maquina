@@ -145,7 +145,6 @@ object fRomEntCoco: TfRomEntCoco
       NumGlyphs = 1
       MaxLength = 0
       TabOrder = 4
-      OnExit = dbdDataExit
       DataField = 'Data'
       DataSource = dsRomEntradaCoco
     end
@@ -1682,9 +1681,9 @@ object fRomEntCoco: TfRomEntCoco
       Required = False
       Size = 9
     end
-    object ztRomEntradaCocoSALDOCOCO: TLongintField
+    object ztRomEntradaCocoSaldoCoco: TLongintField
       FieldKind = fkCalculated
-      FieldName = 'SALDOCOCO'
+      FieldName = 'SaldoCoco'
       Index = 25
       LookupCache = False
       ProviderFlags = [pfInUpdate, pfInWhere]

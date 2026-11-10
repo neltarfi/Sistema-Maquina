@@ -255,7 +255,8 @@ end;
 
 procedure TfRomCompraDepositado.dbrgSacoKgClick(Sender: TObject);
 begin
-  ztRomCompraCocoCalcFields(ztRomCompraCoco);  //dispara o método oncalcFields
+  if ztRomCompraCoco.State = dsInsert then
+     ztRomCompraCocoCalcFields(ztRomCompraCoco);  //dispara o método oncalcFields
 end;
 
 procedure TfRomCompraDepositado.edtPesoCompradoChange(Sender: TObject);
@@ -346,7 +347,6 @@ end;
 
 procedure TfRomCompraDepositado.ztRomCompraCocoCalcFields(DataSet: TDataSet);
 begin
-  if ztRomCompraCoco.State = dsInsert then begin
      if edtPesoComprado.Text='' then
         edtPesoComprado.Text:='0';
      if ztRomCompraCocoValor.Text='' then
@@ -373,7 +373,6 @@ begin
             ztRomCompraCocoPorcFundoRural.Value*0.0001);
      ztRomCompraCocoValorLivre.Value:=
      ztRomCompraCocoValorBruto.Value-ztRomCompraCocoValorFundoRural.Value;
-  end;
 end;
 
 end.
