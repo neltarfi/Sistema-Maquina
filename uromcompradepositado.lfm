@@ -765,8 +765,8 @@ object fRomCompraDepositado: TfRomCompraDepositado
       'order by C.RAZAO'
     )
     Params = <>
-    Left = 251
-    Top = 16
+    Left = 296
+    Top = 8
     object zqClienteSaldoIDCLIENTE: TZIntegerField
       FieldKind = fkData
       FieldName = 'IDCLIENTE'
@@ -994,7 +994,7 @@ object fRomCompraDepositado: TfRomCompraDepositado
       'from RomCompraCoco'
     )
     Params = <>
-    Left = 548
+    Left = 480
     Top = 88
     object zqNovoIDRomCompraDepositoID: TZIntegerField
       FieldKind = fkData
@@ -1181,6 +1181,96 @@ object fRomCompraDepositado: TfRomCompraDepositado
       ReadOnly = False
       Required = False
       Size = 9
+    end
+  end
+  object ztEstoqueDepositoCoco: TZTable
+    Connection = fPrincipal.zConn
+    TableName = 'ESTOQUEDEPOSITOCOCO'
+    Left = 124
+    Top = 168
+    object ztEstoqueDepositoCocoIDESTOQUEDEPOSITOCOCO: TZIntegerField
+      FieldKind = fkData
+      FieldName = 'IDESTOQUEDEPOSITOCOCO'
+      Index = 0
+      LookupCache = False
+      ProviderFlags = [pfInUpdate, pfInWhere]
+      ReadOnly = False
+      Required = True
+    end
+    object ztEstoqueDepositoCocoIDROMENTRADACOCO: TZIntegerField
+      FieldKind = fkData
+      FieldName = 'IDROMENTRADACOCO'
+      Index = 1
+      LookupCache = False
+      ProviderFlags = [pfInUpdate, pfInWhere]
+      ReadOnly = False
+      Required = False
+    end
+    object ztEstoqueDepositoCocoPESOENTRADA: TZIntegerField
+      FieldKind = fkData
+      FieldName = 'PESOENTRADA'
+      Index = 2
+      LookupCache = False
+      ProviderFlags = [pfInUpdate, pfInWhere]
+      ReadOnly = False
+      Required = False
+    end
+    object ztEstoqueDepositoCocoPESOSAIDA: TZIntegerField
+      FieldKind = fkData
+      FieldName = 'PESOSAIDA'
+      Index = 3
+      LookupCache = False
+      ProviderFlags = [pfInUpdate, pfInWhere]
+      ReadOnly = False
+      Required = False
+    end
+    object ztEstoqueDepositoCocoSALDO: TZIntegerField
+      FieldKind = fkData
+      FieldName = 'SALDO'
+      Index = 4
+      LookupCache = False
+      ProviderFlags = [pfInUpdate, pfInWhere]
+      ReadOnly = False
+      Required = False
+    end
+    object ztEstoqueDepositoCocoSTATUS: TZRawStringField
+      FieldKind = fkData
+      FieldName = 'STATUS'
+      Index = 5
+      LookupCache = False
+      ProviderFlags = [pfInUpdate, pfInWhere]
+      ReadOnly = False
+      Required = False
+      Size = 9
+    end
+  end
+  object ztCliente: TZTable
+    Connection = fPrincipal.zConn
+    TableName = 'CLIENTE'
+    Left = 517
+    Top = 6
+    object ztClienteIDCLIENTE: TZIntegerField
+      FieldKind = fkData
+      FieldName = 'IDCLIENTE'
+      Index = 0
+      LookupCache = False
+      ProviderFlags = [pfInUpdate, pfInWhere]
+      ReadOnly = False
+      Required = True
+    end
+    object ztClienteSALDOCONTACORRENTE: TZBCDField
+      FieldKind = fkData
+      FieldName = 'SALDOCONTACORRENTE'
+      Index = 1
+      LookupCache = False
+      ProviderFlags = [pfInUpdate, pfInWhere]
+      ReadOnly = False
+      Required = False
+      Precision = 10
+      Currency = False
+      MaxValue = 0
+      MinValue = 0
+      Size = 2
     end
   end
 end

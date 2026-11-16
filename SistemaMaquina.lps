@@ -122,10 +122,9 @@
         <HasResources Value="True"/>
         <ResourceBaseClass Value="Form"/>
         <UnitName Value="uRomEntCoco"/>
-        <IsVisibleTab Value="True"/>
         <EditorIndex Value="3"/>
-        <TopLine Value="608"/>
-        <CursorPos X="26" Y="624"/>
+        <TopLine Value="957"/>
+        <CursorPos X="53" Y="933"/>
         <UsageCount Value="200"/>
         <Loaded Value="True"/>
         <LoadedDesigner Value="True"/>
@@ -163,7 +162,7 @@
         <EditorIndex Value="4"/>
         <TopLine Value="88"/>
         <CursorPos X="3" Y="92"/>
-        <UsageCount Value="191"/>
+        <UsageCount Value="195"/>
         <Loaded Value="True"/>
         <LoadedDesigner Value="True"/>
       </Unit>
@@ -177,7 +176,7 @@
         <EditorIndex Value="-1"/>
         <TopLine Value="316"/>
         <CursorPos X="7" Y="341"/>
-        <UsageCount Value="169"/>
+        <UsageCount Value="173"/>
       </Unit>
       <Unit>
         <Filename Value="usistema.pas"/>
@@ -189,7 +188,7 @@
         <EditorIndex Value="-1"/>
         <TopLine Value="111"/>
         <CursorPos X="14" Y="132"/>
-        <UsageCount Value="105"/>
+        <UsageCount Value="109"/>
       </Unit>
       <Unit>
         <Filename Value="umovcafedepositado.pas"/>
@@ -201,7 +200,7 @@
         <EditorIndex Value="1"/>
         <TopLine Value="103"/>
         <CursorPos X="29" Y="131"/>
-        <UsageCount Value="74"/>
+        <UsageCount Value="78"/>
         <Loaded Value="True"/>
         <LoadedDesigner Value="True"/>
       </Unit>
@@ -212,10 +211,11 @@
         <HasResources Value="True"/>
         <ResourceBaseClass Value="Form"/>
         <UnitName Value="uRomCompraDepositado"/>
+        <IsVisibleTab Value="True"/>
         <EditorIndex Value="2"/>
-        <TopLine Value="252"/>
-        <CursorPos X="6" Y="259"/>
-        <UsageCount Value="68"/>
+        <TopLine Value="194"/>
+        <CursorPos X="18" Y="206"/>
+        <UsageCount Value="72"/>
         <Loaded Value="True"/>
         <LoadedDesigner Value="True"/>
       </Unit>
@@ -497,35 +497,7 @@
         <UsageCount Value="10"/>
       </Unit>
     </Units>
-    <JumpHistory HistoryIndex="28">
-      <Position>
-        <Filename Value="uromentcoco.pas"/>
-        <Caret Line="698" Column="6" TopLine="686"/>
-      </Position>
-      <Position>
-        <Filename Value="uromcompradepositado.pas"/>
-        <Caret Line="374" Column="75" TopLine="354"/>
-      </Position>
-      <Position>
-        <Filename Value="uromentcoco.pas"/>
-        <Caret Line="839" Column="45" TopLine="824"/>
-      </Position>
-      <Position>
-        <Filename Value="uromentcoco.pas"/>
-        <Caret Line="567" Column="45" TopLine="563"/>
-      </Position>
-      <Position>
-        <Filename Value="uromentcoco.pas"/>
-        <Caret Line="283" TopLine="277"/>
-      </Position>
-      <Position>
-        <Filename Value="uromentcoco.pas"/>
-        <Caret Line="357" Column="41" TopLine="344"/>
-      </Position>
-      <Position>
-        <Filename Value="uromentcoco.pas"/>
-        <Caret Line="394" Column="31" TopLine="383"/>
-      </Position>
+    <JumpHistory HistoryIndex="29">
       <Position>
         <Filename Value="uromentcoco.pas"/>
         <Caret Line="602" Column="6" TopLine="590"/>
@@ -613,6 +585,38 @@
       <Position>
         <Filename Value="uromentcoco.pas"/>
         <Caret Line="902" Column="21" TopLine="884"/>
+      </Position>
+      <Position>
+        <Filename Value="uromcompradepositado.pas"/>
+        <Caret Line="259" Column="48" TopLine="154"/>
+      </Position>
+      <Position>
+        <Filename Value="uromcompradepositado.pas"/>
+        <Caret Line="260" Column="48" TopLine="235"/>
+      </Position>
+      <Position>
+        <Filename Value="uromcompradepositado.pas"/>
+        <Caret Line="184" Column="33" TopLine="169"/>
+      </Position>
+      <Position>
+        <Filename Value="uromentcoco.pas"/>
+        <Caret Line="953" Column="39" TopLine="934"/>
+      </Position>
+      <Position>
+        <Filename Value="uromentcoco.pas"/>
+        <Caret Line="945" Column="43" TopLine="928"/>
+      </Position>
+      <Position>
+        <Filename Value="uromcompradepositado.pas"/>
+        <Caret Line="196" Column="27" TopLine="182"/>
+      </Position>
+      <Position>
+        <Filename Value="uromcompradepositado.pas"/>
+        <Caret Line="197" Column="27" TopLine="183"/>
+      </Position>
+      <Position>
+        <Filename Value="uromcompradepositado.pas"/>
+        <Caret Line="164" Column="8" TopLine="149"/>
       </Position>
     </JumpHistory>
     <RunParams>

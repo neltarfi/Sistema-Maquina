@@ -75,6 +75,16 @@ type
     zqNovoIDRomCompraDeposito: TZQuery;
     zqNovoIDRomCompraDepositoID: TZIntegerField;
     zqNovoIDRomCompraCoco: TZQuery;
+    ztCliente: TZTable;
+    ztClienteIDCLIENTE: TZIntegerField;
+    ztClienteSALDOCONTACORRENTE: TZBCDField;
+    ztEstoqueDepositoCoco: TZTable;
+    ztEstoqueDepositoCocoIDESTOQUEDEPOSITOCOCO: TZIntegerField;
+    ztEstoqueDepositoCocoIDROMENTRADACOCO: TZIntegerField;
+    ztEstoqueDepositoCocoPESOENTRADA: TZIntegerField;
+    ztEstoqueDepositoCocoPESOSAIDA: TZIntegerField;
+    ztEstoqueDepositoCocoSALDO: TZIntegerField;
+    ztEstoqueDepositoCocoSTATUS: TZRawStringField;
     ztRomCompraCoco: TZTable;
     ztContaCorrenteDATA: TZDateField;
     ztContaCorrenteENTRADA: TZBCDField;
@@ -150,8 +160,8 @@ begin
      erro:='-O campo Peso comprado tem que ser maior que zero'+chr(13);
   if ztRomCompraCocoValor.Value=0 then
      erro:=erro+'-O campo Preço tem que ser maior que zero'+chr(13);
-  if ztRomCompraCocoPorcFundoRural.Value=0 then
-     erro:=erro+'-O campo PorcFundoRural tem que ser maior que zero';
+  //if ztRomCompraCocoPorcFundoRural.Value=0 then
+     //erro:=erro+'-O campo PorcFundoRural tem que ser maior que zero';
   if erro<>'' then begin
      showMessage(erro);
      exit;
@@ -159,13 +169,41 @@ begin
   if not(MessageDlg('Você deseja realmente salvar?', mtConfirmation,
      [mbYes, mbNO], 0) = mrYes) then  Exit;
   try
+                    //RomCompraCoco
   ztRomCompraCocoIDRomEntradaCoco.Value:=zqEstoqueDepositoCocoIDRomEntradaCoco.Value;
   ztRomCompraCocoPesoCoco.Value:=strToInt(edtPesoComprado.Text);
   ztRomCompraCocoIDContaCorrente.Value:=ztContaCorrenteIDContaCorrente.Value;
   ztRomCompraCocoStatus.Value:='Ativo';
   ztRomCompraCoco.Post;
 
+                       //atualiza saldo do EstoqueDepositoCoo
+  ztEstoqueDepositoCoco.Locate('IdRomEntradaCoco',zqEstoqueDepositoCocoIDRomEntradaCoco.Value,[]);
+  ztEstoqueDepositoCoco.Edit;
+  ztEstoqueDepositoCocoPesoSaida.Value:=ztEstoqueDepositoCocoPesoSaida.Value+
+                                        strToInt(edtPesoComprado.Text);
+  ztEstoqueDepositoCocoSaldo.Value:=ztEstoqueDepositoCocoSaldo.Value-
+                                    strToInt(edtPesoComprado.Text);
+  ztEstoqueDepositoCoco.Post;
+  zqEstoqueDepositoCoco.Refresh;
+
+  zqNovoIDContaCorrente.Refresh;
+  ztContaCorrente.Append;
+  ztContaCorrenteIDContaCorrente.Value:=zqNovoIDContaCorrenteID.Value+1;
+  ztContaCorrenteIDAcerto.Value:=0;
+  ztContaCorrenteData.Value:=ztRomCompraCocoData.Value;
+  ztContaCorrenteIDCliente.Value:=DBlcbNome.KeyValue;
+  ztContaCorrenteHistorico.Text:='Compra '+intToStr(ztRomCompraCocoIDRomCompraDeposito.Value);
+  ztContaCorrenteEntrada.Value:=ztRomCompraCocoValorLivre.Value;
+  ztContaCorrenteSaida.Value:=0;
+  ztContaCorrenteStatus.Text:='Ativo';
   ztContaCorrente.Post;
+
+                       //Atualiza Saldo ContaCorrente en tabela cliente
+  ztCliente.Locate('IDCliente',zqClienteSaldoIDCliente.Value,[]);
+  ztCliente.Edit;
+  ztClienteSaldoContaCorrente.Value:=ztClienteSaldoContaCorrente.Value+
+                                     ztRomCompraCocoValorLivre.Value;
+  ztCliente.Post;
 
   fPrincipal.zConn.Commit;
   except
@@ -194,9 +232,6 @@ begin
   zqNovoIDRomCompraCoco.Refresh;
   ztRomCompraCocoIDRomCompraCoco.Value:=zqNovoIDRomCompraCocoID.Value+1;
   ztRomCompraCocoIDRomCompraDeposito.Value:=zqNovoIDRomCompraDepositoID.Value+1;
-  zqNovoIDContaCorrente.Refresh;
-  ztContaCorrente.Append;
-  ztContaCorrenteIDContaCorrente.Value:=zqNovoIDContaCorrenteID.Value+1;
   edtPesoDepositado.Text:=intToStr(zqEstoqueDepositoCocoSaldo.Value);
   NovoRegistro;
 end;
@@ -255,7 +290,8 @@ end;
 
 procedure TfRomCompraDepositado.dbrgSacoKgClick(Sender: TObject);
 begin
-  if ztRomCompraCoco.State = dsInsert then
+  if ztRomCompraCoco.State = dsInsert then   //sópode disparar o eventuo abaixo se
+                                               //estiver no modo insersão
      ztRomCompraCocoCalcFields(ztRomCompraCoco);  //dispara o método oncalcFields
 end;
 
@@ -278,6 +314,8 @@ begin
      fPrincipal.zConn.Rollback;
   end;
   zqEstoqueDepositoCoco.Close;
+  ztEstoqueDepositoCoco.Close;
+  ztCliente.Close;
   zqClienteSaldo.Close;
   ztRomCompraCoco.Close;
   ztContaCorrente.Close;
@@ -295,6 +333,8 @@ begin
      AliquotaFundoRural:=SistemaIni.ReadFloat('Variaveis', 'AliquotaFundoRural', 0);
   SistemaIni.Free;
   zqEstoqueDepositoCoco.Open;
+  ztEstoqueDepositoCoco.Open;
+  ztCliente.Open;
   zqClienteSaldo.Open;
   ztRomCompraCoco.Open;
   ztContaCorrente.Open;

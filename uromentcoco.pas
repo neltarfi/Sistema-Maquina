@@ -886,8 +886,6 @@ begin
      if not(SalvarTrue) then Exit;
      try
                   //Romaneio de entrada em coco
-
-
      SaldoCoco:=ztRomEntradaCocoSaldoCoco.Value;
      IDRomEntradaCoco:=ztRomEntradaCocoIDRomEntradaCoco.Value;
      IDCliente:=dbcCliente.KeyValue;
@@ -927,16 +925,18 @@ begin
 
                    //Compra
      if (PesoComprado>0) then begin
+        ztRomCompraCoco.AutoCalcFields:=False;
         ztRomCompraCocoIDRomCompraDeposito.Value:=0;
         ztRomCompraCocoIDRomEntradaCoco.Value:=IDRomEntradaCoco;
         ztRomCompraCoco.FieldByName('Data').Value:=DATE;
         ztRomCompraCocoObs.Value:='Compra do romaneio '+intToStr(IDRomEntradaCoco);
         ztRomCompraCocoPesoCoco.Value:=PesoComprado;
+        Valor:=ztRomCompraCocoValorLivre.Value;
         ztRomCompraCocoStatus.Text:='Ativo';
         zqNovoIDContaCorrente.Refresh;
         IDContaCorrente:=zqNovoIDContaCorrenteID.Value+1;
         ztRomCompraCocoIDContaCorrente.Value:=IDContaCorrente;
-        Valor:=ztRomCompraCocoValorLivre.Value;
+        ztRomCompraCoco.AutoCalcFields:=True;
         ztRomCompraCoco.Post;
 
                     //ContaCorrente
@@ -947,7 +947,7 @@ begin
         ztContaCorrenteIDAcerto.Value:=0;
         ztContaCorrenteIDCliente.Value:=zqClienteIDCliente.Value;
         ztContaCorrente.FieldByName('Data').Value:=DATE;
-        ztContaCorrenteHistorico.Value:='Compra:'+intToStr(IDRomCompraCoco)+'- Rom. coco:'+intToStr(IDRomEntradaCoco);
+        ztContaCorrenteHistorico.Value:='Rom. coco:'+intToStr(IDRomEntradaCoco);
         ztContaCorrenteEntrada.Value:=Valor;
         ztContaCorrenteSaida.Value:=0;
         ztContaCorrenteStatus.Value:='Ativo';
@@ -960,19 +960,22 @@ begin
      end;
 
                     //incremente SaldoCoco na tabela LoteCoco
-        zqLoteCoco.Locate('IDLoteCoco',dbcLoteCoco.KeyValue,[]);
-        zqLoteCoco.Edit;
-        zqLoteCocoSaldoCoco.Value:= zqLoteCocoSaldoCoco.Value+SaldoCoco-BeberCoco;
-        zqLoteCoco.Post;
-
+     zqLoteCoco.Locate('IDLoteCoco',dbcLoteCoco.KeyValue,[]);
+     zqLoteCoco.Edit;
+     zqLoteCocoSaldoCoco.Value:= zqLoteCocoSaldoCoco.Value+SaldoCoco-BeberCoco;
+     zqLoteCoco.Post;
      fPrincipal.zConn.Commit;
+     CompraCocoEditarFalse;
+     EntradaCocoEditarFalse;
      if not(MessageDlg('Você deseja imprimir o Romaneio?', mtConfirmation,
         [mbYes, mbNO], 0) = mrYes) then begin
 
-        end;
+     end;
      except
      on E: Exception do
         begin
+         CompraCocoEditarFalse;
+         EntradaCocoEditarFalse;
          ztRomEntradaCoco.Cancel;
          ztLoteLimpo.Cancel;
          ztMovLoteLimpo.Cancel;
@@ -982,10 +985,6 @@ begin
          ShowMessage('Erro ao salvar registro '+E.Message);
         end;
      end;
-     CompraCocoEditarFalse;
-     EntradaCocoEditarFalse;
-     ztRomEntradaCoco.Refresh;
-     edtPesoComprado.Text:=FloatToStr(PesoComprado);
      Close;
 end;
 
