@@ -396,6 +396,7 @@ object fMovCafeDepositado: TfMovCafeDepositado
     DataSource = dsRomCompraCoco
     ReadOnly = True
     TabOrder = 9
+    OnDblClick = DBGrid1DblClick
   end
   object dbeIDCliente: TDBEdit
     Left = 8

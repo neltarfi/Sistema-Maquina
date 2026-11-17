@@ -55,6 +55,7 @@ type
     procedure btNovaCompraClick(Sender: TObject);
     procedure btSairClick(Sender: TObject);
     procedure BuscaNomeClick(Sender: TObject);
+    procedure DBGrid1DblClick(Sender: TObject);
     procedure DBlcbNomeChange(Sender: TObject);
     procedure DBNavigator1Click(Sender: TObject; Button: TDBNavButtonType);
     procedure edtPosicaoChange(Sender: TObject);
@@ -72,6 +73,7 @@ type
 
 var
   fMovCafeDepositado: TfMovCafeDepositado;
+  FormOperacao:string;
 
 implementation
 
@@ -94,6 +96,19 @@ begin
     fCadCliente.Destroy;
     DBlcbNome.KeyValue:=temp;
     AplicaFiltro('Navigator');
+end;
+
+procedure TfMovCafeDepositado.DBGrid1DblClick(Sender: TObject);
+var temp:integer;
+begin
+    FormOperacao:='VisualizarRegistro';
+  if (zqRomCompraCoco.RecordCount>0) then begin //verifica se tem registros na tabela zqRomCompraCoco.
+     fRomCompraDepositado:=TfRomCompraDepositado.Create(self);
+     temp:=fRomCompraDepositado.ShowModal;
+     fRomCompraDepositado.Destroy;
+     zqRomCompraCoco.Refresh;
+     zqRomCompraCoco.Locate('IDRomCompraDeposito',temp,[]);
+  end;
 end;
 
 procedure TfMovCafeDepositado.DBlcbNomeChange(Sender: TObject);
@@ -125,6 +140,7 @@ end;
 procedure TfMovCafeDepositado.btNovaCompraClick(Sender: TObject);
 var temp:integer;
 begin
+  FormOperacao:='InserirRegistro';
   fRomCompraDepositado:=TfRomCompraDepositado.Create(Self);
     temp:=fRomCompraDepositado.ShowModal;
     fRomCompraDepositado.Destroy;
