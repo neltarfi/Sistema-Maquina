@@ -134,6 +134,7 @@ type
     procedure EditarTrue;
     procedure EditarFalse;
     procedure NovoRegistro;
+    procedure ztRomCompraCocoAfterScroll(DataSet: TDataSet);
     procedure ztRomCompraCocoCalcFields(DataSet: TDataSet);
   private
 
@@ -144,6 +145,7 @@ type
 var
   fRomCompraDepositado: TfRomCompraDepositado;
   AliquotaFundoRural:double;
+  FormModoInsert:boolean;
 
 implementation
 
@@ -166,8 +168,6 @@ begin
      erro:='-O campo Peso comprado tem que ser maior que zero'+chr(13);
   if ztRomCompraCocoValor.Value=0 then
      erro:=erro+'-O campo Preço tem que ser maior que zero'+chr(13);
-  //if ztRomCompraCocoPorcFundoRural.Value=0 then
-     //erro:=erro+'-O campo PorcFundoRural tem que ser maior que zero';
   if erro<>'' then begin
      showMessage(erro);
      exit;
@@ -183,14 +183,13 @@ begin
   ztRomCompraCoco.Post;
 
                        //atualiza saldo do EstoqueDepositoCoo
-  ztEstoqueDepositoCoco.Locate('IdRomEntradaCoco',zqEstoqueDepositoCocoIDRomEntradaCoco.Value,[]);
+  ztEstoqueDepositoCoco.Locate('IDRomEntradaCoco',zqEstoqueDepositoCocoIDRomEntradaCoco.Value,[]);
   ztEstoqueDepositoCoco.Edit;
   ztEstoqueDepositoCocoPesoSaida.Value:=ztEstoqueDepositoCocoPesoSaida.Value+
                                         strToInt(edtPesoComprado.Text);
   ztEstoqueDepositoCocoSaldo.Value:=ztEstoqueDepositoCocoSaldo.Value-
                                     strToInt(edtPesoComprado.Text);
   ztEstoqueDepositoCoco.Post;
-  zqEstoqueDepositoCoco.Refresh;
 
   zqNovoIDContaCorrente.Refresh;
   ztContaCorrente.Append;
@@ -223,6 +222,8 @@ begin
   end;
 
   EditarFalse;
+  ztRomCompraCoco.Last;
+  zqEstoqueDepositoCoco.Refresh;
   if zqEstoqueDepositoCoco.RecordCount>0 then
      btTrans.Enabled:=True;
 end;
@@ -231,7 +232,7 @@ procedure TfRomCompraDepositado.btTransClick(Sender: TObject);
 begin
   btTrans.Enabled:=False;
   EditarTrue;
-  edtRenda.Text:=IntToStr(zqEstoqueDepositoCocoRenda.Value);
+
   fPrincipal.zConn.StartTransaction;
   ztRomCompraCoco.Append;
   zqNovoIDRomCompraDeposito.Refresh;
@@ -240,6 +241,7 @@ begin
   ztRomCompraCocoIDRomCompraDeposito.Value:=zqNovoIDRomCompraDepositoID.Value+1;
   edtPesoDepositado.Text:=intToStr(zqEstoqueDepositoCocoSaldo.Value);
   NovoRegistro;
+  edtRenda.Text:=IntToStr(zqEstoqueDepositoCocoRenda.Value);
 end;
 
 procedure TfRomCompraDepositado.dbeAliquotaChange(Sender: TObject);
@@ -276,7 +278,7 @@ begin
   EditarFalse;
   btTrans.Enabled:=True;
   edtPesoDepositado.Text:='0';
-  edtRenda.Text:='';
+  //edtRenda.Text:='';
 end;
 
 procedure TfRomCompraDepositado.DBlcbNomeChange(Sender: TObject);
@@ -341,16 +343,17 @@ begin
      SistemaIni := TIniFile.Create(GetCurrentDir+'/BaseDeDados/Sistema.ini');
      AliquotaFundoRural:=SistemaIni.ReadFloat('Variaveis', 'AliquotaFundoRural', 0);
   SistemaIni.Free;
+  FormModoInsert:=False;
   zqEstoqueDepositoCoco.Open;
   ztEstoqueDepositoCoco.Open;
   ztCliente.Open;
   zqClienteSaldo.Open;
-  ztRomCompraCoco.Open;
   ztContaCorrente.Open;
   zqNovoIDRomCompraCoco.Open;
   zqNovoIDRomCompraDeposito.Open;
   zqNovoIDContaCorrente.Open;
   ztRomEntradaCoco.Open;
+  ztRomCompraCoco.Open;
   zqEstoqueDepositoCoco.Filtered:=False;
   zqEstoqueDepositoCoco.Filter:='(IDCliente=0)';
   zqEstoqueDepositoCoco.Filtered:=True;
@@ -362,19 +365,16 @@ begin
                                ztRomCompraCoco.Locate('IDRomCompraDeposito',
                                    fMovCafeDepositado.zqRomCompraCocoIDROMCOMPRADEPOSITO.Value,[]);
                                DBlcbNome.KeyValue:=ztRomCompraCocoIDCliente.Value;
-                               edtPesoComprado.Text:=intToStr(ztRomCompraCocoPesoCoco.Value);
-                               edtRenda.Text:=intToStr(ztRomCompraCocoRenda.Value);
+
                                dbdtpData.Enabled:=False;
                                DBlcbNome.Enabled:=False;
                                DBGrid1.Enabled:=False;
-                               btImprimir.Enabled:=False;
-                               ztRomCompraCoco.Edit;
-                               ztRomCompraCocoCalcFields(ztRomCompraCoco);
-                               ztRomCompraCoco.Cancel;
+                               FormModoInsert:=False
        end;
        'InserirRegistro':    begin
                                edtPesoDepositado.Text:='0';
-                               edtRenda.Text:='0';
+                               ztRomCompraCoco.Last;
+                               FormModoInsert:=True
        end;
   end;
 end;
@@ -405,7 +405,7 @@ procedure TfRomCompraDepositado.NovoRegistro;
 begin
   ztRomCompraCocoPesoCoco.Value:=0;
   edtPesoComprado.Text:='0';
-  dbrgSacoKg.Value:='Saco';;
+  ztRomCompraCocoSacoKg.Value:='Saco';;
   ztRomCompraCoco.FieldByName('Data').Value:=DATE;
   ztRomCompraCocoValor.Value:=0;
   ztRomCompraCocoPorcFundoRural.Value:=100;
@@ -415,11 +415,17 @@ begin
   ztRomCompraCocoValorLivre.Value:=0;
 end;
 
+procedure TfRomCompraDepositado.ztRomCompraCocoAfterScroll(DataSet: TDataSet);
+begin
+  edtPesoComprado.Text:=intToStr(ztRomCompraCocoPesoCoco.Value);
+  edtRenda.Text:=intToStr(ztRomCompraCocoRenda.Value);
+end;
+
 procedure TfRomCompraDepositado.ztRomCompraCocoCalcFields(DataSet: TDataSet);
 begin
-     if edtPesoComprado.Text='' then
-        edtPesoComprado.Text:='0';
-     if (ztRomCompraCoco.State=dsInsert) then Begin
+     if FormModoInsert then Begin
+        if edtPesoComprado.Text='' then
+           edtPesoComprado.Text:='0';
         if ztRomCompraCocoValor.Text='' then
            ztRomCompraCocoValor.Value:=0;
         if (ztRomCompraCocoPorcFundoRural.Text='')or(strToInt(ztRomCompraCocoPorcFundoRural.Text)>100) then
@@ -429,11 +435,13 @@ begin
            edtPesoComprado.Text:='0';
         end;
         edtPesoDepositado.Text:=intToStr(zqEstoqueDepositoCocoSaldo.Value-strToInt(edtPesoComprado.Text));
-     end;
-     if edtRenda.Text='' then
-           edtRenda.Text:='0';
 
-     if dbrgSacoKg.Value='Saco' then
+     end
+     else begin
+         edtPesoComprado.Text:=intToStr(ztRomCompraCocoPesoCoco.Value);
+         edtRenda.Text:=intToStr(ztRomCompraCocoRenda.Value);
+     end;
+     if ztRomCompraCocoSacoKg.Value='Saco' then
            ztRomCompraCocoValorBruto.Value:=
             ((strToInt(edtPesoComprado.Text)*
             ztRomCompraCocoValor.Value)/40)
@@ -441,7 +449,7 @@ begin
           ztRomCompraCocoValorBruto.Value:=
             ((strToInt(edtPesoComprado.Text)*
             ztRomCompraCocoValor.Value*
-            ztRomCompraCocoRenda.Value)/40000);
+            strToInt(edtRenda.Text))/40000);
 
      ztRomCompraCocoValorFundoRural.Value:=
             (ztRomCompraCocoValorBruto.Value*ztRomCompraCocoAliquota.Value*

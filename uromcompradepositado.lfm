@@ -1018,6 +1018,8 @@ object fRomCompraDepositado: TfRomCompraDepositado
     end
   end
   object ztRomCompraCoco: TZTable
+    AutoCalcFields = False
+    AfterScroll = ztRomCompraCocoAfterScroll
     OnCalcFields = ztRomCompraCocoCalcFields
     Filter = 'IDRomCompraDeposito>0'
     Filtered = True
