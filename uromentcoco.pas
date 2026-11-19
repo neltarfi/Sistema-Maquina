@@ -439,13 +439,20 @@ end;
 
 procedure TfRomEntCoco.edtDescontoExit(Sender: TObject);
 begin
-  if (edtDesconto.Text<>'') and
-     (strToInt(edtDesconto.Text)>=0) then
-     ztRomEntradaCocoBeberCoco.Value:=
-     Round(((ztRomEntradaCocoBeberLimpo.Value*40000)/ztRomEntradaCocoRenda.Value)/
-     (1-(strToInt(edtDesconto.Text)*0.01)))
-  else edtDesconto.Text:='20';
-  ztRomEntradaCocoCalcFields(ztRomEntradaCoco);  //dispara o método oncalcFields
+
+     if (edtDesconto.Text<>'') and
+        (strToInt(edtDesconto.Text)>=0)and
+        (ztRomEntradaCocoRenda.Value>0)then
+        ztRomEntradaCocoBeberCoco.Value:=
+          Round(((ztRomEntradaCocoBeberLimpo.Value*40000)/ztRomEntradaCocoRenda.Value)/
+          (1-(strToInt(edtDesconto.Text)*0.01)))
+     else begin
+        edtDesconto.Text:='20';
+        ztRomEntradaCocoBeberCoco.Value:=0;
+        ztRomEntradaCocoBeberLimpo.Value:=0;
+     end;
+     if ztRomEntradaCocoRenda.Value>0 then
+        ztRomEntradaCocoCalcFields(ztRomEntradaCoco);  //dispara o método oncalcFields
 end;
 
 procedure TfRomEntCoco.edtDescontoChange(Sender: TObject);
