@@ -1140,17 +1140,17 @@ object fMovLoteSacaria: TfMovLoteSacaria
     Connection = fPrincipal.zConn
     SQL.Strings = (
       'SELECT'
-      '         CLIENTE."RAZAO" || '', '' || CLIENTE."ENDERECO" as Nome,'
-      '         MOVLOTESACARIA."IDMOVLOTESACARIA",'
-      '         MOVLOTESACARIA."IDLOTESACARIA",'
-      '         MOVLOTESACARIA."DATA",'
-      '         MOVLOTESACARIA."HISTORICO",'
-      '         MOVLOTESACARIA."QUANENTRADA",'
-      '         MOVLOTESACARIA."QUANSAIDA",'
-      '         MOVLOTESACARIA."STATUS"'
-      'FROM     Cliente '
-      'INNER JOIN MOVLOTESACARIA  ON CLIENTE."IDCLIENTE" = MOVLOTESACARIA."IDCLIENTE" '
-      'order by MOVLOTESACARIA."DATA"'
+      '         C."RAZAO" || '', '' || C."ENDERECO" as Nome,'
+      '         M."IDMOVLOTESACARIA",'
+      '         M."IDLOTESACARIA",'
+      '         M."DATA",'
+      '         M."HISTORICO",'
+      '         M."QUANENTRADA",'
+      '         M."QUANSAIDA",'
+      '         M."STATUS"'
+      'FROM     Cliente  as C'
+      'INNER JOIN MOVLOTESACARIA as M  ON C."IDCLIENTE" = M."IDCLIENTE" '
+      'order by M."DATA", M.IDMOVLOTESACARIA'
     )
     Params = <>
     Left = 472

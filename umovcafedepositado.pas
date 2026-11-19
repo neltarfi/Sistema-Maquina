@@ -65,6 +65,7 @@ type
     procedure AplicaFiltro(Evento:string);
     procedure rgFiltroNomeClick(Sender: TObject);
     procedure rgFiltroPeriodoClick(Sender: TObject);
+    procedure zqRomCompraCocoAfterScroll(DataSet: TDataSet);
   private
 
   public
@@ -220,6 +221,11 @@ begin
 end;
 
 procedure TfMovCafeDepositado.rgFiltroPeriodoClick(Sender: TObject);
+begin
+  AplicaFiltro('Navigator');
+end;
+
+procedure TfMovCafeDepositado.zqRomCompraCocoAfterScroll(DataSet: TDataSet);
 begin
   AplicaFiltro('Navigator');
 end;

@@ -483,6 +483,7 @@ object fMovCafeDepositado: TfMovCafeDepositado
     Top = 226
   end
   object zqRomCompraCoco: TZQuery
+    AfterScroll = zqRomCompraCocoAfterScroll
     Connection = fPrincipal.zConn
     SQL.Strings = (
       'select E.IDCLIENTE as IDCLIENTE,'

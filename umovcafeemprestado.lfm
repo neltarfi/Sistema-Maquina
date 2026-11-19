@@ -1503,17 +1503,17 @@ object fMovCafeEmprestado: TfMovCafeEmprestado
     Connection = fPrincipal.zConn
     SQL.Strings = (
       'SELECT'
-      '         CAFEEMPRESTADO."IDCLIENTE",'
-      '         (Cast(LOTELIMPO."IDLOTELIMPO" as varchar(10)) || '', '' || LOTELIMPO."NOME") as Nome,'
-      '         CAFEEMPRESTADO."IDLOTELIMPO",'
-      '         CAFEEMPRESTADO."DATA",'
-      '         CAFEEMPRESTADO."HISTORICO",'
-      '         CAFEEMPRESTADO."PESOEMPRESTAR",'
-      '         CAFEEMPRESTADO."PESODEVOLVER",'
-      '         CAFEEMPRESTADO."STATUS"'
-      'FROM  CAFEEMPRESTADO'
-      'inner join LOTELIMPO on LOTELIMPO."IDLOTELIMPO" = CAFEEMPRESTADO."IDLOTELIMPO"'
-      'order by "DATA"'
+      '         C."IDCLIENTE",'
+      '         (Cast(L."IDLOTELIMPO" as varchar(10)) || '', '' || L."NOME") as Nome,'
+      '         C."IDLOTELIMPO",'
+      '         C."DATA",'
+      '         C."HISTORICO",'
+      '         C."PESOEMPRESTAR",'
+      '         C."PESODEVOLVER",'
+      '         C."STATUS"'
+      'FROM  CAFEEMPRESTADO  as C'
+      'inner join LOTELIMPO as L on L."IDLOTELIMPO" = C."IDLOTELIMPO"'
+      'order by C.DATA, C.IDLOTELIMPO'
     )
     Params = <>
     Left = 430

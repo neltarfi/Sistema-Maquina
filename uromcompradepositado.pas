@@ -145,7 +145,6 @@ type
 var
   fRomCompraDepositado: TfRomCompraDepositado;
   AliquotaFundoRural:double;
-  FormModoInsert:boolean;
 
 implementation
 
@@ -181,14 +180,15 @@ begin
   ztRomCompraCocoIDContaCorrente.Value:=ztContaCorrenteIDContaCorrente.Value;
   ztRomCompraCocoStatus.Value:='Ativo';
   ztRomCompraCoco.Post;
+  ztRomCompraCoco.Last;
 
                        //atualiza saldo do EstoqueDepositoCoo
   ztEstoqueDepositoCoco.Locate('IDRomEntradaCoco',zqEstoqueDepositoCocoIDRomEntradaCoco.Value,[]);
   ztEstoqueDepositoCoco.Edit;
   ztEstoqueDepositoCocoPesoSaida.Value:=ztEstoqueDepositoCocoPesoSaida.Value+
-                                        strToInt(edtPesoComprado.Text);
+                                        ztRomCompraCocoPesoCoco.Value;
   ztEstoqueDepositoCocoSaldo.Value:=ztEstoqueDepositoCocoSaldo.Value-
-                                    strToInt(edtPesoComprado.Text);
+                                    ztRomCompraCocoPesoCoco.Value;
   ztEstoqueDepositoCoco.Post;
 
   zqNovoIDContaCorrente.Refresh;
@@ -241,7 +241,6 @@ begin
   ztRomCompraCocoIDRomCompraDeposito.Value:=zqNovoIDRomCompraDepositoID.Value+1;
   edtPesoDepositado.Text:=intToStr(zqEstoqueDepositoCocoSaldo.Value);
   NovoRegistro;
-  edtRenda.Text:=IntToStr(zqEstoqueDepositoCocoRenda.Value);
 end;
 
 procedure TfRomCompraDepositado.dbeAliquotaChange(Sender: TObject);
@@ -278,7 +277,8 @@ begin
   EditarFalse;
   btTrans.Enabled:=True;
   edtPesoDepositado.Text:='0';
-  //edtRenda.Text:='';
+  edtPesoComprado.Text:=intToStr(ztRomCompraCocoPesoCoco.Value);
+  edtRenda.Text:=intToStr(ztRomCompraCocoRenda.Value);
 end;
 
 procedure TfRomCompraDepositado.DBlcbNomeChange(Sender: TObject);
@@ -310,6 +310,7 @@ end;
 
 procedure TfRomCompraDepositado.edtPesoCompradoExit(Sender: TObject);
 begin
+  edtPesoDepositado.Text:=intToStr(zqEstoqueDepositoCocoSaldo.Value-strToInt(edtPesoComprado.Text));
   ztRomCompraCocoCalcFields(ztRomCompraCoco);  //dispara o método oncalcFields
 end;
 
@@ -343,7 +344,8 @@ begin
      SistemaIni := TIniFile.Create(GetCurrentDir+'/BaseDeDados/Sistema.ini');
      AliquotaFundoRural:=SistemaIni.ReadFloat('Variaveis', 'AliquotaFundoRural', 0);
   SistemaIni.Free;
-  FormModoInsert:=False;
+  edtPesoComprado.Text:='0';
+  edtRenda.Text:='0';
   zqEstoqueDepositoCoco.Open;
   ztEstoqueDepositoCoco.Open;
   ztCliente.Open;
@@ -369,12 +371,10 @@ begin
                                dbdtpData.Enabled:=False;
                                DBlcbNome.Enabled:=False;
                                DBGrid1.Enabled:=False;
-                               FormModoInsert:=False
        end;
        'InserirRegistro':    begin
                                edtPesoDepositado.Text:='0';
                                ztRomCompraCoco.Last;
-                               FormModoInsert:=True
        end;
   end;
 end;
@@ -405,6 +405,7 @@ procedure TfRomCompraDepositado.NovoRegistro;
 begin
   ztRomCompraCocoPesoCoco.Value:=0;
   edtPesoComprado.Text:='0';
+  edtRenda.Text:=IntToStr(zqEstoqueDepositoCocoRenda.Value);
   ztRomCompraCocoSacoKg.Value:='Saco';;
   ztRomCompraCoco.FieldByName('Data').Value:=DATE;
   ztRomCompraCocoValor.Value:=0;
@@ -417,13 +418,13 @@ end;
 
 procedure TfRomCompraDepositado.ztRomCompraCocoAfterScroll(DataSet: TDataSet);
 begin
-  edtPesoComprado.Text:=intToStr(ztRomCompraCocoPesoCoco.Value);
-  edtRenda.Text:=intToStr(ztRomCompraCocoRenda.Value);
+     edtPesoComprado.Text:=intToStr(ztRomCompraCocoPesoCoco.Value);
+     edtRenda.Text:=intToStr(ztRomCompraCocoRenda.Value);
 end;
 
 procedure TfRomCompraDepositado.ztRomCompraCocoCalcFields(DataSet: TDataSet);
 begin
-     if FormModoInsert then Begin
+     if ztRomCompraCoco.State=dsInsert then Begin
         if edtPesoComprado.Text='' then
            edtPesoComprado.Text:='0';
         if ztRomCompraCocoValor.Text='' then
@@ -434,8 +435,7 @@ begin
            edtPesoDepositado.Text:=intTostr(zqEstoqueDepositoCocoSaldo.Value);
            edtPesoComprado.Text:='0';
         end;
-        edtPesoDepositado.Text:=intToStr(zqEstoqueDepositoCocoSaldo.Value-strToInt(edtPesoComprado.Text));
-
+        edtRenda.Text:=intToStr(zqEstoqueDepositoCocoRenda.Value);
      end
      else begin
          edtPesoComprado.Text:=intToStr(ztRomCompraCocoPesoCoco.Value);

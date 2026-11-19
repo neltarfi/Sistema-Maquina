@@ -1176,17 +1176,17 @@ object fMovCliSacaria: TfMovCliSacaria
     SQL.Strings = (
       'SELECT'
       '         L."IDLOTESACARIA" || '', '' || L."NOME" as Nome,'
-      '         MOVLOTESACARIA."IDCLIENTE",'
-      '         MOVLOTESACARIA."IDMOVLOTESACARIA",'
-      '         MOVLOTESACARIA."IDLOTESACARIA",'
-      '         MOVLOTESACARIA."DATA",'
-      '         MOVLOTESACARIA."HISTORICO",'
-      '         MOVLOTESACARIA."QUANENTRADA",'
-      '         MOVLOTESACARIA."QUANSAIDA",'
-      '         MOVLOTESACARIA."STATUS"'
-      'FROM   MOVLOTESACARIA'
-      'INNER JOIN LOTESACARIA as L ON MOVLOTESACARIA."IDLOTESACARIA" = L."IDLOTESACARIA" '
-      'order by MOVLOTESACARIA."DATA"'
+      '         M."IDCLIENTE",'
+      '         M."IDMOVLOTESACARIA",'
+      '         M."IDLOTESACARIA",'
+      '         M."DATA",'
+      '         M."HISTORICO",'
+      '         M."QUANENTRADA",'
+      '         M."QUANSAIDA",'
+      '         M."STATUS"'
+      'FROM   MOVLOTESACARIA as M'
+      'INNER JOIN LOTESACARIA as L ON M."IDLOTESACARIA" = L."IDLOTESACARIA" '
+      'order by M."DATA", M.IDMOVLOTESACARIA'
     )
     Params = <>
     Left = 488

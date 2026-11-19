@@ -1200,7 +1200,7 @@ object fAcerto: TfAcerto
       'select'
       ' *'
       'from CONTACORRENTE'
-      'order by "DATA"'
+      'order by "DATA" , "IDCONTACORRENTE"'
     )
     Params = <>
     Left = 304
@@ -1329,7 +1329,7 @@ object fAcerto: TfAcerto
       'select '
       '   * '
       'from CONTACORRENTE'
-      'order by "DATA"'
+      'order by "DATA", "IDCONTACORRENTE"'
     )
     Params = <>
     Left = 568
@@ -1531,6 +1531,7 @@ object fAcerto: TfAcerto
       'select'
       '   *'
       'From ACERTO'
+      ''
     )
     Params = <>
     Left = 568

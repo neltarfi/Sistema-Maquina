@@ -68,6 +68,7 @@ type
     procedure rgFiltroNomeClick(Sender: TObject);
     procedure rgFiltroOperacaoClick(Sender: TObject);
     procedure rgFiltroPeriodoClick(Sender: TObject);
+    procedure ztMovLoteCocoAfterScroll(DataSet: TDataSet);
   private
 
   public
@@ -246,6 +247,11 @@ begin
 end;
 
 procedure TfMovLoteCoco.rgFiltroPeriodoClick(Sender: TObject);
+begin
+  AplicaFiltro('Navigator');
+end;
+
+procedure TfMovLoteCoco.ztMovLoteCocoAfterScroll(DataSet: TDataSet);
 begin
   AplicaFiltro('Navigator');
 end;

@@ -521,6 +521,7 @@ object fMovLoteCoco: TfMovLoteCoco
   end
   object ztMovLoteCoco: TZTable
     SortedFields = 'IDMovLoteCoco'
+    AfterScroll = ztMovLoteCocoAfterScroll
     Connection = fPrincipal.zConn
     TableName = 'MOVLOTECOCO'
     IndexFieldNames = 'IDMovLoteCoco Asc'

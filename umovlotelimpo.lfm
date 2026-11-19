@@ -1572,16 +1572,16 @@ object fMovLoteLimpo: TfMovLoteLimpo
     SQL.Strings = (
       'SELECT'
       '         CLIENTE."RAZAO" || '', '' || CLIENTE."ENDERECO"as Nome,'
-      '         MOVLOTELIMPO."IDMOVLOTELIMPO",'
-      '         MOVLOTELIMPO."IDLOTELIMPO",'
-      '         MOVLOTELIMPO."DATA",'
-      '         MOVLOTELIMPO."HISTORICO",'
-      '         MOVLOTELIMPO."PESOENTRADA",'
-      '         MOVLOTELIMPO."PESOSAIDA",'
-      '         MOVLOTELIMPO."STATUS"'
+      '         M."IDMOVLOTELIMPO",'
+      '         M."IDLOTELIMPO",'
+      '         M."DATA",'
+      '         M."HISTORICO",'
+      '         M."PESOENTRADA",'
+      '         M."PESOSAIDA",'
+      '         M."STATUS"'
       'FROM     CLIENTE '
-      'INNER JOIN MOVLOTELIMPO  ON CLIENTE."IDCLIENTE" = MOVLOTELIMPO."IDCLIENTE" '
-      'order by MOVLOTELIMPO."DATA"'
+      'INNER JOIN MOVLOTELIMPO  as M ON CLIENTE."IDCLIENTE" = M."IDCLIENTE" '
+      'order by M."DATA", M.IDMOVLOTELIMPO'
     )
     Params = <>
     Left = 416

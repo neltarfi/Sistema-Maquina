@@ -413,7 +413,7 @@ end;
 procedure TfRomEntCoco.dbeBeberCocoChange(Sender: TObject);
 begin
   if dbeBeberCoco.Text='-' then dbeBeberCoco.Text:='';
-  DBAceitaInteiro(dbeBeberCoco);
+  DBAceitaInteiroNegativo(dbeBeberCoco);
 end;
 
 procedure TfRomEntCoco.dbeBeberCocoExit(Sender: TObject);
@@ -461,13 +461,13 @@ end;
 procedure TfRomEntCoco.dbeDesconto1Change(Sender: TObject);
 begin
    if dbeDesconto1.Text='-' then dbeDesconto1.Text:='';
-   DBAceitaInteiro(dbeDesconto1);
+   DBAceitaInteiroNegativo(dbeDesconto1);
 end;
 
 procedure TfRomEntCoco.dbeDesconto2Change(Sender: TObject);
 begin
    if dbeDesconto2.Text='-' then dbeDesconto2.Text:='';
-   DBAceitaInteiro(dbeDesconto2);
+   DBAceitaInteiroNegativo(dbeDesconto2);
 end;
 
 procedure TfRomEntCoco.dbeDesconto2Exit(Sender: TObject);
@@ -1008,9 +1008,6 @@ begin
         ztMovLoteLimpoPesoSaida.Value:=0;
         ztMovLoteLimpoStatus.Value:='Ativo';
         ztMovLoteLimpo.Post;
-
-                            //beber coco
-        SalvaMovLoteCoco(BeberCoco);
 end;
 
 procedure TfRomEntCoco.SalvaMovLoteCoco(PesoCoco:integer);
@@ -1025,7 +1022,7 @@ begin
         ztMovLoteCocoIDCliente.Value:=IDCliente;
         ztMovLoteCoco.FieldByName('Data').Value:=DATE;
         ztMovLoteCocoHistorico.Value:='Romaneio entrada em coco '+intToStr(IDRomEntradaCoco) ;
-        ztMovLoteCocoPesoCocoEntrada.Value:=PesoCoco;
+        ztMovLoteCocoPesoCocoEntrada.Value:=PesoCoco+(-1)*BeberCoco;
         ztMovLoteCocoPesoCocoSaida.Value:=0;
         ztMovLoteCocoValor.Value:=(-1)*ztRomCompraCocoValorBruto.Value;
         ztMovLoteCocoStatus.Value:='Ativo';
